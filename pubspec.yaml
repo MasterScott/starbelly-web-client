@@ -1,0 +1,19 @@
+name: starbelly
+description: Web client for Starbelly crawler
+version: 0.0.1
+authors:
+  - Mark E. Haase <mehaase@gmail.com>
+dependencies:
+  angular2: ^2.2.0
+  browser: ^0.10.0
+  dart_to_js_script_rewriter: ^1.0.1
+  ng2_fontawesome: any
+  ng2_modular_admin: any
+transformers:
+- angular2:
+    platform_directives:
+    - 'package:angular2/common.dart#COMMON_DIRECTIVES'
+    platform_pipes:
+    - 'package:angular2/common.dart#COMMON_PIPES'
+    entry_points: web/main.dart
+- dart_to_js_script_rewriter
