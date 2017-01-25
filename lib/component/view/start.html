@@ -1,55 +1,35 @@
-<section class='content-header'>
-  <h1>
-    Start Crawling
-  </h1>
-</section>
+<ma-card title='Start A Crawl'>
+  <p class='lead'>
+    Start a crawl using the default crawling policies.
+  </p>
 
-<section class='content'>
-  <div class='row'>
-    <div class='col-xs-12'>
-      <div class='box box-primary'>
-        <div class='box-header with-border'>
-          <h3 class='box-title'>Crawl Information</h3>
-        </div>
-        <form role='form'>
-          <div class='box-body'>
-            <div class='form-group'
-                 [class.has-error]='seedUrlInput.touched && !seedUrlInput.valid'
-                 [class.has-success]='seedUrlInput.touched && seedUrlInput.valid'>
-              <label for='seedUrl'>Seed URL</label>
-              <input id='seedUrl'
-                     type='url'
-                     [(ngModel)]='seedUrl'
-                     ngControl='seedUrlInput'
-                     #seedUrlInput='ngForm'
-                     class='form-control'
-                     placeholder='Seed URL for crawl (required)'
-                     required>
-              <span class='help-block' [class.hide]='!seedUrlInput.touched || seedUrlInput.valid'>
-                FOOBAR
-              </span>
-            </div>
-            <div class='form-group'
-                 [class.has-error]='false'
-                 [class.has-success]='false'>
-              <label for='rateLimit'>Rate Limit (Optional)</label>
-              <input id='rateLimit'
-                     type='number'
-                     [(ngModel)]='rateLimit'
-                     ngControl='rateLimit'
-                     min='0' step='1'
-                     class='form-control'
-                     placeholder='Seconds between requests (optional: if blank, use global default)'>
-              <span class='help-block' *ngIf='false'>
-                {{rateLimitError}}
-              </span>
-            </div>
-          </div>
-          <div class='box-footer'>
-            <button type='submit' class='btn btn-primary pull-right'>Start Crawl</button>
-          </div>
-        </form>
-      </div>
+  <form (ngSubmit)='startCrawl()' [ngFormModel]='form'>
+    <ma-input-group class='underlined' [control]='seedUrlControl'>
+      <label>
+        Seed URL
+        <input type='text'
+               [(ngModel)]='seedUrl'
+               [ngFormControl]='seedUrlControl'
+               placeholder='Seed URL (required)'>
+      </label>
+    </ma-input-group>
+
+    <ma-input-group class='underlined' [control]='rateLimitControl'>
+      <label>
+        Rate Limit
+        <input type='text'
+               [(ngModel)]='rateLimit'
+               [ngFormControl]='rateLimitControl'
+               class='form-control'
+               placeholder='Delay (in seconds) between requests'>
+      </label>
+    </ma-input-group>
+
+    <div class='clearfix'>
+      <ma-button class='float-xs-right' [submit]='true' [disabled]='!form.valid'>
+        <fa name='play-circle'></fa>
+        Start Crawl
+      </ma-button>
     </div>
-  </div>
-</section>
+  </form>
+</ma-card>

@@ -1,37 +1,33 @@
-<ma-app>
+<ma-app class='purple-theme'>
+  <ma-toast-outlet [service]='toast'></ma-toast-outlet>
+
   <ma-top-nav [fixed]='true'>
-    <div class='float-xs-left buttons'>
-      <ma-button size='small'
-                 href='https://gitlab.com/hyperion-gray/ng2_modular_admin'>
-        <fa name='gitlab'></fa>
-        View On Gitlab
-      </ma-button>
+    <div class='float-xs-left'>
+      What should go up here...?
     </div>
-    <div class='float-xs-right buttons'>
-      <ma-button size='small'
-                 href='https://gitlab.com/hyperion-gray/ng2_modular_admin/repository/archive.zip?ref=master'>
-        <fa name='cloud-download'></fa>
-        Download ZIP
-      </ma-button>
+    <div class='float-xs-right'>
+      ...and over here?
     </div>
   </ma-top-nav>
+
   <ma-side-nav [fixed]='true'>
     <ma-side-nav-header>
-      <ma-logo></ma-logo> Starbelly
+      <img src='/images/logo_45px.png'>
+      Starbelly
     </ma-side-nav-header>
-    <ma-side-nav-item [route]='["CrawlDashboard"]'>
-      <fa name='dashboard' [fw]='true' size='lg'></fa> Dashboard
-    </ma-side-nav-item>
     <ma-side-nav-item [route]='["CrawlStart"]'>
       <fa name='play-circle' [fw]='true' size='lg'></fa> Start Crawling
     </ma-side-nav-item>
     <ma-side-nav-item [route]='["CrawlStatus"]'>
-      <fa name='th-list' [fw]='true' size='lg'></fa> Crawl Status
+      <fa name='dashboard' [fw]='true' size='lg'></fa>
+      Crawl Status
+      <ma-tag type='success' [pill]='true' class='float-xs-right'>{{crawlStatus.newCrawlBadge}}</ma-tag>
     </ma-side-nav-item>
     <ma-side-nav-item [route]='["CrawlItems"]'>
-      <fa name='font' [fw]='true' size='lg'></fa> Crawl Items
+      <fa name='th-list' [fw]='true' size='lg'></fa> Crawl Items
     </ma-side-nav-item>
   </ma-side-nav>
+
   <ma-content>
     <router-outlet></router-outlet>
   </ma-content>

@@ -2,89 +2,75 @@ import 'dart:async';
 import 'dart:html';
 
 import 'package:angular2/core.dart';
+import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
+import 'package:starbelly/model/crawl_status.dart';
+import 'package:starbelly/service/crawl_status.dart';
 import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
 
 /// View crawl items.
 @Component(
     selector: 'crawl-items',
-    templateUrl: 'items.html'
+    styles: const ['''
+        .flashable { transition: background-color var(--ma-slow-animation) ease-out; }
+        .flash-on { background-color: var(--ma-info-color-light) !important; }
+    '''],
+    templateUrl: 'items.html',
+    directives: const [MA_DIRECTIVES]
 )
-class CrawlItemsView implements OnInit, OnDestroy {
-    List<Map> crawls;
+class CrawlItemsView implements OnDestroy {
+    CrawlStatusService crawlStatus;
+    Map<CrawlStatus,bool> following;
     List<Map> items;
 
     DocumentService _document;
     ServerService _server;
-    Map<int,StreamSubscription> _subscriptions;
-    Map<int,String> _sync_tokens;
+    Map<String,StreamSubscription> _subscriptions;
+    Map<String,String> _sync_tokens;
 
     /// Constructor
-    CrawlItemsView(this._document, this._server) {
-        this.crawls = new List<Map>();
-        this.items = new List<Map>();
-        this._subscriptions = new Map<int,StreamSubscription>();
-        this._sync_tokens = new Map<int,String>();
+    CrawlItemsView(this.crawlStatus, this._document, this._server) {
+        this._document.title = 'Crawl Items';
+        this.following = {};
+        this.items = [];
+        this._subscriptions = {};
+        this._sync_tokens = {};
     }
 
     /// Cancel all subscriptions before the component is destroyed.
-    ngOnDestroy() async {
+    Future<Null> ngOnDestroy() async {
         this._subscriptions.values.forEach((sub) => sub.cancel());
     }
 
-    /// Subscribe to crawl stats after the component is initialized.
-    ngOnInit() async {
-        this._document.title = 'Items';
-
-        var response = await this._server.command(
-            'subscribe_crawl_stats',
-            {'min_interval': 5}
-        );
-
-        response.subscription.listen((event) {
-            event.data.forEach((crawlId, stats) {
-                var found = false;
-
-                for (var crawl in this.crawls) {
-                    if (crawl['crawl_id'] == crawlId) {
-                        crawl.addAll(stats);
-                        found = true;
-                        break;
-                    }
-                }
-
-                if (!found) {
-                    stats['follow'] = false;
-                    stats['crawl_id'] = crawlId;
-                    this.crawls.add(stats);
-                }
-            });
-        });
-    }
-
     /// Toggle the follow status for the specified crawl.
-    Future<Null> toggleFollow(Map crawl) async {
-        crawl['follow'] = !crawl['follow'];
-        var crawlId = crawl['crawl_id'];
+    Future<Null> toggleFollow(CrawlStatus status) async {
+        this.following[status] = !(this.following[status] ?? false);
 
-        if (crawl['follow']) {
-            var args = {'crawl_id': crawlId};
+        if (this.following[status]) {
+            var args = {'crawl_id': status.crawlId};
 
-            if (this._sync_tokens.containsKey(crawlId)) {
-                args['sync_token'] = this._sync_tokens[crawlId];
+            if (this._sync_tokens.containsKey(status.crawlId)) {
+                args['sync_token'] = this._sync_tokens[status.crawlId];
             }
 
             var response = await this._server.command(
                 'subscribe_crawl_items', args
             );
 
-            this._subscriptions[crawlId] = response.subscription.listen(
+            this._subscriptions[status.crawlId] = response.subscription.listen(
                 this._handleCrawlItem
             );
         } else {
-            this._subscriptions.remove(crawlId).cancel();
+            this._subscriptions.remove(status.crawlId).cancel();
         }
+    }
+
+    /// Get title from an HTML document (or N/A if it doesn't have a title).
+    void _getHtmlTitle(String body) {
+        var parser = new DomParser();
+        var doc = parser.parseFromString(body, 'text/html');
+        return doc.querySelector('title').text;
     }
 
     /// Handle a crawl item event.
@@ -98,16 +84,9 @@ class CrawlItemsView implements OnInit, OnDestroy {
         }
         var crawlId = event.data['crawl_id'];
         var syncToken = event.data['sync_token'];
-        this._sync_tokens[crawlId] = syncToken;
+        this._sync_tokens[crawlId.toString()] = syncToken;
         new Timer(new Duration(milliseconds: 500), () {
             crawlItem['flash_on'] = false;
         });
-    }
-
-    /// Get title from an HTML document (or N/A if it doesn't have a title).
-    void _getHtmlTitle(String body) {
-        var parser = new DomParser();
-        var doc = parser.parseFromString(body, 'text/html');
-        return doc.querySelector('title').text;
     }
 }

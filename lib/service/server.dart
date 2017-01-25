@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:html';
 
 import 'package:angular2/core.dart';
+import 'package:logging/logging.dart';
 
 /// This class handles interaction with the server, abstracting out details like
 /// command IDs and pairing responses to requests.
@@ -12,6 +13,8 @@ class ServerService {
     Map<int,Completer> _pendingCommands;
     Future<WebSocket> _socketFuture;
     Map<int,StreamController> _subscriptions;
+
+    final Logger log = new Logger('ServerService');
 
     /// Constructor.
     ServerService() {
@@ -55,15 +58,13 @@ class ServerService {
             this._socketFuture = completer.future;
 
             socket.onClose.listen((event) {
-                // TODO USE TOAST?
-                window.console.log('Socket disconnected.');
+                log.info('Socket disconnected.');
                 this._clearState();
             });
 
             socket.onError.listen((event) {
-                // TODO USE TOAST?
                 var err = 'Server error!';
-                window.console.log(err);
+                log.severe(err, event);
                 completer.completeError(err);
                 this._socketFuture = null;
             });
@@ -71,8 +72,7 @@ class ServerService {
             socket.onMessage.listen(this._handleMessage);
 
             socket.onOpen.listen((event) {
-                // TODO USE TOAST?
-                window.console.log('Socket connected.');
+                log.info('Socket connected.');
                 completer.complete(socket);
             });
         }
