@@ -11,6 +11,7 @@ import 'package:logging/logging.dart';
 class ServerService {
     int _nextCommandId;
     Map<int,Completer> _pendingCommands;
+    Timer _pingTimer;
     Future<WebSocket> _socketFuture;
     Map<int,StreamController> _subscriptions;
 
@@ -32,7 +33,7 @@ class ServerService {
         socket.send(JSON.encode({
             'command': command,
             'command_id': this._nextCommandId++,
-            'args': args
+            'args': args ?? {}
         }));
 
         return completer.future;
@@ -73,6 +74,7 @@ class ServerService {
 
             socket.onOpen.listen((event) {
                 log.info('Socket connected.');
+                this._resetPingTimer();
                 completer.complete(socket);
             });
         }
@@ -87,6 +89,7 @@ class ServerService {
     void _handleMessage(MessageEvent event) {
         var message = JSON.decode(event.data);
         var data = message['data'];
+        this._resetPingTimer();
 
         if (message['type'] == 'response') {
             var commandId = message['command_id'];
@@ -115,6 +118,7 @@ class ServerService {
         }
     }
 
+    /// Create a new subscription stream.
     Stream<ServerEvent> _newSubscription(int subscriptionId) {
         var controller = new StreamController<ServerEvent>();
         this._subscriptions[subscriptionId] = controller;
@@ -126,6 +130,17 @@ class ServerService {
         };
 
         return controller.stream;
+    }
+
+    /// Reset the ping timer.
+    void _resetPingTimer() {
+        if (this._pingTimer != null) {
+            this._pingTimer.cancel();
+        }
+
+        this._pingTimer = new Timer(new Duration(seconds: 15), () async {
+            await this.command('ping');
+        });
     }
 }
 

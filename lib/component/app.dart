@@ -33,17 +33,18 @@ import 'package:starbelly/service/document.dart';
 @RouteConfig(const [
     const Route(
         name: 'CrawlStart',
-        path: '/crawl/start',
+        path: '/start',
         component: CrawlStartView,
+        useAsDefault: true
     ),
     const Route(
         name: 'CrawlStatus',
-        path: '/crawl/status',
+        path: '/status',
         component: CrawlStatusView,
     ),
     const Route(
         name: 'CrawlItems',
-        path: '/crawl/items',
+        path: '/items',
         component: CrawlItemsView
     ),
 ])
