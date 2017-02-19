@@ -1,16 +1,16 @@
 <ma-card>
   <p class='lead'>Subscribe To Crawls…</p>
   <ul class='list-group'>
-    <li *ngIf='crawlStatus.crawls.length == 0' class='list-group-item'>
-      <em>No crawls have been started...</em>
+    <li *ngIf='jobStatus.jobs.length == 0' class='list-group-item'>
+      <em>No jobs exist...</em>
     </li>
-    <li *ngFor='let status of crawlStatus.crawls' class='list-group-item'>
-      <a href='{{status.seed}}' target='_blank'>{{status.seed}}</a>
+    <li *ngFor='let job of jobStatus.jobs' class='list-group-item'>
+      {{job.name}}
       <ma-checkbox-group [inline]='true' class='float-xs-right'>
         <label>
           <input type='checkbox'
-                 [ngModel]='following[status] ?? false'
-                 (ngModelChange)='toggleFollow(status)'>
+                 [ngModel]='following[job] ?? false'
+                 (ngModelChange)='toggleFollow(job)'>
           Follow
         </label>
       </ma-checkbox-group>

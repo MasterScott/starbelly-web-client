@@ -9,7 +9,7 @@ import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
 import 'package:starbelly/validate.dart' as validate;
 
-/// View and manage crawls.
+/// Start a new crawl job.
 @Component(
     selector: 'crawl-start',
     templateUrl: 'start.html',
@@ -21,54 +21,57 @@ import 'package:starbelly/validate.dart' as validate;
     directives: const [MA_DIRECTIVES]
 )
 class CrawlStartView {
-    String rateLimit = '';
+    String name = '';
     String seedUrl = '';
 
     ControlGroup form;
-    Control seedUrlControl, rateLimitControl;
+    Control nameControl, seedUrlControl;
 
     ToastService toast;
 
+    bool _autoName = true;
     ServerService _server;
     DocumentService _document;
 
     /// Constructor
     CrawlStartView(this._document, this._server, this.toast) {
         this._document.title = 'Start Crawl';
-
-        this.seedUrlControl = new Control('', Validators.compose([validate.required(), validate.url()]));
-        this.rateLimitControl = new Control('', validate.number(min: 0));
-        this.form = new ControlGroup({
-            'seedUrl': this.seedUrlControl,
-            'rateLimit': this.rateLimitControl,
-        });
+        this._initForm();
     }
 
     /// Request a new crawl.
     startCrawl() async {
-        var command_arg = {'url': this.seedUrl};
-
-        if (this.rateLimit.isNotEmpty) {
-            command_arg['rate_limit'] = num.parse(this.rateLimit);
-        }
-
         var response = await this._server.command('start_crawl', {
-            'seeds': [command_arg]
+            'name': this.name,
+            'seeds': [this.seedUrl],
         });
 
-        var uri = Uri.parse(this.seedUrl);
+        var message;
+
+        if (this.name.isEmpty) {
+            var uri = Uri.parse(this.seedUrl);
+            message = uri.host;
+        } else {
+            message = this.name;
+        }
+
         this.toast.add(
             'primary',
             'Crawl started.',
-            uri.host,
+            message,
             icon: 'play-circle'
         );
 
-        this.seedUrl = '';
+        this._initForm();
+    }
+
+    /// Initialize form controls.
+    void _initForm() {
+        this.nameControl = new Control('');
         this.seedUrlControl = new Control('', Validators.compose([validate.required(), validate.url()]));
         this.form = new ControlGroup({
+            'name': this.nameControl,
             'seedUrl': this.seedUrlControl,
-            'rateLimit': this.rateLimitControl,
         });
     }
 }

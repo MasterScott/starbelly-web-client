@@ -9,17 +9,23 @@ import 'package:logging/logging.dart';
 /// command IDs and pairing responses to requests.
 @Injectable()
 class ServerService {
+    /// Sends true when connected to server and false when disconnected.
+    Stream<bool> connected;
+
     int _nextCommandId;
     Map<int,Completer> _pendingCommands;
     Timer _pingTimer;
     Future<WebSocket> _socketFuture;
-    Map<int,StreamController> _subscriptions;
+    Map<String,StreamController> _subscriptions;
+    StreamController<bool> _connectedController;
 
     final Logger log = new Logger('ServerService');
 
     /// Constructor.
     ServerService() {
         this._clearState();
+        this._connectedController = new StreamController<bool>.broadcast();
+        this.connected = this._connectedController.stream;
     }
 
     /// Send a command to the server and return a future response.
@@ -39,15 +45,30 @@ class ServerService {
         return completer.future;
     }
 
+    /// Tell the server to connect immediately and automatically re-connect
+    /// if the connection drops.
+    stayConnected() async {
+        await this._getSocket();
+
+        this.connected.listen((isConnected) async {
+            if (!isConnected) {
+                log.info('Will try to reconnect in 2 seconds.');
+                await new Future.delayed(new Duration(seconds: 2));
+                this._socketFuture == null;
+                await this._getSocket();
+            }
+        });
+    }
+
     /// Clear out all state related to a connection.
     ///
     /// This is useful for resetting after closing a connection as well as for
     /// initialization of this object.
     void _clearState() {
         this._nextCommandId = 0;
-        this._pendingCommands = new Map<int,Completer>();
+        this._pendingCommands = {};
         this._socketFuture = null;
-        this._subscriptions = new Map<int,StreamController>();
+        this._subscriptions = {};
     }
 
     /// Return a websocket wrapped in a future. If not already connected, this
@@ -61,6 +82,7 @@ class ServerService {
             socket.onClose.listen((event) {
                 log.info('Socket disconnected.');
                 this._clearState();
+                this._connectedController.add(false);
             });
 
             socket.onError.listen((event) {
@@ -76,6 +98,7 @@ class ServerService {
                 log.info('Socket connected.');
                 this._resetPingTimer();
                 completer.complete(socket);
+                this._connectedController.add(true);
             });
         }
 
@@ -119,7 +142,7 @@ class ServerService {
     }
 
     /// Create a new subscription stream.
-    Stream<ServerEvent> _newSubscription(int subscriptionId) {
+    Stream<ServerEvent> _newSubscription(String subscriptionId) {
         var controller = new StreamController<ServerEvent>();
         this._subscriptions[subscriptionId] = controller;
 

@@ -4,8 +4,8 @@ import 'dart:html';
 import 'package:angular2/core.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
-import 'package:starbelly/model/crawl_status.dart';
-import 'package:starbelly/service/crawl_status.dart';
+import 'package:starbelly/model/job_status.dart';
+import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
 
@@ -20,8 +20,8 @@ import 'package:starbelly/service/server.dart';
     directives: const [MA_DIRECTIVES]
 )
 class CrawlItemsView implements OnDestroy {
-    CrawlStatusService crawlStatus;
-    Map<CrawlStatus,bool> following;
+    JobStatusService jobStatus;
+    Map<JobStatus,bool> following;
     List<Map> items;
 
     DocumentService _document;
@@ -30,7 +30,7 @@ class CrawlItemsView implements OnDestroy {
     Map<String,String> _sync_tokens;
 
     /// Constructor
-    CrawlItemsView(this.crawlStatus, this._document, this._server) {
+    CrawlItemsView(this.jobStatus, this._document, this._server) {
         this._document.title = 'Crawl Items';
         this.following = {};
         this.items = [];
@@ -44,25 +44,25 @@ class CrawlItemsView implements OnDestroy {
     }
 
     /// Toggle the follow status for the specified crawl.
-    Future<Null> toggleFollow(CrawlStatus status) async {
+    Future<Null> toggleFollow(JobStatus status) async {
         this.following[status] = !(this.following[status] ?? false);
 
         if (this.following[status]) {
-            var args = {'crawl_id': status.crawlId};
+            var args = {'crawl_id': status.jobId};
 
-            if (this._sync_tokens.containsKey(status.crawlId)) {
-                args['sync_token'] = this._sync_tokens[status.crawlId];
+            if (this._sync_tokens.containsKey(status.jobId)) {
+                args['sync_token'] = this._sync_tokens[status.jobId];
             }
 
             var response = await this._server.command(
-                'subscribe_crawl_items', args
+                'subscribe_crawl_sync', args
             );
 
-            this._subscriptions[status.crawlId] = response.subscription.listen(
+            this._subscriptions[status.jobId] = response.subscription.listen(
                 this._handleCrawlItem
             );
         } else {
-            this._subscriptions.remove(status.crawlId).cancel();
+            this._subscriptions.remove(status.jobId).cancel();
         }
     }
 
@@ -82,9 +82,9 @@ class CrawlItemsView implements OnDestroy {
         if (this.items.length > 10) {
             this.items.removeLast();
         }
-        var crawlId = event.data['crawl_id'];
+        var jobId = event.data['crawl_id'];
         var syncToken = event.data['sync_token'];
-        this._sync_tokens[crawlId.toString()] = syncToken;
+        this._sync_tokens[jobId] = syncToken;
         new Timer(new Duration(milliseconds: 500), () {
             crawlItem['flash_on'] = false;
         });

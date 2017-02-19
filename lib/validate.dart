@@ -15,7 +15,7 @@ ValidatorFn integer({int min, int max}) {
     }
 
     return (Control c) {
-        Map<String,bool> errors;
+        Map<String,bool> errors = {};
         String s = c.value.trim();
 
         try {
@@ -23,11 +23,11 @@ ValidatorFn integer({int min, int max}) {
                 int i = int.parse(s, radix: 10);
 
                 if ((min != null && i < min) || (max != null && i > max)) {
-                    errors = {error: true};
+                    errors[error] = true;
                 }
             }
         } catch (e) {
-            errors = {error: true};
+            errors[error] = true;
         }
 
         return errors;
@@ -50,7 +50,7 @@ ValidatorFn number({num min, num max}) {
     }
 
     return (Control c) {
-        Map<String,bool> errors;
+        Map<String,bool> errors = {};
         String s = c.value.trim();
 
         try {
@@ -58,11 +58,11 @@ ValidatorFn number({num min, num max}) {
                 num n = double.parse(s);
 
                 if ((min != null && n < min) || (max != null && n > max)) {
-                    errors = {error: true};
+                    errors[error] = true;
                 }
             }
         } catch (e) {
-            errors = {error: true};
+            errors[error] = true;
         }
 
         return errors;
@@ -73,10 +73,10 @@ ValidatorFn number({num min, num max}) {
 ValidatorFn required() {
     return (Control c) {
         String s = c.value.trim();
-        Map<String,bool> errors = null;
+        Map<String,bool> errors = {};
 
         if (s.isEmpty) {
-            errors = {'This field is required.': true};
+            errors['This field is required.'] = true;
         }
 
         return errors;
@@ -89,15 +89,15 @@ ValidatorFn url() {
 
     return (Control c) {
         String url = c.value.trim();
-        Map<String,bool> errors = null;
+        Map<String,bool> errors = {};
 
         try {
             var uri = Uri.parse(url);
             if (uri.host.isEmpty || (!uri.scheme.startsWith('http'))) {
-                errors = {error: true};
+                errors[error] = true;
             }
         } catch (e) {
-            errors = {error: true};
+            errors[error] = true;
         }
 
         return errors;

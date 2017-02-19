@@ -18,13 +18,13 @@
     <ma-side-nav-item [route]='["CrawlStart"]'>
       <fa name='play-circle' [fw]='true' size='lg'></fa> Start Crawling
     </ma-side-nav-item>
-    <ma-side-nav-item [route]='["CrawlStatus"]'>
-      <fa name='dashboard' [fw]='true' size='lg'></fa>
-      Crawl Status
-      <ma-tag type='success' [pill]='true' class='float-xs-right'>{{crawlStatus.newCrawlBadge}}</ma-tag>
+    <ma-side-nav-item [route]='["JobStatus"]'>
+      <fa name='tasks' [fw]='true' size='lg'></fa>
+      Job Status
+      <ma-tag type='success' [pill]='true' class='float-xs-right'>{{jobStatus.newJobBadge}}</ma-tag>
     </ma-side-nav-item>
     <ma-side-nav-item [route]='["CrawlItems"]'>
-      <fa name='th-list' [fw]='true' size='lg'></fa> Crawl Items
+      <fa name='file-text' [fw]='true' size='lg'></fa> Crawl Items
     </ma-side-nav-item>
   </ma-side-nav>
 

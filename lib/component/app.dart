@@ -9,7 +9,7 @@ import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 import 'package:starbelly/component/view/items.dart';
 import 'package:starbelly/component/view/start.dart';
 import 'package:starbelly/component/view/status.dart';
-import 'package:starbelly/service/crawl_status.dart';
+import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/server.dart';
 import 'package:starbelly/service/document.dart';
 
@@ -27,7 +27,7 @@ import 'package:starbelly/service/document.dart';
         }
     '''],
     directives: const [MA_DIRECTIVES, ROUTER_DIRECTIVES, FaIcon],
-    providers: const [MA_PROVIDERS, ROUTER_PROVIDERS, CrawlStatusService,
+    providers: const [MA_PROVIDERS, ROUTER_PROVIDERS, JobStatusService,
         DocumentService, ServerService]
 )
 @RouteConfig(const [
@@ -38,9 +38,9 @@ import 'package:starbelly/service/document.dart';
         useAsDefault: true
     ),
     const Route(
-        name: 'CrawlStatus',
+        name: 'JobStatus',
         path: '/status',
-        component: CrawlStatusView,
+        component: JobStatusView,
     ),
     const Route(
         name: 'CrawlItems',
@@ -50,13 +50,16 @@ import 'package:starbelly/service/document.dart';
 ])
 class AppComponent {
     /// Service for creating toast notifications.
-    CrawlStatusService crawlStatus;
+    JobStatusService jobStatus;
 
     /// Service for creating toast notifications.
     ToastService toast;
 
+    /// Server service.
+    ServerService _server;
+
     /// Constructor.
-    AppComponent(this.crawlStatus, this.toast) {
+    AppComponent(this.jobStatus, this._server, this.toast) {
         if (window.localStorage['starbelly-debug'] == 'true') {
             Logger.root.level = Level.ALL;
         } else {
@@ -70,5 +73,7 @@ class AppComponent {
             }
             print(msg);
         });
+
+        this._server.stayConnected();
     }
 }

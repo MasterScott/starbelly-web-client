@@ -4,6 +4,17 @@
   </p>
 
   <form (ngSubmit)='startCrawl()' [ngFormModel]='form'>
+    <ma-input-group class='underlined' [control]='nameControl'>
+      <label>
+        Name
+        <input type='text'
+               [(ngModel)]='name'
+               [ngFormControl]='nameControl'
+               class='form-control'
+               placeholder='Choose a name for this crawl.'>
+      </label>
+    </ma-input-group>
+
     <ma-input-group class='underlined' [control]='seedUrlControl'>
       <label>
         Seed URL
@@ -11,17 +22,6 @@
                [(ngModel)]='seedUrl'
                [ngFormControl]='seedUrlControl'
                placeholder='Seed URL (required)'>
-      </label>
-    </ma-input-group>
-
-    <ma-input-group class='underlined' [control]='rateLimitControl'>
-      <label>
-        Rate Limit
-        <input type='text'
-               [(ngModel)]='rateLimit'
-               [ngFormControl]='rateLimitControl'
-               class='form-control'
-               placeholder='Delay (in seconds) between requests'>
       </label>
     </ma-input-group>
 
