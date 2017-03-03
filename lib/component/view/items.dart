@@ -48,7 +48,7 @@ class CrawlItemsView implements OnDestroy {
         this.following[status] = !(this.following[status] ?? false);
 
         if (this.following[status]) {
-            var args = {'crawl_id': status.jobId};
+            var args = {'job_id': status.jobId};
 
             if (this._sync_tokens.containsKey(status.jobId)) {
                 args['sync_token'] = this._sync_tokens[status.jobId];
@@ -82,7 +82,7 @@ class CrawlItemsView implements OnDestroy {
         if (this.items.length > 10) {
             this.items.removeLast();
         }
-        var jobId = event.data['crawl_id'];
+        var jobId = event.data['job_id'];
         var syncToken = event.data['sync_token'];
         this._sync_tokens[jobId] = syncToken;
         new Timer(new Duration(milliseconds: 500), () {
