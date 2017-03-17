@@ -49,7 +49,7 @@ class JobStatusService {
     /// Subscribe to crawl status events.
     _subscribe() async {
         var response = await this._server.command(
-            'subscribe_job_status',
+            'job.subscribe.status',
             {'min_interval': 1}
         );
 

@@ -41,7 +41,7 @@ class CrawlStartView {
 
     /// Request a new crawl.
     startCrawl() async {
-        var response = await this._server.command('start_crawl', {
+        var response = await this._server.command('job.start', {
             'name': this.name,
             'seeds': [this.seedUrl],
         });

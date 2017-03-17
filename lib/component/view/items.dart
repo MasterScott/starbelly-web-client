@@ -55,7 +55,7 @@ class CrawlItemsView implements OnDestroy {
             }
 
             var response = await this._server.command(
-                'subscribe_crawl_sync', args
+                'job.subscribe.sync', args
             );
 
             this._subscriptions[status.jobId] = response.subscription.listen(

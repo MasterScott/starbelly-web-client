@@ -8,6 +8,7 @@
         <th>Items</th>
         <th>Errors</th>
         <th>Exceptions</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -16,12 +17,25 @@
           No crawl jobs are running.
         </td>
       </tr>
-      <tr *ngFor="let status of jobStatus.jobs">
-        <td>{{status.name}}</td>
-        <td>{{status.status}}</td>
-        <td>{{status.httpSuccessCount}}</td>
-        <td>{{status.httpErrorCount}}</td>
-        <td>{{status.exceptionCount}}</td>
+      <tr *ngFor="let job of jobStatus.jobs">
+        <td>{{job.name}}</td>
+        <td>
+          {{job.status}}
+        </td>
+        <td>{{job.httpSuccessCount}}</td>
+        <td>{{job.httpErrorCount}}</td>
+        <td>{{job.exceptionCount}}</td>
+        <td>
+          <ma-button size='small' *ngIf='job.status == "paused"' (click)='resume(job)'>
+            <fa name='play'></fa>
+          </ma-button>
+          <ma-button size='small' *ngIf='job.status == "running"' (click)='pause(job)'>
+            <fa name='pause'></fa>
+          </ma-button>
+          <ma-button size='small' *ngIf='job.status == "running" || job.status == "paused"' (click)='cancel(job)'>
+            <fa name='ban'></fa>
+          </ma-button>
+        </td>
       </tr>
     </tbody>
   </table>
