@@ -62,7 +62,7 @@ class CrawlStartView {
             icon: 'play-circle'
         );
 
-        this._initForm();
+        // this._initForm(); //#TODO
     }
 
     /// Initialize form controls.

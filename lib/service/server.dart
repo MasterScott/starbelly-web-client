@@ -1,9 +1,11 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:html';
+import 'dart:typed_data';
 
 import 'package:angular2/core.dart';
 import 'package:logging/logging.dart';
+
+import 'package:starbelly/protobuf/protobuf.dart' as pb;
 
 /// This class handles interaction with the server, abstracting out details like
 /// command IDs and pairing responses to requests.
@@ -13,10 +15,10 @@ class ServerService {
     Stream<bool> connected;
 
     int _nextCommandId;
-    Map<int,Completer> _pendingCommands;
+    Map<int,Completer> _pendingRequests;
     Timer _pingTimer;
     Future<WebSocket> _socketFuture;
-    Map<String,StreamController> _subscriptions;
+    Map<int,StreamController> _subscriptions;
     StreamController<bool> _connectedController;
 
     final Logger log = new Logger('ServerService');
@@ -28,20 +30,15 @@ class ServerService {
         this.connected = this._connectedController.stream;
     }
 
-    /// Send a command to the server and return a future response.
-    ///
-    /// The `args`, if provided, must be serializable to JSON.
-    Future<ServerResponse> command(String command, [Map args]) async {
+    /// Send a request to the server and return a future response.
+    Future<ServerResponse> sendRequest(pb.Request request) async {
         var socket = await this._getSocket();
         var completer = new Completer<ServerResponse>();
-        this._pendingCommands[this._nextCommandId] = completer;
-
-        socket.send(JSON.encode({
-            'command': command,
-            'command_id': this._nextCommandId++,
-            'args': args ?? {}
-        }));
-
+        request.requestId = this._nextCommandId;
+        this._pendingRequests[request.requestId] = completer;
+        this._nextCommandId++;
+        var requestData = request.writeToBuffer();
+        socket.send(requestData.buffer); // There's no async API for Websocket!
         return completer.future;
     }
 
@@ -66,7 +63,7 @@ class ServerService {
     /// initialization of this object.
     void _clearState() {
         this._nextCommandId = 0;
-        this._pendingCommands = {};
+        this._pendingRequests = {};
         this._socketFuture = null;
         this._subscriptions = {};
     }
@@ -77,6 +74,7 @@ class ServerService {
         if (this._socketFuture == null) {
             var completer = new Completer<WebSocket>();
             var socket = new WebSocket('wss://localhost/ws/');
+            socket.binaryType = 'arraybuffer';
             this._socketFuture = completer.future;
 
             socket.onClose.listen((event) {
@@ -92,7 +90,7 @@ class ServerService {
                 this._socketFuture = null;
             });
 
-            socket.onMessage.listen(this._handleMessage);
+            socket.onMessage.listen(this._handleServerMessage);
 
             socket.onOpen.listen((event) {
                 log.info('Socket connected.');
@@ -109,46 +107,64 @@ class ServerService {
     ///
     /// This either completes a command future with a response, or it sends
     /// a message to a subscription stream.
-    void _handleMessage(MessageEvent event) {
-        var message = JSON.decode(event.data);
-        var data = message['data'];
+    void _handleServerMessage(MessageEvent event) {
+        var buffer = (event.data as ByteBuffer).asUint8List();
+        var message = new pb.ServerMessage.fromBuffer(buffer);
+        print(message);
         this._resetPingTimer();
 
-        if (message['type'] == 'response') {
-            var commandId = message['command_id'];
-            var completer = this._pendingCommands.remove(commandId);
-
-            if (message['success']) {
-                var subscription;
-                var subscriptionId = data.remove('subscription_id');
-
-                if (subscriptionId != null) {
-                    subscription = this._newSubscription(subscriptionId);
-                }
-
-                var response = new ServerResponse(data, subscription);
-                completer.complete(response);
-            } else {
-                completer.completeError(new ServerError(message['error']));
-            }
-        } else if (message['type'] == 'event') {
-            var subscriptionId = message['subscription_id'];
-            var controller = this._subscriptions[subscriptionId];
-            var event = new ServerEvent(message['data']);
-            controller.add(event);
+        if (message.hasResponse()) {
+            this._handleServerResponse(message.response);
+        } else if (message.hasEvent()) {
+            this._handleServerEvent(message.event);
         } else {
-            throw new Exception('Unexpected message type: ' + message['type']);
+            /// If we received a message that isn't a response or an event,
+            /// there's really nothing we can do about it.
+            throw new Exception(
+                'Unexpected message type: ' + message.toString()
+            );
+        }
+    }
+
+    /// Handle an Event message.
+    ///
+    /// This places event data into the stream controller associated with this
+    /// subscription.
+    void _handleServerEvent(pb.Event event) {
+        var controller = this._subscriptions[event.subscriptionId];
+        controller.add(event);
+    }
+
+    /// Handle a Response message.
+    ///
+    /// This returns response data or a subscription stream back to the caller
+    /// who sent the request.
+    void _handleServerResponse(pb.Response response) {
+        var requestId = response.requestId;
+        var completer = this._pendingRequests.remove(requestId);
+        var serverResponse = new ServerResponse(response);
+
+        if (response.isSuccess) {
+            if (response.hasNewSubscription()) {
+                var subId = response.newSubscription.subscriptionId;
+                serverResponse.subscription = this._newSubscription(subId);
+            }
+            completer.complete(serverResponse);
+        } else {
+            completer.completeError(new ServerError(message['error']));
         }
     }
 
     /// Create a new subscription stream.
-    Stream<ServerEvent> _newSubscription(String subscriptionId) {
-        var controller = new StreamController<ServerEvent>();
+    Stream<ServerEvent> _newSubscription(int subscriptionId) {
+        var controller = new StreamController<pb.Event>();
         this._subscriptions[subscriptionId] = controller;
 
         controller.onCancel = () async {
-            var args = {'subscription_id': subscriptionId};
-            var response = await this.command('unsubscribe', args);
+            var request = new Request();
+            request.unsubscribe = new RequestUnsubscribe();
+            request.unsubscribe.subscriptionId = subscriptionId;
+            var response = await this.sendRequest(request);
             this._subscriptions.remove(subscriptionId);
         };
 
@@ -161,22 +177,12 @@ class ServerService {
             this._pingTimer.cancel();
         }
 
-        this._pingTimer = new Timer(new Duration(seconds: 15), () async {
-            await this.command('ping');
+        this._pingTimer = new Timer(new Duration(seconds: 30), () async {
+            var request = new pb.Request();
+            request.ping = new pb.RequestPing();
+            var response = await this.sendRequest(request);
         });
     }
-}
-
-/// This class represents a command that can be sent to the server.
-///
-/// This class is only used internally by the ServerService. External code
-/// should use the service's `command` method instead of instantiating
-/// this class directly.
-class ServerCommand {
-    String command;
-    Map args;
-
-    ServerCommand(this.command, this.args);
 }
 
 /// This class represents an error that is received from the server.
@@ -184,17 +190,7 @@ class ServerCommand {
 /// This class should only be instantiated by the ServerService.
 class ServerError {
     String error;
-
     ServerError(this.error);
-}
-
-/// The type of event produced by a server subscription.
-///
-/// This class should only be instantiated by the ServerService.
-class ServerEvent {
-    Map data;
-
-    ServerEvent(this.data);
 }
 
 /// This class represents a response that is received from the server.
@@ -204,8 +200,7 @@ class ServerEvent {
 ///
 /// This class should only be instantiated by the ServerService.
 class ServerResponse {
-    Map data;
-    Stream<ServerEvent> subscription;
-
-    ServerResponse(this.data, [this.subscription]);
+    Response response;
+    Stream<pb.Event> subscription;
+    ServerResponse(this.response, [this.subscription]);
 }

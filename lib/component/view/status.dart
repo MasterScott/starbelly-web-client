@@ -5,7 +5,6 @@ import 'package:angular2/router.dart';
 import 'package:ng2_fontawesome/ng2_fontawesome.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
-import 'package:starbelly/model/job_status.dart';
 import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/server.dart';
 import 'package:starbelly/service/document.dart';

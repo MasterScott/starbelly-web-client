@@ -2,9 +2,10 @@ import 'dart:async';
 import 'dart:html';
 
 import 'package:angular2/core.dart';
+import 'package:convert/convert.dart';
 import 'package:logging/logging.dart';
 
-import 'package:starbelly/model/job_status.dart';
+import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// A service for tracking crawl state, statistics, etc.
@@ -15,7 +16,7 @@ class JobStatusService {
     String get newJobBadge =>
         _newJobCount == 0 ? '' : _newJobCount.toString();
 
-    Map<int,JobStatus> _jobMap;
+    Map<String,JobStatus> _jobMap;
     List<JobStatus> _jobs;
     int _newJobCount = 0;
     ServerService _server;
@@ -48,24 +49,26 @@ class JobStatusService {
 
     /// Subscribe to crawl status events.
     _subscribe() async {
-        var response = await this._server.command(
-            'job.subscribe.status',
-            {'min_interval': 1}
-        );
+        pb.Request request = new pb.Request();
+        request.subscribeJobsStatus = new pb.RequestSubscribeJobStatus();
+        request.subscribeJobsStatus.minInterval = 1.0;
+        var response = await this._server.sendRequest(request);
 
         log.info("Subscribed to crawl status.");
 
         this._subscription = response.subscription.listen((event) {
-            event.data.forEach((jobId, status) {
-                if (this._jobMap[jobId] == null) {
-                    var newJob = new JobStatus(jobId.toString(), status);
-                    this._jobMap[jobId] = newJob;
-                    this._jobs.add(newJob);
+            var statuses = event.jobStatuses.statuses;
+            for (var status in statuses) {
+                /// Uint8List isn't hashable, so hex encode it:
+                var jobIdStr = hex.encode(status.jobId);
+                if (!this._jobMap.containsKey(jobIdStr)) {
+                    this._jobMap[jobIdStr] = status;
+                    this._jobs.add(status);
                     this._newJobCount++;
                 } else {
-                    this._jobMap[jobId].merge(status);
+                    this._jobMap[jobIdStr].mergeFromMessage(status);
                 }
-            });
+            }
         });
     }
 }

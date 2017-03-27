@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:html';
+import 'dart:typed_data';
 
 import 'package:angular2/core.dart';
+import 'package:convert/convert.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
-import 'package:starbelly/model/job_status.dart';
+import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
@@ -45,46 +48,49 @@ class CrawlItemsView implements OnDestroy {
 
     /// Toggle the follow status for the specified crawl.
     Future<Null> toggleFollow(JobStatus status) async {
+        var jobIdStr = hex.encode(status.jobId);
         this.following[status] = !(this.following[status] ?? false);
 
         if (this.following[status]) {
-            var args = {'job_id': status.jobId};
+            var request = new Request();
+            request.subscribeJobSync = new RequestSubscribeJobSync();
+            request.subscribeJobSync.jobId = status.jobId;
 
-            if (this._sync_tokens.containsKey(status.jobId)) {
-                args['sync_token'] = this._sync_tokens[status.jobId];
+            if (this._sync_tokens.containsKey(jobIdStr)) {
+                request.subscribeJobSync.token = this._sync_tokens[jobIdStr];
             }
 
-            var response = await this._server.command(
-                'job.subscribe.sync', args
-            );
+            var response = await this._server.command(request);
 
-            this._subscriptions[status.jobId] = response.subscription.listen(
+            this._subscriptions[jobIdStr] = response.subscription.listen(
                 this._handleCrawlItem
             );
         } else {
-            this._subscriptions.remove(status.jobId).cancel();
+            this._subscriptions.remove(jobIdStr).cancel();
         }
     }
 
     /// Get title from an HTML document (or N/A if it doesn't have a title).
-    void _getHtmlTitle(String body) {
+    void _getHtmlTitle(ByteBuffer body) {
         var parser = new DomParser();
-        var doc = parser.parseFromString(body, 'text/html');
+        //TODO handle non utf-8 encodings
+        var doc = parser.parseFromString(UTF8.decode(body), 'text/html');
         return doc.querySelector('title').text;
     }
 
     /// Handle a crawl item event.
-    void _handleCrawlItem(ServerEvent event) {
-        var crawlItem = event.data;
-        crawlItem['title'] = this._getHtmlTitle(window.atob(crawlItem['body']));
-        crawlItem['flash_on'] = true;
+    void _handleCrawlItem(pb.Event event) {
+        var crawlItem = {
+            'flash_on': true,
+            'title': this._getHtmlTitle(event.crawlItem.body as ByteBuffer),
+        };
         this.items.insert(0, crawlItem);
         if (this.items.length > 10) {
             this.items.removeLast();
         }
-        var jobId = event.data['job_id'];
-        var syncToken = event.data['sync_token'];
-        this._sync_tokens[jobId] = syncToken;
+        var jobIdStr = hex.encode(event.crawlItem.jobId);
+        var syncToken = event.crawlItem.syncToken;
+        this._sync_tokens[jobIdStr] = syncToken;
         new Timer(new Duration(milliseconds: 500), () {
             crawlItem['flash_on'] = false;
         });

@@ -6,10 +6,12 @@ authors:
 dependencies:
   angular2: ^2.2.0
   browser: ^0.10.0
+  convert: ^2.0.1
   dart_to_js_script_rewriter: ^1.0.1
   logging: ^0.11.0
   ng2_fontawesome: any
   ng2_modular_admin: any
+  protobuf: ^0.5.2
 transformers:
 - angular2:
     platform_directives:
