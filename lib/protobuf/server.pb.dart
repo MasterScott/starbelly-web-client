@@ -7,11 +7,16 @@ import 'package:protobuf/protobuf.dart';
 
 import 'shared.pb.dart';
 
+import 'server.pbenum.dart';
+
+export 'server.pbenum.dart';
+
 class Event extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('Event')
     ..a/*<int>*/(1, 'subscriptionId', PbFieldType.Q3)
     ..a/*<CrawlItem>*/(2, 'crawlItem', PbFieldType.OM, CrawlItem.getDefault, CrawlItem.create)
     ..a/*<JobStatuses>*/(3, 'jobStatuses', PbFieldType.OM, JobStatuses.getDefault, JobStatuses.create)
+    ..a/*<SubscriptionClosed>*/(4, 'subscriptionClosed', PbFieldType.OM, SubscriptionClosed.getDefault, SubscriptionClosed.create)
   ;
 
   Event() : super();
@@ -44,6 +49,11 @@ class Event extends GeneratedMessage {
   void set jobStatuses(JobStatuses v) { setField(3, v); }
   bool hasJobStatuses() => $_has(2, 3);
   void clearJobStatuses() => clearField(3);
+
+  SubscriptionClosed get subscriptionClosed => $_get(3, 4, null);
+  void set subscriptionClosed(SubscriptionClosed v) { setField(4, v); }
+  bool hasSubscriptionClosed() => $_has(3, 4);
+  void clearSubscriptionClosed() => clearField(4);
 }
 
 class _ReadonlyEvent extends Event with ReadonlyMessageMixin {}
@@ -229,4 +239,39 @@ class ServerMessage extends GeneratedMessage {
 }
 
 class _ReadonlyServerMessage extends ServerMessage with ReadonlyMessageMixin {}
+
+class SubscriptionClosed extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('SubscriptionClosed')
+    ..e/*<SubscriptionClosed_Reason>*/(1, 'reason', PbFieldType.QE, SubscriptionClosed_Reason.UNKNOWN, SubscriptionClosed_Reason.valueOf)
+    ..a/*<String>*/(2, 'message', PbFieldType.OS)
+  ;
+
+  SubscriptionClosed() : super();
+  SubscriptionClosed.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  SubscriptionClosed.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  SubscriptionClosed clone() => new SubscriptionClosed()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static SubscriptionClosed create() => new SubscriptionClosed();
+  static PbList<SubscriptionClosed> createRepeated() => new PbList<SubscriptionClosed>();
+  static SubscriptionClosed getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlySubscriptionClosed();
+    return _defaultInstance;
+  }
+  static SubscriptionClosed _defaultInstance;
+  static void $checkItem(SubscriptionClosed v) {
+    if (v is !SubscriptionClosed) checkItemFailed(v, 'SubscriptionClosed');
+  }
+
+  SubscriptionClosed_Reason get reason => $_get(0, 1, null);
+  void set reason(SubscriptionClosed_Reason v) { setField(1, v); }
+  bool hasReason() => $_has(0, 1);
+  void clearReason() => clearField(1);
+
+  String get message => $_get(1, 2, '');
+  void set message(String v) { $_setString(1, 2, v); }
+  bool hasMessage() => $_has(1, 2);
+  void clearMessage() => clearField(2);
+}
+
+class _ReadonlySubscriptionClosed extends SubscriptionClosed with ReadonlyMessageMixin {}
 

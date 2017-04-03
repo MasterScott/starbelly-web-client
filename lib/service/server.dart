@@ -110,7 +110,6 @@ class ServerService {
     void _handleServerMessage(MessageEvent event) {
         var buffer = (event.data as ByteBuffer).asUint8List();
         var message = new pb.ServerMessage.fromBuffer(buffer);
-        print(message);
         this._resetPingTimer();
 
         if (message.hasResponse()) {
@@ -132,7 +131,17 @@ class ServerService {
     /// subscription.
     void _handleServerEvent(pb.Event event) {
         var controller = this._subscriptions[event.subscriptionId];
-        controller.add(event);
+        // A race could lead to receiving an event after closing a
+        // subscription.
+        if (controller != null) {
+            if (event.hasSubscriptionClosed()) {
+                print('subscription closed!');
+                controller.close();
+            } else {
+                print('event');
+                controller.add(event);
+            }
+        }
     }
 
     /// Handle a Response message.
@@ -151,7 +160,7 @@ class ServerService {
             }
             completer.complete(serverResponse);
         } else {
-            completer.completeError(new ServerError(message['error']));
+            completer.completeError('Server error: ' + response.errorMessage);
         }
     }
 
@@ -161,10 +170,12 @@ class ServerService {
         this._subscriptions[subscriptionId] = controller;
 
         controller.onCancel = () async {
-            var request = new Request();
-            request.unsubscribe = new RequestUnsubscribe();
-            request.unsubscribe.subscriptionId = subscriptionId;
-            var response = await this.sendRequest(request);
+            if (!controller.isClosed) {
+                var request = new pb.Request();
+                request.unsubscribe = new pb.RequestUnsubscribe();
+                request.unsubscribe.subscriptionId = subscriptionId;
+                var response = await this.sendRequest(request);
+            }
             this._subscriptions.remove(subscriptionId);
         };
 
@@ -185,14 +196,6 @@ class ServerService {
     }
 }
 
-/// This class represents an error that is received from the server.
-///
-/// This class should only be instantiated by the ServerService.
-class ServerError {
-    String error;
-    ServerError(this.error);
-}
-
 /// This class represents a response that is received from the server.
 ///
 /// Some responses also include a subscription which can be listened to for
@@ -200,7 +203,7 @@ class ServerError {
 ///
 /// This class should only be instantiated by the ServerService.
 class ServerResponse {
-    Response response;
+    pb.Response response;
     Stream<pb.Event> subscription;
     ServerResponse(this.response, [this.subscription]);
 }

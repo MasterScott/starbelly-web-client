@@ -20,19 +20,25 @@
       <tr *ngFor="let job of jobStatus.jobs">
         <td>{{job.name}}</td>
         <td>
-          {{job.state}}
+          {{RUN_STATE_LABELS[job.runState]}}
         </td>
         <td>{{job.httpSuccessCount}}</td>
         <td>{{job.httpErrorCount}}</td>
         <td>{{job.exceptionCount}}</td>
         <td>
-          <ma-button size='small' *ngIf='job.state == "paused"' (click)='resume(job)'>
+          <ma-button size='small'
+                     *ngIf='job.runState == PAUSED'
+                     (click)='setJobRunState(job, RUNNING)'>
             <fa name='play'></fa>
           </ma-button>
-          <ma-button size='small' *ngIf='job.state == "running"' (click)='pause(job)'>
+          <ma-button size='small'
+                     *ngIf='job.runState == RUNNING'
+                     (click)='setJobRunState(job, PAUSED)'>
             <fa name='pause'></fa>
           </ma-button>
-          <ma-button size='small' *ngIf='job.state == "running" || job.state == "paused"' (click)='cancel(job)'>
+          <ma-button size='small'
+                     *ngIf='job.runState == RUNNING || job.runState == PAUSED'
+                     (click)='setJobRunState(job, CANCELLED)'>
             <fa name='ban'></fa>
           </ma-button>
         </td>

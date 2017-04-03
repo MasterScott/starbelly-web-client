@@ -52,18 +52,24 @@ class CrawlItemsView implements OnDestroy {
         this.following[status] = !(this.following[status] ?? false);
 
         if (this.following[status]) {
-            var request = new Request();
-            request.subscribeJobSync = new RequestSubscribeJobSync();
+            var request = new pb.Request();
+            request.subscribeJobSync = new pb.RequestSubscribeJobSync();
             request.subscribeJobSync.jobId = status.jobId;
+            request.subscribeJobSync.compressionOk = false;
 
             if (this._sync_tokens.containsKey(jobIdStr)) {
-                request.subscribeJobSync.token = this._sync_tokens[jobIdStr];
+                request.subscribeJobSync.syncToken = this._sync_tokens[jobIdStr];
             }
 
-            var response = await this._server.command(request);
+            var response = await this._server.sendRequest(request);
 
             this._subscriptions[jobIdStr] = response.subscription.listen(
-                this._handleCrawlItem
+                this._handleCrawlItem,
+                onError: (error) => print('Subscription error: ' + error),
+                onDone: () {
+                    this._subscriptions.remove(jobIdStr);
+                    this.following[status] = false;
+                }
             );
         } else {
             this._subscriptions.remove(jobIdStr).cancel();
@@ -73,16 +79,25 @@ class CrawlItemsView implements OnDestroy {
     /// Get title from an HTML document (or N/A if it doesn't have a title).
     void _getHtmlTitle(ByteBuffer body) {
         var parser = new DomParser();
-        //TODO handle non utf-8 encodings
-        var doc = parser.parseFromString(UTF8.decode(body), 'text/html');
+        var doc = parser.parseFromString(body, 'text/html');
         return doc.querySelector('title').text;
     }
 
     /// Handle a crawl item event.
     void _handleCrawlItem(pb.Event event) {
+        //TODO handle non utf-8 encodings
+        var title;
+        try {
+            var body = UTF8.decode(event.crawlItem.body);
+            title = this._getHtmlTitle(body);
+        } catch (exc, stack) {
+            title = 'N/A';
+        }
         var crawlItem = {
+            'duration': event.crawlItem.duration,
             'flash_on': true,
-            'title': this._getHtmlTitle(event.crawlItem.body as ByteBuffer),
+            'title': title,
+            'url': event.crawlItem.url,
         };
         this.items.insert(0, crawlItem);
         if (this.items.length > 10) {
