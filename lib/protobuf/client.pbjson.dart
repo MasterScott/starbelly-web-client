@@ -7,12 +7,41 @@ const Request$json = const {
   '1': 'Request',
   '2': const [
     const {'1': 'request_id', '3': 1, '4': 2, '5': 5},
-    const {'1': 'ping', '3': 2, '4': 1, '5': 11, '6': '.starbelly.RequestPing'},
-    const {'1': 'set_job_run_state', '3': 3, '4': 1, '5': 11, '6': '.starbelly.RequestSetJobRunState'},
-    const {'1': 'start_job', '3': 4, '4': 1, '5': 11, '6': '.starbelly.RequestStartJob'},
-    const {'1': 'subscribe_jobs_status', '3': 5, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobStatus'},
-    const {'1': 'subscribe_job_sync', '3': 6, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobSync'},
-    const {'1': 'unsubscribe', '3': 7, '4': 1, '5': 11, '6': '.starbelly.RequestUnsubscribe'},
+    const {'1': 'list_jobs', '3': 2, '4': 1, '5': 11, '6': '.starbelly.RequestListJobs'},
+    const {'1': 'get_job', '3': 3, '4': 1, '5': 11, '6': '.starbelly.RequestGetJob'},
+    const {'1': 'get_job_items', '3': 4, '4': 1, '5': 11, '6': '.starbelly.RequestGetJobItems'},
+    const {'1': 'ping', '3': 5, '4': 1, '5': 11, '6': '.starbelly.RequestPing'},
+    const {'1': 'set_job_run_state', '3': 6, '4': 1, '5': 11, '6': '.starbelly.RequestSetJobRunState'},
+    const {'1': 'start_job', '3': 7, '4': 1, '5': 11, '6': '.starbelly.RequestStartJob'},
+    const {'1': 'subscribe_job_status', '3': 8, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobStatus'},
+    const {'1': 'subscribe_job_sync', '3': 9, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobSync'},
+    const {'1': 'unsubscribe', '3': 10, '4': 1, '5': 11, '6': '.starbelly.RequestUnsubscribe'},
+  ],
+};
+
+const RequestListJobs$json = const {
+  '1': 'RequestListJobs',
+  '2': const [
+    const {'1': 'page', '3': 1, '4': 1, '5': 11, '6': '.starbelly.Page'},
+  ],
+};
+
+const RequestGetJob$json = const {
+  '1': 'RequestGetJob',
+  '2': const [
+    const {'1': 'job_id', '3': 1, '4': 2, '5': 12},
+  ],
+};
+
+const RequestGetJobItems$json = const {
+  '1': 'RequestGetJobItems',
+  '2': const [
+    const {'1': 'job_id', '3': 1, '4': 2, '5': 12},
+    const {'1': 'include_success', '3': 2, '4': 1, '5': 8},
+    const {'1': 'include_error', '3': 3, '4': 1, '5': 8},
+    const {'1': 'include_exception', '3': 4, '4': 1, '5': 8},
+    const {'1': 'compression_ok', '3': 5, '4': 1, '5': 8, '7': 'true'},
+    const {'1': 'page', '3': 6, '4': 1, '5': 11, '6': '.starbelly.Page'},
   ],
 };
 

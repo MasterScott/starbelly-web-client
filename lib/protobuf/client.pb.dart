@@ -5,17 +5,22 @@ library starbelly_client;
 
 import 'package:protobuf/protobuf.dart';
 
+import 'shared.pb.dart';
+
 import 'shared.pbenum.dart';
 
 class Request extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('Request')
     ..a/*<int>*/(1, 'requestId', PbFieldType.Q3)
-    ..a/*<RequestPing>*/(2, 'ping', PbFieldType.OM, RequestPing.getDefault, RequestPing.create)
-    ..a/*<RequestSetJobRunState>*/(3, 'setJobRunState', PbFieldType.OM, RequestSetJobRunState.getDefault, RequestSetJobRunState.create)
-    ..a/*<RequestStartJob>*/(4, 'startJob', PbFieldType.OM, RequestStartJob.getDefault, RequestStartJob.create)
-    ..a/*<RequestSubscribeJobStatus>*/(5, 'subscribeJobsStatus', PbFieldType.OM, RequestSubscribeJobStatus.getDefault, RequestSubscribeJobStatus.create)
-    ..a/*<RequestSubscribeJobSync>*/(6, 'subscribeJobSync', PbFieldType.OM, RequestSubscribeJobSync.getDefault, RequestSubscribeJobSync.create)
-    ..a/*<RequestUnsubscribe>*/(7, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
+    ..a/*<RequestListJobs>*/(2, 'listJobs', PbFieldType.OM, RequestListJobs.getDefault, RequestListJobs.create)
+    ..a/*<RequestGetJob>*/(3, 'getJob', PbFieldType.OM, RequestGetJob.getDefault, RequestGetJob.create)
+    ..a/*<RequestGetJobItems>*/(4, 'getJobItems', PbFieldType.OM, RequestGetJobItems.getDefault, RequestGetJobItems.create)
+    ..a/*<RequestPing>*/(5, 'ping', PbFieldType.OM, RequestPing.getDefault, RequestPing.create)
+    ..a/*<RequestSetJobRunState>*/(6, 'setJobRunState', PbFieldType.OM, RequestSetJobRunState.getDefault, RequestSetJobRunState.create)
+    ..a/*<RequestStartJob>*/(7, 'startJob', PbFieldType.OM, RequestStartJob.getDefault, RequestStartJob.create)
+    ..a/*<RequestSubscribeJobStatus>*/(8, 'subscribeJobStatus', PbFieldType.OM, RequestSubscribeJobStatus.getDefault, RequestSubscribeJobStatus.create)
+    ..a/*<RequestSubscribeJobSync>*/(9, 'subscribeJobSync', PbFieldType.OM, RequestSubscribeJobSync.getDefault, RequestSubscribeJobSync.create)
+    ..a/*<RequestUnsubscribe>*/(10, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
   ;
 
   Request() : super();
@@ -39,38 +44,171 @@ class Request extends GeneratedMessage {
   bool hasRequestId() => $_has(0, 1);
   void clearRequestId() => clearField(1);
 
-  RequestPing get ping => $_get(1, 2, null);
-  void set ping(RequestPing v) { setField(2, v); }
-  bool hasPing() => $_has(1, 2);
-  void clearPing() => clearField(2);
+  RequestListJobs get listJobs => $_get(1, 2, null);
+  void set listJobs(RequestListJobs v) { setField(2, v); }
+  bool hasListJobs() => $_has(1, 2);
+  void clearListJobs() => clearField(2);
 
-  RequestSetJobRunState get setJobRunState => $_get(2, 3, null);
-  void set setJobRunState(RequestSetJobRunState v) { setField(3, v); }
-  bool hasSetJobRunState() => $_has(2, 3);
-  void clearSetJobRunState() => clearField(3);
+  RequestGetJob get getJob => $_get(2, 3, null);
+  void set getJob(RequestGetJob v) { setField(3, v); }
+  bool hasGetJob() => $_has(2, 3);
+  void clearGetJob() => clearField(3);
 
-  RequestStartJob get startJob => $_get(3, 4, null);
-  void set startJob(RequestStartJob v) { setField(4, v); }
-  bool hasStartJob() => $_has(3, 4);
-  void clearStartJob() => clearField(4);
+  RequestGetJobItems get getJobItems => $_get(3, 4, null);
+  void set getJobItems(RequestGetJobItems v) { setField(4, v); }
+  bool hasGetJobItems() => $_has(3, 4);
+  void clearGetJobItems() => clearField(4);
 
-  RequestSubscribeJobStatus get subscribeJobsStatus => $_get(4, 5, null);
-  void set subscribeJobsStatus(RequestSubscribeJobStatus v) { setField(5, v); }
-  bool hasSubscribeJobsStatus() => $_has(4, 5);
-  void clearSubscribeJobsStatus() => clearField(5);
+  RequestPing get ping => $_get(4, 5, null);
+  void set ping(RequestPing v) { setField(5, v); }
+  bool hasPing() => $_has(4, 5);
+  void clearPing() => clearField(5);
 
-  RequestSubscribeJobSync get subscribeJobSync => $_get(5, 6, null);
-  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(6, v); }
-  bool hasSubscribeJobSync() => $_has(5, 6);
-  void clearSubscribeJobSync() => clearField(6);
+  RequestSetJobRunState get setJobRunState => $_get(5, 6, null);
+  void set setJobRunState(RequestSetJobRunState v) { setField(6, v); }
+  bool hasSetJobRunState() => $_has(5, 6);
+  void clearSetJobRunState() => clearField(6);
 
-  RequestUnsubscribe get unsubscribe => $_get(6, 7, null);
-  void set unsubscribe(RequestUnsubscribe v) { setField(7, v); }
-  bool hasUnsubscribe() => $_has(6, 7);
-  void clearUnsubscribe() => clearField(7);
+  RequestStartJob get startJob => $_get(6, 7, null);
+  void set startJob(RequestStartJob v) { setField(7, v); }
+  bool hasStartJob() => $_has(6, 7);
+  void clearStartJob() => clearField(7);
+
+  RequestSubscribeJobStatus get subscribeJobStatus => $_get(7, 8, null);
+  void set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(8, v); }
+  bool hasSubscribeJobStatus() => $_has(7, 8);
+  void clearSubscribeJobStatus() => clearField(8);
+
+  RequestSubscribeJobSync get subscribeJobSync => $_get(8, 9, null);
+  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(9, v); }
+  bool hasSubscribeJobSync() => $_has(8, 9);
+  void clearSubscribeJobSync() => clearField(9);
+
+  RequestUnsubscribe get unsubscribe => $_get(9, 10, null);
+  void set unsubscribe(RequestUnsubscribe v) { setField(10, v); }
+  bool hasUnsubscribe() => $_has(9, 10);
+  void clearUnsubscribe() => clearField(10);
 }
 
 class _ReadonlyRequest extends Request with ReadonlyMessageMixin {}
+
+class RequestListJobs extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestListJobs')
+    ..a/*<Page>*/(1, 'page', PbFieldType.OM, Page.getDefault, Page.create)
+    ..hasRequiredFields = false
+  ;
+
+  RequestListJobs() : super();
+  RequestListJobs.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestListJobs.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestListJobs clone() => new RequestListJobs()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestListJobs create() => new RequestListJobs();
+  static PbList<RequestListJobs> createRepeated() => new PbList<RequestListJobs>();
+  static RequestListJobs getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestListJobs();
+    return _defaultInstance;
+  }
+  static RequestListJobs _defaultInstance;
+  static void $checkItem(RequestListJobs v) {
+    if (v is !RequestListJobs) checkItemFailed(v, 'RequestListJobs');
+  }
+
+  Page get page => $_get(0, 1, null);
+  void set page(Page v) { setField(1, v); }
+  bool hasPage() => $_has(0, 1);
+  void clearPage() => clearField(1);
+}
+
+class _ReadonlyRequestListJobs extends RequestListJobs with ReadonlyMessageMixin {}
+
+class RequestGetJob extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestGetJob')
+    ..a/*<List<int>>*/(1, 'jobId', PbFieldType.QY)
+  ;
+
+  RequestGetJob() : super();
+  RequestGetJob.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestGetJob.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestGetJob clone() => new RequestGetJob()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestGetJob create() => new RequestGetJob();
+  static PbList<RequestGetJob> createRepeated() => new PbList<RequestGetJob>();
+  static RequestGetJob getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestGetJob();
+    return _defaultInstance;
+  }
+  static RequestGetJob _defaultInstance;
+  static void $checkItem(RequestGetJob v) {
+    if (v is !RequestGetJob) checkItemFailed(v, 'RequestGetJob');
+  }
+
+  List<int> get jobId => $_get(0, 1, null);
+  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasJobId() => $_has(0, 1);
+  void clearJobId() => clearField(1);
+}
+
+class _ReadonlyRequestGetJob extends RequestGetJob with ReadonlyMessageMixin {}
+
+class RequestGetJobItems extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestGetJobItems')
+    ..a/*<List<int>>*/(1, 'jobId', PbFieldType.QY)
+    ..a/*<bool>*/(2, 'includeSuccess', PbFieldType.OB)
+    ..a/*<bool>*/(3, 'includeError', PbFieldType.OB)
+    ..a/*<bool>*/(4, 'includeException', PbFieldType.OB)
+    ..a/*<bool>*/(5, 'compressionOk', PbFieldType.OB, true)
+    ..a/*<Page>*/(6, 'page', PbFieldType.OM, Page.getDefault, Page.create)
+  ;
+
+  RequestGetJobItems() : super();
+  RequestGetJobItems.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestGetJobItems.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestGetJobItems clone() => new RequestGetJobItems()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestGetJobItems create() => new RequestGetJobItems();
+  static PbList<RequestGetJobItems> createRepeated() => new PbList<RequestGetJobItems>();
+  static RequestGetJobItems getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestGetJobItems();
+    return _defaultInstance;
+  }
+  static RequestGetJobItems _defaultInstance;
+  static void $checkItem(RequestGetJobItems v) {
+    if (v is !RequestGetJobItems) checkItemFailed(v, 'RequestGetJobItems');
+  }
+
+  List<int> get jobId => $_get(0, 1, null);
+  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasJobId() => $_has(0, 1);
+  void clearJobId() => clearField(1);
+
+  bool get includeSuccess => $_get(1, 2, false);
+  void set includeSuccess(bool v) { $_setBool(1, 2, v); }
+  bool hasIncludeSuccess() => $_has(1, 2);
+  void clearIncludeSuccess() => clearField(2);
+
+  bool get includeError => $_get(2, 3, false);
+  void set includeError(bool v) { $_setBool(2, 3, v); }
+  bool hasIncludeError() => $_has(2, 3);
+  void clearIncludeError() => clearField(3);
+
+  bool get includeException => $_get(3, 4, false);
+  void set includeException(bool v) { $_setBool(3, 4, v); }
+  bool hasIncludeException() => $_has(3, 4);
+  void clearIncludeException() => clearField(4);
+
+  bool get compressionOk => $_get(4, 5, true);
+  void set compressionOk(bool v) { $_setBool(4, 5, v); }
+  bool hasCompressionOk() => $_has(4, 5);
+  void clearCompressionOk() => clearField(5);
+
+  Page get page => $_get(5, 6, null);
+  void set page(Page v) { setField(6, v); }
+  bool hasPage() => $_has(5, 6);
+  void clearPage() => clearField(6);
+}
+
+class _ReadonlyRequestGetJobItems extends RequestGetJobItems with ReadonlyMessageMixin {}
 
 class RequestPing extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestPing')

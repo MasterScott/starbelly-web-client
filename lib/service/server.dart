@@ -13,6 +13,7 @@ import 'package:starbelly/protobuf/protobuf.dart' as pb;
 class ServerService {
     /// Sends true when connected to server and false when disconnected.
     Stream<bool> connected;
+    bool isConnected = false;
 
     int _nextCommandId;
     Map<int,Completer> _pendingRequests;
@@ -81,6 +82,7 @@ class ServerService {
                 log.info('Socket disconnected.');
                 this._clearState();
                 this._connectedController.add(false);
+                this.isConnected = false;
             });
 
             socket.onError.listen((event) {
@@ -97,6 +99,7 @@ class ServerService {
                 this._resetPingTimer();
                 completer.complete(socket);
                 this._connectedController.add(true);
+                this.isConnected = true;
             });
         }
 
@@ -135,10 +138,8 @@ class ServerService {
         // subscription.
         if (controller != null) {
             if (event.hasSubscriptionClosed()) {
-                print('subscription closed!');
                 controller.close();
             } else {
-                print('event');
                 controller.add(event);
             }
         }

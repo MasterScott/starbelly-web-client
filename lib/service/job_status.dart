@@ -2,32 +2,40 @@ import 'dart:async';
 import 'dart:html';
 
 import 'package:angular2/core.dart';
-import 'package:convert/convert.dart';
+import 'package:convert/convert.dart' as convert;
 import 'package:logging/logging.dart';
+import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
+import 'package:starbelly/model/job.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// A service for tracking crawl state, statistics, etc.
 @Injectable()
 class JobStatusService {
-    List<JobStatus> get jobs => _jobs;
+    Stream<Job> get events => _streamController.stream;
+    List<Job> get jobs => _jobs;
     int get newJobCount => _newJobCount;
     String get newJobBadge =>
         _newJobCount == 0 ? '' : _newJobCount.toString();
 
-    Map<String,JobStatus> _jobMap;
-    List<JobStatus> _jobs;
+    Map<String,Job> _jobMap;
+    Map<String,String> _jobNames;
+    List<Job> _jobs;
     int _newJobCount = 0;
     ServerService _server;
+    StreamController<Job> _streamController;
     StreamSubscription _subscription;
+    ToastService _toast;
 
     final Logger log = new Logger('JobStatusService');
 
     /// Constructor.
-    JobStatusService(this._server) {
+    JobStatusService(this._server, this._toast) {
         this._jobs = [];
         this._jobMap = {};
+        this._jobNames = {};
+        this._streamController = new StreamController<Job>.broadcast();
 
         // Subscribe automatically whenever we connect to the server.
         this._server.connected.listen((isConnected) {
@@ -42,6 +50,19 @@ class JobStatusService {
         });
     }
 
+    Future<String> getName(String jobId) async {
+        if (!this._jobNames.containsKey(jobId)) {
+            var request = new pb.Request();
+            request.getJob = new pb.RequestGetJob();
+            request.getJob.jobId = convert.hex.decode(jobId);
+            var message = await this._server.sendRequest(request);
+            var job = new Job.fromPb2(message.response.job);
+            this._jobNames[jobId] = job.name;
+        }
+
+        return this._jobNames[jobId];
+    }
+
     /// Reset the new job count.
     void resetNewJobCount() {
         this._newJobCount = 0;
@@ -50,25 +71,62 @@ class JobStatusService {
     /// Subscribe to crawl status events.
     _subscribe() async {
         pb.Request request = new pb.Request();
-        request.subscribeJobsStatus = new pb.RequestSubscribeJobStatus();
-        request.subscribeJobsStatus.minInterval = 1.0;
+        request.subscribeJobStatus = new pb.RequestSubscribeJobStatus();
+        request.subscribeJobStatus.minInterval = 1.0;
         var response = await this._server.sendRequest(request);
+        bool firstEvent = true;
 
         log.info("Subscribed to crawl status.");
 
         this._subscription = response.subscription.listen((event) {
-            var statuses = event.jobStatuses.statuses;
-            for (var status in statuses) {
-                /// Uint8List isn't hashable, so hex encode it:
-                var jobIdStr = hex.encode(status.jobId);
-                if (!this._jobMap.containsKey(jobIdStr)) {
-                    this._jobMap[jobIdStr] = status;
-                    this._jobs.add(status);
-                    this._newJobCount++;
+            var jobs = new List<Job>.generate(
+                event.jobList.jobs.length,
+                (i) => new Job.fromPb2(event.jobList.jobs[i])
+            );
+
+            for (var jobUpdate in jobs) {
+                this._streamController.add(jobUpdate);
+                var jobId = jobUpdate.jobId;
+                if (!this._jobMap.containsKey(jobId)) {
+                    this._jobMap[jobId] = jobUpdate;
+                    this._jobs.insert(0, jobUpdate);
+                    if (!firstEvent) {
+                        this._newJobCount++;
+                    }
                 } else {
-                    this._jobMap[jobIdStr].mergeFromMessage(status);
+                    var existingJob = this._jobMap[jobId];
+                    existingJob.mergeFrom(jobUpdate);
+                }
+                if (!this._jobNames.containsKey(jobId) &&
+                    jobUpdate.name != null) {
+                    this._jobNames[jobId] = jobUpdate.name;
+                }
+                if (!firstEvent) {
+                    this._toastJobUpdate(jobUpdate);
                 }
             }
+
+            firstEvent = false;
         });
+    }
+
+    /// Evaluate a job update and display a toast, if appropriate.
+    void _toastJobUpdate(Job update) async {
+        var name = update.name;
+        var toast = this._toast.add;
+
+        if (name == null) {
+            name = await this.getName(update.jobId);
+        }
+
+        if (update.runState == pb.JobRunState.RUNNING) {
+            toast('primary', 'Crawl started.', name, icon: 'play-circle');
+        } else if (update.runState == pb.JobRunState.PAUSED) {
+            toast('primary', 'Crawl paused.', name, icon: 'pause-circle');
+        } else if (update.runState == pb.JobRunState.CANCELLED) {
+            toast('warning', 'Crawl cancelled.', name, icon: 'times-circle');
+        } else if (update.runState == pb.JobRunState.COMPLETED) {
+            toast('success', 'Crawl completed.', name, icon: 'check-circle');
+        }
     }
 }

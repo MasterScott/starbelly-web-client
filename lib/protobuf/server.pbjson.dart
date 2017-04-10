@@ -8,8 +8,8 @@ const Event$json = const {
   '2': const [
     const {'1': 'subscription_id', '3': 1, '4': 2, '5': 5},
     const {'1': 'crawl_item', '3': 2, '4': 1, '5': 11, '6': '.starbelly.CrawlItem'},
-    const {'1': 'job_statuses', '3': 3, '4': 1, '5': 11, '6': '.starbelly.JobStatuses'},
-    const {'1': 'subscription_closed', '3': 4, '4': 1, '5': 11, '6': '.starbelly.SubscriptionClosed'},
+    const {'1': 'job_list', '3': 4, '4': 1, '5': 11, '6': '.starbelly.JobList'},
+    const {'1': 'subscription_closed', '3': 5, '4': 1, '5': 11, '6': '.starbelly.SubscriptionClosed'},
   ],
 };
 
@@ -19,9 +19,28 @@ const Response$json = const {
     const {'1': 'request_id', '3': 1, '4': 2, '5': 5},
     const {'1': 'is_success', '3': 2, '4': 2, '5': 8},
     const {'1': 'error_message', '3': 3, '4': 1, '5': 9},
-    const {'1': 'new_job', '3': 4, '4': 1, '5': 11, '6': '.starbelly.ResponseNewJob'},
-    const {'1': 'new_subscription', '3': 6, '4': 1, '5': 11, '6': '.starbelly.ResponseNewSubscription'},
-    const {'1': 'ping', '3': 5, '4': 1, '5': 11, '6': '.starbelly.ResponsePing'},
+    const {'1': 'job', '3': 5, '4': 1, '5': 11, '6': '.starbelly.Job'},
+    const {'1': 'list_items', '3': 6, '4': 1, '5': 11, '6': '.starbelly.ResponseListItems'},
+    const {'1': 'list_jobs', '3': 7, '4': 1, '5': 11, '6': '.starbelly.ResponseListJobs'},
+    const {'1': 'new_job', '3': 8, '4': 1, '5': 11, '6': '.starbelly.ResponseNewJob'},
+    const {'1': 'new_subscription', '3': 9, '4': 1, '5': 11, '6': '.starbelly.ResponseNewSubscription'},
+    const {'1': 'ping', '3': 10, '4': 1, '5': 11, '6': '.starbelly.ResponsePing'},
+  ],
+};
+
+const ResponseListItems$json = const {
+  '1': 'ResponseListItems',
+  '2': const [
+    const {'1': 'items', '3': 1, '4': 3, '5': 11, '6': '.starbelly.CrawlItem'},
+    const {'1': 'total', '3': 2, '4': 1, '5': 5},
+  ],
+};
+
+const ResponseListJobs$json = const {
+  '1': 'ResponseListJobs',
+  '2': const [
+    const {'1': 'jobs', '3': 1, '4': 3, '5': 11, '6': '.starbelly.Job'},
+    const {'1': 'total', '3': 2, '4': 1, '5': 5},
   ],
 };
 

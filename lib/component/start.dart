@@ -21,22 +21,23 @@ import 'package:starbelly/validate.dart' as validate;
     '''],
     directives: const [MA_DIRECTIVES]
 )
-class CrawlStartView {
+class StartCrawlView {
     String name = '';
     String seedUrl = '';
 
     ControlGroup form;
     Control nameControl, seedUrlControl;
 
-    ToastService toast;
-
     bool _autoName = true;
     ServerService _server;
     DocumentService _document;
 
     /// Constructor
-    CrawlStartView(this._document, this._server, this.toast) {
+    StartCrawlView(this._document, this._server) {
         this._document.title = 'Start Crawl';
+        this._document.breadcrumbs = [
+            new Breadcrumb(name: 'Start Crawl', icon: 'play-circle')
+        ];
         this._initForm();
     }
 
@@ -47,24 +48,7 @@ class CrawlStartView {
         request.startJob.name = this.name;
         request.startJob.seeds.add(this.seedUrl);
         var response = await this._server.sendRequest(request);
-
-        var message;
-
-        if (this.name.isEmpty) {
-            var uri = Uri.parse(this.seedUrl);
-            message = uri.host;
-        } else {
-            message = this.name;
-        }
-
-        this.toast.add(
-            'primary',
-            'Crawl started.',
-            message,
-            icon: 'play-circle'
-        );
-
-        // this._initForm(); //#TODO
+        this._initForm();
     }
 
     /// Initialize form controls.

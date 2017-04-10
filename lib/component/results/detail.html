@@ -1,0 +1,96 @@
+<div class='row'>
+  <div class='col-lg'>
+    <ma-card>
+      <h2>{{job == null ? 'Loading…' : job.name}}</h2>
+      <div *ngIf='job != null'>
+        <p class='lead'>
+          Status: <strong>{{job.runStateStr}}</strong>
+        </p>
+        <p>
+          Started at {{job.startedAt | date:'medium'}} and
+          <span *ngIf='job.completedAt == null'>is not complete.</span>
+          <span *ngIf='job.completedAt != null'>completed at {{job.completedAt | date:'medium'}}.</span>
+        </p>
+      </div>
+    </ma-card>
+  </div>
+</div>
+<div *ngIf='job != null' class='row'>
+  <div class='col-lg'>
+    <ma-card>
+      <h3>Results</h3>
+      <table class='striped'>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Success</td>
+            <td>
+              <a [routerLink]='["/Results", "Success", {"id":job.jobId}]'
+                >{{job.httpSuccessCount}}</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Error</td>
+            <td>
+              <a [routerLink]='["/Results", "Error", {"id":job.jobId}]'
+                >{{job.httpErrorCount}}</a>
+            </td>
+          </tr>
+          <tr>
+            <td>Exception</td>
+            <td>
+              <a [routerLink]='["/Results", "Exception", {"id":job.jobId}]'
+                >{{job.exceptionCount}}</a>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Total</strong></td>
+            <td><strong>{{job.itemCount}}</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </ma-card>
+    <ma-card>
+      <h3>HTTP Status</h3>
+      <table class='striped'>
+        <thead>
+          <tr>
+            <th>Status</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let status of job.httpStatusCounts">
+            <td>{{status.code}}</td>
+            <td>{{status.count}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ma-card>
+  </div>
+  <div class='col-lg'>
+    <ma-card>
+      <h3>Seeds</h3>
+      <table class='striped'>
+        <thead>
+          <tr>
+            <th>URL</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let seed of job.seeds">
+            <td>
+              <a href='{{seed}}' target='_blank'>{{seed}}</a>
+              <fa name='external-link'></fa>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </ma-card>
+  </div>
+</div>

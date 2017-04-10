@@ -6,12 +6,12 @@ import 'package:logging/logging.dart';
 import 'package:ng2_fontawesome/ng2_fontawesome.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
-import 'package:starbelly/component/view/items.dart';
-import 'package:starbelly/component/view/start.dart';
-import 'package:starbelly/component/view/status.dart';
+import 'package:starbelly/component/dashboard.dart';
+import 'package:starbelly/component/results/router.dart';
+import 'package:starbelly/component/start.dart';
+import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/server.dart';
-import 'package:starbelly/service/document.dart';
 
 @Component(
     selector: 'app',
@@ -25,6 +25,15 @@ import 'package:starbelly/service/document.dart';
         ma-side-nav-header img {
             margin-left: -0.2em;
         }
+
+        .breadcrumbs a {
+            text-decoration: none;
+        }
+
+        .breadcrumbs fa.separator {
+            margin-left: 0.5em;
+            margin-right: 0.5em;
+        }
     '''],
     directives: const [MA_DIRECTIVES, ROUTER_DIRECTIVES, FaIcon],
     providers: const [MA_PROVIDERS, ROUTER_PROVIDERS, JobStatusService,
@@ -32,34 +41,34 @@ import 'package:starbelly/service/document.dart';
 )
 @RouteConfig(const [
     const Route(
-        name: 'CrawlStart',
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: DashboardView,
+        useAsDefault: true),
+    const Route(
+        path: '/results/...',
+        name: 'Results',
+        component: ResultsRouter),
+    const Route(
         path: '/start',
-        component: CrawlStartView,
-        useAsDefault: true
-    ),
-    const Route(
-        name: 'JobStatus',
-        path: '/status',
-        component: JobStatusView,
-    ),
-    const Route(
-        name: 'CrawlItems',
-        path: '/items',
-        component: CrawlItemsView
-    ),
+        name: 'StartCrawl',
+        component: StartCrawlView),
 ])
 class AppComponent {
-    /// Service for creating toast notifications.
+    /// Service for getting status of jobs.
+    DocumentService document;
+
+    /// Service for getting status of jobs.
     JobStatusService jobStatus;
+
+    /// Server service.
+    ServerService server;
 
     /// Service for creating toast notifications.
     ToastService toast;
 
-    /// Server service.
-    ServerService _server;
-
     /// Constructor.
-    AppComponent(this.jobStatus, this._server, this.toast) {
+    AppComponent(this.document, this.jobStatus, this.server, this.toast) {
         if (window.localStorage['starbelly-debug'] == 'true') {
             Logger.root.level = Level.ALL;
         } else {
@@ -74,6 +83,6 @@ class AppComponent {
             print(msg);
         });
 
-        this._server.stayConnected();
+        this.server.stayConnected();
     }
 }

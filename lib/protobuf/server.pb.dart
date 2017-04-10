@@ -15,8 +15,8 @@ class Event extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('Event')
     ..a/*<int>*/(1, 'subscriptionId', PbFieldType.Q3)
     ..a/*<CrawlItem>*/(2, 'crawlItem', PbFieldType.OM, CrawlItem.getDefault, CrawlItem.create)
-    ..a/*<JobStatuses>*/(3, 'jobStatuses', PbFieldType.OM, JobStatuses.getDefault, JobStatuses.create)
-    ..a/*<SubscriptionClosed>*/(4, 'subscriptionClosed', PbFieldType.OM, SubscriptionClosed.getDefault, SubscriptionClosed.create)
+    ..a/*<JobList>*/(4, 'jobList', PbFieldType.OM, JobList.getDefault, JobList.create)
+    ..a/*<SubscriptionClosed>*/(5, 'subscriptionClosed', PbFieldType.OM, SubscriptionClosed.getDefault, SubscriptionClosed.create)
   ;
 
   Event() : super();
@@ -45,15 +45,15 @@ class Event extends GeneratedMessage {
   bool hasCrawlItem() => $_has(1, 2);
   void clearCrawlItem() => clearField(2);
 
-  JobStatuses get jobStatuses => $_get(2, 3, null);
-  void set jobStatuses(JobStatuses v) { setField(3, v); }
-  bool hasJobStatuses() => $_has(2, 3);
-  void clearJobStatuses() => clearField(3);
+  JobList get jobList => $_get(2, 4, null);
+  void set jobList(JobList v) { setField(4, v); }
+  bool hasJobList() => $_has(2, 4);
+  void clearJobList() => clearField(4);
 
-  SubscriptionClosed get subscriptionClosed => $_get(3, 4, null);
-  void set subscriptionClosed(SubscriptionClosed v) { setField(4, v); }
-  bool hasSubscriptionClosed() => $_has(3, 4);
-  void clearSubscriptionClosed() => clearField(4);
+  SubscriptionClosed get subscriptionClosed => $_get(3, 5, null);
+  void set subscriptionClosed(SubscriptionClosed v) { setField(5, v); }
+  bool hasSubscriptionClosed() => $_has(3, 5);
+  void clearSubscriptionClosed() => clearField(5);
 }
 
 class _ReadonlyEvent extends Event with ReadonlyMessageMixin {}
@@ -63,9 +63,12 @@ class Response extends GeneratedMessage {
     ..a/*<int>*/(1, 'requestId', PbFieldType.Q3)
     ..a/*<bool>*/(2, 'isSuccess', PbFieldType.QB)
     ..a/*<String>*/(3, 'errorMessage', PbFieldType.OS)
-    ..a/*<ResponseNewJob>*/(4, 'newJob', PbFieldType.OM, ResponseNewJob.getDefault, ResponseNewJob.create)
-    ..a/*<ResponsePing>*/(5, 'ping', PbFieldType.OM, ResponsePing.getDefault, ResponsePing.create)
-    ..a/*<ResponseNewSubscription>*/(6, 'newSubscription', PbFieldType.OM, ResponseNewSubscription.getDefault, ResponseNewSubscription.create)
+    ..a/*<Job>*/(5, 'job', PbFieldType.OM, Job.getDefault, Job.create)
+    ..a/*<ResponseListItems>*/(6, 'listItems', PbFieldType.OM, ResponseListItems.getDefault, ResponseListItems.create)
+    ..a/*<ResponseListJobs>*/(7, 'listJobs', PbFieldType.OM, ResponseListJobs.getDefault, ResponseListJobs.create)
+    ..a/*<ResponseNewJob>*/(8, 'newJob', PbFieldType.OM, ResponseNewJob.getDefault, ResponseNewJob.create)
+    ..a/*<ResponseNewSubscription>*/(9, 'newSubscription', PbFieldType.OM, ResponseNewSubscription.getDefault, ResponseNewSubscription.create)
+    ..a/*<ResponsePing>*/(10, 'ping', PbFieldType.OM, ResponsePing.getDefault, ResponsePing.create)
   ;
 
   Response() : super();
@@ -99,23 +102,103 @@ class Response extends GeneratedMessage {
   bool hasErrorMessage() => $_has(2, 3);
   void clearErrorMessage() => clearField(3);
 
-  ResponseNewJob get newJob => $_get(3, 4, null);
-  void set newJob(ResponseNewJob v) { setField(4, v); }
-  bool hasNewJob() => $_has(3, 4);
-  void clearNewJob() => clearField(4);
+  Job get job => $_get(3, 5, null);
+  void set job(Job v) { setField(5, v); }
+  bool hasJob() => $_has(3, 5);
+  void clearJob() => clearField(5);
 
-  ResponsePing get ping => $_get(4, 5, null);
-  void set ping(ResponsePing v) { setField(5, v); }
-  bool hasPing() => $_has(4, 5);
-  void clearPing() => clearField(5);
+  ResponseListItems get listItems => $_get(4, 6, null);
+  void set listItems(ResponseListItems v) { setField(6, v); }
+  bool hasListItems() => $_has(4, 6);
+  void clearListItems() => clearField(6);
 
-  ResponseNewSubscription get newSubscription => $_get(5, 6, null);
-  void set newSubscription(ResponseNewSubscription v) { setField(6, v); }
-  bool hasNewSubscription() => $_has(5, 6);
-  void clearNewSubscription() => clearField(6);
+  ResponseListJobs get listJobs => $_get(5, 7, null);
+  void set listJobs(ResponseListJobs v) { setField(7, v); }
+  bool hasListJobs() => $_has(5, 7);
+  void clearListJobs() => clearField(7);
+
+  ResponseNewJob get newJob => $_get(6, 8, null);
+  void set newJob(ResponseNewJob v) { setField(8, v); }
+  bool hasNewJob() => $_has(6, 8);
+  void clearNewJob() => clearField(8);
+
+  ResponseNewSubscription get newSubscription => $_get(7, 9, null);
+  void set newSubscription(ResponseNewSubscription v) { setField(9, v); }
+  bool hasNewSubscription() => $_has(7, 9);
+  void clearNewSubscription() => clearField(9);
+
+  ResponsePing get ping => $_get(8, 10, null);
+  void set ping(ResponsePing v) { setField(10, v); }
+  bool hasPing() => $_has(8, 10);
+  void clearPing() => clearField(10);
 }
 
 class _ReadonlyResponse extends Response with ReadonlyMessageMixin {}
+
+class ResponseListItems extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResponseListItems')
+    ..pp/*<CrawlItem>*/(1, 'items', PbFieldType.PM, CrawlItem.$checkItem, CrawlItem.create)
+    ..a/*<int>*/(2, 'total', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  ResponseListItems() : super();
+  ResponseListItems.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResponseListItems.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResponseListItems clone() => new ResponseListItems()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResponseListItems create() => new ResponseListItems();
+  static PbList<ResponseListItems> createRepeated() => new PbList<ResponseListItems>();
+  static ResponseListItems getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResponseListItems();
+    return _defaultInstance;
+  }
+  static ResponseListItems _defaultInstance;
+  static void $checkItem(ResponseListItems v) {
+    if (v is !ResponseListItems) checkItemFailed(v, 'ResponseListItems');
+  }
+
+  List<CrawlItem> get items => $_get(0, 1, null);
+
+  int get total => $_get(1, 2, 0);
+  void set total(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasTotal() => $_has(1, 2);
+  void clearTotal() => clearField(2);
+}
+
+class _ReadonlyResponseListItems extends ResponseListItems with ReadonlyMessageMixin {}
+
+class ResponseListJobs extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResponseListJobs')
+    ..pp/*<Job>*/(1, 'jobs', PbFieldType.PM, Job.$checkItem, Job.create)
+    ..a/*<int>*/(2, 'total', PbFieldType.O3)
+  ;
+
+  ResponseListJobs() : super();
+  ResponseListJobs.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResponseListJobs.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResponseListJobs clone() => new ResponseListJobs()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResponseListJobs create() => new ResponseListJobs();
+  static PbList<ResponseListJobs> createRepeated() => new PbList<ResponseListJobs>();
+  static ResponseListJobs getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResponseListJobs();
+    return _defaultInstance;
+  }
+  static ResponseListJobs _defaultInstance;
+  static void $checkItem(ResponseListJobs v) {
+    if (v is !ResponseListJobs) checkItemFailed(v, 'ResponseListJobs');
+  }
+
+  List<Job> get jobs => $_get(0, 1, null);
+
+  int get total => $_get(1, 2, 0);
+  void set total(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasTotal() => $_has(1, 2);
+  void clearTotal() => clearField(2);
+}
+
+class _ReadonlyResponseListJobs extends ResponseListJobs with ReadonlyMessageMixin {}
 
 class ResponseNewJob extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('ResponseNewJob')

@@ -2,11 +2,31 @@
   <ma-toast-outlet [service]='toast'></ma-toast-outlet>
 
   <ma-top-nav [fixed]='true'>
-    <div class='float-xs-left'>
-      What should go up here...?
+    <div class='float-xs-left breadcrumbs'>
+      <fa name='home'></fa>
+      <span *ngFor='let breadcrumb of document.breadcrumbs'>
+        <fa name='angle-right' class='separator'></fa>
+        <span *ngIf='breadcrumb.link == null'>
+          <fa *ngIf='breadcrumb.icon != null' name='{{breadcrumb.icon}}'></fa>
+          <span *ngIf='breadcrumb.name != null'>{{breadcrumb.name}}</span>
+        </span>
+        <span *ngIf='breadcrumb.link != null'>
+          <a [routerLink]='breadcrumb.link'>
+            <fa *ngIf='breadcrumb.icon != null' name='{{breadcrumb.icon}}'></fa>
+            <span *ngIf='breadcrumb.name != null'>{{breadcrumb.name}}</span>
+          </a>
+        </span>
+      </span>
     </div>
     <div class='float-xs-right'>
-      ...and over here?
+      <span *ngIf='server.isConnected'>
+        <fa name='plug'></fa>
+        Connected
+      </span>
+      <span *ngIf='!server.isConnected'>
+        <fa name='spinner' [pulse]='true'></fa>
+        Connecting to server
+      </span>
     </div>
   </ma-top-nav>
 
@@ -15,16 +35,18 @@
       <img src='/images/logo_45px.png'>
       Starbelly
     </ma-side-nav-header>
-    <ma-side-nav-item [route]='["CrawlStart"]'>
-      <fa name='play-circle' [fw]='true' size='lg'></fa> Start Crawling
+    <ma-side-nav-item [route]='["Dashboard"]'>
+      <fa name='dashboard' [fw]='true' size='lg'></fa>
+      Dashboard
+      <ma-tag type='primary'
+              [pill]='true'
+              class='float-xs-right'>{{jobStatus.newJobBadge}}</ma-tag>
     </ma-side-nav-item>
-    <ma-side-nav-item [route]='["JobStatus"]'>
-      <fa name='tasks' [fw]='true' size='lg'></fa>
-      Job Status
-      <ma-tag type='success' [pill]='true' class='float-xs-right'>{{jobStatus.newJobBadge}}</ma-tag>
+    <ma-side-nav-item [route]='["StartCrawl"]'>
+      <fa name='play-circle' [fw]='true' size='lg'></fa> Start Crawl
     </ma-side-nav-item>
-    <ma-side-nav-item [route]='["CrawlItems"]'>
-      <fa name='file-text' [fw]='true' size='lg'></fa> Crawl Items
+    <ma-side-nav-item [route]='["Results", "List"]'>
+      <fa name='sitemap' [fw]='true' size='lg'></fa> Crawl Results
     </ma-side-nav-item>
   </ma-side-nav>
 
