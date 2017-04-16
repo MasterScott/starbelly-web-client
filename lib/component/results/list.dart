@@ -1,5 +1,7 @@
 import 'package:angular2/core.dart';
 import 'package:angular2/router.dart';
+import 'package:convert/convert.dart' as convert;
+import 'package:ng2_fontawesome/ng2_fontawesome.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
 import 'package:starbelly/model/job.dart';
@@ -12,7 +14,7 @@ import 'package:starbelly/service/server.dart';
 @Component(
     selector: 'results-list',
     templateUrl: 'list.html',
-    directives: const [MA_DIRECTIVES, ROUTER_DIRECTIVES]
+    directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
 )
 class ResultsListView implements AfterViewInit, OnDestroy {
     int currentPage = 1;
@@ -27,6 +29,9 @@ class ResultsListView implements AfterViewInit, OnDestroy {
     Map<String,JobStatus> _jobsById;
     ServerService _server;
     StreamSubscription<Job> _subscription;
+
+    var CANCELLED = pb.JobRunState.CANCELLED;
+    var COMPLETED = pb.JobRunState.COMPLETED;
 
     /// Constructor
     ResultsListView(this._document, this.jobStatus, this._server) {
@@ -44,6 +49,21 @@ class ResultsListView implements AfterViewInit, OnDestroy {
                 this._jobsById[jobId].mergeFrom(update);
             }
         });
+    }
+
+    /// Delete a job.
+    void deleteJob(Click click, Job job) async {
+        click.button.busy = true;
+        var request = new pb.Request()
+            ..deleteJob = new pb.RequestDeleteJob();
+        request.deleteJob.jobId = convert.hex.decode(job.jobId);
+        var message = await this._server.sendRequest(request);
+        var response = message.response;
+        if (!response.isSuccess) {
+            window.alert('Could not delete job: ${response.errorMessage}');
+        }
+        await this.getPage();
+        click.button.busy = false;
     }
 
     /// Fetch current page of results.

@@ -43,7 +43,15 @@
         <td>{{job.startedAt | date:'y-MM-dd H:mm:ss'}}</td>
         <td>{{job.completedAt | date:'y-MM-dd H:mm:ss'}}</td>
         <td>{{job.itemCount}}</td>
-        <td></td>
+        <td>
+          <ma-button
+            size='small'
+            type='danger'
+            *ngIf='job.runState == CANCELLED || job.runState == COMPLETED'
+            (click)='deleteJob($event, job)'>
+            <fa name='trash'></fa>
+          </ma-button>
+        </td>
       </tr>
     </tbody>
   </table>

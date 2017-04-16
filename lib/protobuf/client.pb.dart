@@ -12,15 +12,16 @@ import 'shared.pbenum.dart';
 class Request extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('Request')
     ..a/*<int>*/(1, 'requestId', PbFieldType.Q3)
-    ..a/*<RequestListJobs>*/(2, 'listJobs', PbFieldType.OM, RequestListJobs.getDefault, RequestListJobs.create)
-    ..a/*<RequestGetJob>*/(3, 'getJob', PbFieldType.OM, RequestGetJob.getDefault, RequestGetJob.create)
-    ..a/*<RequestGetJobItems>*/(4, 'getJobItems', PbFieldType.OM, RequestGetJobItems.getDefault, RequestGetJobItems.create)
-    ..a/*<RequestPing>*/(5, 'ping', PbFieldType.OM, RequestPing.getDefault, RequestPing.create)
-    ..a/*<RequestSetJobRunState>*/(6, 'setJobRunState', PbFieldType.OM, RequestSetJobRunState.getDefault, RequestSetJobRunState.create)
-    ..a/*<RequestStartJob>*/(7, 'startJob', PbFieldType.OM, RequestStartJob.getDefault, RequestStartJob.create)
-    ..a/*<RequestSubscribeJobStatus>*/(8, 'subscribeJobStatus', PbFieldType.OM, RequestSubscribeJobStatus.getDefault, RequestSubscribeJobStatus.create)
-    ..a/*<RequestSubscribeJobSync>*/(9, 'subscribeJobSync', PbFieldType.OM, RequestSubscribeJobSync.getDefault, RequestSubscribeJobSync.create)
-    ..a/*<RequestUnsubscribe>*/(10, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
+    ..a/*<RequestDeleteJob>*/(2, 'deleteJob', PbFieldType.OM, RequestDeleteJob.getDefault, RequestDeleteJob.create)
+    ..a/*<RequestListJobs>*/(3, 'listJobs', PbFieldType.OM, RequestListJobs.getDefault, RequestListJobs.create)
+    ..a/*<RequestGetJob>*/(4, 'getJob', PbFieldType.OM, RequestGetJob.getDefault, RequestGetJob.create)
+    ..a/*<RequestGetJobItems>*/(5, 'getJobItems', PbFieldType.OM, RequestGetJobItems.getDefault, RequestGetJobItems.create)
+    ..a/*<RequestPing>*/(6, 'ping', PbFieldType.OM, RequestPing.getDefault, RequestPing.create)
+    ..a/*<RequestSetJobRunState>*/(7, 'setJobRunState', PbFieldType.OM, RequestSetJobRunState.getDefault, RequestSetJobRunState.create)
+    ..a/*<RequestStartJob>*/(8, 'startJob', PbFieldType.OM, RequestStartJob.getDefault, RequestStartJob.create)
+    ..a/*<RequestSubscribeJobStatus>*/(9, 'subscribeJobStatus', PbFieldType.OM, RequestSubscribeJobStatus.getDefault, RequestSubscribeJobStatus.create)
+    ..a/*<RequestSubscribeJobSync>*/(10, 'subscribeJobSync', PbFieldType.OM, RequestSubscribeJobSync.getDefault, RequestSubscribeJobSync.create)
+    ..a/*<RequestUnsubscribe>*/(11, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
   ;
 
   Request() : super();
@@ -44,53 +45,87 @@ class Request extends GeneratedMessage {
   bool hasRequestId() => $_has(0, 1);
   void clearRequestId() => clearField(1);
 
-  RequestListJobs get listJobs => $_get(1, 2, null);
-  void set listJobs(RequestListJobs v) { setField(2, v); }
-  bool hasListJobs() => $_has(1, 2);
-  void clearListJobs() => clearField(2);
+  RequestDeleteJob get deleteJob => $_get(1, 2, null);
+  void set deleteJob(RequestDeleteJob v) { setField(2, v); }
+  bool hasDeleteJob() => $_has(1, 2);
+  void clearDeleteJob() => clearField(2);
 
-  RequestGetJob get getJob => $_get(2, 3, null);
-  void set getJob(RequestGetJob v) { setField(3, v); }
-  bool hasGetJob() => $_has(2, 3);
-  void clearGetJob() => clearField(3);
+  RequestListJobs get listJobs => $_get(2, 3, null);
+  void set listJobs(RequestListJobs v) { setField(3, v); }
+  bool hasListJobs() => $_has(2, 3);
+  void clearListJobs() => clearField(3);
 
-  RequestGetJobItems get getJobItems => $_get(3, 4, null);
-  void set getJobItems(RequestGetJobItems v) { setField(4, v); }
-  bool hasGetJobItems() => $_has(3, 4);
-  void clearGetJobItems() => clearField(4);
+  RequestGetJob get getJob => $_get(3, 4, null);
+  void set getJob(RequestGetJob v) { setField(4, v); }
+  bool hasGetJob() => $_has(3, 4);
+  void clearGetJob() => clearField(4);
 
-  RequestPing get ping => $_get(4, 5, null);
-  void set ping(RequestPing v) { setField(5, v); }
-  bool hasPing() => $_has(4, 5);
-  void clearPing() => clearField(5);
+  RequestGetJobItems get getJobItems => $_get(4, 5, null);
+  void set getJobItems(RequestGetJobItems v) { setField(5, v); }
+  bool hasGetJobItems() => $_has(4, 5);
+  void clearGetJobItems() => clearField(5);
 
-  RequestSetJobRunState get setJobRunState => $_get(5, 6, null);
-  void set setJobRunState(RequestSetJobRunState v) { setField(6, v); }
-  bool hasSetJobRunState() => $_has(5, 6);
-  void clearSetJobRunState() => clearField(6);
+  RequestPing get ping => $_get(5, 6, null);
+  void set ping(RequestPing v) { setField(6, v); }
+  bool hasPing() => $_has(5, 6);
+  void clearPing() => clearField(6);
 
-  RequestStartJob get startJob => $_get(6, 7, null);
-  void set startJob(RequestStartJob v) { setField(7, v); }
-  bool hasStartJob() => $_has(6, 7);
-  void clearStartJob() => clearField(7);
+  RequestSetJobRunState get setJobRunState => $_get(6, 7, null);
+  void set setJobRunState(RequestSetJobRunState v) { setField(7, v); }
+  bool hasSetJobRunState() => $_has(6, 7);
+  void clearSetJobRunState() => clearField(7);
 
-  RequestSubscribeJobStatus get subscribeJobStatus => $_get(7, 8, null);
-  void set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(8, v); }
-  bool hasSubscribeJobStatus() => $_has(7, 8);
-  void clearSubscribeJobStatus() => clearField(8);
+  RequestStartJob get startJob => $_get(7, 8, null);
+  void set startJob(RequestStartJob v) { setField(8, v); }
+  bool hasStartJob() => $_has(7, 8);
+  void clearStartJob() => clearField(8);
 
-  RequestSubscribeJobSync get subscribeJobSync => $_get(8, 9, null);
-  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(9, v); }
-  bool hasSubscribeJobSync() => $_has(8, 9);
-  void clearSubscribeJobSync() => clearField(9);
+  RequestSubscribeJobStatus get subscribeJobStatus => $_get(8, 9, null);
+  void set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(9, v); }
+  bool hasSubscribeJobStatus() => $_has(8, 9);
+  void clearSubscribeJobStatus() => clearField(9);
 
-  RequestUnsubscribe get unsubscribe => $_get(9, 10, null);
-  void set unsubscribe(RequestUnsubscribe v) { setField(10, v); }
-  bool hasUnsubscribe() => $_has(9, 10);
-  void clearUnsubscribe() => clearField(10);
+  RequestSubscribeJobSync get subscribeJobSync => $_get(9, 10, null);
+  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(10, v); }
+  bool hasSubscribeJobSync() => $_has(9, 10);
+  void clearSubscribeJobSync() => clearField(10);
+
+  RequestUnsubscribe get unsubscribe => $_get(10, 11, null);
+  void set unsubscribe(RequestUnsubscribe v) { setField(11, v); }
+  bool hasUnsubscribe() => $_has(10, 11);
+  void clearUnsubscribe() => clearField(11);
 }
 
 class _ReadonlyRequest extends Request with ReadonlyMessageMixin {}
+
+class RequestDeleteJob extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestDeleteJob')
+    ..a/*<List<int>>*/(1, 'jobId', PbFieldType.QY)
+  ;
+
+  RequestDeleteJob() : super();
+  RequestDeleteJob.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestDeleteJob.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestDeleteJob clone() => new RequestDeleteJob()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestDeleteJob create() => new RequestDeleteJob();
+  static PbList<RequestDeleteJob> createRepeated() => new PbList<RequestDeleteJob>();
+  static RequestDeleteJob getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestDeleteJob();
+    return _defaultInstance;
+  }
+  static RequestDeleteJob _defaultInstance;
+  static void $checkItem(RequestDeleteJob v) {
+    if (v is !RequestDeleteJob) checkItemFailed(v, 'RequestDeleteJob');
+  }
+
+  List<int> get jobId => $_get(0, 1, null);
+  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasJobId() => $_has(0, 1);
+  void clearJobId() => clearField(1);
+}
+
+class _ReadonlyRequestDeleteJob extends RequestDeleteJob with ReadonlyMessageMixin {}
 
 class RequestListJobs extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestListJobs')
