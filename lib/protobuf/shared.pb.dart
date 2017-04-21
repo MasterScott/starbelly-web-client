@@ -48,21 +48,22 @@ class _ReadonlyCrawlItem_HeadersEntry extends CrawlItem_HeadersEntry with Readon
 class CrawlItem extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('CrawlItem')
     ..a/*<List<int>>*/(1, 'body', PbFieldType.OY)
-    ..a/*<String>*/(2, 'completedAt', PbFieldType.OS)
-    ..a/*<String>*/(3, 'contentType', PbFieldType.OS)
-    ..a/*<double>*/(4, 'cost', PbFieldType.OD)
-    ..a/*<double>*/(5, 'duration', PbFieldType.OD)
-    ..a/*<String>*/(6, 'exception', PbFieldType.OS)
-    ..pp/*<CrawlItem_HeadersEntry>*/(7, 'headers', PbFieldType.PM, CrawlItem_HeadersEntry.$checkItem, CrawlItem_HeadersEntry.create)
-    ..a/*<bool>*/(8, 'isBodyCompressed', PbFieldType.OB)
-    ..a/*<bool>*/(9, 'isSuccess', PbFieldType.OB)
-    ..a/*<List<int>>*/(10, 'jobId', PbFieldType.OY)
-    ..a/*<String>*/(11, 'startedAt', PbFieldType.OS)
-    ..a/*<int>*/(12, 'statusCode', PbFieldType.O3)
-    ..a/*<String>*/(13, 'url', PbFieldType.OS)
-    ..a/*<String>*/(14, 'urlCan', PbFieldType.OS)
-    ..a/*<List<int>>*/(15, 'urlHash', PbFieldType.OY)
-    ..a/*<List<int>>*/(16, 'syncToken', PbFieldType.OY)
+    ..a/*<String>*/(2, 'charset', PbFieldType.OS)
+    ..a/*<String>*/(3, 'completedAt', PbFieldType.OS)
+    ..a/*<String>*/(4, 'contentType', PbFieldType.OS)
+    ..a/*<double>*/(5, 'cost', PbFieldType.OD)
+    ..a/*<double>*/(6, 'duration', PbFieldType.OD)
+    ..a/*<String>*/(7, 'exception', PbFieldType.OS)
+    ..pp/*<CrawlItem_HeadersEntry>*/(8, 'headers', PbFieldType.PM, CrawlItem_HeadersEntry.$checkItem, CrawlItem_HeadersEntry.create)
+    ..a/*<bool>*/(9, 'isBodyCompressed', PbFieldType.OB)
+    ..a/*<bool>*/(10, 'isSuccess', PbFieldType.OB)
+    ..a/*<List<int>>*/(11, 'jobId', PbFieldType.OY)
+    ..a/*<String>*/(12, 'startedAt', PbFieldType.OS)
+    ..a/*<int>*/(13, 'statusCode', PbFieldType.O3)
+    ..a/*<String>*/(14, 'url', PbFieldType.OS)
+    ..a/*<String>*/(15, 'urlCan', PbFieldType.OS)
+    ..a/*<List<int>>*/(16, 'urlHash', PbFieldType.OY)
+    ..a/*<List<int>>*/(17, 'syncToken', PbFieldType.OY)
     ..hasRequiredFields = false
   ;
 
@@ -87,77 +88,82 @@ class CrawlItem extends GeneratedMessage {
   bool hasBody() => $_has(0, 1);
   void clearBody() => clearField(1);
 
-  String get completedAt => $_get(1, 2, '');
-  void set completedAt(String v) { $_setString(1, 2, v); }
-  bool hasCompletedAt() => $_has(1, 2);
-  void clearCompletedAt() => clearField(2);
+  String get charset => $_get(1, 2, '');
+  void set charset(String v) { $_setString(1, 2, v); }
+  bool hasCharset() => $_has(1, 2);
+  void clearCharset() => clearField(2);
 
-  String get contentType => $_get(2, 3, '');
-  void set contentType(String v) { $_setString(2, 3, v); }
-  bool hasContentType() => $_has(2, 3);
-  void clearContentType() => clearField(3);
+  String get completedAt => $_get(2, 3, '');
+  void set completedAt(String v) { $_setString(2, 3, v); }
+  bool hasCompletedAt() => $_has(2, 3);
+  void clearCompletedAt() => clearField(3);
 
-  double get cost => $_get(3, 4, null);
-  void set cost(double v) { $_setDouble(3, 4, v); }
-  bool hasCost() => $_has(3, 4);
-  void clearCost() => clearField(4);
+  String get contentType => $_get(3, 4, '');
+  void set contentType(String v) { $_setString(3, 4, v); }
+  bool hasContentType() => $_has(3, 4);
+  void clearContentType() => clearField(4);
 
-  double get duration => $_get(4, 5, null);
-  void set duration(double v) { $_setDouble(4, 5, v); }
-  bool hasDuration() => $_has(4, 5);
-  void clearDuration() => clearField(5);
+  double get cost => $_get(4, 5, null);
+  void set cost(double v) { $_setDouble(4, 5, v); }
+  bool hasCost() => $_has(4, 5);
+  void clearCost() => clearField(5);
 
-  String get exception => $_get(5, 6, '');
-  void set exception(String v) { $_setString(5, 6, v); }
-  bool hasException() => $_has(5, 6);
-  void clearException() => clearField(6);
+  double get duration => $_get(5, 6, null);
+  void set duration(double v) { $_setDouble(5, 6, v); }
+  bool hasDuration() => $_has(5, 6);
+  void clearDuration() => clearField(6);
 
-  List<CrawlItem_HeadersEntry> get headers => $_get(6, 7, null);
+  String get exception => $_get(6, 7, '');
+  void set exception(String v) { $_setString(6, 7, v); }
+  bool hasException() => $_has(6, 7);
+  void clearException() => clearField(7);
 
-  bool get isBodyCompressed => $_get(7, 8, false);
-  void set isBodyCompressed(bool v) { $_setBool(7, 8, v); }
-  bool hasIsBodyCompressed() => $_has(7, 8);
-  void clearIsBodyCompressed() => clearField(8);
+  List<CrawlItem_HeadersEntry> get headers => $_get(7, 8, null);
 
-  bool get isSuccess => $_get(8, 9, false);
-  void set isSuccess(bool v) { $_setBool(8, 9, v); }
-  bool hasIsSuccess() => $_has(8, 9);
-  void clearIsSuccess() => clearField(9);
+  bool get isBodyCompressed => $_get(8, 9, false);
+  void set isBodyCompressed(bool v) { $_setBool(8, 9, v); }
+  bool hasIsBodyCompressed() => $_has(8, 9);
+  void clearIsBodyCompressed() => clearField(9);
 
-  List<int> get jobId => $_get(9, 10, null);
-  void set jobId(List<int> v) { $_setBytes(9, 10, v); }
-  bool hasJobId() => $_has(9, 10);
-  void clearJobId() => clearField(10);
+  bool get isSuccess => $_get(9, 10, false);
+  void set isSuccess(bool v) { $_setBool(9, 10, v); }
+  bool hasIsSuccess() => $_has(9, 10);
+  void clearIsSuccess() => clearField(10);
 
-  String get startedAt => $_get(10, 11, '');
-  void set startedAt(String v) { $_setString(10, 11, v); }
-  bool hasStartedAt() => $_has(10, 11);
-  void clearStartedAt() => clearField(11);
+  List<int> get jobId => $_get(10, 11, null);
+  void set jobId(List<int> v) { $_setBytes(10, 11, v); }
+  bool hasJobId() => $_has(10, 11);
+  void clearJobId() => clearField(11);
 
-  int get statusCode => $_get(11, 12, 0);
-  void set statusCode(int v) { $_setUnsignedInt32(11, 12, v); }
-  bool hasStatusCode() => $_has(11, 12);
-  void clearStatusCode() => clearField(12);
+  String get startedAt => $_get(11, 12, '');
+  void set startedAt(String v) { $_setString(11, 12, v); }
+  bool hasStartedAt() => $_has(11, 12);
+  void clearStartedAt() => clearField(12);
 
-  String get url => $_get(12, 13, '');
-  void set url(String v) { $_setString(12, 13, v); }
-  bool hasUrl() => $_has(12, 13);
-  void clearUrl() => clearField(13);
+  int get statusCode => $_get(12, 13, 0);
+  void set statusCode(int v) { $_setUnsignedInt32(12, 13, v); }
+  bool hasStatusCode() => $_has(12, 13);
+  void clearStatusCode() => clearField(13);
 
-  String get urlCan => $_get(13, 14, '');
-  void set urlCan(String v) { $_setString(13, 14, v); }
-  bool hasUrlCan() => $_has(13, 14);
-  void clearUrlCan() => clearField(14);
+  String get url => $_get(13, 14, '');
+  void set url(String v) { $_setString(13, 14, v); }
+  bool hasUrl() => $_has(13, 14);
+  void clearUrl() => clearField(14);
 
-  List<int> get urlHash => $_get(14, 15, null);
-  void set urlHash(List<int> v) { $_setBytes(14, 15, v); }
-  bool hasUrlHash() => $_has(14, 15);
-  void clearUrlHash() => clearField(15);
+  String get urlCan => $_get(14, 15, '');
+  void set urlCan(String v) { $_setString(14, 15, v); }
+  bool hasUrlCan() => $_has(14, 15);
+  void clearUrlCan() => clearField(15);
 
-  List<int> get syncToken => $_get(15, 16, null);
-  void set syncToken(List<int> v) { $_setBytes(15, 16, v); }
-  bool hasSyncToken() => $_has(15, 16);
-  void clearSyncToken() => clearField(16);
+  List<int> get urlHash => $_get(15, 16, null);
+  void set urlHash(List<int> v) { $_setBytes(15, 16, v); }
+  bool hasUrlHash() => $_has(15, 16);
+  void clearUrlHash() => clearField(16);
+
+  List<int> get syncToken => $_get(16, 17, null);
+  void set syncToken(List<int> v) { $_setBytes(16, 17, v); }
+  bool hasSyncToken() => $_has(16, 17);
+  void clearSyncToken() => clearField(17);
 }
 
 class _ReadonlyCrawlItem extends CrawlItem with ReadonlyMessageMixin {}
@@ -342,4 +348,46 @@ class Page extends GeneratedMessage {
 }
 
 class _ReadonlyPage extends Page with ReadonlyMessageMixin {}
+
+class RateLimit extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RateLimit')
+    ..a/*<String>*/(1, 'name', PbFieldType.OS)
+    ..a/*<double>*/(2, 'delay', PbFieldType.OF)
+    ..a/*<String>*/(3, 'domain', PbFieldType.OS)
+    ..hasRequiredFields = false
+  ;
+
+  RateLimit() : super();
+  RateLimit.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RateLimit.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RateLimit clone() => new RateLimit()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RateLimit create() => new RateLimit();
+  static PbList<RateLimit> createRepeated() => new PbList<RateLimit>();
+  static RateLimit getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRateLimit();
+    return _defaultInstance;
+  }
+  static RateLimit _defaultInstance;
+  static void $checkItem(RateLimit v) {
+    if (v is !RateLimit) checkItemFailed(v, 'RateLimit');
+  }
+
+  String get name => $_get(0, 1, '');
+  void set name(String v) { $_setString(0, 1, v); }
+  bool hasName() => $_has(0, 1);
+  void clearName() => clearField(1);
+
+  double get delay => $_get(1, 2, null);
+  void set delay(double v) { $_setFloat(1, 2, v); }
+  bool hasDelay() => $_has(1, 2);
+  void clearDelay() => clearField(2);
+
+  String get domain => $_get(2, 3, '');
+  void set domain(String v) { $_setString(2, 3, v); }
+  bool hasDomain() => $_has(2, 3);
+  void clearDomain() => clearField(3);
+}
+
+class _ReadonlyRateLimit extends RateLimit with ReadonlyMessageMixin {}
 

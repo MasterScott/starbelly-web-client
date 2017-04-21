@@ -52,7 +52,7 @@ class ResultsListView implements AfterViewInit, OnDestroy {
     }
 
     /// Delete a job.
-    void deleteJob(Click click, Job job) async {
+    void deleteJob(MaClick click, Job job) async {
         click.button.busy = true;
         var request = new pb.Request()
             ..deleteJob = new pb.RequestDeleteJob();

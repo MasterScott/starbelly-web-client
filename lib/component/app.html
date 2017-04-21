@@ -35,18 +35,21 @@
       <img src='/images/logo_45px.png'>
       Starbelly
     </ma-side-nav-header>
-    <ma-side-nav-item [route]='["Dashboard"]'>
+    <ma-side-nav-item [route]='["/Dashboard"]'>
       <fa name='dashboard' [fw]='true' size='lg'></fa>
       Dashboard
       <ma-tag type='primary'
               [pill]='true'
               class='float-xs-right'>{{jobStatus.newJobBadge}}</ma-tag>
     </ma-side-nav-item>
-    <ma-side-nav-item [route]='["StartCrawl"]'>
+    <ma-side-nav-item [route]='["/StartCrawl"]'>
       <fa name='play-circle' [fw]='true' size='lg'></fa> Start Crawl
     </ma-side-nav-item>
-    <ma-side-nav-item [route]='["Results", "List"]'>
+    <ma-side-nav-item [route]='["/Results", "List"]'>
       <fa name='sitemap' [fw]='true' size='lg'></fa> Crawl Results
+    </ma-side-nav-item>
+    <ma-side-nav-item [route]='["/RateLimits"]'>
+      <fa name='clock-o' [fw]='true' size='lg'></fa> Rate Limits
     </ma-side-nav-item>
   </ma-side-nav>
 

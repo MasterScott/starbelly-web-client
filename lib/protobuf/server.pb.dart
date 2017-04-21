@@ -66,9 +66,10 @@ class Response extends GeneratedMessage {
     ..a/*<Job>*/(5, 'job', PbFieldType.OM, Job.getDefault, Job.create)
     ..a/*<ResponseListItems>*/(6, 'listItems', PbFieldType.OM, ResponseListItems.getDefault, ResponseListItems.create)
     ..a/*<ResponseListJobs>*/(7, 'listJobs', PbFieldType.OM, ResponseListJobs.getDefault, ResponseListJobs.create)
-    ..a/*<ResponseNewJob>*/(8, 'newJob', PbFieldType.OM, ResponseNewJob.getDefault, ResponseNewJob.create)
-    ..a/*<ResponseNewSubscription>*/(9, 'newSubscription', PbFieldType.OM, ResponseNewSubscription.getDefault, ResponseNewSubscription.create)
-    ..a/*<ResponsePing>*/(10, 'ping', PbFieldType.OM, ResponsePing.getDefault, ResponsePing.create)
+    ..a/*<ResponseListRateLimits>*/(8, 'listRateLimits', PbFieldType.OM, ResponseListRateLimits.getDefault, ResponseListRateLimits.create)
+    ..a/*<ResponseNewJob>*/(9, 'newJob', PbFieldType.OM, ResponseNewJob.getDefault, ResponseNewJob.create)
+    ..a/*<ResponseNewSubscription>*/(10, 'newSubscription', PbFieldType.OM, ResponseNewSubscription.getDefault, ResponseNewSubscription.create)
+    ..a/*<ResponsePing>*/(11, 'ping', PbFieldType.OM, ResponsePing.getDefault, ResponsePing.create)
   ;
 
   Response() : super();
@@ -117,20 +118,25 @@ class Response extends GeneratedMessage {
   bool hasListJobs() => $_has(5, 7);
   void clearListJobs() => clearField(7);
 
-  ResponseNewJob get newJob => $_get(6, 8, null);
-  void set newJob(ResponseNewJob v) { setField(8, v); }
-  bool hasNewJob() => $_has(6, 8);
-  void clearNewJob() => clearField(8);
+  ResponseListRateLimits get listRateLimits => $_get(6, 8, null);
+  void set listRateLimits(ResponseListRateLimits v) { setField(8, v); }
+  bool hasListRateLimits() => $_has(6, 8);
+  void clearListRateLimits() => clearField(8);
 
-  ResponseNewSubscription get newSubscription => $_get(7, 9, null);
-  void set newSubscription(ResponseNewSubscription v) { setField(9, v); }
-  bool hasNewSubscription() => $_has(7, 9);
-  void clearNewSubscription() => clearField(9);
+  ResponseNewJob get newJob => $_get(7, 9, null);
+  void set newJob(ResponseNewJob v) { setField(9, v); }
+  bool hasNewJob() => $_has(7, 9);
+  void clearNewJob() => clearField(9);
 
-  ResponsePing get ping => $_get(8, 10, null);
-  void set ping(ResponsePing v) { setField(10, v); }
-  bool hasPing() => $_has(8, 10);
-  void clearPing() => clearField(10);
+  ResponseNewSubscription get newSubscription => $_get(8, 10, null);
+  void set newSubscription(ResponseNewSubscription v) { setField(10, v); }
+  bool hasNewSubscription() => $_has(8, 10);
+  void clearNewSubscription() => clearField(10);
+
+  ResponsePing get ping => $_get(9, 11, null);
+  void set ping(ResponsePing v) { setField(11, v); }
+  bool hasPing() => $_has(9, 11);
+  void clearPing() => clearField(11);
 }
 
 class _ReadonlyResponse extends Response with ReadonlyMessageMixin {}
@@ -199,6 +205,39 @@ class ResponseListJobs extends GeneratedMessage {
 }
 
 class _ReadonlyResponseListJobs extends ResponseListJobs with ReadonlyMessageMixin {}
+
+class ResponseListRateLimits extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResponseListRateLimits')
+    ..pp/*<RateLimit>*/(1, 'rateLimits', PbFieldType.PM, RateLimit.$checkItem, RateLimit.create)
+    ..a/*<int>*/(2, 'total', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  ResponseListRateLimits() : super();
+  ResponseListRateLimits.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResponseListRateLimits.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResponseListRateLimits clone() => new ResponseListRateLimits()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResponseListRateLimits create() => new ResponseListRateLimits();
+  static PbList<ResponseListRateLimits> createRepeated() => new PbList<ResponseListRateLimits>();
+  static ResponseListRateLimits getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResponseListRateLimits();
+    return _defaultInstance;
+  }
+  static ResponseListRateLimits _defaultInstance;
+  static void $checkItem(ResponseListRateLimits v) {
+    if (v is !ResponseListRateLimits) checkItemFailed(v, 'ResponseListRateLimits');
+  }
+
+  List<RateLimit> get rateLimits => $_get(0, 1, null);
+
+  int get total => $_get(1, 2, 0);
+  void set total(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasTotal() => $_has(1, 2);
+  void clearTotal() => clearField(2);
+}
+
+class _ReadonlyResponseListRateLimits extends ResponseListRateLimits with ReadonlyMessageMixin {}
 
 class ResponseNewJob extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('ResponseNewJob')

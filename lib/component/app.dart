@@ -7,6 +7,7 @@ import 'package:ng2_fontawesome/ng2_fontawesome.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
 import 'package:starbelly/component/dashboard.dart';
+import 'package:starbelly/component/rate_limit.dart';
 import 'package:starbelly/component/results/router.dart';
 import 'package:starbelly/component/start.dart';
 import 'package:starbelly/service/document.dart';
@@ -45,6 +46,10 @@ import 'package:starbelly/service/server.dart';
         name: 'Dashboard',
         component: DashboardView,
         useAsDefault: true),
+    const Route(
+        path: '/rate-limit',
+        name: 'RateLimits',
+        component: RateLimitView),
     const Route(
         path: '/results/...',
         name: 'Results',

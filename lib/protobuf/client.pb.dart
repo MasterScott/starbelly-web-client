@@ -16,12 +16,14 @@ class Request extends GeneratedMessage {
     ..a/*<RequestListJobs>*/(3, 'listJobs', PbFieldType.OM, RequestListJobs.getDefault, RequestListJobs.create)
     ..a/*<RequestGetJob>*/(4, 'getJob', PbFieldType.OM, RequestGetJob.getDefault, RequestGetJob.create)
     ..a/*<RequestGetJobItems>*/(5, 'getJobItems', PbFieldType.OM, RequestGetJobItems.getDefault, RequestGetJobItems.create)
-    ..a/*<RequestPing>*/(6, 'ping', PbFieldType.OM, RequestPing.getDefault, RequestPing.create)
-    ..a/*<RequestSetJobRunState>*/(7, 'setJobRunState', PbFieldType.OM, RequestSetJobRunState.getDefault, RequestSetJobRunState.create)
-    ..a/*<RequestStartJob>*/(8, 'startJob', PbFieldType.OM, RequestStartJob.getDefault, RequestStartJob.create)
-    ..a/*<RequestSubscribeJobStatus>*/(9, 'subscribeJobStatus', PbFieldType.OM, RequestSubscribeJobStatus.getDefault, RequestSubscribeJobStatus.create)
-    ..a/*<RequestSubscribeJobSync>*/(10, 'subscribeJobSync', PbFieldType.OM, RequestSubscribeJobSync.getDefault, RequestSubscribeJobSync.create)
-    ..a/*<RequestUnsubscribe>*/(11, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
+    ..a/*<RequestGetRateLimits>*/(6, 'getRateLimits', PbFieldType.OM, RequestGetRateLimits.getDefault, RequestGetRateLimits.create)
+    ..a/*<RequestPing>*/(7, 'ping', PbFieldType.OM, RequestPing.getDefault, RequestPing.create)
+    ..a/*<RequestSetJobRunState>*/(8, 'setJobRunState', PbFieldType.OM, RequestSetJobRunState.getDefault, RequestSetJobRunState.create)
+    ..a/*<RequestSetRateLimit>*/(9, 'setRateLimit', PbFieldType.OM, RequestSetRateLimit.getDefault, RequestSetRateLimit.create)
+    ..a/*<RequestStartJob>*/(10, 'startJob', PbFieldType.OM, RequestStartJob.getDefault, RequestStartJob.create)
+    ..a/*<RequestSubscribeJobStatus>*/(11, 'subscribeJobStatus', PbFieldType.OM, RequestSubscribeJobStatus.getDefault, RequestSubscribeJobStatus.create)
+    ..a/*<RequestSubscribeJobSync>*/(12, 'subscribeJobSync', PbFieldType.OM, RequestSubscribeJobSync.getDefault, RequestSubscribeJobSync.create)
+    ..a/*<RequestUnsubscribe>*/(13, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
   ;
 
   Request() : super();
@@ -65,35 +67,45 @@ class Request extends GeneratedMessage {
   bool hasGetJobItems() => $_has(4, 5);
   void clearGetJobItems() => clearField(5);
 
-  RequestPing get ping => $_get(5, 6, null);
-  void set ping(RequestPing v) { setField(6, v); }
-  bool hasPing() => $_has(5, 6);
-  void clearPing() => clearField(6);
+  RequestGetRateLimits get getRateLimits => $_get(5, 6, null);
+  void set getRateLimits(RequestGetRateLimits v) { setField(6, v); }
+  bool hasGetRateLimits() => $_has(5, 6);
+  void clearGetRateLimits() => clearField(6);
 
-  RequestSetJobRunState get setJobRunState => $_get(6, 7, null);
-  void set setJobRunState(RequestSetJobRunState v) { setField(7, v); }
-  bool hasSetJobRunState() => $_has(6, 7);
-  void clearSetJobRunState() => clearField(7);
+  RequestPing get ping => $_get(6, 7, null);
+  void set ping(RequestPing v) { setField(7, v); }
+  bool hasPing() => $_has(6, 7);
+  void clearPing() => clearField(7);
 
-  RequestStartJob get startJob => $_get(7, 8, null);
-  void set startJob(RequestStartJob v) { setField(8, v); }
-  bool hasStartJob() => $_has(7, 8);
-  void clearStartJob() => clearField(8);
+  RequestSetJobRunState get setJobRunState => $_get(7, 8, null);
+  void set setJobRunState(RequestSetJobRunState v) { setField(8, v); }
+  bool hasSetJobRunState() => $_has(7, 8);
+  void clearSetJobRunState() => clearField(8);
 
-  RequestSubscribeJobStatus get subscribeJobStatus => $_get(8, 9, null);
-  void set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(9, v); }
-  bool hasSubscribeJobStatus() => $_has(8, 9);
-  void clearSubscribeJobStatus() => clearField(9);
+  RequestSetRateLimit get setRateLimit => $_get(8, 9, null);
+  void set setRateLimit(RequestSetRateLimit v) { setField(9, v); }
+  bool hasSetRateLimit() => $_has(8, 9);
+  void clearSetRateLimit() => clearField(9);
 
-  RequestSubscribeJobSync get subscribeJobSync => $_get(9, 10, null);
-  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(10, v); }
-  bool hasSubscribeJobSync() => $_has(9, 10);
-  void clearSubscribeJobSync() => clearField(10);
+  RequestStartJob get startJob => $_get(9, 10, null);
+  void set startJob(RequestStartJob v) { setField(10, v); }
+  bool hasStartJob() => $_has(9, 10);
+  void clearStartJob() => clearField(10);
 
-  RequestUnsubscribe get unsubscribe => $_get(10, 11, null);
-  void set unsubscribe(RequestUnsubscribe v) { setField(11, v); }
-  bool hasUnsubscribe() => $_has(10, 11);
-  void clearUnsubscribe() => clearField(11);
+  RequestSubscribeJobStatus get subscribeJobStatus => $_get(10, 11, null);
+  void set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(11, v); }
+  bool hasSubscribeJobStatus() => $_has(10, 11);
+  void clearSubscribeJobStatus() => clearField(11);
+
+  RequestSubscribeJobSync get subscribeJobSync => $_get(11, 12, null);
+  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(12, v); }
+  bool hasSubscribeJobSync() => $_has(11, 12);
+  void clearSubscribeJobSync() => clearField(12);
+
+  RequestUnsubscribe get unsubscribe => $_get(12, 13, null);
+  void set unsubscribe(RequestUnsubscribe v) { setField(13, v); }
+  bool hasUnsubscribe() => $_has(12, 13);
+  void clearUnsubscribe() => clearField(13);
 }
 
 class _ReadonlyRequest extends Request with ReadonlyMessageMixin {}
@@ -245,6 +257,36 @@ class RequestGetJobItems extends GeneratedMessage {
 
 class _ReadonlyRequestGetJobItems extends RequestGetJobItems with ReadonlyMessageMixin {}
 
+class RequestGetRateLimits extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestGetRateLimits')
+    ..a/*<Page>*/(1, 'page', PbFieldType.OM, Page.getDefault, Page.create)
+    ..hasRequiredFields = false
+  ;
+
+  RequestGetRateLimits() : super();
+  RequestGetRateLimits.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestGetRateLimits.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestGetRateLimits clone() => new RequestGetRateLimits()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestGetRateLimits create() => new RequestGetRateLimits();
+  static PbList<RequestGetRateLimits> createRepeated() => new PbList<RequestGetRateLimits>();
+  static RequestGetRateLimits getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestGetRateLimits();
+    return _defaultInstance;
+  }
+  static RequestGetRateLimits _defaultInstance;
+  static void $checkItem(RequestGetRateLimits v) {
+    if (v is !RequestGetRateLimits) checkItemFailed(v, 'RequestGetRateLimits');
+  }
+
+  Page get page => $_get(0, 1, null);
+  void set page(Page v) { setField(1, v); }
+  bool hasPage() => $_has(0, 1);
+  void clearPage() => clearField(1);
+}
+
+class _ReadonlyRequestGetRateLimits extends RequestGetRateLimits with ReadonlyMessageMixin {}
+
 class RequestPing extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestPing')
     ..a/*<String>*/(1, 'pong', PbFieldType.OS)
@@ -309,6 +351,35 @@ class RequestSetJobRunState extends GeneratedMessage {
 }
 
 class _ReadonlyRequestSetJobRunState extends RequestSetJobRunState with ReadonlyMessageMixin {}
+
+class RequestSetRateLimit extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestSetRateLimit')
+    ..a/*<RateLimit>*/(1, 'rateLimit', PbFieldType.QM, RateLimit.getDefault, RateLimit.create)
+  ;
+
+  RequestSetRateLimit() : super();
+  RequestSetRateLimit.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestSetRateLimit.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestSetRateLimit clone() => new RequestSetRateLimit()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestSetRateLimit create() => new RequestSetRateLimit();
+  static PbList<RequestSetRateLimit> createRepeated() => new PbList<RequestSetRateLimit>();
+  static RequestSetRateLimit getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestSetRateLimit();
+    return _defaultInstance;
+  }
+  static RequestSetRateLimit _defaultInstance;
+  static void $checkItem(RequestSetRateLimit v) {
+    if (v is !RequestSetRateLimit) checkItemFailed(v, 'RequestSetRateLimit');
+  }
+
+  RateLimit get rateLimit => $_get(0, 1, null);
+  void set rateLimit(RateLimit v) { setField(1, v); }
+  bool hasRateLimit() => $_has(0, 1);
+  void clearRateLimit() => clearField(1);
+}
+
+class _ReadonlyRequestSetRateLimit extends RequestSetRateLimit with ReadonlyMessageMixin {}
 
 class RequestStartJob extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestStartJob')
