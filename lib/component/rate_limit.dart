@@ -65,13 +65,13 @@ class RateLimitView implements AfterViewInit {
         request.setRateLimit.rateLimit = new pb.RateLimit();
         request.setRateLimit.rateLimit.domain = domain;
         request.setRateLimit.rateLimit.delay = double.parse(delayStr);
-        var message = await this._server.sendRequest(request);
-        if (!message.response.isSuccess) {
-            newModalError = message.response.errorMessage;
-        } else {
+        try {
+            var message = await this._server.sendRequest(request);
             newModalError = null;
             showNewModal = false;
             await this.getPage();
+        } on ServerException catch (exc) {
+            newModalError = exc.message;
         }
     }
 
@@ -82,12 +82,12 @@ class RateLimitView implements AfterViewInit {
         request.setRateLimit = new pb.RequestSetRateLimit();
         request.setRateLimit.rateLimit = new pb.RateLimit();
         request.setRateLimit.rateLimit.domain = wrapper.rateLimit.domain;
-        var message = await this._server.sendRequest(request);
-        if (!message.response.isSuccess) {
-            wrapper.error = message.response.errorMessage;
-        } else {
+        try {
+            var message = await this._server.sendRequest(request);
             wrapper.error = null;
             await this.getPage();
+        } on ServerException catch (exc) {
+            wrapper.error = exc.message;
         }
         click.button.busy = false;
     }
@@ -135,12 +135,12 @@ class RateLimitView implements AfterViewInit {
             request.setRateLimit.rateLimit.domain = wrapper.rateLimit.domain;
         }
         request.setRateLimit.rateLimit.delay = delay;
-        var message = await this._server.sendRequest(request);
-        if (!message.response.isSuccess) {
-            wrapper.error = message.response.errorMessage;
-        } else {
+        try {
+            var message = await this._server.sendRequest(request);
             wrapper.error = null;
             await this.getPage();
+        } on ServerException catch  (exc) {
+            wrapper.error = exc.message;
         }
     }
 
@@ -151,6 +151,7 @@ class RateLimitView implements AfterViewInit {
     }
 }
 
+/// A view state wrapper for a rate limit.
 class RateLimitWrapper {
     bool canDelete;
     String error;

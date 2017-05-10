@@ -13,17 +13,21 @@ class Request extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('Request')
     ..a/*<int>*/(1, 'requestId', PbFieldType.Q3)
     ..a/*<RequestDeleteJob>*/(2, 'deleteJob', PbFieldType.OM, RequestDeleteJob.getDefault, RequestDeleteJob.create)
-    ..a/*<RequestListJobs>*/(3, 'listJobs', PbFieldType.OM, RequestListJobs.getDefault, RequestListJobs.create)
+    ..a/*<RequestDeletePolicy>*/(3, 'deletePolicy', PbFieldType.OM, RequestDeletePolicy.getDefault, RequestDeletePolicy.create)
     ..a/*<RequestGetJob>*/(4, 'getJob', PbFieldType.OM, RequestGetJob.getDefault, RequestGetJob.create)
     ..a/*<RequestGetJobItems>*/(5, 'getJobItems', PbFieldType.OM, RequestGetJobItems.getDefault, RequestGetJobItems.create)
-    ..a/*<RequestGetRateLimits>*/(6, 'getRateLimits', PbFieldType.OM, RequestGetRateLimits.getDefault, RequestGetRateLimits.create)
-    ..a/*<RequestPing>*/(7, 'ping', PbFieldType.OM, RequestPing.getDefault, RequestPing.create)
-    ..a/*<RequestSetJobRunState>*/(8, 'setJobRunState', PbFieldType.OM, RequestSetJobRunState.getDefault, RequestSetJobRunState.create)
-    ..a/*<RequestSetRateLimit>*/(9, 'setRateLimit', PbFieldType.OM, RequestSetRateLimit.getDefault, RequestSetRateLimit.create)
-    ..a/*<RequestStartJob>*/(10, 'startJob', PbFieldType.OM, RequestStartJob.getDefault, RequestStartJob.create)
-    ..a/*<RequestSubscribeJobStatus>*/(11, 'subscribeJobStatus', PbFieldType.OM, RequestSubscribeJobStatus.getDefault, RequestSubscribeJobStatus.create)
-    ..a/*<RequestSubscribeJobSync>*/(12, 'subscribeJobSync', PbFieldType.OM, RequestSubscribeJobSync.getDefault, RequestSubscribeJobSync.create)
-    ..a/*<RequestUnsubscribe>*/(13, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
+    ..a/*<RequestGetPolicy>*/(6, 'getPolicy', PbFieldType.OM, RequestGetPolicy.getDefault, RequestGetPolicy.create)
+    ..a/*<RequestGetRateLimits>*/(7, 'getRateLimits', PbFieldType.OM, RequestGetRateLimits.getDefault, RequestGetRateLimits.create)
+    ..a/*<RequestListJobs>*/(8, 'listJobs', PbFieldType.OM, RequestListJobs.getDefault, RequestListJobs.create)
+    ..a/*<RequestListPolicies>*/(9, 'listPolicies', PbFieldType.OM, RequestListPolicies.getDefault, RequestListPolicies.create)
+    ..a/*<RequestPing>*/(10, 'ping', PbFieldType.OM, RequestPing.getDefault, RequestPing.create)
+    ..a/*<RequestSetJobRunState>*/(11, 'setJobRunState', PbFieldType.OM, RequestSetJobRunState.getDefault, RequestSetJobRunState.create)
+    ..a/*<RequestSetPolicy>*/(12, 'setPolicy', PbFieldType.OM, RequestSetPolicy.getDefault, RequestSetPolicy.create)
+    ..a/*<RequestSetRateLimit>*/(13, 'setRateLimit', PbFieldType.OM, RequestSetRateLimit.getDefault, RequestSetRateLimit.create)
+    ..a/*<RequestStartJob>*/(14, 'startJob', PbFieldType.OM, RequestStartJob.getDefault, RequestStartJob.create)
+    ..a/*<RequestSubscribeJobStatus>*/(15, 'subscribeJobStatus', PbFieldType.OM, RequestSubscribeJobStatus.getDefault, RequestSubscribeJobStatus.create)
+    ..a/*<RequestSubscribeJobSync>*/(16, 'subscribeJobSync', PbFieldType.OM, RequestSubscribeJobSync.getDefault, RequestSubscribeJobSync.create)
+    ..a/*<RequestUnsubscribe>*/(17, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
   ;
 
   Request() : super();
@@ -52,10 +56,10 @@ class Request extends GeneratedMessage {
   bool hasDeleteJob() => $_has(1, 2);
   void clearDeleteJob() => clearField(2);
 
-  RequestListJobs get listJobs => $_get(2, 3, null);
-  void set listJobs(RequestListJobs v) { setField(3, v); }
-  bool hasListJobs() => $_has(2, 3);
-  void clearListJobs() => clearField(3);
+  RequestDeletePolicy get deletePolicy => $_get(2, 3, null);
+  void set deletePolicy(RequestDeletePolicy v) { setField(3, v); }
+  bool hasDeletePolicy() => $_has(2, 3);
+  void clearDeletePolicy() => clearField(3);
 
   RequestGetJob get getJob => $_get(3, 4, null);
   void set getJob(RequestGetJob v) { setField(4, v); }
@@ -67,45 +71,65 @@ class Request extends GeneratedMessage {
   bool hasGetJobItems() => $_has(4, 5);
   void clearGetJobItems() => clearField(5);
 
-  RequestGetRateLimits get getRateLimits => $_get(5, 6, null);
-  void set getRateLimits(RequestGetRateLimits v) { setField(6, v); }
-  bool hasGetRateLimits() => $_has(5, 6);
-  void clearGetRateLimits() => clearField(6);
+  RequestGetPolicy get getPolicy => $_get(5, 6, null);
+  void set getPolicy(RequestGetPolicy v) { setField(6, v); }
+  bool hasGetPolicy() => $_has(5, 6);
+  void clearGetPolicy() => clearField(6);
 
-  RequestPing get ping => $_get(6, 7, null);
-  void set ping(RequestPing v) { setField(7, v); }
-  bool hasPing() => $_has(6, 7);
-  void clearPing() => clearField(7);
+  RequestGetRateLimits get getRateLimits => $_get(6, 7, null);
+  void set getRateLimits(RequestGetRateLimits v) { setField(7, v); }
+  bool hasGetRateLimits() => $_has(6, 7);
+  void clearGetRateLimits() => clearField(7);
 
-  RequestSetJobRunState get setJobRunState => $_get(7, 8, null);
-  void set setJobRunState(RequestSetJobRunState v) { setField(8, v); }
-  bool hasSetJobRunState() => $_has(7, 8);
-  void clearSetJobRunState() => clearField(8);
+  RequestListJobs get listJobs => $_get(7, 8, null);
+  void set listJobs(RequestListJobs v) { setField(8, v); }
+  bool hasListJobs() => $_has(7, 8);
+  void clearListJobs() => clearField(8);
 
-  RequestSetRateLimit get setRateLimit => $_get(8, 9, null);
-  void set setRateLimit(RequestSetRateLimit v) { setField(9, v); }
-  bool hasSetRateLimit() => $_has(8, 9);
-  void clearSetRateLimit() => clearField(9);
+  RequestListPolicies get listPolicies => $_get(8, 9, null);
+  void set listPolicies(RequestListPolicies v) { setField(9, v); }
+  bool hasListPolicies() => $_has(8, 9);
+  void clearListPolicies() => clearField(9);
 
-  RequestStartJob get startJob => $_get(9, 10, null);
-  void set startJob(RequestStartJob v) { setField(10, v); }
-  bool hasStartJob() => $_has(9, 10);
-  void clearStartJob() => clearField(10);
+  RequestPing get ping => $_get(9, 10, null);
+  void set ping(RequestPing v) { setField(10, v); }
+  bool hasPing() => $_has(9, 10);
+  void clearPing() => clearField(10);
 
-  RequestSubscribeJobStatus get subscribeJobStatus => $_get(10, 11, null);
-  void set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(11, v); }
-  bool hasSubscribeJobStatus() => $_has(10, 11);
-  void clearSubscribeJobStatus() => clearField(11);
+  RequestSetJobRunState get setJobRunState => $_get(10, 11, null);
+  void set setJobRunState(RequestSetJobRunState v) { setField(11, v); }
+  bool hasSetJobRunState() => $_has(10, 11);
+  void clearSetJobRunState() => clearField(11);
 
-  RequestSubscribeJobSync get subscribeJobSync => $_get(11, 12, null);
-  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(12, v); }
-  bool hasSubscribeJobSync() => $_has(11, 12);
-  void clearSubscribeJobSync() => clearField(12);
+  RequestSetPolicy get setPolicy => $_get(11, 12, null);
+  void set setPolicy(RequestSetPolicy v) { setField(12, v); }
+  bool hasSetPolicy() => $_has(11, 12);
+  void clearSetPolicy() => clearField(12);
 
-  RequestUnsubscribe get unsubscribe => $_get(12, 13, null);
-  void set unsubscribe(RequestUnsubscribe v) { setField(13, v); }
-  bool hasUnsubscribe() => $_has(12, 13);
-  void clearUnsubscribe() => clearField(13);
+  RequestSetRateLimit get setRateLimit => $_get(12, 13, null);
+  void set setRateLimit(RequestSetRateLimit v) { setField(13, v); }
+  bool hasSetRateLimit() => $_has(12, 13);
+  void clearSetRateLimit() => clearField(13);
+
+  RequestStartJob get startJob => $_get(13, 14, null);
+  void set startJob(RequestStartJob v) { setField(14, v); }
+  bool hasStartJob() => $_has(13, 14);
+  void clearStartJob() => clearField(14);
+
+  RequestSubscribeJobStatus get subscribeJobStatus => $_get(14, 15, null);
+  void set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(15, v); }
+  bool hasSubscribeJobStatus() => $_has(14, 15);
+  void clearSubscribeJobStatus() => clearField(15);
+
+  RequestSubscribeJobSync get subscribeJobSync => $_get(15, 16, null);
+  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(16, v); }
+  bool hasSubscribeJobSync() => $_has(15, 16);
+  void clearSubscribeJobSync() => clearField(16);
+
+  RequestUnsubscribe get unsubscribe => $_get(16, 17, null);
+  void set unsubscribe(RequestUnsubscribe v) { setField(17, v); }
+  bool hasUnsubscribe() => $_has(16, 17);
+  void clearUnsubscribe() => clearField(17);
 }
 
 class _ReadonlyRequest extends Request with ReadonlyMessageMixin {}
@@ -139,35 +163,34 @@ class RequestDeleteJob extends GeneratedMessage {
 
 class _ReadonlyRequestDeleteJob extends RequestDeleteJob with ReadonlyMessageMixin {}
 
-class RequestListJobs extends GeneratedMessage {
-  static final BuilderInfo _i = new BuilderInfo('RequestListJobs')
-    ..a/*<Page>*/(1, 'page', PbFieldType.OM, Page.getDefault, Page.create)
-    ..hasRequiredFields = false
+class RequestDeletePolicy extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestDeletePolicy')
+    ..a/*<List<int>>*/(1, 'policyId', PbFieldType.QY)
   ;
 
-  RequestListJobs() : super();
-  RequestListJobs.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  RequestListJobs.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  RequestListJobs clone() => new RequestListJobs()..mergeFromMessage(this);
+  RequestDeletePolicy() : super();
+  RequestDeletePolicy.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestDeletePolicy.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestDeletePolicy clone() => new RequestDeletePolicy()..mergeFromMessage(this);
   BuilderInfo get info_ => _i;
-  static RequestListJobs create() => new RequestListJobs();
-  static PbList<RequestListJobs> createRepeated() => new PbList<RequestListJobs>();
-  static RequestListJobs getDefault() {
-    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestListJobs();
+  static RequestDeletePolicy create() => new RequestDeletePolicy();
+  static PbList<RequestDeletePolicy> createRepeated() => new PbList<RequestDeletePolicy>();
+  static RequestDeletePolicy getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestDeletePolicy();
     return _defaultInstance;
   }
-  static RequestListJobs _defaultInstance;
-  static void $checkItem(RequestListJobs v) {
-    if (v is !RequestListJobs) checkItemFailed(v, 'RequestListJobs');
+  static RequestDeletePolicy _defaultInstance;
+  static void $checkItem(RequestDeletePolicy v) {
+    if (v is !RequestDeletePolicy) checkItemFailed(v, 'RequestDeletePolicy');
   }
 
-  Page get page => $_get(0, 1, null);
-  void set page(Page v) { setField(1, v); }
-  bool hasPage() => $_has(0, 1);
-  void clearPage() => clearField(1);
+  List<int> get policyId => $_get(0, 1, null);
+  void set policyId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasPolicyId() => $_has(0, 1);
+  void clearPolicyId() => clearField(1);
 }
 
-class _ReadonlyRequestListJobs extends RequestListJobs with ReadonlyMessageMixin {}
+class _ReadonlyRequestDeletePolicy extends RequestDeletePolicy with ReadonlyMessageMixin {}
 
 class RequestGetJob extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestGetJob')
@@ -257,6 +280,35 @@ class RequestGetJobItems extends GeneratedMessage {
 
 class _ReadonlyRequestGetJobItems extends RequestGetJobItems with ReadonlyMessageMixin {}
 
+class RequestGetPolicy extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestGetPolicy')
+    ..a/*<List<int>>*/(1, 'policyId', PbFieldType.QY)
+  ;
+
+  RequestGetPolicy() : super();
+  RequestGetPolicy.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestGetPolicy.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestGetPolicy clone() => new RequestGetPolicy()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestGetPolicy create() => new RequestGetPolicy();
+  static PbList<RequestGetPolicy> createRepeated() => new PbList<RequestGetPolicy>();
+  static RequestGetPolicy getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestGetPolicy();
+    return _defaultInstance;
+  }
+  static RequestGetPolicy _defaultInstance;
+  static void $checkItem(RequestGetPolicy v) {
+    if (v is !RequestGetPolicy) checkItemFailed(v, 'RequestGetPolicy');
+  }
+
+  List<int> get policyId => $_get(0, 1, null);
+  void set policyId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasPolicyId() => $_has(0, 1);
+  void clearPolicyId() => clearField(1);
+}
+
+class _ReadonlyRequestGetPolicy extends RequestGetPolicy with ReadonlyMessageMixin {}
+
 class RequestGetRateLimits extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestGetRateLimits')
     ..a/*<Page>*/(1, 'page', PbFieldType.OM, Page.getDefault, Page.create)
@@ -286,6 +338,66 @@ class RequestGetRateLimits extends GeneratedMessage {
 }
 
 class _ReadonlyRequestGetRateLimits extends RequestGetRateLimits with ReadonlyMessageMixin {}
+
+class RequestListJobs extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestListJobs')
+    ..a/*<Page>*/(1, 'page', PbFieldType.OM, Page.getDefault, Page.create)
+    ..hasRequiredFields = false
+  ;
+
+  RequestListJobs() : super();
+  RequestListJobs.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestListJobs.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestListJobs clone() => new RequestListJobs()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestListJobs create() => new RequestListJobs();
+  static PbList<RequestListJobs> createRepeated() => new PbList<RequestListJobs>();
+  static RequestListJobs getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestListJobs();
+    return _defaultInstance;
+  }
+  static RequestListJobs _defaultInstance;
+  static void $checkItem(RequestListJobs v) {
+    if (v is !RequestListJobs) checkItemFailed(v, 'RequestListJobs');
+  }
+
+  Page get page => $_get(0, 1, null);
+  void set page(Page v) { setField(1, v); }
+  bool hasPage() => $_has(0, 1);
+  void clearPage() => clearField(1);
+}
+
+class _ReadonlyRequestListJobs extends RequestListJobs with ReadonlyMessageMixin {}
+
+class RequestListPolicies extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestListPolicies')
+    ..a/*<Page>*/(1, 'page', PbFieldType.OM, Page.getDefault, Page.create)
+    ..hasRequiredFields = false
+  ;
+
+  RequestListPolicies() : super();
+  RequestListPolicies.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestListPolicies.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestListPolicies clone() => new RequestListPolicies()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestListPolicies create() => new RequestListPolicies();
+  static PbList<RequestListPolicies> createRepeated() => new PbList<RequestListPolicies>();
+  static RequestListPolicies getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestListPolicies();
+    return _defaultInstance;
+  }
+  static RequestListPolicies _defaultInstance;
+  static void $checkItem(RequestListPolicies v) {
+    if (v is !RequestListPolicies) checkItemFailed(v, 'RequestListPolicies');
+  }
+
+  Page get page => $_get(0, 1, null);
+  void set page(Page v) { setField(1, v); }
+  bool hasPage() => $_has(0, 1);
+  void clearPage() => clearField(1);
+}
+
+class _ReadonlyRequestListPolicies extends RequestListPolicies with ReadonlyMessageMixin {}
 
 class RequestPing extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestPing')
@@ -381,11 +493,40 @@ class RequestSetRateLimit extends GeneratedMessage {
 
 class _ReadonlyRequestSetRateLimit extends RequestSetRateLimit with ReadonlyMessageMixin {}
 
+class RequestSetPolicy extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestSetPolicy')
+    ..a/*<Policy>*/(1, 'policy', PbFieldType.QM, Policy.getDefault, Policy.create)
+  ;
+
+  RequestSetPolicy() : super();
+  RequestSetPolicy.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestSetPolicy.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestSetPolicy clone() => new RequestSetPolicy()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestSetPolicy create() => new RequestSetPolicy();
+  static PbList<RequestSetPolicy> createRepeated() => new PbList<RequestSetPolicy>();
+  static RequestSetPolicy getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestSetPolicy();
+    return _defaultInstance;
+  }
+  static RequestSetPolicy _defaultInstance;
+  static void $checkItem(RequestSetPolicy v) {
+    if (v is !RequestSetPolicy) checkItemFailed(v, 'RequestSetPolicy');
+  }
+
+  Policy get policy => $_get(0, 1, null);
+  void set policy(Policy v) { setField(1, v); }
+  bool hasPolicy() => $_has(0, 1);
+  void clearPolicy() => clearField(1);
+}
+
+class _ReadonlyRequestSetPolicy extends RequestSetPolicy with ReadonlyMessageMixin {}
+
 class RequestStartJob extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestStartJob')
-    ..a/*<String>*/(1, 'name', PbFieldType.OS)
-    ..p/*<String>*/(2, 'seeds', PbFieldType.PS)
-    ..hasRequiredFields = false
+    ..p/*<String>*/(1, 'seeds', PbFieldType.PS)
+    ..a/*<String>*/(2, 'name', PbFieldType.OS)
+    ..a/*<List<int>>*/(3, 'policyId', PbFieldType.QY)
   ;
 
   RequestStartJob() : super();
@@ -404,12 +545,17 @@ class RequestStartJob extends GeneratedMessage {
     if (v is !RequestStartJob) checkItemFailed(v, 'RequestStartJob');
   }
 
-  String get name => $_get(0, 1, '');
-  void set name(String v) { $_setString(0, 1, v); }
-  bool hasName() => $_has(0, 1);
-  void clearName() => clearField(1);
+  List<String> get seeds => $_get(0, 1, null);
 
-  List<String> get seeds => $_get(1, 2, null);
+  String get name => $_get(1, 2, '');
+  void set name(String v) { $_setString(1, 2, v); }
+  bool hasName() => $_has(1, 2);
+  void clearName() => clearField(2);
+
+  List<int> get policyId => $_get(2, 3, null);
+  void set policyId(List<int> v) { $_setBytes(2, 3, v); }
+  bool hasPolicyId() => $_has(2, 3);
+  void clearPolicyId() => clearField(3);
 }
 
 class _ReadonlyRequestStartJob extends RequestStartJob with ReadonlyMessageMixin {}

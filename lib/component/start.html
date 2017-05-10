@@ -1,29 +1,34 @@
 <ma-card title='Start A Crawl'>
-  <h2>Start A Crawl</h2>
+  <h2>Start Crawl</h2>
   <p class='lead'>
-    Run a crawl with the default policy.
+    Run a crawl with the specified policy.
   </p>
 
   <form (ngSubmit)='startCrawl()' [ngFormModel]='form'>
-    <ma-input-group class='underlined' [control]='nameControl'>
-      <label>
-        Name
-        <input type='text'
-               [(ngModel)]='name'
-               [ngFormControl]='nameControl'
-               class='form-control'
-               placeholder='Choose a name for this crawl.'>
-      </label>
+    <ma-input-group [control]='seedUrlControl'>
+      <label>Seed URL</label>
+      <input type='text'
+             [(ngModel)]='seedUrl'
+             [ngFormControl]='seedUrlControl'
+             placeholder='Seed URL'>
     </ma-input-group>
 
-    <ma-input-group class='underlined' [control]='seedUrlControl'>
-      <label>
-        Seed URL
-        <input type='text'
-               [(ngModel)]='seedUrl'
-               [ngFormControl]='seedUrlControl'
-               placeholder='Seed URL (required)'>
-      </label>
+    <ma-input-group>
+      <label>Policy</label>
+      <select [(ngModel)]='selectedPolicy' [disabled]='policies == null'>
+        <option *ngFor='let policy of policies' [ngValue]='policy'>
+          {{policy.name}}
+        </option>
+      </select>
+    </ma-input-group>
+
+    <ma-input-group [control]='nameControl'>
+      <label>Name</label>
+      <input type='text'
+             [(ngModel)]='name'
+             [ngFormControl]='nameControl'
+             class='form-control'
+             placeholder='(Optional) Name this crawl'>
     </ma-input-group>
 
     <div class='clearfix'>

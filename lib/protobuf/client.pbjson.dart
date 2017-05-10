@@ -8,17 +8,21 @@ const Request$json = const {
   '2': const [
     const {'1': 'request_id', '3': 1, '4': 2, '5': 5},
     const {'1': 'delete_job', '3': 2, '4': 1, '5': 11, '6': '.starbelly.RequestDeleteJob'},
-    const {'1': 'list_jobs', '3': 3, '4': 1, '5': 11, '6': '.starbelly.RequestListJobs'},
+    const {'1': 'delete_policy', '3': 3, '4': 1, '5': 11, '6': '.starbelly.RequestDeletePolicy'},
     const {'1': 'get_job', '3': 4, '4': 1, '5': 11, '6': '.starbelly.RequestGetJob'},
     const {'1': 'get_job_items', '3': 5, '4': 1, '5': 11, '6': '.starbelly.RequestGetJobItems'},
-    const {'1': 'get_rate_limits', '3': 6, '4': 1, '5': 11, '6': '.starbelly.RequestGetRateLimits'},
-    const {'1': 'ping', '3': 7, '4': 1, '5': 11, '6': '.starbelly.RequestPing'},
-    const {'1': 'set_job_run_state', '3': 8, '4': 1, '5': 11, '6': '.starbelly.RequestSetJobRunState'},
-    const {'1': 'set_rate_limit', '3': 9, '4': 1, '5': 11, '6': '.starbelly.RequestSetRateLimit'},
-    const {'1': 'start_job', '3': 10, '4': 1, '5': 11, '6': '.starbelly.RequestStartJob'},
-    const {'1': 'subscribe_job_status', '3': 11, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobStatus'},
-    const {'1': 'subscribe_job_sync', '3': 12, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobSync'},
-    const {'1': 'unsubscribe', '3': 13, '4': 1, '5': 11, '6': '.starbelly.RequestUnsubscribe'},
+    const {'1': 'get_policy', '3': 6, '4': 1, '5': 11, '6': '.starbelly.RequestGetPolicy'},
+    const {'1': 'get_rate_limits', '3': 7, '4': 1, '5': 11, '6': '.starbelly.RequestGetRateLimits'},
+    const {'1': 'list_jobs', '3': 8, '4': 1, '5': 11, '6': '.starbelly.RequestListJobs'},
+    const {'1': 'list_policies', '3': 9, '4': 1, '5': 11, '6': '.starbelly.RequestListPolicies'},
+    const {'1': 'ping', '3': 10, '4': 1, '5': 11, '6': '.starbelly.RequestPing'},
+    const {'1': 'set_job_run_state', '3': 11, '4': 1, '5': 11, '6': '.starbelly.RequestSetJobRunState'},
+    const {'1': 'set_policy', '3': 12, '4': 1, '5': 11, '6': '.starbelly.RequestSetPolicy'},
+    const {'1': 'set_rate_limit', '3': 13, '4': 1, '5': 11, '6': '.starbelly.RequestSetRateLimit'},
+    const {'1': 'start_job', '3': 14, '4': 1, '5': 11, '6': '.starbelly.RequestStartJob'},
+    const {'1': 'subscribe_job_status', '3': 15, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobStatus'},
+    const {'1': 'subscribe_job_sync', '3': 16, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobSync'},
+    const {'1': 'unsubscribe', '3': 17, '4': 1, '5': 11, '6': '.starbelly.RequestUnsubscribe'},
   ],
 };
 
@@ -29,10 +33,10 @@ const RequestDeleteJob$json = const {
   ],
 };
 
-const RequestListJobs$json = const {
-  '1': 'RequestListJobs',
+const RequestDeletePolicy$json = const {
+  '1': 'RequestDeletePolicy',
   '2': const [
-    const {'1': 'page', '3': 1, '4': 1, '5': 11, '6': '.starbelly.Page'},
+    const {'1': 'policy_id', '3': 1, '4': 2, '5': 12},
   ],
 };
 
@@ -55,8 +59,29 @@ const RequestGetJobItems$json = const {
   ],
 };
 
+const RequestGetPolicy$json = const {
+  '1': 'RequestGetPolicy',
+  '2': const [
+    const {'1': 'policy_id', '3': 1, '4': 2, '5': 12},
+  ],
+};
+
 const RequestGetRateLimits$json = const {
   '1': 'RequestGetRateLimits',
+  '2': const [
+    const {'1': 'page', '3': 1, '4': 1, '5': 11, '6': '.starbelly.Page'},
+  ],
+};
+
+const RequestListJobs$json = const {
+  '1': 'RequestListJobs',
+  '2': const [
+    const {'1': 'page', '3': 1, '4': 1, '5': 11, '6': '.starbelly.Page'},
+  ],
+};
+
+const RequestListPolicies$json = const {
+  '1': 'RequestListPolicies',
   '2': const [
     const {'1': 'page', '3': 1, '4': 1, '5': 11, '6': '.starbelly.Page'},
   ],
@@ -84,11 +109,19 @@ const RequestSetRateLimit$json = const {
   ],
 };
 
+const RequestSetPolicy$json = const {
+  '1': 'RequestSetPolicy',
+  '2': const [
+    const {'1': 'policy', '3': 1, '4': 2, '5': 11, '6': '.starbelly.Policy'},
+  ],
+};
+
 const RequestStartJob$json = const {
   '1': 'RequestStartJob',
   '2': const [
-    const {'1': 'name', '3': 1, '4': 1, '5': 9},
-    const {'1': 'seeds', '3': 2, '4': 3, '5': 9},
+    const {'1': 'seeds', '3': 1, '4': 3, '5': 9},
+    const {'1': 'policy_id', '3': 3, '4': 2, '5': 12},
+    const {'1': 'name', '3': 2, '4': 1, '5': 9},
   ],
 };
 

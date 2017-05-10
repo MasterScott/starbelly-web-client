@@ -20,12 +20,15 @@ const Response$json = const {
     const {'1': 'is_success', '3': 2, '4': 2, '5': 8},
     const {'1': 'error_message', '3': 3, '4': 1, '5': 9},
     const {'1': 'job', '3': 5, '4': 1, '5': 11, '6': '.starbelly.Job'},
-    const {'1': 'list_items', '3': 6, '4': 1, '5': 11, '6': '.starbelly.ResponseListItems'},
-    const {'1': 'list_jobs', '3': 7, '4': 1, '5': 11, '6': '.starbelly.ResponseListJobs'},
-    const {'1': 'list_rate_limits', '3': 8, '4': 1, '5': 11, '6': '.starbelly.ResponseListRateLimits'},
-    const {'1': 'new_job', '3': 9, '4': 1, '5': 11, '6': '.starbelly.ResponseNewJob'},
-    const {'1': 'new_subscription', '3': 10, '4': 1, '5': 11, '6': '.starbelly.ResponseNewSubscription'},
-    const {'1': 'ping', '3': 11, '4': 1, '5': 11, '6': '.starbelly.ResponsePing'},
+    const {'1': 'policy', '3': 6, '4': 1, '5': 11, '6': '.starbelly.Policy'},
+    const {'1': 'list_items', '3': 7, '4': 1, '5': 11, '6': '.starbelly.ResponseListItems'},
+    const {'1': 'list_jobs', '3': 8, '4': 1, '5': 11, '6': '.starbelly.ResponseListJobs'},
+    const {'1': 'list_policies', '3': 9, '4': 1, '5': 11, '6': '.starbelly.ResponseListPolicies'},
+    const {'1': 'list_rate_limits', '3': 10, '4': 1, '5': 11, '6': '.starbelly.ResponseListRateLimits'},
+    const {'1': 'new_job', '3': 11, '4': 1, '5': 11, '6': '.starbelly.ResponseNewJob'},
+    const {'1': 'new_policy', '3': 12, '4': 1, '5': 11, '6': '.starbelly.ResponseNewPolicy'},
+    const {'1': 'new_subscription', '3': 13, '4': 1, '5': 11, '6': '.starbelly.ResponseNewSubscription'},
+    const {'1': 'ping', '3': 14, '4': 1, '5': 11, '6': '.starbelly.ResponsePing'},
   ],
 };
 
@@ -45,6 +48,14 @@ const ResponseListJobs$json = const {
   ],
 };
 
+const ResponseListPolicies$json = const {
+  '1': 'ResponseListPolicies',
+  '2': const [
+    const {'1': 'policies', '3': 1, '4': 3, '5': 11, '6': '.starbelly.Policy'},
+    const {'1': 'total', '3': 2, '4': 1, '5': 5},
+  ],
+};
+
 const ResponseListRateLimits$json = const {
   '1': 'ResponseListRateLimits',
   '2': const [
@@ -57,6 +68,13 @@ const ResponseNewJob$json = const {
   '1': 'ResponseNewJob',
   '2': const [
     const {'1': 'job_id', '3': 1, '4': 2, '5': 12},
+  ],
+};
+
+const ResponseNewPolicy$json = const {
+  '1': 'ResponseNewPolicy',
+  '2': const [
+    const {'1': 'policy_id', '3': 1, '4': 2, '5': 12},
   ],
 };
 

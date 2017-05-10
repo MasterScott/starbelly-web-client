@@ -7,6 +7,7 @@
           Status: <strong>{{job.runStateStr}}</strong>
         </p>
         <p>
+          Using <a [routerLink]='["/Results", "Policy", {"id":job.jobId}]'>{{job.policy.name}}</a> policy.
           Started at {{job.startedAt | date:'medium'}} and
           <span *ngIf='job.completedAt == null'>is not complete.</span>
           <span *ngIf='job.completedAt != null'>completed at {{job.completedAt | date:'medium'}}.</span>
@@ -65,6 +66,9 @@
           </tr>
         </thead>
         <tbody>
+          <tr *ngIf="job.httpStatusCounts.length == 0">
+            <td class='empty-table' colspan='999'>No HTTP Status…</td>
+          </tr>
           <tr *ngFor="let status of job.httpStatusCounts">
             <td>{{status.code}}</td>
             <td>{{status.count}}</td>

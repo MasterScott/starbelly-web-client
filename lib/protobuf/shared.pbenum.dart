@@ -5,6 +5,24 @@ library starbelly_shared_pbenum;
 
 import 'package:protobuf/protobuf.dart';
 
+class PatternMatch extends ProtobufEnum {
+  static const PatternMatch MATCHES = const PatternMatch._(1, 'MATCHES');
+  static const PatternMatch DOES_NOT_MATCH = const PatternMatch._(2, 'DOES_NOT_MATCH');
+
+  static const List<PatternMatch> values = const <PatternMatch> [
+    MATCHES,
+    DOES_NOT_MATCH,
+  ];
+
+  static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
+  static PatternMatch valueOf(int value) => _byValue[value] as PatternMatch;
+  static void $checkItem(PatternMatch v) {
+    if (v is !PatternMatch) checkItemFailed(v, 'PatternMatch');
+  }
+
+  const PatternMatch._(int v, String n) : super(v, n);
+}
+
 class JobRunState extends ProtobufEnum {
   static const JobRunState UNKNOWN = const JobRunState._(1, 'UNKNOWN');
   static const JobRunState CANCELLED = const JobRunState._(2, 'CANCELLED');
@@ -29,5 +47,43 @@ class JobRunState extends ProtobufEnum {
   }
 
   const JobRunState._(int v, String n) : super(v, n);
+}
+
+class PolicyRobotsTxt_Usage extends ProtobufEnum {
+  static const PolicyRobotsTxt_Usage OBEY = const PolicyRobotsTxt_Usage._(1, 'OBEY');
+  static const PolicyRobotsTxt_Usage INVERT = const PolicyRobotsTxt_Usage._(2, 'INVERT');
+  static const PolicyRobotsTxt_Usage IGNORE = const PolicyRobotsTxt_Usage._(3, 'IGNORE');
+
+  static const List<PolicyRobotsTxt_Usage> values = const <PolicyRobotsTxt_Usage> [
+    OBEY,
+    INVERT,
+    IGNORE,
+  ];
+
+  static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
+  static PolicyRobotsTxt_Usage valueOf(int value) => _byValue[value] as PolicyRobotsTxt_Usage;
+  static void $checkItem(PolicyRobotsTxt_Usage v) {
+    if (v is !PolicyRobotsTxt_Usage) checkItemFailed(v, 'PolicyRobotsTxt_Usage');
+  }
+
+  const PolicyRobotsTxt_Usage._(int v, String n) : super(v, n);
+}
+
+class PolicyUrlRule_Action extends ProtobufEnum {
+  static const PolicyUrlRule_Action ADD = const PolicyUrlRule_Action._(1, 'ADD');
+  static const PolicyUrlRule_Action MULTIPLY = const PolicyUrlRule_Action._(2, 'MULTIPLY');
+
+  static const List<PolicyUrlRule_Action> values = const <PolicyUrlRule_Action> [
+    ADD,
+    MULTIPLY,
+  ];
+
+  static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
+  static PolicyUrlRule_Action valueOf(int value) => _byValue[value] as PolicyUrlRule_Action;
+  static void $checkItem(PolicyUrlRule_Action v) {
+    if (v is !PolicyUrlRule_Action) checkItemFailed(v, 'PolicyUrlRule_Action');
+  }
+
+  const PolicyUrlRule_Action._(int v, String n) : super(v, n);
 }
 

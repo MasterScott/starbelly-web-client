@@ -16,11 +16,11 @@ import 'package:starbelly/service/server.dart';
 
 /// View details about a crawl.
 @Component(
-    selector: 'results-detail',
-    templateUrl: 'detail.html',
+    selector: 'results-policy',
+    templateUrl: 'policy.html',
     directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
 )
-class ResultDetailView implements AfterViewInit, OnDestroy {
+class ResultPolicyView implements AfterViewInit {
     Job job;
 
     var ACTION_ADD = pb.PolicyUrlRule_Action.ADD;
@@ -34,26 +34,20 @@ class ResultDetailView implements AfterViewInit, OnDestroy {
     var IGNORE = pb.PolicyRobotsTxt_Usage.IGNORE;
 
     DocumentService _document;
-    JobStatusService _jobStatus;
     RouteParams _routeParams;
     ServerService _server;
-    StreamSubscription<Job> _subscription;
 
     /// Constructor
-    ResultDetailView(this._document, this._jobStatus, this._routeParams,
-                      this._server) {
-        this._document.title = 'Crawl';
+    ResultPolicyView(this._document, this._routeParams, this._server) {
+        var jobId = this._routeParams.get('id');
+        this._document.title = 'Policy';
         this._document.breadcrumbs = [
             new Breadcrumb(name: 'Crawl Results', icon: 'sitemap',
                 link: ['/Results', 'List']),
-            new Breadcrumb(name: 'Crawl'),
+            new Breadcrumb(name: 'Crawl',
+                link: ['/Results', 'Detail', {'id': jobId}]),
+            new Breadcrumb(name: 'Policy'),
         ];
-
-        this._subscription = this._jobStatus.events.listen((Job update) {
-            if (this.job != null && this.job.jobId == update.jobId) {
-                this.job.mergeFrom(update);
-            }
-        });
     }
 
     /// Called when Angular initializes the view.
@@ -64,12 +58,8 @@ class ResultDetailView implements AfterViewInit, OnDestroy {
         request.getJob.jobId = convert.hex.decode(jobId);
         var message = await this._server.sendRequest(request);
         this.job = new Job.fromPb2(message.response.job);
-        this._document.title = this.job.name;
-        this._document.breadcrumbs.last.name = this.job.name;
-    }
-
-    /// Called when Angular destroys the view.
-    void ngOnDestroy() {
-        this._subscription.cancel();
+        this._document.title = "${this.job.name} Policy";
+        var jobCrumb = this._document.breadcrumbs.length - 2;
+        this._document.breadcrumbs[jobCrumb].name = this.job.name;
     }
 }

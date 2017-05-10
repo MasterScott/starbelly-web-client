@@ -37,7 +37,7 @@ import 'package:starbelly/service/server.dart';
     templateUrl: 'exception.html',
     directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
 )
-class ResultsExceptionView implements AfterViewInit {
+class ResultExceptionView implements AfterViewInit {
     int currentPage = 1;
     int endRow = 0;
     List<CrawlItem> items;
@@ -54,7 +54,7 @@ class ResultsExceptionView implements AfterViewInit {
     StreamSubscription<Job> _subscription;
 
     /// Constructor
-    ResultsExceptionView(this._document, this._jobStatus, this._routeParams,
+    ResultExceptionView(this._document, this._jobStatus, this._routeParams,
         this._server) {
         this.jobId = this._routeParams.get('id');
         this._document.title = 'Exceptions';

@@ -3,8 +3,10 @@ import 'dart:html';
 
 import 'package:angular2/common.dart';
 import 'package:angular2/core.dart';
+import 'package:convert/convert.dart' as convert;
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
+import 'package:starbelly/model/policy.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
@@ -21,14 +23,18 @@ import 'package:starbelly/validate.dart' as validate;
     '''],
     directives: const [MA_DIRECTIVES]
 )
-class StartCrawlView {
-    String name = '';
-    String seedUrl = '';
-
+class StartCrawlView implements AfterViewInit {
     ControlGroup form;
-    Control nameControl, seedUrlControl;
+    List<Policy> policies;
+    String name = '';
+    Control nameControl;
+    String policyId;
+    String seedUrl = '';
+    Control seedUrlControl;
+    Policy selectedPolicy;
 
     bool _autoName = true;
+    List<int> policyIds;
     ServerService _server;
     DocumentService _document;
 
@@ -41,12 +47,31 @@ class StartCrawlView {
         this._initForm();
     }
 
+    /// Load policy names into select.
+    ngAfterViewInit() async {
+        var request = new pb.Request()
+            ..listPolicies = new pb.RequestListPolicies();
+        request.listPolicies.page = new pb.Page()
+            ..limit = 100
+            ..offset = 0;
+        var message = await this._server.sendRequest(request);
+        var policies = message.response.listPolicies.policies;
+        if (policies.length > 0) {
+            this.policies = new List<PolicyOptionView>.generate(
+                policies.length,
+                (i) => new Policy.fromPb(policies[i])
+            );
+            this.selectedPolicy = this.policies[0];
+        }
+    }
+
     /// Request a new crawl.
     startCrawl() async {
         var request = new pb.Request();
-        request.startJob = new pb.RequestStartJob();
-        request.startJob.name = this.name;
-        request.startJob.seeds.add(this.seedUrl);
+        request.startJob = new pb.RequestStartJob()
+            ..name = this.name
+            ..policyId = convert.hex.decode(this.selectedPolicy.policyId)
+            ..seeds.add(this.seedUrl);
         var response = await this._server.sendRequest(request);
         this._initForm();
     }

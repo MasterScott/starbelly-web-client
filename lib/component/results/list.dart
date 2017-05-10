@@ -16,7 +16,7 @@ import 'package:starbelly/service/server.dart';
     templateUrl: 'list.html',
     directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
 )
-class ResultsListView implements AfterViewInit, OnDestroy {
+class ResultListView implements AfterViewInit, OnDestroy {
     int currentPage = 1;
     int endRow = 0;
     List<Job> jobs;
@@ -34,7 +34,7 @@ class ResultsListView implements AfterViewInit, OnDestroy {
     var COMPLETED = pb.JobRunState.COMPLETED;
 
     /// Constructor
-    ResultsListView(this._document, this.jobStatus, this._server) {
+    ResultListView(this._document, this.jobStatus, this._server) {
         this._document.title = 'Crawl Results';
         this._document.breadcrumbs = [
             new Breadcrumb(name: 'Crawl Results', icon: 'sitemap')
@@ -57,12 +57,14 @@ class ResultsListView implements AfterViewInit, OnDestroy {
         var request = new pb.Request()
             ..deleteJob = new pb.RequestDeleteJob();
         request.deleteJob.jobId = convert.hex.decode(job.jobId);
-        var message = await this._server.sendRequest(request);
-        var response = message.response;
-        if (!response.isSuccess) {
+        try {
+            var message = await this._server.sendRequest(request);
+            var response = message.response;
+            await this.getPage();
+        } on ServerException catch (exc) {
+            //TODO change alert to callout
             window.alert('Could not delete job: ${response.errorMessage}');
         }
-        await this.getPage();
         click.button.busy = false;
     }
 

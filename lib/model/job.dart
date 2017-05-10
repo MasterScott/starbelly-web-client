@@ -1,5 +1,6 @@
 import 'package:convert/convert.dart' as convert;
 
+import 'package:starbelly/model/policy.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 
 var RUN_STATE_LABELS = {
@@ -13,8 +14,9 @@ var RUN_STATE_LABELS = {
 /// A crawl job.
 class Job {
     String jobId;
-    String name;
     List<String> seeds;
+    Policy policy;
+    String name;
     pb.JobRunState runState;
     DateTime startedAt;
     DateTime completedAt;
@@ -31,11 +33,14 @@ class Job {
     /// Instantiate Job from a protobuf.
     Job.fromPb2(pb.Job pbJob) {
         this.jobId = convert.hex.encode(pbJob.jobId);
-        if (pbJob.hasName()) {
-            this.name = pbJob.name;
-        }
         if (pbJob.seeds.length > 0) {
             this.seeds = new List<String>.from(pbJob.seeds);
+        }
+        if (pbJob.hasPolicy()) {
+            this.policy = new Policy.fromPb(pbJob.policy);
+        }
+        if (pbJob.hasName()) {
+            this.name = pbJob.name;
         }
         if (pbJob.hasRunState()) {
             this.runState = pbJob.runState;

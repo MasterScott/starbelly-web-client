@@ -5,11 +5,12 @@ import 'package:starbelly/component/results/detail.dart';
 import 'package:starbelly/component/results/error.dart';
 import 'package:starbelly/component/results/exception.dart';
 import 'package:starbelly/component/results/list.dart';
+import 'package:starbelly/component/results/policy.dart';
 import 'package:starbelly/component/results/success.dart';
 
 /// A component for handling routes under /results.
 @Component(
-    selector: 'results-router',
+    selector: 'result-router',
     template: '<router-outlet></router-outlet>',
     directives: const [ROUTER_DIRECTIVES]
 )
@@ -17,22 +18,26 @@ import 'package:starbelly/component/results/success.dart';
     const Route(
         path: '/',
         name: 'List',
-        component: ResultsListView),
+        component: ResultListView),
     const Route(
         path: '/:id',
         name: 'Detail',
-        component: ResultsDetailView),
+        component: ResultDetailView),
     const Route(
         path: '/:id/error',
         name: 'Error',
-        component: ResultsErrorView),
+        component: ResultErrorView),
     const Route(
         path: '/:id/exception',
         name: 'Exception',
-        component: ResultsExceptionView),
+        component: ResultExceptionView),
+    const Route(
+        path: '/:id/policy',
+        name: 'Policy',
+        component: ResultPolicyView),
     const Route(
         path: '/:id/success',
         name: 'Success',
-        component: ResultsSuccessView),
+        component: ResultSuccessView),
 ])
-class ResultsRouter {}
+class ResultRouter {}

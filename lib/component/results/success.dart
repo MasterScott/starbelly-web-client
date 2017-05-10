@@ -37,7 +37,7 @@ import 'package:starbelly/service/server.dart';
     templateUrl: 'success.html',
     directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
 )
-class ResultsSuccessView implements AfterViewInit {
+class ResultSuccessView implements AfterViewInit {
     int currentPage = 1;
     int endRow = 0;
     List<CrawlItem> items;
@@ -55,7 +55,7 @@ class ResultsSuccessView implements AfterViewInit {
     StreamSubscription<Job> _subscription;
 
     /// Constructor
-    ResultsSuccessView(this._document, this._jobStatus, this._routeParams,
+    ResultSuccessView(this._document, this._jobStatus, this._routeParams,
         this._server) {
         this.jobId = this._routeParams.get('id');
         this._document.title = 'Successes';

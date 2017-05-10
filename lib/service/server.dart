@@ -161,7 +161,7 @@ class ServerService {
             }
             completer.complete(serverResponse);
         } else {
-            completer.completeError('Server error: ' + response.errorMessage);
+            completer.completeError(new ServerException(response.errorMessage));
         }
     }
 
@@ -194,6 +194,16 @@ class ServerService {
             request.ping = new pb.RequestPing();
             var response = await this.sendRequest(request);
         });
+    }
+}
+
+/// A ServerException is thrown if a server-side error occurs while processing
+/// a request.
+class ServerException {
+    String message;
+    ServerException(this.message);
+    String toString() {
+        return 'ServerException: "${message}"';
     }
 }
 

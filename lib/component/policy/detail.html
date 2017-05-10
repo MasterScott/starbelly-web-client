@@ -1,0 +1,272 @@
+<div class='row'>
+  <div class='col-lg'>
+    <ma-card>
+      <h2 *ngIf='policy != null'>Policy: {{policy == null ? 'Loading…' : policy.name}}</h2>
+      <p class='lead'>
+        A policy controls the behavior of a crawl.
+      </p>
+      <div *ngIf='policy != null'>
+        <ma-input-group [inline]='true'>
+          <label class='metadata-labels'>Policy Name</label>
+          <input type='text'
+                 [(ngModel)]='policy.name'
+                 placeholder='Policy Name'>
+        </ma-input-group>
+        <ma-input-group [inline]='true'>
+          <label class='metadata-labels'>Created</label>
+          <input type='text'
+                 [value]='policy.createdAt | date:"y-MM-dd H:mm:ss"'
+                 disabled>
+        </ma-input-group>
+        <ma-input-group [inline]='true'>
+          <label class='metadata-labels'>Updated</label>
+          <input type='text'
+                 [value]='policy.updatedAt | date:"y-MM-dd H:mm:ss"'
+                 disabled>
+        </ma-input-group>
+
+        <h4>URL Rules</h4>
+        <p class='lead'>
+          Adjust the fetch priority and crawl depth based on URL patterns.
+        </p>
+        <p>
+          Each item is prioritized by cost, and the cost is set relative to
+          its parent item. If the cost is zero, then the item is discarded.
+        </p>
+        <ol>
+          <li *ngFor='let urlRule of policy.urlRules; let index=index; let first=first; let last=last'>
+            <span *ngIf='policy.urlRules.length == 1'>Always</span>
+            <span *ngIf='policy.urlRules.length > 1'>
+              <span *ngIf='!last'>
+                <span *ngIf='first'>If</span>
+                <span *ngIf='!first'>Else if</span>
+                the URL
+                <ma-input-group [in-text]='true'>
+                  <select [(ngModel)]='urlRule.match'>
+                    <option [ngValue]='MATCHES'>matches</option>
+                    <option [ngValue]='DOES_NOT_MATCH'>does not match</option>
+                  </select>
+                </ma-input-group>
+                &nbsp;the regex
+                <ma-input-group [in-text]='true'>
+                  <input type='text' [(ngModel)]='urlRule.pattern' placeholder='regex pattern'>
+                </ma-input-group>
+                <br>then
+              </span>
+              <span *ngIf='last'>Else</span>
+            </span>
+            <ma-input-group [in-text]='true'>
+              <select [(ngModel)]='urlRule.action'>
+                <option [ngValue]='ACTION_ADD'>add</option>
+                <option [ngValue]='ACTION_MULTIPLY'>multiply by</option>
+              </select>
+            </ma-input-group>
+            &nbsp;
+            <ma-input-group class='url-amount' [in-text]='true'>
+              <input type='text' [(ngModel)]='urlRule.amount'>
+            </ma-input-group>
+            <span class='edit-buttons'>
+              <ma-button [disabled]='first'
+                         *ngIf='!last'
+                         size='small'
+                         (click)='moveUp(policy.urlRules, index)'>
+                <fa name='arrow-circle-up'></fa>
+              </ma-button>
+              <ma-button [disabled]='index == policy.urlRules.length - 2'
+                         *ngIf='!last'
+                         size='small'
+                         (click)='moveDown(policy.urlRules, index)'>
+                <fa name='arrow-circle-down'></fa>
+              </ma-button>
+              <ma-button *ngIf='!last'
+                         size='small'
+                         type='danger'
+                         (click)='delete(policy.urlRules, index)'>
+                <fa name='trash'></fa>
+              </ma-button>
+            </span>
+          </li>
+        </ol>
+        <p>
+          <ma-button type='success' (click)='addUrlRule()'>
+            <fa name='plus-circle'></fa>
+            Add A Rule
+          </ma-button>
+        </p>
+
+        <h4>Robots.txt</h4>
+        <p class='lead'>
+          How to handle the Robots Exclusion Protocol (i.e. robots.txt).
+        </p>
+        <p>
+          <ma-radio-group>
+            <label>
+              Robots.txt rules:
+            </label>
+            <label title='Do not follow links that are disallowed by robots.txt'>
+              <input type='radio'
+                     [checked]='policy.robotsTxt.usage == OBEY'
+                     (change)='setRobotsTxtUsage(OBEY)'>
+              Obey
+            </label>
+            <label title='Only follow links that are disallowed by robots.txt'>
+              <input type='radio'
+                     [checked]='policy.robotsTxt.usage == INVERT'
+                     (change)='setRobotsTxtUsage(INVERT)'>
+              Invert
+            </label>
+            <label title="Don't pay attention to robots.txt at all">
+              <input type='radio'
+                     [checked]='policy.robotsTxt.usage == IGNORE'
+                     (change)='setRobotsTxtUsage(IGNORE)'>
+              Ignore
+            </label>
+          </ma-radio-group>
+        </p>
+
+        <h4>User Agents</h4>
+        <p class='lead'>
+          Set the user agent header used when downloading an item.
+        </p>
+        <p>
+          If more than one user agent is specified, one will be chosen at
+          random for each request.
+        </p>
+        <ol>
+          <li *ngFor='let userAgent of policy.userAgents; let index=index'>
+            <ma-input-group [in-text]='true' class='user-agent'>
+              <input type='text'
+                     [(ngModel)]='userAgent.name'
+                     placeholder='User Agent'>
+            </ma-input-group>
+            <span class='edit-buttons'>
+              <ma-button *ngIf='policy.userAgents.length > 1'
+                         size='small'
+                         type='danger'
+                         (click)='delete(policy.userAgents, index)'>
+                <fa name='trash'></fa>
+              </ma-button>
+            </span>
+          </li>
+        </ol>
+        <p>
+          <ma-button type='success' (click)='addUserAgent()'>
+            <fa name='plus-circle'></fa>
+            Add A User Agent
+          </ma-button>
+          <ma-button *ngIf='policy.userAgents.length > 1'
+                     type='link'
+                     (click)='sortUserAgents()'>
+            <fa name='sort-alpha-asc'></fa>
+            Sort User Agents
+          </ma-button>
+        </p>
+
+        <h4>MIME Type Rules</h4>
+        <p class='lead'>
+          Choose whether to save or discard response body based on MIME type patterns.
+        </p>
+        <ol>
+          <li *ngFor='let mimeRule of policy.mimeTypeRules; let index=index; let first=first; let last=last'>
+            <span *ngIf='policy.mimeTypeRules.length == 1'>Always</span>
+            <span *ngIf='policy.mimeTypeRules.length > 1'>
+              <span *ngIf='!last'>
+                <span *ngIf='first'>If</span>
+                <span *ngIf='!first'>Else if</span>
+                the MIME type
+                <ma-input-group [in-text]='true'>
+                  <select [(ngModel)]='mimeRule.match'>
+                    <option [ngValue]='MATCHES'>matches</option>
+                    <option [ngValue]='DOES_NOT_MATCH'>does not match</option>
+                  </select>
+                </ma-input-group>
+                &nbsp;the regex
+                <ma-input-group [in-text]='true'>
+                  <input type='text' [(ngModel)]='mimeRule.pattern' placeholder='regex pattern'>
+                </ma-input-group>
+                <br>then
+              </span>
+              <span *ngIf='last'>Else</span>
+            </span>
+            <ma-input-group [in-text]='true'>
+              <select [(ngModel)]='mimeRule.save'>
+                <option [ngValue]='true'>save</option>
+                <option [ngValue]='false'>discard</option>
+              </select>
+            </ma-input-group>
+            &nbsp;the response body
+            <span class='edit-buttons'>
+              <ma-button [disabled]='first'
+                         *ngIf='!last'
+                         size='small'
+                         (click)='moveUp(policy.mimeTypeRules, index)'>
+                <fa name='arrow-circle-up'></fa>
+              </ma-button>
+              <ma-button [disabled]='index == policy.mimeTypeRules.length - 2'
+                         *ngIf='!last'
+                         size='small'
+                         (click)='moveDown(policy.mimeTypeRules, index)'>
+                <fa name='arrow-circle-down'></fa>
+              </ma-button>
+              <ma-button *ngIf='!last'
+                         size='small'
+                         type='danger'
+                         (click)='delete(policy.mimeTypeRules, index)'>
+                <fa name='trash'></fa>
+              </ma-button>
+            </span>
+          </li>
+        </ol>
+        <p>
+          <ma-button type='success' (click)='addMimeRule()'>
+            <fa name='plus-circle'></fa>
+            Add A Rule
+          </ma-button>
+        </p>
+
+        <h4>Limits</h4>
+        <p class='lead'>
+          The crawl will not exceed these limits.
+        </p>
+        <ma-input-group [inline]='true'>
+          <label class='limits-labels'>Max Cost</label>
+          <input type='text'
+                 [(ngModel)]='policy.limits.maxCost'
+                 placeholder='Cost'>
+        </ma-input-group>
+        <ma-input-group [inline]='true'>
+          <label class='limits-labels'>Max Duration (s)</label>
+          <input type='text'
+                 [(ngModel)]='policy.limits.maxDuration'
+                 placeholder='Duration (in seconds)'>
+        </ma-input-group>
+        <ma-input-group [inline]='true'>
+          <label class='limits-labels'>Max Items</label>
+          <input type='text'
+                 [(ngModel)]='policy.limits.maxItems'
+                 placeholder='Item Count'>
+        </ma-input-group>
+
+        <p class='clearfix'>
+          <ma-button type='link'
+                     class='float-xs-left'
+                     [routerLink]='["../List"]'>
+            Cancel
+          </ma-button>
+          <ma-button type='primary'
+                     class='float-xs-right'
+                     (click)='save($event)'>
+            <fa name='save'></fa>
+            Save
+          </ma-button>
+        </p>
+        <p *ngIf='saveError.isNotEmpty' class='float-xs-right text-danger'>
+          {{saveError}}
+        </p>
+        <p *ngIf='saveSuccess' class='float-xs-right text-success'>
+          Policy saved.
+        </p>
+      </div>
+    </ma-card>
+  </div>
+</div>
