@@ -74,7 +74,15 @@ class ServerService {
     Future<WebSocket> _getSocket() {
         if (this._socketFuture == null) {
             var completer = new Completer<WebSocket>();
-            var socket = new WebSocket('wss://localhost/ws/');
+            var currentUri = Uri.parse(window.location.href);
+            var socketUri = new Uri(
+                scheme: 'wss',
+                userInfo: currentUri.userInfo,
+                host: currentUri.host,
+                port: currentUri.port,
+                path: '/ws/',
+            );
+            var socket = new WebSocket(socketUri.toString());
             socket.binaryType = 'arraybuffer';
             this._socketFuture = completer.future;
 

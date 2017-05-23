@@ -57,6 +57,27 @@
           </li>
         </ol>
         <p>
+          <strong>Proxy Rules</strong>
+        </p>
+        <ol>
+          <li *ngFor='let proxyRule of job.policy.proxyRules; let index=index; let first=first; let last=last'>
+            <span *ngIf='first'>If</span>
+            <span *ngIf='!first'>Else if</span>
+            the URL
+            {{proxyRule.match == MATCHES ? 'matches' : 'does not match'}}
+            &nbsp;the regex&nbsp;
+            <code>{{proxyRule.pattern}}</code>
+            <br>then use the proxy
+            <code>{{proxyRule.proxyUrl}}</code>
+          </li>
+          <li *ngIf='job.policy.proxyRules.length == 0'>
+            Never use a proxy.
+          </li>
+          <li *ngIf='job.policy.proxyRules.length > 0'>
+            Else don't use a proxy.
+          </li>
+        </ol>
+        <p>
           <strong>MIME Type Rules</strong>
         </p>
         <ol>

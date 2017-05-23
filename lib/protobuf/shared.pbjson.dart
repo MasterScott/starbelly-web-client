@@ -64,10 +64,11 @@ const Policy$json = const {
     const {'1': 'created_at', '3': 3, '4': 1, '5': 9},
     const {'1': 'updated_at', '3': 4, '4': 1, '5': 9},
     const {'1': 'limits', '3': 5, '4': 1, '5': 11, '6': '.starbelly.PolicyLimits'},
-    const {'1': 'mime_type_rules', '3': 6, '4': 3, '5': 11, '6': '.starbelly.PolicyMimeTypeRule'},
-    const {'1': 'robots_txt', '3': 7, '4': 1, '5': 11, '6': '.starbelly.PolicyRobotsTxt'},
-    const {'1': 'url_rules', '3': 8, '4': 3, '5': 11, '6': '.starbelly.PolicyUrlRule'},
-    const {'1': 'user_agents', '3': 9, '4': 3, '5': 11, '6': '.starbelly.PolicyUserAgent'},
+    const {'1': 'proxy_rules', '3': 6, '4': 3, '5': 11, '6': '.starbelly.PolicyProxyRule'},
+    const {'1': 'mime_type_rules', '3': 7, '4': 3, '5': 11, '6': '.starbelly.PolicyMimeTypeRule'},
+    const {'1': 'robots_txt', '3': 8, '4': 1, '5': 11, '6': '.starbelly.PolicyRobotsTxt'},
+    const {'1': 'url_rules', '3': 9, '4': 3, '5': 11, '6': '.starbelly.PolicyUrlRule'},
+    const {'1': 'user_agents', '3': 10, '4': 3, '5': 11, '6': '.starbelly.PolicyUserAgent'},
   ],
 };
 
@@ -86,6 +87,15 @@ const PolicyMimeTypeRule$json = const {
     const {'1': 'pattern', '3': 1, '4': 1, '5': 9},
     const {'1': 'match', '3': 2, '4': 1, '5': 14, '6': '.starbelly.PatternMatch'},
     const {'1': 'save', '3': 3, '4': 1, '5': 8},
+  ],
+};
+
+const PolicyProxyRule$json = const {
+  '1': 'PolicyProxyRule',
+  '2': const [
+    const {'1': 'pattern', '3': 1, '4': 1, '5': 9},
+    const {'1': 'match', '3': 2, '4': 1, '5': 14, '6': '.starbelly.PatternMatch'},
+    const {'1': 'proxy_url', '3': 3, '4': 2, '5': 9},
   ],
 };
 

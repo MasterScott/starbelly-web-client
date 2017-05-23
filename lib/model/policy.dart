@@ -14,6 +14,7 @@ class Policy {
 
     PolicyLimits limits;
     List<PolicyMimeTypeRule> mimeTypeRules;
+    List<PolicyProxyRule> proxyRules;
     PolicyRobotsTxt robotsTxt;
     List<PolicyUrlRule> urlRules;
     List<PolicyUserAgent> userAgents;
@@ -25,6 +26,7 @@ class Policy {
         this.updatedAt = new DateTime.now();
         this.limits = new PolicyLimits();
         this.mimeTypeRules = [new PolicyMimeTypeRule()];
+        this.proxyRules = [];
         this.robotsTxt = new PolicyRobotsTxt();
         this.urlRules = [new PolicyUrlRule()];
         this.userAgents = [new PolicyUserAgent()];
@@ -45,6 +47,10 @@ class Policy {
         this.mimeTypeRules = new List<PolicyMimeTypeRule>.generate(
             pbPolicy.mimeTypeRules.length,
             (i) => new PolicyMimeTypeRule.fromPb(pbPolicy.mimeTypeRules[i])
+        );
+        this.proxyRules = new List<PolicyProxyRule>.generate(
+            pbPolicy.proxyRules.length,
+            (i) => new PolicyProxyRule.fromPb(pbPolicy.proxyRules[i])
         );
         if (pbPolicy.hasRobotsTxt()) {
             this.robotsTxt = new PolicyRobotsTxt.fromPb(pbPolicy.robotsTxt);
@@ -69,6 +75,9 @@ class Policy {
         pbPolicy.limits = this.limits.toPb();
         for (var mimeTypeRule in this.mimeTypeRules) {
             pbPolicy.mimeTypeRules.add(mimeTypeRule.toPb());
+        }
+        for (var proxyRule in this.proxyRules) {
+            pbPolicy.proxyRules.add(proxyRule.toPb());
         }
         pbPolicy.robotsTxt = this.robotsTxt.toPb();
         for (var urlRule in this.urlRules) {
@@ -129,6 +138,7 @@ class PolicyMimeTypeRule {
     /// Create a default object.
     PolicyMimeTypeRule() {
         this.pattern = '';
+        this.match = pb.PatternMatch.MATCHES;
         this.save = true;
     }
 
@@ -153,6 +163,47 @@ class PolicyMimeTypeRule {
         }
         if (this.match != null) {
             pbRule.match = this.match;
+        }
+        return pbRule;
+    }
+}
+
+/// A rule about when and how to proxy requests.
+class PolicyProxyRule {
+    String pattern;
+    pb.PatternMatch match;
+    String proxyUrl;
+
+    /// Create a default object.
+    PolicyProxyRule() {
+        this.pattern = '';
+        this.match = pb.PatternMatch.MATCHES;
+        this.proxyUrl = '';
+    }
+
+    /// Create from a protobuf message.
+    PolicyProxyRule.fromPb(pb.PolicyProxyRule pbRule) {
+        // Required:
+        this.proxyUrl = pbRule.proxyUrl;
+
+        // Optional:
+        this.pattern = pbRule.hasPattern() ? pbRule.pattern : '';
+        if (pbRule.hasMatch()) {
+            this.match = pbRule.match;
+        }
+    }
+
+    /// Convert to protobuf message.
+    pb.PolicyProxyRule toPb() {
+        var pbRule = new pb.PolicyProxyRule();
+        if (this.pattern.isNotEmpty) {
+            pbRule.pattern = this.pattern;
+        }
+        if (this.match != null) {
+            pbRule.match = this.match;
+        }
+        if (this.proxyUrl.isNotEmpty) {
+            pbRule.proxyUrl = this.proxyUrl;
         }
         return pbRule;
     }
@@ -190,6 +241,7 @@ class PolicyUrlRule {
     /// Create a default object.
     PolicyUrlRule() {
         this.pattern = '';
+        this.match = pb.PatternMatch.MATCHES;
         this.action = pb.PolicyUrlRule_Action.ADD;
         this.amount = '1';
     }

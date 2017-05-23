@@ -21,6 +21,10 @@ import 'package:starbelly/service/server.dart';
         .edit-buttons {
             padding-left: 0.5em;
         }
+        .error {
+            max-width: 50%;
+            text-align: right;
+        }
         .limits-labels {
             text-align: right;
             width: 15em;
@@ -82,6 +86,11 @@ class PolicyDetailView implements AfterViewInit {
             this.policy.mimeTypeRules.length - 1,
             new PolicyMimeTypeRule()
         );
+    }
+
+    /// Add a proxy rule.
+    void addProxyRule() {
+        this.policy.proxyRules.add(new PolicyProxyRule());
     }
 
     /// Add a penultimate URL rule.

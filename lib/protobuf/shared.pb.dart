@@ -175,10 +175,11 @@ class Policy extends GeneratedMessage {
     ..a/*<String>*/(3, 'createdAt', PbFieldType.OS)
     ..a/*<String>*/(4, 'updatedAt', PbFieldType.OS)
     ..a/*<PolicyLimits>*/(5, 'limits', PbFieldType.OM, PolicyLimits.getDefault, PolicyLimits.create)
-    ..pp/*<PolicyMimeTypeRule>*/(6, 'mimeTypeRules', PbFieldType.PM, PolicyMimeTypeRule.$checkItem, PolicyMimeTypeRule.create)
-    ..a/*<PolicyRobotsTxt>*/(7, 'robotsTxt', PbFieldType.OM, PolicyRobotsTxt.getDefault, PolicyRobotsTxt.create)
-    ..pp/*<PolicyUrlRule>*/(8, 'urlRules', PbFieldType.PM, PolicyUrlRule.$checkItem, PolicyUrlRule.create)
-    ..pp/*<PolicyUserAgent>*/(9, 'userAgents', PbFieldType.PM, PolicyUserAgent.$checkItem, PolicyUserAgent.create)
+    ..pp/*<PolicyProxyRule>*/(6, 'proxyRules', PbFieldType.PM, PolicyProxyRule.$checkItem, PolicyProxyRule.create)
+    ..pp/*<PolicyMimeTypeRule>*/(7, 'mimeTypeRules', PbFieldType.PM, PolicyMimeTypeRule.$checkItem, PolicyMimeTypeRule.create)
+    ..a/*<PolicyRobotsTxt>*/(8, 'robotsTxt', PbFieldType.OM, PolicyRobotsTxt.getDefault, PolicyRobotsTxt.create)
+    ..pp/*<PolicyUrlRule>*/(9, 'urlRules', PbFieldType.PM, PolicyUrlRule.$checkItem, PolicyUrlRule.create)
+    ..pp/*<PolicyUserAgent>*/(10, 'userAgents', PbFieldType.PM, PolicyUserAgent.$checkItem, PolicyUserAgent.create)
   ;
 
   Policy() : super();
@@ -222,16 +223,18 @@ class Policy extends GeneratedMessage {
   bool hasLimits() => $_has(4, 5);
   void clearLimits() => clearField(5);
 
-  List<PolicyMimeTypeRule> get mimeTypeRules => $_get(5, 6, null);
+  List<PolicyProxyRule> get proxyRules => $_get(5, 6, null);
 
-  PolicyRobotsTxt get robotsTxt => $_get(6, 7, null);
-  void set robotsTxt(PolicyRobotsTxt v) { setField(7, v); }
-  bool hasRobotsTxt() => $_has(6, 7);
-  void clearRobotsTxt() => clearField(7);
+  List<PolicyMimeTypeRule> get mimeTypeRules => $_get(6, 7, null);
 
-  List<PolicyUrlRule> get urlRules => $_get(7, 8, null);
+  PolicyRobotsTxt get robotsTxt => $_get(7, 8, null);
+  void set robotsTxt(PolicyRobotsTxt v) { setField(8, v); }
+  bool hasRobotsTxt() => $_has(7, 8);
+  void clearRobotsTxt() => clearField(8);
 
-  List<PolicyUserAgent> get userAgents => $_get(8, 9, null);
+  List<PolicyUrlRule> get urlRules => $_get(8, 9, null);
+
+  List<PolicyUserAgent> get userAgents => $_get(9, 10, null);
 }
 
 class _ReadonlyPolicy extends Policy with ReadonlyMessageMixin {}
@@ -319,6 +322,47 @@ class PolicyMimeTypeRule extends GeneratedMessage {
 }
 
 class _ReadonlyPolicyMimeTypeRule extends PolicyMimeTypeRule with ReadonlyMessageMixin {}
+
+class PolicyProxyRule extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('PolicyProxyRule')
+    ..a/*<String>*/(1, 'pattern', PbFieldType.OS)
+    ..e/*<PatternMatch>*/(2, 'match', PbFieldType.OE, PatternMatch.MATCHES, PatternMatch.valueOf)
+    ..a/*<String>*/(3, 'proxyUrl', PbFieldType.QS)
+  ;
+
+  PolicyProxyRule() : super();
+  PolicyProxyRule.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  PolicyProxyRule.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  PolicyProxyRule clone() => new PolicyProxyRule()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static PolicyProxyRule create() => new PolicyProxyRule();
+  static PbList<PolicyProxyRule> createRepeated() => new PbList<PolicyProxyRule>();
+  static PolicyProxyRule getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyPolicyProxyRule();
+    return _defaultInstance;
+  }
+  static PolicyProxyRule _defaultInstance;
+  static void $checkItem(PolicyProxyRule v) {
+    if (v is !PolicyProxyRule) checkItemFailed(v, 'PolicyProxyRule');
+  }
+
+  String get pattern => $_get(0, 1, '');
+  void set pattern(String v) { $_setString(0, 1, v); }
+  bool hasPattern() => $_has(0, 1);
+  void clearPattern() => clearField(1);
+
+  PatternMatch get match => $_get(1, 2, null);
+  void set match(PatternMatch v) { setField(2, v); }
+  bool hasMatch() => $_has(1, 2);
+  void clearMatch() => clearField(2);
+
+  String get proxyUrl => $_get(2, 3, '');
+  void set proxyUrl(String v) { $_setString(2, 3, v); }
+  bool hasProxyUrl() => $_has(2, 3);
+  void clearProxyUrl() => clearField(3);
+}
+
+class _ReadonlyPolicyProxyRule extends PolicyProxyRule with ReadonlyMessageMixin {}
 
 class PolicyRobotsTxt extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('PolicyRobotsTxt')
