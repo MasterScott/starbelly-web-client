@@ -432,7 +432,7 @@ class _ReadonlyRequestPing extends RequestPing with ReadonlyMessageMixin {}
 class RequestSetJobRunState extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestSetJobRunState')
     ..a/*<List<int>>*/(1, 'jobId', PbFieldType.QY)
-    ..e/*<JobRunState>*/(2, 'runState', PbFieldType.QE, JobRunState.UNKNOWN, JobRunState.valueOf)
+    ..e/*<JobRunState>*/(2, 'runState', PbFieldType.QE, JobRunState.CANCELLED, JobRunState.valueOf)
   ;
 
   RequestSetJobRunState() : super();

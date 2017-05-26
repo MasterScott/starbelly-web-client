@@ -56,7 +56,8 @@ class CrawlItem {
         );
         if (pbItem.hasBody()) {
             this.body = pbItem.body;
-            // TODO handle other character sets
+            // This doesn't handle non-UTF8 bodies, which should be
+            // fixed in a future version.
             try {
                 this.bodyStr = UTF8.decode(this.body);
             } catch (exc, trace) {

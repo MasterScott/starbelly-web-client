@@ -14,12 +14,12 @@ const PatternMatch$json = const {
 const JobRunState$json = const {
   '1': 'JobRunState',
   '2': const [
-    const {'1': 'UNKNOWN', '2': 1},
-    const {'1': 'CANCELLED', '2': 2},
-    const {'1': 'COMPLETED', '2': 3},
-    const {'1': 'PAUSED', '2': 4},
-    const {'1': 'PENDING', '2': 5},
-    const {'1': 'RUNNING', '2': 6},
+    const {'1': 'CANCELLED', '2': 1},
+    const {'1': 'COMPLETED', '2': 2},
+    const {'1': 'PAUSED', '2': 3},
+    const {'1': 'PENDING', '2': 4},
+    const {'1': 'RUNNING', '2': 5},
+    const {'1': 'DELETED', '2': 6},
   ],
 };
 

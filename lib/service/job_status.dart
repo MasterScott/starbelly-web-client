@@ -85,24 +85,34 @@ class JobStatusService {
             );
 
             for (var jobUpdate in jobs) {
-                this._streamController.add(jobUpdate);
-                var jobId = jobUpdate.jobId;
-                if (!this._jobMap.containsKey(jobId)) {
-                    this._jobMap[jobId] = jobUpdate;
-                    this._jobs.insert(0, jobUpdate);
-                    if (!firstEvent) {
-                        this._newJobCount++;
+                if (!firstEvent) {
+                    // Do this before updating the job model, because a deleted
+                    // job won't have a name to show in the toast.
+                    this._toastJobUpdate(jobUpdate);
+                }
+                if (jobUpdate.runState == pb.JobRunState.DELETED) {
+                    var job = this._jobMap.remove(jobUpdate.jobId);
+                    this._jobNames.remove(jobUpdate.jobId);
+                    if (job != null) {
+                        this._jobs.remove(job);
                     }
                 } else {
-                    var existingJob = this._jobMap[jobId];
-                    existingJob.mergeFrom(jobUpdate);
-                }
-                if (!this._jobNames.containsKey(jobId) &&
-                    jobUpdate.name != null) {
-                    this._jobNames[jobId] = jobUpdate.name;
-                }
-                if (!firstEvent) {
-                    this._toastJobUpdate(jobUpdate);
+                    this._streamController.add(jobUpdate);
+                    var jobId = jobUpdate.jobId;
+                    if (!this._jobMap.containsKey(jobId)) {
+                        this._jobMap[jobId] = jobUpdate;
+                        this._jobs.insert(0, jobUpdate);
+                        if (!firstEvent) {
+                            this._newJobCount++;
+                        }
+                    } else {
+                        var existingJob = this._jobMap[jobId];
+                        existingJob.mergeFrom(jobUpdate);
+                    }
+                    if (!this._jobNames.containsKey(jobId) &&
+                        jobUpdate.name != null) {
+                        this._jobNames[jobId] = jobUpdate.name;
+                    }
                 }
             }
 
@@ -127,6 +137,8 @@ class JobStatusService {
             toast('warning', 'Crawl cancelled.', name, icon: 'times-circle');
         } else if (update.runState == pb.JobRunState.COMPLETED) {
             toast('success', 'Crawl completed.', name, icon: 'check-circle');
+        } else if (update.runState == pb.JobRunState.DELETED) {
+            toast('danger', 'Crawl deleted.', name, icon: 'trash');
         }
     }
 }

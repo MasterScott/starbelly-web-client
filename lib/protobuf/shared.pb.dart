@@ -512,7 +512,7 @@ class Job extends GeneratedMessage {
     ..p/*<String>*/(2, 'seeds', PbFieldType.PS)
     ..a/*<Policy>*/(3, 'policy', PbFieldType.OM, Policy.getDefault, Policy.create)
     ..a/*<String>*/(4, 'name', PbFieldType.OS)
-    ..e/*<JobRunState>*/(5, 'runState', PbFieldType.OE, JobRunState.UNKNOWN, JobRunState.valueOf)
+    ..e/*<JobRunState>*/(5, 'runState', PbFieldType.OE, JobRunState.CANCELLED, JobRunState.valueOf)
     ..a/*<String>*/(6, 'startedAt', PbFieldType.OS)
     ..a/*<String>*/(7, 'completedAt', PbFieldType.OS)
     ..a/*<int>*/(8, 'itemCount', PbFieldType.O3, -1)

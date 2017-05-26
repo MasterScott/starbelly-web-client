@@ -62,7 +62,6 @@ class ResultListView implements AfterViewInit, OnDestroy {
             var response = message.response;
             await this.getPage();
         } on ServerException catch (exc) {
-            //TODO change alert to callout
             window.alert('Could not delete job: ${response.errorMessage}');
         }
         click.button.busy = false;

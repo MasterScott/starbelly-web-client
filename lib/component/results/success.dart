@@ -16,12 +16,6 @@ import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
 
 /// View successful crawl items.
-///
-/// TODO This is very similar to the error and exception views. I can't think
-/// of a way to refactor to this to reduce code duplication. It doesn't seem
-/// possible to create an abstract base class due to the way dependencies are
-/// injected, and it doesn't seem possible use a URL parameter to distinguish
-/// success/error/exception because the templates are different.
 @Component(
     selector: 'results-success',
     styles: const ['''

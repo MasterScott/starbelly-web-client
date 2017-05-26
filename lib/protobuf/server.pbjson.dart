@@ -112,9 +112,8 @@ const SubscriptionClosed$json = const {
 const SubscriptionClosed_Reason$json = const {
   '1': 'Reason',
   '2': const [
-    const {'1': 'UNKNOWN', '2': 1},
-    const {'1': 'END', '2': 2},
-    const {'1': 'ERROR', '2': 3},
+    const {'1': 'END', '2': 1},
+    const {'1': 'ERROR', '2': 2},
   ],
 };
 

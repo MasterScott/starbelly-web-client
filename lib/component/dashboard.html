@@ -20,7 +20,7 @@
           There are no active or recent crawls.
         </td>
       </tr>
-      <tr *ngFor="let job of jobStatus.jobs">
+      <tr *ngFor="let job of jobStatus.jobs; let index=index">
         <td>
           <a [routerLink]='["/Results", "Detail", {"id":job.jobId}]'>{{job.name}}</a>
         </td>
@@ -32,18 +32,21 @@
         <td>{{job.exceptionCount}}</td>
         <td>
           <ma-button size='small'
+                     [disabled]='busyJobs.contains(job.jobId)'
                      *ngIf='job.runState == PAUSED'
-                     (click)='setJobRunState(job, RUNNING)'>
+                     (click)='setJobRunState($event, job, RUNNING)'>
             <fa name='play'></fa>
           </ma-button>
           <ma-button size='small'
+                     [disabled]='busyJobs.contains(job.jobId)'
                      *ngIf='job.runState == RUNNING'
-                     (click)='setJobRunState(job, PAUSED)'>
+                     (click)='setJobRunState($event, job, PAUSED)'>
             <fa name='pause'></fa>
           </ma-button>
           <ma-button size='small'
+                     [disabled]='busyJobs.contains(job.jobId)'
                      *ngIf='job.runState == RUNNING || job.runState == PAUSED'
-                     (click)='setJobRunState(job, CANCELLED)'>
+                     (click)='setJobRunState($event, job, CANCELLED)'>
             <fa name='ban'></fa>
           </ma-button>
         </td>

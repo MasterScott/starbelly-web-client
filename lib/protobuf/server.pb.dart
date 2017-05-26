@@ -443,7 +443,7 @@ class _ReadonlyServerMessage extends ServerMessage with ReadonlyMessageMixin {}
 
 class SubscriptionClosed extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('SubscriptionClosed')
-    ..e/*<SubscriptionClosed_Reason>*/(1, 'reason', PbFieldType.QE, SubscriptionClosed_Reason.UNKNOWN, SubscriptionClosed_Reason.valueOf)
+    ..e/*<SubscriptionClosed_Reason>*/(1, 'reason', PbFieldType.QE, SubscriptionClosed_Reason.END, SubscriptionClosed_Reason.valueOf)
     ..a/*<String>*/(2, 'message', PbFieldType.OS)
   ;
 

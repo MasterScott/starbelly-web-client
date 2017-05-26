@@ -24,20 +24,20 @@ class PatternMatch extends ProtobufEnum {
 }
 
 class JobRunState extends ProtobufEnum {
-  static const JobRunState UNKNOWN = const JobRunState._(1, 'UNKNOWN');
-  static const JobRunState CANCELLED = const JobRunState._(2, 'CANCELLED');
-  static const JobRunState COMPLETED = const JobRunState._(3, 'COMPLETED');
-  static const JobRunState PAUSED = const JobRunState._(4, 'PAUSED');
-  static const JobRunState PENDING = const JobRunState._(5, 'PENDING');
-  static const JobRunState RUNNING = const JobRunState._(6, 'RUNNING');
+  static const JobRunState CANCELLED = const JobRunState._(1, 'CANCELLED');
+  static const JobRunState COMPLETED = const JobRunState._(2, 'COMPLETED');
+  static const JobRunState PAUSED = const JobRunState._(3, 'PAUSED');
+  static const JobRunState PENDING = const JobRunState._(4, 'PENDING');
+  static const JobRunState RUNNING = const JobRunState._(5, 'RUNNING');
+  static const JobRunState DELETED = const JobRunState._(6, 'DELETED');
 
   static const List<JobRunState> values = const <JobRunState> [
-    UNKNOWN,
     CANCELLED,
     COMPLETED,
     PAUSED,
     PENDING,
     RUNNING,
+    DELETED,
   ];
 
   static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);

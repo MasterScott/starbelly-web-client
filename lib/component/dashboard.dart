@@ -18,6 +18,7 @@ import 'package:starbelly/service/server.dart';
     directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
 )
 class DashboardView implements OnInit {
+    Set<String> busyJobs;
     String rateLimit = '';
     String seedUrl = '';
 
@@ -34,6 +35,7 @@ class DashboardView implements OnInit {
 
     /// Constructor
     DashboardView(this.jobStatus, this._server, this._document) {
+        this.busyJobs = new Set<String>();
         this._document.title = 'Dashboard';
         this._document.breadcrumbs = [
             new Breadcrumb(name: 'Dashboard', icon: 'dashboard')
@@ -46,11 +48,16 @@ class DashboardView implements OnInit {
     }
 
     /// Set a job's run state.
-    setJobRunState(JobStatus job, pb.JobRunState runState) async {
+    setJobRunState(MaClick click, JobStatus job,
+                   pb.JobRunState runState) async {
+        click.button.busy = true;
+        this.busyJobs.add(job.jobId);
         var request = new pb.Request();
         request.setJobRunState = new pb.RequestSetJobRunState();
         request.setJobRunState.jobId = job.jobIdBytes;
         request.setJobRunState.runState = runState;
         var response = await this._server.sendRequest(request);
+        this.busyJobs.remove(job.jobId);
+        click.button.busy = false;
     }
 }
