@@ -11,6 +11,9 @@ import 'package:starbelly/component/policy/router.dart';
 import 'package:starbelly/component/rate_limit.dart';
 import 'package:starbelly/component/results/router.dart';
 import 'package:starbelly/component/start.dart';
+import 'package:starbelly/component/system/profile.dart';
+import 'package:starbelly/component/system/resources.dart';
+import 'package:starbelly/component/system/tasks.dart';
 import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/server.dart';
@@ -63,6 +66,18 @@ import 'package:starbelly/service/server.dart';
         path: '/start',
         name: 'StartCrawl',
         component: StartCrawlView),
+    const Route(
+        path: '/system/profile',
+        name: 'Profile',
+        component: ProfileView),
+    const Route(
+        path: '/system/resources',
+        name: 'Resources',
+        component: ResourcesView),
+    const Route(
+        path: '/system/tasks',
+        name: 'Tasks',
+        component: TasksView),
 ])
 class AppComponent {
     /// Service for getting status of jobs.

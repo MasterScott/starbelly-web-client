@@ -5,24 +5,6 @@ library starbelly_shared_pbenum;
 
 import 'package:protobuf/protobuf.dart';
 
-class PatternMatch extends ProtobufEnum {
-  static const PatternMatch MATCHES = const PatternMatch._(1, 'MATCHES');
-  static const PatternMatch DOES_NOT_MATCH = const PatternMatch._(2, 'DOES_NOT_MATCH');
-
-  static const List<PatternMatch> values = const <PatternMatch> [
-    MATCHES,
-    DOES_NOT_MATCH,
-  ];
-
-  static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
-  static PatternMatch valueOf(int value) => _byValue[value] as PatternMatch;
-  static void $checkItem(PatternMatch v) {
-    if (v is !PatternMatch) checkItemFailed(v, 'PatternMatch');
-  }
-
-  const PatternMatch._(int v, String n) : super(v, n);
-}
-
 class JobRunState extends ProtobufEnum {
   static const JobRunState CANCELLED = const JobRunState._(1, 'CANCELLED');
   static const JobRunState COMPLETED = const JobRunState._(2, 'COMPLETED');
@@ -47,6 +29,24 @@ class JobRunState extends ProtobufEnum {
   }
 
   const JobRunState._(int v, String n) : super(v, n);
+}
+
+class PatternMatch extends ProtobufEnum {
+  static const PatternMatch MATCHES = const PatternMatch._(1, 'MATCHES');
+  static const PatternMatch DOES_NOT_MATCH = const PatternMatch._(2, 'DOES_NOT_MATCH');
+
+  static const List<PatternMatch> values = const <PatternMatch> [
+    MATCHES,
+    DOES_NOT_MATCH,
+  ];
+
+  static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
+  static PatternMatch valueOf(int value) => _byValue[value] as PatternMatch;
+  static void $checkItem(PatternMatch v) {
+    if (v is !PatternMatch) checkItemFailed(v, 'PatternMatch');
+  }
+
+  const PatternMatch._(int v, String n) : super(v, n);
 }
 
 class PolicyRobotsTxt_Usage extends ProtobufEnum {

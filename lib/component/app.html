@@ -54,6 +54,20 @@
     <ma-side-nav-item [route]='["/RateLimits"]'>
       <fa name='clock-o' [fw]='true' size='lg'></fa> Rate Limits
     </ma-side-nav-item>
+    <ma-side-nav-menu>
+      <ma-side-nav-menu-header>
+        <fa name='gears' [fw]='true' size='lg'></fa> System
+      </ma-side-nav-menu-header>
+      <ma-side-nav-item [route]='["Profile"]'>
+        <fa name='microchip' [fw]='true' size='lg'></fa> CPU Profile
+      </ma-side-nav-item>
+      <ma-side-nav-item [route]='["Resources"]'>
+        <fa name='bar-chart' [fw]='true' size='lg'></fa> Resource Monitor
+      </ma-side-nav-item>
+      <ma-side-nav-item [route]='["Tasks"]'>
+        <fa name='tasks' [fw]='true' size='lg'></fa> Task Monitor
+      </ma-side-nav-item>
+    </ma-side-nav-menu>
   </ma-side-nav>
 
   <ma-content>

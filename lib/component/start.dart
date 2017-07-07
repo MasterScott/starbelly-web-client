@@ -79,7 +79,8 @@ class StartCrawlView implements AfterViewInit {
     /// Initialize form controls.
     void _initForm() {
         this.nameControl = new Control('');
-        this.seedUrlControl = new Control('', Validators.compose([validate.required(), validate.url()]));
+        this.seedUrlControl = new Control('', Validators.compose([
+            validate.required(), validate.url()]));
         this.form = new ControlGroup({
             'name': this.nameControl,
             'seedUrl': this.seedUrlControl,

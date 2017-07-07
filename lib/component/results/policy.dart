@@ -14,7 +14,7 @@ import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
 
-/// View details about a crawl.
+/// View details about a policy.
 @Component(
     selector: 'results-policy',
     templateUrl: 'policy.html',

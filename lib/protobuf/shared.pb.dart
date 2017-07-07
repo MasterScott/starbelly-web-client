@@ -9,27 +9,27 @@ import 'shared.pbenum.dart';
 
 export 'shared.pbenum.dart';
 
-class CrawlItem_HeadersEntry extends GeneratedMessage {
-  static final BuilderInfo _i = new BuilderInfo('CrawlItem_HeadersEntry')
+class CrawlResponse_HeadersEntry extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('CrawlResponse_HeadersEntry')
     ..a/*<String>*/(1, 'key', PbFieldType.OS)
     ..a/*<String>*/(2, 'value', PbFieldType.OS)
     ..hasRequiredFields = false
   ;
 
-  CrawlItem_HeadersEntry() : super();
-  CrawlItem_HeadersEntry.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  CrawlItem_HeadersEntry.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  CrawlItem_HeadersEntry clone() => new CrawlItem_HeadersEntry()..mergeFromMessage(this);
+  CrawlResponse_HeadersEntry() : super();
+  CrawlResponse_HeadersEntry.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  CrawlResponse_HeadersEntry.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  CrawlResponse_HeadersEntry clone() => new CrawlResponse_HeadersEntry()..mergeFromMessage(this);
   BuilderInfo get info_ => _i;
-  static CrawlItem_HeadersEntry create() => new CrawlItem_HeadersEntry();
-  static PbList<CrawlItem_HeadersEntry> createRepeated() => new PbList<CrawlItem_HeadersEntry>();
-  static CrawlItem_HeadersEntry getDefault() {
-    if (_defaultInstance == null) _defaultInstance = new _ReadonlyCrawlItem_HeadersEntry();
+  static CrawlResponse_HeadersEntry create() => new CrawlResponse_HeadersEntry();
+  static PbList<CrawlResponse_HeadersEntry> createRepeated() => new PbList<CrawlResponse_HeadersEntry>();
+  static CrawlResponse_HeadersEntry getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyCrawlResponse_HeadersEntry();
     return _defaultInstance;
   }
-  static CrawlItem_HeadersEntry _defaultInstance;
-  static void $checkItem(CrawlItem_HeadersEntry v) {
-    if (v is !CrawlItem_HeadersEntry) checkItemFailed(v, 'CrawlItem_HeadersEntry');
+  static CrawlResponse_HeadersEntry _defaultInstance;
+  static void $checkItem(CrawlResponse_HeadersEntry v) {
+    if (v is !CrawlResponse_HeadersEntry) checkItemFailed(v, 'CrawlResponse_HeadersEntry');
   }
 
   String get key => $_get(0, 1, '');
@@ -43,10 +43,10 @@ class CrawlItem_HeadersEntry extends GeneratedMessage {
   void clearValue() => clearField(2);
 }
 
-class _ReadonlyCrawlItem_HeadersEntry extends CrawlItem_HeadersEntry with ReadonlyMessageMixin {}
+class _ReadonlyCrawlResponse_HeadersEntry extends CrawlResponse_HeadersEntry with ReadonlyMessageMixin {}
 
-class CrawlItem extends GeneratedMessage {
-  static final BuilderInfo _i = new BuilderInfo('CrawlItem')
+class CrawlResponse extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('CrawlResponse')
     ..a/*<List<int>>*/(1, 'body', PbFieldType.OY)
     ..a/*<String>*/(2, 'charset', PbFieldType.OS)
     ..a/*<String>*/(3, 'completedAt', PbFieldType.OS)
@@ -54,7 +54,7 @@ class CrawlItem extends GeneratedMessage {
     ..a/*<double>*/(5, 'cost', PbFieldType.OD)
     ..a/*<double>*/(6, 'duration', PbFieldType.OD)
     ..a/*<String>*/(7, 'exception', PbFieldType.OS)
-    ..pp/*<CrawlItem_HeadersEntry>*/(8, 'headers', PbFieldType.PM, CrawlItem_HeadersEntry.$checkItem, CrawlItem_HeadersEntry.create)
+    ..pp/*<CrawlResponse_HeadersEntry>*/(8, 'headers', PbFieldType.PM, CrawlResponse_HeadersEntry.$checkItem, CrawlResponse_HeadersEntry.create)
     ..a/*<bool>*/(9, 'isBodyCompressed', PbFieldType.OB)
     ..a/*<bool>*/(10, 'isSuccess', PbFieldType.OB)
     ..a/*<List<int>>*/(11, 'jobId', PbFieldType.OY)
@@ -62,25 +62,23 @@ class CrawlItem extends GeneratedMessage {
     ..a/*<int>*/(13, 'statusCode', PbFieldType.O3)
     ..a/*<String>*/(14, 'url', PbFieldType.OS)
     ..a/*<String>*/(15, 'urlCan', PbFieldType.OS)
-    ..a/*<List<int>>*/(16, 'urlHash', PbFieldType.OY)
-    ..a/*<List<int>>*/(17, 'syncToken', PbFieldType.OY)
     ..hasRequiredFields = false
   ;
 
-  CrawlItem() : super();
-  CrawlItem.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  CrawlItem.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  CrawlItem clone() => new CrawlItem()..mergeFromMessage(this);
+  CrawlResponse() : super();
+  CrawlResponse.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  CrawlResponse.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  CrawlResponse clone() => new CrawlResponse()..mergeFromMessage(this);
   BuilderInfo get info_ => _i;
-  static CrawlItem create() => new CrawlItem();
-  static PbList<CrawlItem> createRepeated() => new PbList<CrawlItem>();
-  static CrawlItem getDefault() {
-    if (_defaultInstance == null) _defaultInstance = new _ReadonlyCrawlItem();
+  static CrawlResponse create() => new CrawlResponse();
+  static PbList<CrawlResponse> createRepeated() => new PbList<CrawlResponse>();
+  static CrawlResponse getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyCrawlResponse();
     return _defaultInstance;
   }
-  static CrawlItem _defaultInstance;
-  static void $checkItem(CrawlItem v) {
-    if (v is !CrawlItem) checkItemFailed(v, 'CrawlItem');
+  static CrawlResponse _defaultInstance;
+  static void $checkItem(CrawlResponse v) {
+    if (v is !CrawlResponse) checkItemFailed(v, 'CrawlResponse');
   }
 
   List<int> get body => $_get(0, 1, null);
@@ -118,7 +116,7 @@ class CrawlItem extends GeneratedMessage {
   bool hasException() => $_has(6, 7);
   void clearException() => clearField(7);
 
-  List<CrawlItem_HeadersEntry> get headers => $_get(7, 8, null);
+  List<CrawlResponse_HeadersEntry> get headers => $_get(7, 8, null);
 
   bool get isBodyCompressed => $_get(8, 9, false);
   void set isBodyCompressed(bool v) { $_setBool(8, 9, v); }
@@ -154,19 +152,196 @@ class CrawlItem extends GeneratedMessage {
   void set urlCan(String v) { $_setString(14, 15, v); }
   bool hasUrlCan() => $_has(14, 15);
   void clearUrlCan() => clearField(15);
-
-  List<int> get urlHash => $_get(15, 16, null);
-  void set urlHash(List<int> v) { $_setBytes(15, 16, v); }
-  bool hasUrlHash() => $_has(15, 16);
-  void clearUrlHash() => clearField(16);
-
-  List<int> get syncToken => $_get(16, 17, null);
-  void set syncToken(List<int> v) { $_setBytes(16, 17, v); }
-  bool hasSyncToken() => $_has(16, 17);
-  void clearSyncToken() => clearField(17);
 }
 
-class _ReadonlyCrawlItem extends CrawlItem with ReadonlyMessageMixin {}
+class _ReadonlyCrawlResponse extends CrawlResponse with ReadonlyMessageMixin {}
+
+class Job_HttpStatusCountsEntry extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('Job_HttpStatusCountsEntry')
+    ..a/*<int>*/(1, 'key', PbFieldType.O3)
+    ..a/*<int>*/(2, 'value', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  Job_HttpStatusCountsEntry() : super();
+  Job_HttpStatusCountsEntry.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  Job_HttpStatusCountsEntry.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  Job_HttpStatusCountsEntry clone() => new Job_HttpStatusCountsEntry()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static Job_HttpStatusCountsEntry create() => new Job_HttpStatusCountsEntry();
+  static PbList<Job_HttpStatusCountsEntry> createRepeated() => new PbList<Job_HttpStatusCountsEntry>();
+  static Job_HttpStatusCountsEntry getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyJob_HttpStatusCountsEntry();
+    return _defaultInstance;
+  }
+  static Job_HttpStatusCountsEntry _defaultInstance;
+  static void $checkItem(Job_HttpStatusCountsEntry v) {
+    if (v is !Job_HttpStatusCountsEntry) checkItemFailed(v, 'Job_HttpStatusCountsEntry');
+  }
+
+  int get key => $_get(0, 1, 0);
+  void set key(int v) { $_setUnsignedInt32(0, 1, v); }
+  bool hasKey() => $_has(0, 1);
+  void clearKey() => clearField(1);
+
+  int get value => $_get(1, 2, 0);
+  void set value(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasValue() => $_has(1, 2);
+  void clearValue() => clearField(2);
+}
+
+class _ReadonlyJob_HttpStatusCountsEntry extends Job_HttpStatusCountsEntry with ReadonlyMessageMixin {}
+
+class Job extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('Job')
+    ..a/*<List<int>>*/(1, 'jobId', PbFieldType.QY)
+    ..p/*<String>*/(2, 'seeds', PbFieldType.PS)
+    ..a/*<Policy>*/(3, 'policy', PbFieldType.OM, Policy.getDefault, Policy.create)
+    ..a/*<String>*/(4, 'name', PbFieldType.OS)
+    ..e/*<JobRunState>*/(5, 'runState', PbFieldType.OE, JobRunState.CANCELLED, JobRunState.valueOf)
+    ..a/*<String>*/(6, 'startedAt', PbFieldType.OS)
+    ..a/*<String>*/(7, 'completedAt', PbFieldType.OS)
+    ..a/*<int>*/(8, 'itemCount', PbFieldType.O3, -1)
+    ..a/*<int>*/(9, 'httpSuccessCount', PbFieldType.O3, -1)
+    ..a/*<int>*/(10, 'httpErrorCount', PbFieldType.O3, -1)
+    ..a/*<int>*/(11, 'exceptionCount', PbFieldType.O3, -1)
+    ..pp/*<Job_HttpStatusCountsEntry>*/(12, 'httpStatusCounts', PbFieldType.PM, Job_HttpStatusCountsEntry.$checkItem, Job_HttpStatusCountsEntry.create)
+  ;
+
+  Job() : super();
+  Job.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  Job.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  Job clone() => new Job()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static Job create() => new Job();
+  static PbList<Job> createRepeated() => new PbList<Job>();
+  static Job getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyJob();
+    return _defaultInstance;
+  }
+  static Job _defaultInstance;
+  static void $checkItem(Job v) {
+    if (v is !Job) checkItemFailed(v, 'Job');
+  }
+
+  List<int> get jobId => $_get(0, 1, null);
+  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasJobId() => $_has(0, 1);
+  void clearJobId() => clearField(1);
+
+  List<String> get seeds => $_get(1, 2, null);
+
+  Policy get policy => $_get(2, 3, null);
+  void set policy(Policy v) { setField(3, v); }
+  bool hasPolicy() => $_has(2, 3);
+  void clearPolicy() => clearField(3);
+
+  String get name => $_get(3, 4, '');
+  void set name(String v) { $_setString(3, 4, v); }
+  bool hasName() => $_has(3, 4);
+  void clearName() => clearField(4);
+
+  JobRunState get runState => $_get(4, 5, null);
+  void set runState(JobRunState v) { setField(5, v); }
+  bool hasRunState() => $_has(4, 5);
+  void clearRunState() => clearField(5);
+
+  String get startedAt => $_get(5, 6, '');
+  void set startedAt(String v) { $_setString(5, 6, v); }
+  bool hasStartedAt() => $_has(5, 6);
+  void clearStartedAt() => clearField(6);
+
+  String get completedAt => $_get(6, 7, '');
+  void set completedAt(String v) { $_setString(6, 7, v); }
+  bool hasCompletedAt() => $_has(6, 7);
+  void clearCompletedAt() => clearField(7);
+
+  int get itemCount => $_get(7, 8, -1);
+  void set itemCount(int v) { $_setUnsignedInt32(7, 8, v); }
+  bool hasItemCount() => $_has(7, 8);
+  void clearItemCount() => clearField(8);
+
+  int get httpSuccessCount => $_get(8, 9, -1);
+  void set httpSuccessCount(int v) { $_setUnsignedInt32(8, 9, v); }
+  bool hasHttpSuccessCount() => $_has(8, 9);
+  void clearHttpSuccessCount() => clearField(9);
+
+  int get httpErrorCount => $_get(9, 10, -1);
+  void set httpErrorCount(int v) { $_setUnsignedInt32(9, 10, v); }
+  bool hasHttpErrorCount() => $_has(9, 10);
+  void clearHttpErrorCount() => clearField(10);
+
+  int get exceptionCount => $_get(10, 11, -1);
+  void set exceptionCount(int v) { $_setUnsignedInt32(10, 11, v); }
+  bool hasExceptionCount() => $_has(10, 11);
+  void clearExceptionCount() => clearField(11);
+
+  List<Job_HttpStatusCountsEntry> get httpStatusCounts => $_get(11, 12, null);
+}
+
+class _ReadonlyJob extends Job with ReadonlyMessageMixin {}
+
+class JobList extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('JobList')
+    ..pp/*<Job>*/(1, 'jobs', PbFieldType.PM, Job.$checkItem, Job.create)
+  ;
+
+  JobList() : super();
+  JobList.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  JobList.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  JobList clone() => new JobList()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static JobList create() => new JobList();
+  static PbList<JobList> createRepeated() => new PbList<JobList>();
+  static JobList getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyJobList();
+    return _defaultInstance;
+  }
+  static JobList _defaultInstance;
+  static void $checkItem(JobList v) {
+    if (v is !JobList) checkItemFailed(v, 'JobList');
+  }
+
+  List<Job> get jobs => $_get(0, 1, null);
+}
+
+class _ReadonlyJobList extends JobList with ReadonlyMessageMixin {}
+
+class Page extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('Page')
+    ..a/*<int>*/(1, 'limit', PbFieldType.O3, 10)
+    ..a/*<int>*/(2, 'offset', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  Page() : super();
+  Page.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  Page.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  Page clone() => new Page()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static Page create() => new Page();
+  static PbList<Page> createRepeated() => new PbList<Page>();
+  static Page getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyPage();
+    return _defaultInstance;
+  }
+  static Page _defaultInstance;
+  static void $checkItem(Page v) {
+    if (v is !Page) checkItemFailed(v, 'Page');
+  }
+
+  int get limit => $_get(0, 1, 10);
+  void set limit(int v) { $_setUnsignedInt32(0, 1, v); }
+  bool hasLimit() => $_has(0, 1);
+  void clearLimit() => clearField(1);
+
+  int get offset => $_get(1, 2, 0);
+  void set offset(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasOffset() => $_has(1, 2);
+  void clearOffset() => clearField(2);
+}
+
+class _ReadonlyPage extends Page with ReadonlyMessageMixin {}
 
 class Policy extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('Policy')
@@ -469,193 +644,6 @@ class PolicyUserAgent extends GeneratedMessage {
 }
 
 class _ReadonlyPolicyUserAgent extends PolicyUserAgent with ReadonlyMessageMixin {}
-
-class Job_HttpStatusCountsEntry extends GeneratedMessage {
-  static final BuilderInfo _i = new BuilderInfo('Job_HttpStatusCountsEntry')
-    ..a/*<int>*/(1, 'key', PbFieldType.O3)
-    ..a/*<int>*/(2, 'value', PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
-
-  Job_HttpStatusCountsEntry() : super();
-  Job_HttpStatusCountsEntry.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  Job_HttpStatusCountsEntry.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  Job_HttpStatusCountsEntry clone() => new Job_HttpStatusCountsEntry()..mergeFromMessage(this);
-  BuilderInfo get info_ => _i;
-  static Job_HttpStatusCountsEntry create() => new Job_HttpStatusCountsEntry();
-  static PbList<Job_HttpStatusCountsEntry> createRepeated() => new PbList<Job_HttpStatusCountsEntry>();
-  static Job_HttpStatusCountsEntry getDefault() {
-    if (_defaultInstance == null) _defaultInstance = new _ReadonlyJob_HttpStatusCountsEntry();
-    return _defaultInstance;
-  }
-  static Job_HttpStatusCountsEntry _defaultInstance;
-  static void $checkItem(Job_HttpStatusCountsEntry v) {
-    if (v is !Job_HttpStatusCountsEntry) checkItemFailed(v, 'Job_HttpStatusCountsEntry');
-  }
-
-  int get key => $_get(0, 1, 0);
-  void set key(int v) { $_setUnsignedInt32(0, 1, v); }
-  bool hasKey() => $_has(0, 1);
-  void clearKey() => clearField(1);
-
-  int get value => $_get(1, 2, 0);
-  void set value(int v) { $_setUnsignedInt32(1, 2, v); }
-  bool hasValue() => $_has(1, 2);
-  void clearValue() => clearField(2);
-}
-
-class _ReadonlyJob_HttpStatusCountsEntry extends Job_HttpStatusCountsEntry with ReadonlyMessageMixin {}
-
-class Job extends GeneratedMessage {
-  static final BuilderInfo _i = new BuilderInfo('Job')
-    ..a/*<List<int>>*/(1, 'jobId', PbFieldType.QY)
-    ..p/*<String>*/(2, 'seeds', PbFieldType.PS)
-    ..a/*<Policy>*/(3, 'policy', PbFieldType.OM, Policy.getDefault, Policy.create)
-    ..a/*<String>*/(4, 'name', PbFieldType.OS)
-    ..e/*<JobRunState>*/(5, 'runState', PbFieldType.OE, JobRunState.CANCELLED, JobRunState.valueOf)
-    ..a/*<String>*/(6, 'startedAt', PbFieldType.OS)
-    ..a/*<String>*/(7, 'completedAt', PbFieldType.OS)
-    ..a/*<int>*/(8, 'itemCount', PbFieldType.O3, -1)
-    ..a/*<int>*/(9, 'httpSuccessCount', PbFieldType.O3, -1)
-    ..a/*<int>*/(10, 'httpErrorCount', PbFieldType.O3, -1)
-    ..a/*<int>*/(11, 'exceptionCount', PbFieldType.O3, -1)
-    ..pp/*<Job_HttpStatusCountsEntry>*/(12, 'httpStatusCounts', PbFieldType.PM, Job_HttpStatusCountsEntry.$checkItem, Job_HttpStatusCountsEntry.create)
-  ;
-
-  Job() : super();
-  Job.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  Job.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  Job clone() => new Job()..mergeFromMessage(this);
-  BuilderInfo get info_ => _i;
-  static Job create() => new Job();
-  static PbList<Job> createRepeated() => new PbList<Job>();
-  static Job getDefault() {
-    if (_defaultInstance == null) _defaultInstance = new _ReadonlyJob();
-    return _defaultInstance;
-  }
-  static Job _defaultInstance;
-  static void $checkItem(Job v) {
-    if (v is !Job) checkItemFailed(v, 'Job');
-  }
-
-  List<int> get jobId => $_get(0, 1, null);
-  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
-  bool hasJobId() => $_has(0, 1);
-  void clearJobId() => clearField(1);
-
-  List<String> get seeds => $_get(1, 2, null);
-
-  Policy get policy => $_get(2, 3, null);
-  void set policy(Policy v) { setField(3, v); }
-  bool hasPolicy() => $_has(2, 3);
-  void clearPolicy() => clearField(3);
-
-  String get name => $_get(3, 4, '');
-  void set name(String v) { $_setString(3, 4, v); }
-  bool hasName() => $_has(3, 4);
-  void clearName() => clearField(4);
-
-  JobRunState get runState => $_get(4, 5, null);
-  void set runState(JobRunState v) { setField(5, v); }
-  bool hasRunState() => $_has(4, 5);
-  void clearRunState() => clearField(5);
-
-  String get startedAt => $_get(5, 6, '');
-  void set startedAt(String v) { $_setString(5, 6, v); }
-  bool hasStartedAt() => $_has(5, 6);
-  void clearStartedAt() => clearField(6);
-
-  String get completedAt => $_get(6, 7, '');
-  void set completedAt(String v) { $_setString(6, 7, v); }
-  bool hasCompletedAt() => $_has(6, 7);
-  void clearCompletedAt() => clearField(7);
-
-  int get itemCount => $_get(7, 8, -1);
-  void set itemCount(int v) { $_setUnsignedInt32(7, 8, v); }
-  bool hasItemCount() => $_has(7, 8);
-  void clearItemCount() => clearField(8);
-
-  int get httpSuccessCount => $_get(8, 9, -1);
-  void set httpSuccessCount(int v) { $_setUnsignedInt32(8, 9, v); }
-  bool hasHttpSuccessCount() => $_has(8, 9);
-  void clearHttpSuccessCount() => clearField(9);
-
-  int get httpErrorCount => $_get(9, 10, -1);
-  void set httpErrorCount(int v) { $_setUnsignedInt32(9, 10, v); }
-  bool hasHttpErrorCount() => $_has(9, 10);
-  void clearHttpErrorCount() => clearField(10);
-
-  int get exceptionCount => $_get(10, 11, -1);
-  void set exceptionCount(int v) { $_setUnsignedInt32(10, 11, v); }
-  bool hasExceptionCount() => $_has(10, 11);
-  void clearExceptionCount() => clearField(11);
-
-  List<Job_HttpStatusCountsEntry> get httpStatusCounts => $_get(11, 12, null);
-}
-
-class _ReadonlyJob extends Job with ReadonlyMessageMixin {}
-
-class JobList extends GeneratedMessage {
-  static final BuilderInfo _i = new BuilderInfo('JobList')
-    ..pp/*<Job>*/(1, 'jobs', PbFieldType.PM, Job.$checkItem, Job.create)
-  ;
-
-  JobList() : super();
-  JobList.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  JobList.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  JobList clone() => new JobList()..mergeFromMessage(this);
-  BuilderInfo get info_ => _i;
-  static JobList create() => new JobList();
-  static PbList<JobList> createRepeated() => new PbList<JobList>();
-  static JobList getDefault() {
-    if (_defaultInstance == null) _defaultInstance = new _ReadonlyJobList();
-    return _defaultInstance;
-  }
-  static JobList _defaultInstance;
-  static void $checkItem(JobList v) {
-    if (v is !JobList) checkItemFailed(v, 'JobList');
-  }
-
-  List<Job> get jobs => $_get(0, 1, null);
-}
-
-class _ReadonlyJobList extends JobList with ReadonlyMessageMixin {}
-
-class Page extends GeneratedMessage {
-  static final BuilderInfo _i = new BuilderInfo('Page')
-    ..a/*<int>*/(1, 'limit', PbFieldType.O3, 10)
-    ..a/*<int>*/(2, 'offset', PbFieldType.O3)
-    ..hasRequiredFields = false
-  ;
-
-  Page() : super();
-  Page.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
-  Page.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
-  Page clone() => new Page()..mergeFromMessage(this);
-  BuilderInfo get info_ => _i;
-  static Page create() => new Page();
-  static PbList<Page> createRepeated() => new PbList<Page>();
-  static Page getDefault() {
-    if (_defaultInstance == null) _defaultInstance = new _ReadonlyPage();
-    return _defaultInstance;
-  }
-  static Page _defaultInstance;
-  static void $checkItem(Page v) {
-    if (v is !Page) checkItemFailed(v, 'Page');
-  }
-
-  int get limit => $_get(0, 1, 10);
-  void set limit(int v) { $_setUnsignedInt32(0, 1, v); }
-  bool hasLimit() => $_has(0, 1);
-  void clearLimit() => clearField(1);
-
-  int get offset => $_get(1, 2, 0);
-  void set offset(int v) { $_setUnsignedInt32(1, 2, v); }
-  bool hasOffset() => $_has(1, 2);
-  void clearOffset() => clearField(2);
-}
-
-class _ReadonlyPage extends Page with ReadonlyMessageMixin {}
 
 class RateLimit extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RateLimit')

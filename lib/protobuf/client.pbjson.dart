@@ -15,14 +15,17 @@ const Request$json = const {
     const {'1': 'get_rate_limits', '3': 7, '4': 1, '5': 11, '6': '.starbelly.RequestGetRateLimits'},
     const {'1': 'list_jobs', '3': 8, '4': 1, '5': 11, '6': '.starbelly.RequestListJobs'},
     const {'1': 'list_policies', '3': 9, '4': 1, '5': 11, '6': '.starbelly.RequestListPolicies'},
-    const {'1': 'ping', '3': 10, '4': 1, '5': 11, '6': '.starbelly.RequestPing'},
-    const {'1': 'set_job_run_state', '3': 11, '4': 1, '5': 11, '6': '.starbelly.RequestSetJobRunState'},
-    const {'1': 'set_policy', '3': 12, '4': 1, '5': 11, '6': '.starbelly.RequestSetPolicy'},
-    const {'1': 'set_rate_limit', '3': 13, '4': 1, '5': 11, '6': '.starbelly.RequestSetRateLimit'},
-    const {'1': 'start_job', '3': 14, '4': 1, '5': 11, '6': '.starbelly.RequestStartJob'},
-    const {'1': 'subscribe_job_status', '3': 15, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobStatus'},
-    const {'1': 'subscribe_job_sync', '3': 16, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobSync'},
-    const {'1': 'unsubscribe', '3': 17, '4': 1, '5': 11, '6': '.starbelly.RequestUnsubscribe'},
+    const {'1': 'performance_profile', '3': 10, '4': 1, '5': 11, '6': '.starbelly.RequestPerformanceProfile'},
+    const {'1': 'ping', '3': 11, '4': 1, '5': 11, '6': '.starbelly.RequestPing'},
+    const {'1': 'set_job_run_state', '3': 12, '4': 1, '5': 11, '6': '.starbelly.RequestSetJobRunState'},
+    const {'1': 'set_policy', '3': 13, '4': 1, '5': 11, '6': '.starbelly.RequestSetPolicy'},
+    const {'1': 'set_rate_limit', '3': 14, '4': 1, '5': 11, '6': '.starbelly.RequestSetRateLimit'},
+    const {'1': 'start_job', '3': 15, '4': 1, '5': 11, '6': '.starbelly.RequestStartJob'},
+    const {'1': 'subscribe_job_status', '3': 16, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobStatus'},
+    const {'1': 'subscribe_job_sync', '3': 17, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobSync'},
+    const {'1': 'subscribe_resource_monitor', '3': 18, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeResourceMonitor'},
+    const {'1': 'subscribe_task_monitor', '3': 19, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeTaskMonitor'},
+    const {'1': 'unsubscribe', '3': 20, '4': 1, '5': 11, '6': '.starbelly.RequestUnsubscribe'},
   ],
 };
 
@@ -87,6 +90,15 @@ const RequestListPolicies$json = const {
   ],
 };
 
+const RequestPerformanceProfile$json = const {
+  '1': 'RequestPerformanceProfile',
+  '2': const [
+    const {'1': 'duration', '3': 1, '4': 1, '5': 1, '7': '5'},
+    const {'1': 'sort_by', '3': 2, '4': 1, '5': 9, '7': 'time'},
+    const {'1': 'top_n', '3': 3, '4': 1, '5': 5},
+  ],
+};
+
 const RequestPing$json = const {
   '1': 'RequestPing',
   '2': const [
@@ -138,6 +150,21 @@ const RequestSubscribeJobSync$json = const {
     const {'1': 'job_id', '3': 1, '4': 2, '5': 12},
     const {'1': 'sync_token', '3': 2, '4': 1, '5': 12},
     const {'1': 'compression_ok', '3': 3, '4': 1, '5': 8, '7': 'true'},
+  ],
+};
+
+const RequestSubscribeResourceMonitor$json = const {
+  '1': 'RequestSubscribeResourceMonitor',
+  '2': const [
+    const {'1': 'history', '3': 1, '4': 1, '5': 5, '7': '300'},
+  ],
+};
+
+const RequestSubscribeTaskMonitor$json = const {
+  '1': 'RequestSubscribeTaskMonitor',
+  '2': const [
+    const {'1': 'period', '3': 1, '4': 1, '5': 1, '7': '3'},
+    const {'1': 'top_n', '3': 2, '4': 1, '5': 5, '7': '20'},
   ],
 };
 

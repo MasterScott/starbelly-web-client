@@ -1,0 +1,31 @@
+<div class='row'>
+  <div class='col-lg'>
+    <ma-card>
+      <h2>
+        Task Monitor
+        <small *ngIf='taskMonitor != null'>{{taskMonitor.count}} Tasks</small>
+      </h2>
+      <table class='striped'>
+        <thead>
+          <tr>
+            <th>Count</th>
+            <th>Task Name</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="taskMonitor == null">
+          <tr>
+            <td class='empty-table' colspan="999">
+              Loading…
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf='taskMonitor != null'>
+          <tr *ngFor='let task of taskMonitor.tasks'>
+            <td>{{task.count}}</td>
+            <td>{{task.name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </ma-card>
+  </div>
+</div>

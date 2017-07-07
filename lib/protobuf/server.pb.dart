@@ -3,6 +3,7 @@
 ///
 library starbelly_server;
 
+import 'package:fixnum/fixnum.dart';
 import 'package:protobuf/protobuf.dart';
 
 import 'shared.pb.dart';
@@ -14,9 +15,11 @@ export 'server.pbenum.dart';
 class Event extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('Event')
     ..a/*<int>*/(1, 'subscriptionId', PbFieldType.Q3)
-    ..a/*<CrawlItem>*/(2, 'crawlItem', PbFieldType.OM, CrawlItem.getDefault, CrawlItem.create)
-    ..a/*<JobList>*/(4, 'jobList', PbFieldType.OM, JobList.getDefault, JobList.create)
-    ..a/*<SubscriptionClosed>*/(5, 'subscriptionClosed', PbFieldType.OM, SubscriptionClosed.getDefault, SubscriptionClosed.create)
+    ..a/*<JobList>*/(2, 'jobList', PbFieldType.OM, JobList.getDefault, JobList.create)
+    ..a/*<ResourceFrame>*/(3, 'resourceFrame', PbFieldType.OM, ResourceFrame.getDefault, ResourceFrame.create)
+    ..a/*<SubscriptionClosed>*/(4, 'subscriptionClosed', PbFieldType.OM, SubscriptionClosed.getDefault, SubscriptionClosed.create)
+    ..a/*<SyncItem>*/(5, 'syncItem', PbFieldType.OM, SyncItem.getDefault, SyncItem.create)
+    ..a/*<TaskMonitor>*/(6, 'taskMonitor', PbFieldType.OM, TaskMonitor.getDefault, TaskMonitor.create)
   ;
 
   Event() : super();
@@ -40,23 +43,417 @@ class Event extends GeneratedMessage {
   bool hasSubscriptionId() => $_has(0, 1);
   void clearSubscriptionId() => clearField(1);
 
-  CrawlItem get crawlItem => $_get(1, 2, null);
-  void set crawlItem(CrawlItem v) { setField(2, v); }
-  bool hasCrawlItem() => $_has(1, 2);
-  void clearCrawlItem() => clearField(2);
+  JobList get jobList => $_get(1, 2, null);
+  void set jobList(JobList v) { setField(2, v); }
+  bool hasJobList() => $_has(1, 2);
+  void clearJobList() => clearField(2);
 
-  JobList get jobList => $_get(2, 4, null);
-  void set jobList(JobList v) { setField(4, v); }
-  bool hasJobList() => $_has(2, 4);
-  void clearJobList() => clearField(4);
+  ResourceFrame get resourceFrame => $_get(2, 3, null);
+  void set resourceFrame(ResourceFrame v) { setField(3, v); }
+  bool hasResourceFrame() => $_has(2, 3);
+  void clearResourceFrame() => clearField(3);
 
-  SubscriptionClosed get subscriptionClosed => $_get(3, 5, null);
-  void set subscriptionClosed(SubscriptionClosed v) { setField(5, v); }
-  bool hasSubscriptionClosed() => $_has(3, 5);
-  void clearSubscriptionClosed() => clearField(5);
+  SubscriptionClosed get subscriptionClosed => $_get(3, 4, null);
+  void set subscriptionClosed(SubscriptionClosed v) { setField(4, v); }
+  bool hasSubscriptionClosed() => $_has(3, 4);
+  void clearSubscriptionClosed() => clearField(4);
+
+  SyncItem get syncItem => $_get(4, 5, null);
+  void set syncItem(SyncItem v) { setField(5, v); }
+  bool hasSyncItem() => $_has(4, 5);
+  void clearSyncItem() => clearField(5);
+
+  TaskMonitor get taskMonitor => $_get(5, 6, null);
+  void set taskMonitor(TaskMonitor v) { setField(6, v); }
+  bool hasTaskMonitor() => $_has(5, 6);
+  void clearTaskMonitor() => clearField(6);
 }
 
 class _ReadonlyEvent extends Event with ReadonlyMessageMixin {}
+
+class PerformanceProfileFunction extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('PerformanceProfileFunction')
+    ..a/*<String>*/(1, 'file', PbFieldType.OS)
+    ..a/*<int>*/(2, 'lineNumber', PbFieldType.O3)
+    ..a/*<String>*/(3, 'function', PbFieldType.OS)
+    ..a/*<int>*/(4, 'calls', PbFieldType.O3)
+    ..a/*<int>*/(5, 'nonRecursiveCalls', PbFieldType.O3)
+    ..a/*<double>*/(6, 'totalTime', PbFieldType.OD)
+    ..a/*<double>*/(7, 'cumulativeTime', PbFieldType.OD)
+    ..hasRequiredFields = false
+  ;
+
+  PerformanceProfileFunction() : super();
+  PerformanceProfileFunction.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  PerformanceProfileFunction.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  PerformanceProfileFunction clone() => new PerformanceProfileFunction()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static PerformanceProfileFunction create() => new PerformanceProfileFunction();
+  static PbList<PerformanceProfileFunction> createRepeated() => new PbList<PerformanceProfileFunction>();
+  static PerformanceProfileFunction getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyPerformanceProfileFunction();
+    return _defaultInstance;
+  }
+  static PerformanceProfileFunction _defaultInstance;
+  static void $checkItem(PerformanceProfileFunction v) {
+    if (v is !PerformanceProfileFunction) checkItemFailed(v, 'PerformanceProfileFunction');
+  }
+
+  String get file => $_get(0, 1, '');
+  void set file(String v) { $_setString(0, 1, v); }
+  bool hasFile() => $_has(0, 1);
+  void clearFile() => clearField(1);
+
+  int get lineNumber => $_get(1, 2, 0);
+  void set lineNumber(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasLineNumber() => $_has(1, 2);
+  void clearLineNumber() => clearField(2);
+
+  String get function => $_get(2, 3, '');
+  void set function(String v) { $_setString(2, 3, v); }
+  bool hasFunction() => $_has(2, 3);
+  void clearFunction() => clearField(3);
+
+  int get calls => $_get(3, 4, 0);
+  void set calls(int v) { $_setUnsignedInt32(3, 4, v); }
+  bool hasCalls() => $_has(3, 4);
+  void clearCalls() => clearField(4);
+
+  int get nonRecursiveCalls => $_get(4, 5, 0);
+  void set nonRecursiveCalls(int v) { $_setUnsignedInt32(4, 5, v); }
+  bool hasNonRecursiveCalls() => $_has(4, 5);
+  void clearNonRecursiveCalls() => clearField(5);
+
+  double get totalTime => $_get(5, 6, null);
+  void set totalTime(double v) { $_setDouble(5, 6, v); }
+  bool hasTotalTime() => $_has(5, 6);
+  void clearTotalTime() => clearField(6);
+
+  double get cumulativeTime => $_get(6, 7, null);
+  void set cumulativeTime(double v) { $_setDouble(6, 7, v); }
+  bool hasCumulativeTime() => $_has(6, 7);
+  void clearCumulativeTime() => clearField(7);
+}
+
+class _ReadonlyPerformanceProfileFunction extends PerformanceProfileFunction with ReadonlyMessageMixin {}
+
+class ResourceFrame extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResourceFrame')
+    ..a/*<String>*/(1, 'timestamp', PbFieldType.OS)
+    ..pp/*<ResourceFrameCpu>*/(2, 'cpus', PbFieldType.PM, ResourceFrameCpu.$checkItem, ResourceFrameCpu.create)
+    ..a/*<ResourceFrameMemory>*/(3, 'memory', PbFieldType.OM, ResourceFrameMemory.getDefault, ResourceFrameMemory.create)
+    ..pp/*<ResourceFrameDisk>*/(4, 'disks', PbFieldType.PM, ResourceFrameDisk.$checkItem, ResourceFrameDisk.create)
+    ..pp/*<ResourceFrameNetwork>*/(5, 'networks', PbFieldType.PM, ResourceFrameNetwork.$checkItem, ResourceFrameNetwork.create)
+    ..pp/*<ResourceFrameCrawl>*/(6, 'crawls', PbFieldType.PM, ResourceFrameCrawl.$checkItem, ResourceFrameCrawl.create)
+    ..a/*<ResourceFrameRateLimiter>*/(7, 'rateLimiter', PbFieldType.OM, ResourceFrameRateLimiter.getDefault, ResourceFrameRateLimiter.create)
+    ..a/*<ResourceFrameDownloader>*/(8, 'downloader', PbFieldType.OM, ResourceFrameDownloader.getDefault, ResourceFrameDownloader.create)
+    ..hasRequiredFields = false
+  ;
+
+  ResourceFrame() : super();
+  ResourceFrame.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResourceFrame.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResourceFrame clone() => new ResourceFrame()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResourceFrame create() => new ResourceFrame();
+  static PbList<ResourceFrame> createRepeated() => new PbList<ResourceFrame>();
+  static ResourceFrame getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResourceFrame();
+    return _defaultInstance;
+  }
+  static ResourceFrame _defaultInstance;
+  static void $checkItem(ResourceFrame v) {
+    if (v is !ResourceFrame) checkItemFailed(v, 'ResourceFrame');
+  }
+
+  String get timestamp => $_get(0, 1, '');
+  void set timestamp(String v) { $_setString(0, 1, v); }
+  bool hasTimestamp() => $_has(0, 1);
+  void clearTimestamp() => clearField(1);
+
+  List<ResourceFrameCpu> get cpus => $_get(1, 2, null);
+
+  ResourceFrameMemory get memory => $_get(2, 3, null);
+  void set memory(ResourceFrameMemory v) { setField(3, v); }
+  bool hasMemory() => $_has(2, 3);
+  void clearMemory() => clearField(3);
+
+  List<ResourceFrameDisk> get disks => $_get(3, 4, null);
+
+  List<ResourceFrameNetwork> get networks => $_get(4, 5, null);
+
+  List<ResourceFrameCrawl> get crawls => $_get(5, 6, null);
+
+  ResourceFrameRateLimiter get rateLimiter => $_get(6, 7, null);
+  void set rateLimiter(ResourceFrameRateLimiter v) { setField(7, v); }
+  bool hasRateLimiter() => $_has(6, 7);
+  void clearRateLimiter() => clearField(7);
+
+  ResourceFrameDownloader get downloader => $_get(7, 8, null);
+  void set downloader(ResourceFrameDownloader v) { setField(8, v); }
+  bool hasDownloader() => $_has(7, 8);
+  void clearDownloader() => clearField(8);
+}
+
+class _ReadonlyResourceFrame extends ResourceFrame with ReadonlyMessageMixin {}
+
+class ResourceFrameCpu extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResourceFrameCpu')
+    ..a/*<double>*/(1, 'usage', PbFieldType.OD)
+    ..hasRequiredFields = false
+  ;
+
+  ResourceFrameCpu() : super();
+  ResourceFrameCpu.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResourceFrameCpu.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResourceFrameCpu clone() => new ResourceFrameCpu()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResourceFrameCpu create() => new ResourceFrameCpu();
+  static PbList<ResourceFrameCpu> createRepeated() => new PbList<ResourceFrameCpu>();
+  static ResourceFrameCpu getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResourceFrameCpu();
+    return _defaultInstance;
+  }
+  static ResourceFrameCpu _defaultInstance;
+  static void $checkItem(ResourceFrameCpu v) {
+    if (v is !ResourceFrameCpu) checkItemFailed(v, 'ResourceFrameCpu');
+  }
+
+  double get usage => $_get(0, 1, null);
+  void set usage(double v) { $_setDouble(0, 1, v); }
+  bool hasUsage() => $_has(0, 1);
+  void clearUsage() => clearField(1);
+}
+
+class _ReadonlyResourceFrameCpu extends ResourceFrameCpu with ReadonlyMessageMixin {}
+
+class ResourceFrameCrawl extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResourceFrameCrawl')
+    ..a/*<List<int>>*/(1, 'jobId', PbFieldType.OY)
+    ..a/*<int>*/(2, 'frontier', PbFieldType.O3)
+    ..a/*<int>*/(3, 'pending', PbFieldType.O3)
+    ..a/*<int>*/(4, 'extraction', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  ResourceFrameCrawl() : super();
+  ResourceFrameCrawl.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResourceFrameCrawl.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResourceFrameCrawl clone() => new ResourceFrameCrawl()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResourceFrameCrawl create() => new ResourceFrameCrawl();
+  static PbList<ResourceFrameCrawl> createRepeated() => new PbList<ResourceFrameCrawl>();
+  static ResourceFrameCrawl getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResourceFrameCrawl();
+    return _defaultInstance;
+  }
+  static ResourceFrameCrawl _defaultInstance;
+  static void $checkItem(ResourceFrameCrawl v) {
+    if (v is !ResourceFrameCrawl) checkItemFailed(v, 'ResourceFrameCrawl');
+  }
+
+  List<int> get jobId => $_get(0, 1, null);
+  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasJobId() => $_has(0, 1);
+  void clearJobId() => clearField(1);
+
+  int get frontier => $_get(1, 2, 0);
+  void set frontier(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasFrontier() => $_has(1, 2);
+  void clearFrontier() => clearField(2);
+
+  int get pending => $_get(2, 3, 0);
+  void set pending(int v) { $_setUnsignedInt32(2, 3, v); }
+  bool hasPending() => $_has(2, 3);
+  void clearPending() => clearField(3);
+
+  int get extraction => $_get(3, 4, 0);
+  void set extraction(int v) { $_setUnsignedInt32(3, 4, v); }
+  bool hasExtraction() => $_has(3, 4);
+  void clearExtraction() => clearField(4);
+}
+
+class _ReadonlyResourceFrameCrawl extends ResourceFrameCrawl with ReadonlyMessageMixin {}
+
+class ResourceFrameDisk extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResourceFrameDisk')
+    ..a/*<String>*/(1, 'mount', PbFieldType.OS)
+    ..a/*<Int64>*/(2, 'used', PbFieldType.O6, Int64.ZERO)
+    ..a/*<Int64>*/(3, 'total', PbFieldType.O6, Int64.ZERO)
+    ..hasRequiredFields = false
+  ;
+
+  ResourceFrameDisk() : super();
+  ResourceFrameDisk.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResourceFrameDisk.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResourceFrameDisk clone() => new ResourceFrameDisk()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResourceFrameDisk create() => new ResourceFrameDisk();
+  static PbList<ResourceFrameDisk> createRepeated() => new PbList<ResourceFrameDisk>();
+  static ResourceFrameDisk getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResourceFrameDisk();
+    return _defaultInstance;
+  }
+  static ResourceFrameDisk _defaultInstance;
+  static void $checkItem(ResourceFrameDisk v) {
+    if (v is !ResourceFrameDisk) checkItemFailed(v, 'ResourceFrameDisk');
+  }
+
+  String get mount => $_get(0, 1, '');
+  void set mount(String v) { $_setString(0, 1, v); }
+  bool hasMount() => $_has(0, 1);
+  void clearMount() => clearField(1);
+
+  Int64 get used => $_get(1, 2, null);
+  void set used(Int64 v) { $_setInt64(1, 2, v); }
+  bool hasUsed() => $_has(1, 2);
+  void clearUsed() => clearField(2);
+
+  Int64 get total => $_get(2, 3, null);
+  void set total(Int64 v) { $_setInt64(2, 3, v); }
+  bool hasTotal() => $_has(2, 3);
+  void clearTotal() => clearField(3);
+}
+
+class _ReadonlyResourceFrameDisk extends ResourceFrameDisk with ReadonlyMessageMixin {}
+
+class ResourceFrameDownloader extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResourceFrameDownloader')
+    ..a/*<int>*/(1, 'count', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  ResourceFrameDownloader() : super();
+  ResourceFrameDownloader.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResourceFrameDownloader.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResourceFrameDownloader clone() => new ResourceFrameDownloader()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResourceFrameDownloader create() => new ResourceFrameDownloader();
+  static PbList<ResourceFrameDownloader> createRepeated() => new PbList<ResourceFrameDownloader>();
+  static ResourceFrameDownloader getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResourceFrameDownloader();
+    return _defaultInstance;
+  }
+  static ResourceFrameDownloader _defaultInstance;
+  static void $checkItem(ResourceFrameDownloader v) {
+    if (v is !ResourceFrameDownloader) checkItemFailed(v, 'ResourceFrameDownloader');
+  }
+
+  int get count => $_get(0, 1, 0);
+  void set count(int v) { $_setUnsignedInt32(0, 1, v); }
+  bool hasCount() => $_has(0, 1);
+  void clearCount() => clearField(1);
+}
+
+class _ReadonlyResourceFrameDownloader extends ResourceFrameDownloader with ReadonlyMessageMixin {}
+
+class ResourceFrameMemory extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResourceFrameMemory')
+    ..a/*<Int64>*/(1, 'used', PbFieldType.O6, Int64.ZERO)
+    ..a/*<Int64>*/(2, 'total', PbFieldType.O6, Int64.ZERO)
+    ..hasRequiredFields = false
+  ;
+
+  ResourceFrameMemory() : super();
+  ResourceFrameMemory.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResourceFrameMemory.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResourceFrameMemory clone() => new ResourceFrameMemory()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResourceFrameMemory create() => new ResourceFrameMemory();
+  static PbList<ResourceFrameMemory> createRepeated() => new PbList<ResourceFrameMemory>();
+  static ResourceFrameMemory getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResourceFrameMemory();
+    return _defaultInstance;
+  }
+  static ResourceFrameMemory _defaultInstance;
+  static void $checkItem(ResourceFrameMemory v) {
+    if (v is !ResourceFrameMemory) checkItemFailed(v, 'ResourceFrameMemory');
+  }
+
+  Int64 get used => $_get(0, 1, null);
+  void set used(Int64 v) { $_setInt64(0, 1, v); }
+  bool hasUsed() => $_has(0, 1);
+  void clearUsed() => clearField(1);
+
+  Int64 get total => $_get(1, 2, null);
+  void set total(Int64 v) { $_setInt64(1, 2, v); }
+  bool hasTotal() => $_has(1, 2);
+  void clearTotal() => clearField(2);
+}
+
+class _ReadonlyResourceFrameMemory extends ResourceFrameMemory with ReadonlyMessageMixin {}
+
+class ResourceFrameNetwork extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResourceFrameNetwork')
+    ..a/*<String>*/(1, 'name', PbFieldType.OS)
+    ..a/*<int>*/(2, 'sent', PbFieldType.O3)
+    ..a/*<int>*/(3, 'received', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  ResourceFrameNetwork() : super();
+  ResourceFrameNetwork.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResourceFrameNetwork.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResourceFrameNetwork clone() => new ResourceFrameNetwork()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResourceFrameNetwork create() => new ResourceFrameNetwork();
+  static PbList<ResourceFrameNetwork> createRepeated() => new PbList<ResourceFrameNetwork>();
+  static ResourceFrameNetwork getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResourceFrameNetwork();
+    return _defaultInstance;
+  }
+  static ResourceFrameNetwork _defaultInstance;
+  static void $checkItem(ResourceFrameNetwork v) {
+    if (v is !ResourceFrameNetwork) checkItemFailed(v, 'ResourceFrameNetwork');
+  }
+
+  String get name => $_get(0, 1, '');
+  void set name(String v) { $_setString(0, 1, v); }
+  bool hasName() => $_has(0, 1);
+  void clearName() => clearField(1);
+
+  int get sent => $_get(1, 2, 0);
+  void set sent(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasSent() => $_has(1, 2);
+  void clearSent() => clearField(2);
+
+  int get received => $_get(2, 3, 0);
+  void set received(int v) { $_setUnsignedInt32(2, 3, v); }
+  bool hasReceived() => $_has(2, 3);
+  void clearReceived() => clearField(3);
+}
+
+class _ReadonlyResourceFrameNetwork extends ResourceFrameNetwork with ReadonlyMessageMixin {}
+
+class ResourceFrameRateLimiter extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResourceFrameRateLimiter')
+    ..a/*<int>*/(1, 'count', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  ResourceFrameRateLimiter() : super();
+  ResourceFrameRateLimiter.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResourceFrameRateLimiter.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResourceFrameRateLimiter clone() => new ResourceFrameRateLimiter()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResourceFrameRateLimiter create() => new ResourceFrameRateLimiter();
+  static PbList<ResourceFrameRateLimiter> createRepeated() => new PbList<ResourceFrameRateLimiter>();
+  static ResourceFrameRateLimiter getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResourceFrameRateLimiter();
+    return _defaultInstance;
+  }
+  static ResourceFrameRateLimiter _defaultInstance;
+  static void $checkItem(ResourceFrameRateLimiter v) {
+    if (v is !ResourceFrameRateLimiter) checkItemFailed(v, 'ResourceFrameRateLimiter');
+  }
+
+  int get count => $_get(0, 1, 0);
+  void set count(int v) { $_setUnsignedInt32(0, 1, v); }
+  bool hasCount() => $_has(0, 1);
+  void clearCount() => clearField(1);
+}
+
+class _ReadonlyResourceFrameRateLimiter extends ResourceFrameRateLimiter with ReadonlyMessageMixin {}
 
 class Response extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('Response')
@@ -72,7 +469,8 @@ class Response extends GeneratedMessage {
     ..a/*<ResponseNewJob>*/(11, 'newJob', PbFieldType.OM, ResponseNewJob.getDefault, ResponseNewJob.create)
     ..a/*<ResponseNewPolicy>*/(12, 'newPolicy', PbFieldType.OM, ResponseNewPolicy.getDefault, ResponseNewPolicy.create)
     ..a/*<ResponseNewSubscription>*/(13, 'newSubscription', PbFieldType.OM, ResponseNewSubscription.getDefault, ResponseNewSubscription.create)
-    ..a/*<ResponsePing>*/(14, 'ping', PbFieldType.OM, ResponsePing.getDefault, ResponsePing.create)
+    ..a/*<ResponsePerformanceProfile>*/(14, 'performanceProfile', PbFieldType.OM, ResponsePerformanceProfile.getDefault, ResponsePerformanceProfile.create)
+    ..a/*<ResponsePing>*/(15, 'ping', PbFieldType.OM, ResponsePing.getDefault, ResponsePing.create)
   ;
 
   Response() : super();
@@ -151,17 +549,22 @@ class Response extends GeneratedMessage {
   bool hasNewSubscription() => $_has(11, 13);
   void clearNewSubscription() => clearField(13);
 
-  ResponsePing get ping => $_get(12, 14, null);
-  void set ping(ResponsePing v) { setField(14, v); }
-  bool hasPing() => $_has(12, 14);
-  void clearPing() => clearField(14);
+  ResponsePerformanceProfile get performanceProfile => $_get(12, 14, null);
+  void set performanceProfile(ResponsePerformanceProfile v) { setField(14, v); }
+  bool hasPerformanceProfile() => $_has(12, 14);
+  void clearPerformanceProfile() => clearField(14);
+
+  ResponsePing get ping => $_get(13, 15, null);
+  void set ping(ResponsePing v) { setField(15, v); }
+  bool hasPing() => $_has(13, 15);
+  void clearPing() => clearField(15);
 }
 
 class _ReadonlyResponse extends Response with ReadonlyMessageMixin {}
 
 class ResponseListItems extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('ResponseListItems')
-    ..pp/*<CrawlItem>*/(1, 'items', PbFieldType.PM, CrawlItem.$checkItem, CrawlItem.create)
+    ..pp/*<CrawlResponse>*/(1, 'items', PbFieldType.PM, CrawlResponse.$checkItem, CrawlResponse.create)
     ..a/*<int>*/(2, 'total', PbFieldType.O3)
     ..hasRequiredFields = false
   ;
@@ -182,7 +585,7 @@ class ResponseListItems extends GeneratedMessage {
     if (v is !ResponseListItems) checkItemFailed(v, 'ResponseListItems');
   }
 
-  List<CrawlItem> get items => $_get(0, 1, null);
+  List<CrawlResponse> get items => $_get(0, 1, null);
 
   int get total => $_get(1, 2, 0);
   void set total(int v) { $_setUnsignedInt32(1, 2, v); }
@@ -376,6 +779,45 @@ class ResponseNewSubscription extends GeneratedMessage {
 
 class _ReadonlyResponseNewSubscription extends ResponseNewSubscription with ReadonlyMessageMixin {}
 
+class ResponsePerformanceProfile extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResponsePerformanceProfile')
+    ..a/*<int>*/(1, 'totalCalls', PbFieldType.O3)
+    ..a/*<double>*/(2, 'totalTime', PbFieldType.OD)
+    ..pp/*<PerformanceProfileFunction>*/(3, 'functions', PbFieldType.PM, PerformanceProfileFunction.$checkItem, PerformanceProfileFunction.create)
+    ..hasRequiredFields = false
+  ;
+
+  ResponsePerformanceProfile() : super();
+  ResponsePerformanceProfile.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResponsePerformanceProfile.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResponsePerformanceProfile clone() => new ResponsePerformanceProfile()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResponsePerformanceProfile create() => new ResponsePerformanceProfile();
+  static PbList<ResponsePerformanceProfile> createRepeated() => new PbList<ResponsePerformanceProfile>();
+  static ResponsePerformanceProfile getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResponsePerformanceProfile();
+    return _defaultInstance;
+  }
+  static ResponsePerformanceProfile _defaultInstance;
+  static void $checkItem(ResponsePerformanceProfile v) {
+    if (v is !ResponsePerformanceProfile) checkItemFailed(v, 'ResponsePerformanceProfile');
+  }
+
+  int get totalCalls => $_get(0, 1, 0);
+  void set totalCalls(int v) { $_setUnsignedInt32(0, 1, v); }
+  bool hasTotalCalls() => $_has(0, 1);
+  void clearTotalCalls() => clearField(1);
+
+  double get totalTime => $_get(1, 2, null);
+  void set totalTime(double v) { $_setDouble(1, 2, v); }
+  bool hasTotalTime() => $_has(1, 2);
+  void clearTotalTime() => clearField(2);
+
+  List<PerformanceProfileFunction> get functions => $_get(2, 3, null);
+}
+
+class _ReadonlyResponsePerformanceProfile extends ResponsePerformanceProfile with ReadonlyMessageMixin {}
+
 class ResponsePing extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('ResponsePing')
     ..a/*<String>*/(1, 'pong', PbFieldType.OS)
@@ -405,6 +847,41 @@ class ResponsePing extends GeneratedMessage {
 }
 
 class _ReadonlyResponsePing extends ResponsePing with ReadonlyMessageMixin {}
+
+class SyncItem extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('SyncItem')
+    ..a/*<CrawlResponse>*/(1, 'item', PbFieldType.QM, CrawlResponse.getDefault, CrawlResponse.create)
+    ..a/*<List<int>>*/(2, 'token', PbFieldType.QY)
+  ;
+
+  SyncItem() : super();
+  SyncItem.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  SyncItem.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  SyncItem clone() => new SyncItem()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static SyncItem create() => new SyncItem();
+  static PbList<SyncItem> createRepeated() => new PbList<SyncItem>();
+  static SyncItem getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlySyncItem();
+    return _defaultInstance;
+  }
+  static SyncItem _defaultInstance;
+  static void $checkItem(SyncItem v) {
+    if (v is !SyncItem) checkItemFailed(v, 'SyncItem');
+  }
+
+  CrawlResponse get item => $_get(0, 1, null);
+  void set item(CrawlResponse v) { setField(1, v); }
+  bool hasItem() => $_has(0, 1);
+  void clearItem() => clearField(1);
+
+  List<int> get token => $_get(1, 2, null);
+  void set token(List<int> v) { $_setBytes(1, 2, v); }
+  bool hasToken() => $_has(1, 2);
+  void clearToken() => clearField(2);
+}
+
+class _ReadonlySyncItem extends SyncItem with ReadonlyMessageMixin {}
 
 class ServerMessage extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('ServerMessage')
@@ -475,4 +952,73 @@ class SubscriptionClosed extends GeneratedMessage {
 }
 
 class _ReadonlySubscriptionClosed extends SubscriptionClosed with ReadonlyMessageMixin {}
+
+class Task extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('Task')
+    ..a/*<String>*/(1, 'name', PbFieldType.OS)
+    ..a/*<int>*/(2, 'count', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  Task() : super();
+  Task.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  Task.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  Task clone() => new Task()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static Task create() => new Task();
+  static PbList<Task> createRepeated() => new PbList<Task>();
+  static Task getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyTask();
+    return _defaultInstance;
+  }
+  static Task _defaultInstance;
+  static void $checkItem(Task v) {
+    if (v is !Task) checkItemFailed(v, 'Task');
+  }
+
+  String get name => $_get(0, 1, '');
+  void set name(String v) { $_setString(0, 1, v); }
+  bool hasName() => $_has(0, 1);
+  void clearName() => clearField(1);
+
+  int get count => $_get(1, 2, 0);
+  void set count(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasCount() => $_has(1, 2);
+  void clearCount() => clearField(2);
+}
+
+class _ReadonlyTask extends Task with ReadonlyMessageMixin {}
+
+class TaskMonitor extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('TaskMonitor')
+    ..a/*<int>*/(1, 'count', PbFieldType.O3)
+    ..pp/*<Task>*/(2, 'tasks', PbFieldType.PM, Task.$checkItem, Task.create)
+    ..hasRequiredFields = false
+  ;
+
+  TaskMonitor() : super();
+  TaskMonitor.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  TaskMonitor.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  TaskMonitor clone() => new TaskMonitor()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static TaskMonitor create() => new TaskMonitor();
+  static PbList<TaskMonitor> createRepeated() => new PbList<TaskMonitor>();
+  static TaskMonitor getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyTaskMonitor();
+    return _defaultInstance;
+  }
+  static TaskMonitor _defaultInstance;
+  static void $checkItem(TaskMonitor v) {
+    if (v is !TaskMonitor) checkItemFailed(v, 'TaskMonitor');
+  }
+
+  int get count => $_get(0, 1, 0);
+  void set count(int v) { $_setUnsignedInt32(0, 1, v); }
+  bool hasCount() => $_has(0, 1);
+  void clearCount() => clearField(1);
+
+  List<Task> get tasks => $_get(1, 2, null);
+}
+
+class _ReadonlyTaskMonitor extends TaskMonitor with ReadonlyMessageMixin {}
 

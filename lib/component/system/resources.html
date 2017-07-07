@@ -1,0 +1,95 @@
+<div class='row'>
+  <div class='col-lg'>
+    <ma-card>
+      <h2>
+        Resource Monitor
+      </h2>
+      <div *ngIf='frame != null'>
+        <p class='lead'>CPU Usage ({{cpuUsage() | number:'1.1'}}%)</p>
+        <table class='striped'>
+          <thead>
+            <tr>
+              <th *ngFor='let cpu of frame.cpus; let index=index' class='text-xs-center'>
+                CPU {{index}}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td *ngFor='let cpu of frame.cpus' class='text-xs-center'>
+                {{cpu.usage}}%
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p class='lead'>Memory Usage</p>
+        <p>
+          {{frame.memory.used}} / {{frame.memory.total}}
+          ({{memoryUsage()}}%)
+        </p>
+        <p class='lead'>Disks</p>
+        <table class='striped'>
+          <thead>
+            <tr>
+              <th>Mount</th>
+              <th>Used</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let disk of frame.disks'>
+              <td>{{disk.mount}}</td>
+              <td>{{disk.used}}</td>
+              <td>{{disk.total}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class='lead'>Networks</p>
+        <table class='striped'>
+          <thead>
+            <tr>
+              <th>Interface</th>
+              <th>Sent</th>
+              <th>Received</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let network of frame.networks'>
+              <td>{{network.name}}</td>
+              <td>{{network.sent}}</td>
+              <td>{{network.received}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class='lead'>Crawls</p>
+        <table class='striped'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Frontier</th>
+              <th>Pending</th>
+              <th>Extraction</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf='frame.crawls.length == 0'>
+              <td class='empty-table' colspan="999">
+                There are no crawls running.
+              </td>
+            </tr>
+            <tr *ngFor='let crawl of frame.crawls'>
+              <td>{{jobNames[crawl.jobId]}}</td>
+              <td>{{crawl.frontier}}</td>
+              <td>{{crawl.pending}}</td>
+              <td>{{crawl.extraction}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class='lead'>Rate Limiter</p>
+        <p>{{frame.rateLimiter.count | number}}</p>
+        <p class='lead'>Downloader</p>
+        <p>{{frame.downloader.count | number}}</p>
+      </div>
+    </ma-card>
+  </div>
+</div>

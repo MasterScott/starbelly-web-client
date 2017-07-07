@@ -20,14 +20,17 @@ class Request extends GeneratedMessage {
     ..a/*<RequestGetRateLimits>*/(7, 'getRateLimits', PbFieldType.OM, RequestGetRateLimits.getDefault, RequestGetRateLimits.create)
     ..a/*<RequestListJobs>*/(8, 'listJobs', PbFieldType.OM, RequestListJobs.getDefault, RequestListJobs.create)
     ..a/*<RequestListPolicies>*/(9, 'listPolicies', PbFieldType.OM, RequestListPolicies.getDefault, RequestListPolicies.create)
-    ..a/*<RequestPing>*/(10, 'ping', PbFieldType.OM, RequestPing.getDefault, RequestPing.create)
-    ..a/*<RequestSetJobRunState>*/(11, 'setJobRunState', PbFieldType.OM, RequestSetJobRunState.getDefault, RequestSetJobRunState.create)
-    ..a/*<RequestSetPolicy>*/(12, 'setPolicy', PbFieldType.OM, RequestSetPolicy.getDefault, RequestSetPolicy.create)
-    ..a/*<RequestSetRateLimit>*/(13, 'setRateLimit', PbFieldType.OM, RequestSetRateLimit.getDefault, RequestSetRateLimit.create)
-    ..a/*<RequestStartJob>*/(14, 'startJob', PbFieldType.OM, RequestStartJob.getDefault, RequestStartJob.create)
-    ..a/*<RequestSubscribeJobStatus>*/(15, 'subscribeJobStatus', PbFieldType.OM, RequestSubscribeJobStatus.getDefault, RequestSubscribeJobStatus.create)
-    ..a/*<RequestSubscribeJobSync>*/(16, 'subscribeJobSync', PbFieldType.OM, RequestSubscribeJobSync.getDefault, RequestSubscribeJobSync.create)
-    ..a/*<RequestUnsubscribe>*/(17, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
+    ..a/*<RequestPerformanceProfile>*/(10, 'performanceProfile', PbFieldType.OM, RequestPerformanceProfile.getDefault, RequestPerformanceProfile.create)
+    ..a/*<RequestPing>*/(11, 'ping', PbFieldType.OM, RequestPing.getDefault, RequestPing.create)
+    ..a/*<RequestSetJobRunState>*/(12, 'setJobRunState', PbFieldType.OM, RequestSetJobRunState.getDefault, RequestSetJobRunState.create)
+    ..a/*<RequestSetPolicy>*/(13, 'setPolicy', PbFieldType.OM, RequestSetPolicy.getDefault, RequestSetPolicy.create)
+    ..a/*<RequestSetRateLimit>*/(14, 'setRateLimit', PbFieldType.OM, RequestSetRateLimit.getDefault, RequestSetRateLimit.create)
+    ..a/*<RequestStartJob>*/(15, 'startJob', PbFieldType.OM, RequestStartJob.getDefault, RequestStartJob.create)
+    ..a/*<RequestSubscribeJobStatus>*/(16, 'subscribeJobStatus', PbFieldType.OM, RequestSubscribeJobStatus.getDefault, RequestSubscribeJobStatus.create)
+    ..a/*<RequestSubscribeJobSync>*/(17, 'subscribeJobSync', PbFieldType.OM, RequestSubscribeJobSync.getDefault, RequestSubscribeJobSync.create)
+    ..a/*<RequestSubscribeResourceMonitor>*/(18, 'subscribeResourceMonitor', PbFieldType.OM, RequestSubscribeResourceMonitor.getDefault, RequestSubscribeResourceMonitor.create)
+    ..a/*<RequestSubscribeTaskMonitor>*/(19, 'subscribeTaskMonitor', PbFieldType.OM, RequestSubscribeTaskMonitor.getDefault, RequestSubscribeTaskMonitor.create)
+    ..a/*<RequestUnsubscribe>*/(20, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
   ;
 
   Request() : super();
@@ -91,45 +94,60 @@ class Request extends GeneratedMessage {
   bool hasListPolicies() => $_has(8, 9);
   void clearListPolicies() => clearField(9);
 
-  RequestPing get ping => $_get(9, 10, null);
-  void set ping(RequestPing v) { setField(10, v); }
-  bool hasPing() => $_has(9, 10);
-  void clearPing() => clearField(10);
+  RequestPerformanceProfile get performanceProfile => $_get(9, 10, null);
+  void set performanceProfile(RequestPerformanceProfile v) { setField(10, v); }
+  bool hasPerformanceProfile() => $_has(9, 10);
+  void clearPerformanceProfile() => clearField(10);
 
-  RequestSetJobRunState get setJobRunState => $_get(10, 11, null);
-  void set setJobRunState(RequestSetJobRunState v) { setField(11, v); }
-  bool hasSetJobRunState() => $_has(10, 11);
-  void clearSetJobRunState() => clearField(11);
+  RequestPing get ping => $_get(10, 11, null);
+  void set ping(RequestPing v) { setField(11, v); }
+  bool hasPing() => $_has(10, 11);
+  void clearPing() => clearField(11);
 
-  RequestSetPolicy get setPolicy => $_get(11, 12, null);
-  void set setPolicy(RequestSetPolicy v) { setField(12, v); }
-  bool hasSetPolicy() => $_has(11, 12);
-  void clearSetPolicy() => clearField(12);
+  RequestSetJobRunState get setJobRunState => $_get(11, 12, null);
+  void set setJobRunState(RequestSetJobRunState v) { setField(12, v); }
+  bool hasSetJobRunState() => $_has(11, 12);
+  void clearSetJobRunState() => clearField(12);
 
-  RequestSetRateLimit get setRateLimit => $_get(12, 13, null);
-  void set setRateLimit(RequestSetRateLimit v) { setField(13, v); }
-  bool hasSetRateLimit() => $_has(12, 13);
-  void clearSetRateLimit() => clearField(13);
+  RequestSetPolicy get setPolicy => $_get(12, 13, null);
+  void set setPolicy(RequestSetPolicy v) { setField(13, v); }
+  bool hasSetPolicy() => $_has(12, 13);
+  void clearSetPolicy() => clearField(13);
 
-  RequestStartJob get startJob => $_get(13, 14, null);
-  void set startJob(RequestStartJob v) { setField(14, v); }
-  bool hasStartJob() => $_has(13, 14);
-  void clearStartJob() => clearField(14);
+  RequestSetRateLimit get setRateLimit => $_get(13, 14, null);
+  void set setRateLimit(RequestSetRateLimit v) { setField(14, v); }
+  bool hasSetRateLimit() => $_has(13, 14);
+  void clearSetRateLimit() => clearField(14);
 
-  RequestSubscribeJobStatus get subscribeJobStatus => $_get(14, 15, null);
-  void set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(15, v); }
-  bool hasSubscribeJobStatus() => $_has(14, 15);
-  void clearSubscribeJobStatus() => clearField(15);
+  RequestStartJob get startJob => $_get(14, 15, null);
+  void set startJob(RequestStartJob v) { setField(15, v); }
+  bool hasStartJob() => $_has(14, 15);
+  void clearStartJob() => clearField(15);
 
-  RequestSubscribeJobSync get subscribeJobSync => $_get(15, 16, null);
-  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(16, v); }
-  bool hasSubscribeJobSync() => $_has(15, 16);
-  void clearSubscribeJobSync() => clearField(16);
+  RequestSubscribeJobStatus get subscribeJobStatus => $_get(15, 16, null);
+  void set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(16, v); }
+  bool hasSubscribeJobStatus() => $_has(15, 16);
+  void clearSubscribeJobStatus() => clearField(16);
 
-  RequestUnsubscribe get unsubscribe => $_get(16, 17, null);
-  void set unsubscribe(RequestUnsubscribe v) { setField(17, v); }
-  bool hasUnsubscribe() => $_has(16, 17);
-  void clearUnsubscribe() => clearField(17);
+  RequestSubscribeJobSync get subscribeJobSync => $_get(16, 17, null);
+  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(17, v); }
+  bool hasSubscribeJobSync() => $_has(16, 17);
+  void clearSubscribeJobSync() => clearField(17);
+
+  RequestSubscribeResourceMonitor get subscribeResourceMonitor => $_get(17, 18, null);
+  void set subscribeResourceMonitor(RequestSubscribeResourceMonitor v) { setField(18, v); }
+  bool hasSubscribeResourceMonitor() => $_has(17, 18);
+  void clearSubscribeResourceMonitor() => clearField(18);
+
+  RequestSubscribeTaskMonitor get subscribeTaskMonitor => $_get(18, 19, null);
+  void set subscribeTaskMonitor(RequestSubscribeTaskMonitor v) { setField(19, v); }
+  bool hasSubscribeTaskMonitor() => $_has(18, 19);
+  void clearSubscribeTaskMonitor() => clearField(19);
+
+  RequestUnsubscribe get unsubscribe => $_get(19, 20, null);
+  void set unsubscribe(RequestUnsubscribe v) { setField(20, v); }
+  bool hasUnsubscribe() => $_has(19, 20);
+  void clearUnsubscribe() => clearField(20);
 }
 
 class _ReadonlyRequest extends Request with ReadonlyMessageMixin {}
@@ -399,6 +417,48 @@ class RequestListPolicies extends GeneratedMessage {
 
 class _ReadonlyRequestListPolicies extends RequestListPolicies with ReadonlyMessageMixin {}
 
+class RequestPerformanceProfile extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestPerformanceProfile')
+    ..a/*<double>*/(1, 'duration', PbFieldType.OD, 5.0)
+    ..a/*<String>*/(2, 'sortBy', PbFieldType.OS, 'time')
+    ..a/*<int>*/(3, 'topN', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  RequestPerformanceProfile() : super();
+  RequestPerformanceProfile.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestPerformanceProfile.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestPerformanceProfile clone() => new RequestPerformanceProfile()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestPerformanceProfile create() => new RequestPerformanceProfile();
+  static PbList<RequestPerformanceProfile> createRepeated() => new PbList<RequestPerformanceProfile>();
+  static RequestPerformanceProfile getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestPerformanceProfile();
+    return _defaultInstance;
+  }
+  static RequestPerformanceProfile _defaultInstance;
+  static void $checkItem(RequestPerformanceProfile v) {
+    if (v is !RequestPerformanceProfile) checkItemFailed(v, 'RequestPerformanceProfile');
+  }
+
+  double get duration => $_get(0, 1, null);
+  void set duration(double v) { $_setDouble(0, 1, v); }
+  bool hasDuration() => $_has(0, 1);
+  void clearDuration() => clearField(1);
+
+  String get sortBy => $_get(1, 2, 'time');
+  void set sortBy(String v) { $_setString(1, 2, v); }
+  bool hasSortBy() => $_has(1, 2);
+  void clearSortBy() => clearField(2);
+
+  int get topN => $_get(2, 3, 0);
+  void set topN(int v) { $_setUnsignedInt32(2, 3, v); }
+  bool hasTopN() => $_has(2, 3);
+  void clearTopN() => clearField(3);
+}
+
+class _ReadonlyRequestPerformanceProfile extends RequestPerformanceProfile with ReadonlyMessageMixin {}
+
 class RequestPing extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestPing')
     ..a/*<String>*/(1, 'pong', PbFieldType.OS)
@@ -630,6 +690,72 @@ class RequestSubscribeJobSync extends GeneratedMessage {
 }
 
 class _ReadonlyRequestSubscribeJobSync extends RequestSubscribeJobSync with ReadonlyMessageMixin {}
+
+class RequestSubscribeResourceMonitor extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestSubscribeResourceMonitor')
+    ..a/*<int>*/(1, 'history', PbFieldType.O3, 300)
+    ..hasRequiredFields = false
+  ;
+
+  RequestSubscribeResourceMonitor() : super();
+  RequestSubscribeResourceMonitor.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestSubscribeResourceMonitor.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestSubscribeResourceMonitor clone() => new RequestSubscribeResourceMonitor()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestSubscribeResourceMonitor create() => new RequestSubscribeResourceMonitor();
+  static PbList<RequestSubscribeResourceMonitor> createRepeated() => new PbList<RequestSubscribeResourceMonitor>();
+  static RequestSubscribeResourceMonitor getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestSubscribeResourceMonitor();
+    return _defaultInstance;
+  }
+  static RequestSubscribeResourceMonitor _defaultInstance;
+  static void $checkItem(RequestSubscribeResourceMonitor v) {
+    if (v is !RequestSubscribeResourceMonitor) checkItemFailed(v, 'RequestSubscribeResourceMonitor');
+  }
+
+  int get history => $_get(0, 1, 300);
+  void set history(int v) { $_setUnsignedInt32(0, 1, v); }
+  bool hasHistory() => $_has(0, 1);
+  void clearHistory() => clearField(1);
+}
+
+class _ReadonlyRequestSubscribeResourceMonitor extends RequestSubscribeResourceMonitor with ReadonlyMessageMixin {}
+
+class RequestSubscribeTaskMonitor extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestSubscribeTaskMonitor')
+    ..a/*<double>*/(1, 'period', PbFieldType.OD, 3.0)
+    ..a/*<int>*/(2, 'topN', PbFieldType.O3, 20)
+    ..hasRequiredFields = false
+  ;
+
+  RequestSubscribeTaskMonitor() : super();
+  RequestSubscribeTaskMonitor.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestSubscribeTaskMonitor.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestSubscribeTaskMonitor clone() => new RequestSubscribeTaskMonitor()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestSubscribeTaskMonitor create() => new RequestSubscribeTaskMonitor();
+  static PbList<RequestSubscribeTaskMonitor> createRepeated() => new PbList<RequestSubscribeTaskMonitor>();
+  static RequestSubscribeTaskMonitor getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestSubscribeTaskMonitor();
+    return _defaultInstance;
+  }
+  static RequestSubscribeTaskMonitor _defaultInstance;
+  static void $checkItem(RequestSubscribeTaskMonitor v) {
+    if (v is !RequestSubscribeTaskMonitor) checkItemFailed(v, 'RequestSubscribeTaskMonitor');
+  }
+
+  double get period => $_get(0, 1, null);
+  void set period(double v) { $_setDouble(0, 1, v); }
+  bool hasPeriod() => $_has(0, 1);
+  void clearPeriod() => clearField(1);
+
+  int get topN => $_get(1, 2, 20);
+  void set topN(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasTopN() => $_has(1, 2);
+  void clearTopN() => clearField(2);
+}
+
+class _ReadonlyRequestSubscribeTaskMonitor extends RequestSubscribeTaskMonitor with ReadonlyMessageMixin {}
 
 class RequestUnsubscribe extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestUnsubscribe')
