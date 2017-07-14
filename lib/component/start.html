@@ -31,6 +31,15 @@
              placeholder='(Optional) Name this crawl'>
     </ma-input-group>
 
+    <ma-input-group [control]='tagsControl'>
+      <label>Tags</label>
+      <input type='text'
+             [(ngModel)]='tags'
+             [ngFormControl]='tagsControl'
+             class='form-control'
+             placeholder='(Optional) Tags separated by spaces'>
+    </ma-input-group>
+
     <div class='clearfix'>
       <ma-button class='float-xs-right' [submit]='true' [disabled]='!form.valid'>
         <fa name='play-circle'></fa>

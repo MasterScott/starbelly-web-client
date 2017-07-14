@@ -38,6 +38,7 @@
       <tr *ngFor="let job of jobs">
         <td>
           <a [routerLink]='["../Detail", {"id":job.jobId}]'>{{job.name}}</a>
+          <ma-tag *ngFor='let tag of job.tags' type='primary' size='small'>{{tag}}</ma-tag>
         </td>
         <td>{{job.runStateStr}}</td>
         <td>{{job.startedAt | date:'y-MM-dd H:mm:ss'}}</td>

@@ -32,6 +32,8 @@ class StartCrawlView implements AfterViewInit {
     String seedUrl = '';
     Control seedUrlControl;
     Policy selectedPolicy;
+    String tags = '';
+    Control tagsControl;
 
     bool _autoName = true;
     List<int> policyIds;
@@ -68,10 +70,15 @@ class StartCrawlView implements AfterViewInit {
     /// Request a new crawl.
     startCrawl() async {
         var request = new pb.Request();
-        request.startJob = new pb.RequestStartJob()
+        request.setJob = new pb.RequestSetJob()
             ..name = this.name
+            ..runState = pb.JobRunState.RUNNING
             ..policyId = convert.hex.decode(this.selectedPolicy.policyId)
-            ..seeds.add(this.seedUrl);
+            ..seeds.add(this.seedUrl)
+            ..tagList = new pb.TagList();
+        for (var tagStr in this.tags.split(new RegExp('\s+'))) {
+            request.setJob.tagList.tags.add(tagStr.trim());
+        }
         var response = await this._server.sendRequest(request);
         this._initForm();
     }
@@ -81,9 +88,11 @@ class StartCrawlView implements AfterViewInit {
         this.nameControl = new Control('');
         this.seedUrlControl = new Control('', Validators.compose([
             validate.required(), validate.url()]));
+        this.tagsControl = new Control('');
         this.form = new ControlGroup({
             'name': this.nameControl,
             'seedUrl': this.seedUrlControl,
+            'tags': this.tagsControl,
         });
     }
 }

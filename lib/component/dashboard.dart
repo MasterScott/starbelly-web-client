@@ -53,9 +53,9 @@ class DashboardView implements OnInit {
         click.button.busy = true;
         this.busyJobs.add(job.jobId);
         var request = new pb.Request();
-        request.setJobRunState = new pb.RequestSetJobRunState();
-        request.setJobRunState.jobId = job.jobIdBytes;
-        request.setJobRunState.runState = runState;
+        request.setJob = new pb.RequestSetJob()
+            ..jobId = job.jobIdBytes
+            ..runState = runState;
         var response = await this._server.sendRequest(request);
         this.busyJobs.remove(job.jobId);
         click.button.busy = false;

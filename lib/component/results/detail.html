@@ -12,6 +12,15 @@
           <span *ngIf='job.completedAt == null'>is not complete.</span>
           <span *ngIf='job.completedAt != null'>completed at {{job.completedAt | date:'medium'}}.</span>
         </p>
+        <p>
+            <ma-input-group [inline]='true' style='max-width: 20em;'>
+              <label>Tags</label>
+              <input type='text'
+                     [(ngModel)]='tags'
+                     (keyup.enter)='saveTags()'
+                     placeholder='Tags separated by spaces'>
+            </ma-input-group>
+        </p>
       </div>
     </ma-card>
   </div>

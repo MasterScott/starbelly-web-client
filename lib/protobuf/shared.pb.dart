@@ -1,7 +1,12 @@
 ///
 //  Generated code. Do not modify.
 ///
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: library_prefixes
 library starbelly_shared;
+
+// ignore: UNUSED_SHOWN_NAME
+import 'dart:core' show int, bool, double, String, List, override;
 
 import 'package:protobuf/protobuf.dart';
 
@@ -29,16 +34,16 @@ class CrawlResponse_HeadersEntry extends GeneratedMessage {
   }
   static CrawlResponse_HeadersEntry _defaultInstance;
   static void $checkItem(CrawlResponse_HeadersEntry v) {
-    if (v is !CrawlResponse_HeadersEntry) checkItemFailed(v, 'CrawlResponse_HeadersEntry');
+    if (v is! CrawlResponse_HeadersEntry) checkItemFailed(v, 'CrawlResponse_HeadersEntry');
   }
 
   String get key => $_get(0, 1, '');
-  void set key(String v) { $_setString(0, 1, v); }
+  set key(String v) { $_setString(0, 1, v); }
   bool hasKey() => $_has(0, 1);
   void clearKey() => clearField(1);
 
   String get value => $_get(1, 2, '');
-  void set value(String v) { $_setString(1, 2, v); }
+  set value(String v) { $_setString(1, 2, v); }
   bool hasValue() => $_has(1, 2);
   void clearValue() => clearField(2);
 }
@@ -78,78 +83,78 @@ class CrawlResponse extends GeneratedMessage {
   }
   static CrawlResponse _defaultInstance;
   static void $checkItem(CrawlResponse v) {
-    if (v is !CrawlResponse) checkItemFailed(v, 'CrawlResponse');
+    if (v is! CrawlResponse) checkItemFailed(v, 'CrawlResponse');
   }
 
   List<int> get body => $_get(0, 1, null);
-  void set body(List<int> v) { $_setBytes(0, 1, v); }
+  set body(List<int> v) { $_setBytes(0, 1, v); }
   bool hasBody() => $_has(0, 1);
   void clearBody() => clearField(1);
 
   String get charset => $_get(1, 2, '');
-  void set charset(String v) { $_setString(1, 2, v); }
+  set charset(String v) { $_setString(1, 2, v); }
   bool hasCharset() => $_has(1, 2);
   void clearCharset() => clearField(2);
 
   String get completedAt => $_get(2, 3, '');
-  void set completedAt(String v) { $_setString(2, 3, v); }
+  set completedAt(String v) { $_setString(2, 3, v); }
   bool hasCompletedAt() => $_has(2, 3);
   void clearCompletedAt() => clearField(3);
 
   String get contentType => $_get(3, 4, '');
-  void set contentType(String v) { $_setString(3, 4, v); }
+  set contentType(String v) { $_setString(3, 4, v); }
   bool hasContentType() => $_has(3, 4);
   void clearContentType() => clearField(4);
 
   double get cost => $_get(4, 5, null);
-  void set cost(double v) { $_setDouble(4, 5, v); }
+  set cost(double v) { $_setDouble(4, 5, v); }
   bool hasCost() => $_has(4, 5);
   void clearCost() => clearField(5);
 
   double get duration => $_get(5, 6, null);
-  void set duration(double v) { $_setDouble(5, 6, v); }
+  set duration(double v) { $_setDouble(5, 6, v); }
   bool hasDuration() => $_has(5, 6);
   void clearDuration() => clearField(6);
 
   String get exception => $_get(6, 7, '');
-  void set exception(String v) { $_setString(6, 7, v); }
+  set exception(String v) { $_setString(6, 7, v); }
   bool hasException() => $_has(6, 7);
   void clearException() => clearField(7);
 
   List<CrawlResponse_HeadersEntry> get headers => $_get(7, 8, null);
 
   bool get isBodyCompressed => $_get(8, 9, false);
-  void set isBodyCompressed(bool v) { $_setBool(8, 9, v); }
+  set isBodyCompressed(bool v) { $_setBool(8, 9, v); }
   bool hasIsBodyCompressed() => $_has(8, 9);
   void clearIsBodyCompressed() => clearField(9);
 
   bool get isSuccess => $_get(9, 10, false);
-  void set isSuccess(bool v) { $_setBool(9, 10, v); }
+  set isSuccess(bool v) { $_setBool(9, 10, v); }
   bool hasIsSuccess() => $_has(9, 10);
   void clearIsSuccess() => clearField(10);
 
   List<int> get jobId => $_get(10, 11, null);
-  void set jobId(List<int> v) { $_setBytes(10, 11, v); }
+  set jobId(List<int> v) { $_setBytes(10, 11, v); }
   bool hasJobId() => $_has(10, 11);
   void clearJobId() => clearField(11);
 
   String get startedAt => $_get(11, 12, '');
-  void set startedAt(String v) { $_setString(11, 12, v); }
+  set startedAt(String v) { $_setString(11, 12, v); }
   bool hasStartedAt() => $_has(11, 12);
   void clearStartedAt() => clearField(12);
 
   int get statusCode => $_get(12, 13, 0);
-  void set statusCode(int v) { $_setUnsignedInt32(12, 13, v); }
+  set statusCode(int v) { $_setUnsignedInt32(12, 13, v); }
   bool hasStatusCode() => $_has(12, 13);
   void clearStatusCode() => clearField(13);
 
   String get url => $_get(13, 14, '');
-  void set url(String v) { $_setString(13, 14, v); }
+  set url(String v) { $_setString(13, 14, v); }
   bool hasUrl() => $_has(13, 14);
   void clearUrl() => clearField(14);
 
   String get urlCan => $_get(14, 15, '');
-  void set urlCan(String v) { $_setString(14, 15, v); }
+  set urlCan(String v) { $_setString(14, 15, v); }
   bool hasUrlCan() => $_has(14, 15);
   void clearUrlCan() => clearField(15);
 }
@@ -176,16 +181,16 @@ class Job_HttpStatusCountsEntry extends GeneratedMessage {
   }
   static Job_HttpStatusCountsEntry _defaultInstance;
   static void $checkItem(Job_HttpStatusCountsEntry v) {
-    if (v is !Job_HttpStatusCountsEntry) checkItemFailed(v, 'Job_HttpStatusCountsEntry');
+    if (v is! Job_HttpStatusCountsEntry) checkItemFailed(v, 'Job_HttpStatusCountsEntry');
   }
 
   int get key => $_get(0, 1, 0);
-  void set key(int v) { $_setUnsignedInt32(0, 1, v); }
+  set key(int v) { $_setUnsignedInt32(0, 1, v); }
   bool hasKey() => $_has(0, 1);
   void clearKey() => clearField(1);
 
   int get value => $_get(1, 2, 0);
-  void set value(int v) { $_setUnsignedInt32(1, 2, v); }
+  set value(int v) { $_setUnsignedInt32(1, 2, v); }
   bool hasValue() => $_has(1, 2);
   void clearValue() => clearField(2);
 }
@@ -198,14 +203,15 @@ class Job extends GeneratedMessage {
     ..p/*<String>*/(2, 'seeds', PbFieldType.PS)
     ..a/*<Policy>*/(3, 'policy', PbFieldType.OM, Policy.getDefault, Policy.create)
     ..a/*<String>*/(4, 'name', PbFieldType.OS)
-    ..e/*<JobRunState>*/(5, 'runState', PbFieldType.OE, JobRunState.CANCELLED, JobRunState.valueOf)
-    ..a/*<String>*/(6, 'startedAt', PbFieldType.OS)
-    ..a/*<String>*/(7, 'completedAt', PbFieldType.OS)
-    ..a/*<int>*/(8, 'itemCount', PbFieldType.O3, -1)
-    ..a/*<int>*/(9, 'httpSuccessCount', PbFieldType.O3, -1)
-    ..a/*<int>*/(10, 'httpErrorCount', PbFieldType.O3, -1)
-    ..a/*<int>*/(11, 'exceptionCount', PbFieldType.O3, -1)
-    ..pp/*<Job_HttpStatusCountsEntry>*/(12, 'httpStatusCounts', PbFieldType.PM, Job_HttpStatusCountsEntry.$checkItem, Job_HttpStatusCountsEntry.create)
+    ..a/*<TagList>*/(5, 'tagList', PbFieldType.OM, TagList.getDefault, TagList.create)
+    ..e/*<JobRunState>*/(6, 'runState', PbFieldType.OE, JobRunState.CANCELLED, JobRunState.valueOf)
+    ..a/*<String>*/(7, 'startedAt', PbFieldType.OS)
+    ..a/*<String>*/(8, 'completedAt', PbFieldType.OS)
+    ..a/*<int>*/(9, 'itemCount', PbFieldType.O3, -1)
+    ..a/*<int>*/(10, 'httpSuccessCount', PbFieldType.O3, -1)
+    ..a/*<int>*/(11, 'httpErrorCount', PbFieldType.O3, -1)
+    ..a/*<int>*/(12, 'exceptionCount', PbFieldType.O3, -1)
+    ..pp/*<Job_HttpStatusCountsEntry>*/(13, 'httpStatusCounts', PbFieldType.PM, Job_HttpStatusCountsEntry.$checkItem, Job_HttpStatusCountsEntry.create)
   ;
 
   Job() : super();
@@ -221,62 +227,67 @@ class Job extends GeneratedMessage {
   }
   static Job _defaultInstance;
   static void $checkItem(Job v) {
-    if (v is !Job) checkItemFailed(v, 'Job');
+    if (v is! Job) checkItemFailed(v, 'Job');
   }
 
   List<int> get jobId => $_get(0, 1, null);
-  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  set jobId(List<int> v) { $_setBytes(0, 1, v); }
   bool hasJobId() => $_has(0, 1);
   void clearJobId() => clearField(1);
 
   List<String> get seeds => $_get(1, 2, null);
 
   Policy get policy => $_get(2, 3, null);
-  void set policy(Policy v) { setField(3, v); }
+  set policy(Policy v) { setField(3, v); }
   bool hasPolicy() => $_has(2, 3);
   void clearPolicy() => clearField(3);
 
   String get name => $_get(3, 4, '');
-  void set name(String v) { $_setString(3, 4, v); }
+  set name(String v) { $_setString(3, 4, v); }
   bool hasName() => $_has(3, 4);
   void clearName() => clearField(4);
 
-  JobRunState get runState => $_get(4, 5, null);
-  void set runState(JobRunState v) { setField(5, v); }
-  bool hasRunState() => $_has(4, 5);
-  void clearRunState() => clearField(5);
+  TagList get tagList => $_get(4, 5, null);
+  set tagList(TagList v) { setField(5, v); }
+  bool hasTagList() => $_has(4, 5);
+  void clearTagList() => clearField(5);
 
-  String get startedAt => $_get(5, 6, '');
-  void set startedAt(String v) { $_setString(5, 6, v); }
-  bool hasStartedAt() => $_has(5, 6);
-  void clearStartedAt() => clearField(6);
+  JobRunState get runState => $_get(5, 6, null);
+  set runState(JobRunState v) { setField(6, v); }
+  bool hasRunState() => $_has(5, 6);
+  void clearRunState() => clearField(6);
 
-  String get completedAt => $_get(6, 7, '');
-  void set completedAt(String v) { $_setString(6, 7, v); }
-  bool hasCompletedAt() => $_has(6, 7);
-  void clearCompletedAt() => clearField(7);
+  String get startedAt => $_get(6, 7, '');
+  set startedAt(String v) { $_setString(6, 7, v); }
+  bool hasStartedAt() => $_has(6, 7);
+  void clearStartedAt() => clearField(7);
 
-  int get itemCount => $_get(7, 8, -1);
-  void set itemCount(int v) { $_setUnsignedInt32(7, 8, v); }
-  bool hasItemCount() => $_has(7, 8);
-  void clearItemCount() => clearField(8);
+  String get completedAt => $_get(7, 8, '');
+  set completedAt(String v) { $_setString(7, 8, v); }
+  bool hasCompletedAt() => $_has(7, 8);
+  void clearCompletedAt() => clearField(8);
 
-  int get httpSuccessCount => $_get(8, 9, -1);
-  void set httpSuccessCount(int v) { $_setUnsignedInt32(8, 9, v); }
-  bool hasHttpSuccessCount() => $_has(8, 9);
-  void clearHttpSuccessCount() => clearField(9);
+  int get itemCount => $_get(8, 9, -1);
+  set itemCount(int v) { $_setUnsignedInt32(8, 9, v); }
+  bool hasItemCount() => $_has(8, 9);
+  void clearItemCount() => clearField(9);
 
-  int get httpErrorCount => $_get(9, 10, -1);
-  void set httpErrorCount(int v) { $_setUnsignedInt32(9, 10, v); }
-  bool hasHttpErrorCount() => $_has(9, 10);
-  void clearHttpErrorCount() => clearField(10);
+  int get httpSuccessCount => $_get(9, 10, -1);
+  set httpSuccessCount(int v) { $_setUnsignedInt32(9, 10, v); }
+  bool hasHttpSuccessCount() => $_has(9, 10);
+  void clearHttpSuccessCount() => clearField(10);
 
-  int get exceptionCount => $_get(10, 11, -1);
-  void set exceptionCount(int v) { $_setUnsignedInt32(10, 11, v); }
-  bool hasExceptionCount() => $_has(10, 11);
-  void clearExceptionCount() => clearField(11);
+  int get httpErrorCount => $_get(10, 11, -1);
+  set httpErrorCount(int v) { $_setUnsignedInt32(10, 11, v); }
+  bool hasHttpErrorCount() => $_has(10, 11);
+  void clearHttpErrorCount() => clearField(11);
 
-  List<Job_HttpStatusCountsEntry> get httpStatusCounts => $_get(11, 12, null);
+  int get exceptionCount => $_get(11, 12, -1);
+  set exceptionCount(int v) { $_setUnsignedInt32(11, 12, v); }
+  bool hasExceptionCount() => $_has(11, 12);
+  void clearExceptionCount() => clearField(12);
+
+  List<Job_HttpStatusCountsEntry> get httpStatusCounts => $_get(12, 13, null);
 }
 
 class _ReadonlyJob extends Job with ReadonlyMessageMixin {}
@@ -299,7 +310,7 @@ class JobList extends GeneratedMessage {
   }
   static JobList _defaultInstance;
   static void $checkItem(JobList v) {
-    if (v is !JobList) checkItemFailed(v, 'JobList');
+    if (v is! JobList) checkItemFailed(v, 'JobList');
   }
 
   List<Job> get jobs => $_get(0, 1, null);
@@ -327,16 +338,16 @@ class Page extends GeneratedMessage {
   }
   static Page _defaultInstance;
   static void $checkItem(Page v) {
-    if (v is !Page) checkItemFailed(v, 'Page');
+    if (v is! Page) checkItemFailed(v, 'Page');
   }
 
   int get limit => $_get(0, 1, 10);
-  void set limit(int v) { $_setUnsignedInt32(0, 1, v); }
+  set limit(int v) { $_setUnsignedInt32(0, 1, v); }
   bool hasLimit() => $_has(0, 1);
   void clearLimit() => clearField(1);
 
   int get offset => $_get(1, 2, 0);
-  void set offset(int v) { $_setUnsignedInt32(1, 2, v); }
+  set offset(int v) { $_setUnsignedInt32(1, 2, v); }
   bool hasOffset() => $_has(1, 2);
   void clearOffset() => clearField(2);
 }
@@ -370,31 +381,31 @@ class Policy extends GeneratedMessage {
   }
   static Policy _defaultInstance;
   static void $checkItem(Policy v) {
-    if (v is !Policy) checkItemFailed(v, 'Policy');
+    if (v is! Policy) checkItemFailed(v, 'Policy');
   }
 
   List<int> get policyId => $_get(0, 1, null);
-  void set policyId(List<int> v) { $_setBytes(0, 1, v); }
+  set policyId(List<int> v) { $_setBytes(0, 1, v); }
   bool hasPolicyId() => $_has(0, 1);
   void clearPolicyId() => clearField(1);
 
   String get name => $_get(1, 2, '');
-  void set name(String v) { $_setString(1, 2, v); }
+  set name(String v) { $_setString(1, 2, v); }
   bool hasName() => $_has(1, 2);
   void clearName() => clearField(2);
 
   String get createdAt => $_get(2, 3, '');
-  void set createdAt(String v) { $_setString(2, 3, v); }
+  set createdAt(String v) { $_setString(2, 3, v); }
   bool hasCreatedAt() => $_has(2, 3);
   void clearCreatedAt() => clearField(3);
 
   String get updatedAt => $_get(3, 4, '');
-  void set updatedAt(String v) { $_setString(3, 4, v); }
+  set updatedAt(String v) { $_setString(3, 4, v); }
   bool hasUpdatedAt() => $_has(3, 4);
   void clearUpdatedAt() => clearField(4);
 
   PolicyLimits get limits => $_get(4, 5, null);
-  void set limits(PolicyLimits v) { setField(5, v); }
+  set limits(PolicyLimits v) { setField(5, v); }
   bool hasLimits() => $_has(4, 5);
   void clearLimits() => clearField(5);
 
@@ -403,7 +414,7 @@ class Policy extends GeneratedMessage {
   List<PolicyMimeTypeRule> get mimeTypeRules => $_get(6, 7, null);
 
   PolicyRobotsTxt get robotsTxt => $_get(7, 8, null);
-  void set robotsTxt(PolicyRobotsTxt v) { setField(8, v); }
+  set robotsTxt(PolicyRobotsTxt v) { setField(8, v); }
   bool hasRobotsTxt() => $_has(7, 8);
   void clearRobotsTxt() => clearField(8);
 
@@ -435,21 +446,21 @@ class PolicyLimits extends GeneratedMessage {
   }
   static PolicyLimits _defaultInstance;
   static void $checkItem(PolicyLimits v) {
-    if (v is !PolicyLimits) checkItemFailed(v, 'PolicyLimits');
+    if (v is! PolicyLimits) checkItemFailed(v, 'PolicyLimits');
   }
 
   double get maxCost => $_get(0, 1, null);
-  void set maxCost(double v) { $_setDouble(0, 1, v); }
+  set maxCost(double v) { $_setDouble(0, 1, v); }
   bool hasMaxCost() => $_has(0, 1);
   void clearMaxCost() => clearField(1);
 
   double get maxDuration => $_get(1, 2, null);
-  void set maxDuration(double v) { $_setDouble(1, 2, v); }
+  set maxDuration(double v) { $_setDouble(1, 2, v); }
   bool hasMaxDuration() => $_has(1, 2);
   void clearMaxDuration() => clearField(2);
 
   int get maxItems => $_get(2, 3, 0);
-  void set maxItems(int v) { $_setUnsignedInt32(2, 3, v); }
+  set maxItems(int v) { $_setUnsignedInt32(2, 3, v); }
   bool hasMaxItems() => $_has(2, 3);
   void clearMaxItems() => clearField(3);
 }
@@ -477,21 +488,21 @@ class PolicyMimeTypeRule extends GeneratedMessage {
   }
   static PolicyMimeTypeRule _defaultInstance;
   static void $checkItem(PolicyMimeTypeRule v) {
-    if (v is !PolicyMimeTypeRule) checkItemFailed(v, 'PolicyMimeTypeRule');
+    if (v is! PolicyMimeTypeRule) checkItemFailed(v, 'PolicyMimeTypeRule');
   }
 
   String get pattern => $_get(0, 1, '');
-  void set pattern(String v) { $_setString(0, 1, v); }
+  set pattern(String v) { $_setString(0, 1, v); }
   bool hasPattern() => $_has(0, 1);
   void clearPattern() => clearField(1);
 
   PatternMatch get match => $_get(1, 2, null);
-  void set match(PatternMatch v) { setField(2, v); }
+  set match(PatternMatch v) { setField(2, v); }
   bool hasMatch() => $_has(1, 2);
   void clearMatch() => clearField(2);
 
   bool get save => $_get(2, 3, false);
-  void set save(bool v) { $_setBool(2, 3, v); }
+  set save(bool v) { $_setBool(2, 3, v); }
   bool hasSave() => $_has(2, 3);
   void clearSave() => clearField(3);
 }
@@ -518,21 +529,21 @@ class PolicyProxyRule extends GeneratedMessage {
   }
   static PolicyProxyRule _defaultInstance;
   static void $checkItem(PolicyProxyRule v) {
-    if (v is !PolicyProxyRule) checkItemFailed(v, 'PolicyProxyRule');
+    if (v is! PolicyProxyRule) checkItemFailed(v, 'PolicyProxyRule');
   }
 
   String get pattern => $_get(0, 1, '');
-  void set pattern(String v) { $_setString(0, 1, v); }
+  set pattern(String v) { $_setString(0, 1, v); }
   bool hasPattern() => $_has(0, 1);
   void clearPattern() => clearField(1);
 
   PatternMatch get match => $_get(1, 2, null);
-  void set match(PatternMatch v) { setField(2, v); }
+  set match(PatternMatch v) { setField(2, v); }
   bool hasMatch() => $_has(1, 2);
   void clearMatch() => clearField(2);
 
   String get proxyUrl => $_get(2, 3, '');
-  void set proxyUrl(String v) { $_setString(2, 3, v); }
+  set proxyUrl(String v) { $_setString(2, 3, v); }
   bool hasProxyUrl() => $_has(2, 3);
   void clearProxyUrl() => clearField(3);
 }
@@ -557,11 +568,11 @@ class PolicyRobotsTxt extends GeneratedMessage {
   }
   static PolicyRobotsTxt _defaultInstance;
   static void $checkItem(PolicyRobotsTxt v) {
-    if (v is !PolicyRobotsTxt) checkItemFailed(v, 'PolicyRobotsTxt');
+    if (v is! PolicyRobotsTxt) checkItemFailed(v, 'PolicyRobotsTxt');
   }
 
   PolicyRobotsTxt_Usage get usage => $_get(0, 1, null);
-  void set usage(PolicyRobotsTxt_Usage v) { setField(1, v); }
+  set usage(PolicyRobotsTxt_Usage v) { setField(1, v); }
   bool hasUsage() => $_has(0, 1);
   void clearUsage() => clearField(1);
 }
@@ -590,26 +601,26 @@ class PolicyUrlRule extends GeneratedMessage {
   }
   static PolicyUrlRule _defaultInstance;
   static void $checkItem(PolicyUrlRule v) {
-    if (v is !PolicyUrlRule) checkItemFailed(v, 'PolicyUrlRule');
+    if (v is! PolicyUrlRule) checkItemFailed(v, 'PolicyUrlRule');
   }
 
   String get pattern => $_get(0, 1, '');
-  void set pattern(String v) { $_setString(0, 1, v); }
+  set pattern(String v) { $_setString(0, 1, v); }
   bool hasPattern() => $_has(0, 1);
   void clearPattern() => clearField(1);
 
   PatternMatch get match => $_get(1, 2, null);
-  void set match(PatternMatch v) { setField(2, v); }
+  set match(PatternMatch v) { setField(2, v); }
   bool hasMatch() => $_has(1, 2);
   void clearMatch() => clearField(2);
 
   PolicyUrlRule_Action get action => $_get(2, 3, null);
-  void set action(PolicyUrlRule_Action v) { setField(3, v); }
+  set action(PolicyUrlRule_Action v) { setField(3, v); }
   bool hasAction() => $_has(2, 3);
   void clearAction() => clearField(3);
 
   double get amount => $_get(3, 4, null);
-  void set amount(double v) { $_setDouble(3, 4, v); }
+  set amount(double v) { $_setDouble(3, 4, v); }
   bool hasAmount() => $_has(3, 4);
   void clearAmount() => clearField(4);
 }
@@ -634,11 +645,11 @@ class PolicyUserAgent extends GeneratedMessage {
   }
   static PolicyUserAgent _defaultInstance;
   static void $checkItem(PolicyUserAgent v) {
-    if (v is !PolicyUserAgent) checkItemFailed(v, 'PolicyUserAgent');
+    if (v is! PolicyUserAgent) checkItemFailed(v, 'PolicyUserAgent');
   }
 
   String get name => $_get(0, 1, '');
-  void set name(String v) { $_setString(0, 1, v); }
+  set name(String v) { $_setString(0, 1, v); }
   bool hasName() => $_has(0, 1);
   void clearName() => clearField(1);
 }
@@ -666,24 +677,51 @@ class RateLimit extends GeneratedMessage {
   }
   static RateLimit _defaultInstance;
   static void $checkItem(RateLimit v) {
-    if (v is !RateLimit) checkItemFailed(v, 'RateLimit');
+    if (v is! RateLimit) checkItemFailed(v, 'RateLimit');
   }
 
   String get name => $_get(0, 1, '');
-  void set name(String v) { $_setString(0, 1, v); }
+  set name(String v) { $_setString(0, 1, v); }
   bool hasName() => $_has(0, 1);
   void clearName() => clearField(1);
 
   double get delay => $_get(1, 2, null);
-  void set delay(double v) { $_setFloat(1, 2, v); }
+  set delay(double v) { $_setFloat(1, 2, v); }
   bool hasDelay() => $_has(1, 2);
   void clearDelay() => clearField(2);
 
   String get domain => $_get(2, 3, '');
-  void set domain(String v) { $_setString(2, 3, v); }
+  set domain(String v) { $_setString(2, 3, v); }
   bool hasDomain() => $_has(2, 3);
   void clearDomain() => clearField(3);
 }
 
 class _ReadonlyRateLimit extends RateLimit with ReadonlyMessageMixin {}
+
+class TagList extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('TagList')
+    ..p/*<String>*/(1, 'tags', PbFieldType.PS)
+    ..hasRequiredFields = false
+  ;
+
+  TagList() : super();
+  TagList.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  TagList.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  TagList clone() => new TagList()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static TagList create() => new TagList();
+  static PbList<TagList> createRepeated() => new PbList<TagList>();
+  static TagList getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyTagList();
+    return _defaultInstance;
+  }
+  static TagList _defaultInstance;
+  static void $checkItem(TagList v) {
+    if (v is! TagList) checkItemFailed(v, 'TagList');
+  }
+
+  List<String> get tags => $_get(0, 1, null);
+}
+
+class _ReadonlyTagList extends TagList with ReadonlyMessageMixin {}
 

@@ -22,6 +22,7 @@ import 'package:starbelly/service/server.dart';
 )
 class ResultDetailView implements AfterViewInit, OnDestroy {
     Job job;
+    String tags;
 
     var ACTION_ADD = pb.PolicyUrlRule_Action.ADD;
     var ACTION_MULTIPLY = pb.PolicyUrlRule_Action.MULTIPLY;
@@ -64,6 +65,7 @@ class ResultDetailView implements AfterViewInit, OnDestroy {
         request.getJob.jobId = convert.hex.decode(jobId);
         var message = await this._server.sendRequest(request);
         this.job = new Job.fromPb2(message.response.job);
+        this.tags = this.job.tags.join(' ');
         this._document.title = this.job.name;
         this._document.breadcrumbs.last.name = this.job.name;
     }
@@ -71,5 +73,19 @@ class ResultDetailView implements AfterViewInit, OnDestroy {
     /// Called when Angular destroys the view.
     void ngOnDestroy() {
         this._subscription.cancel();
+    }
+
+    saveTags() async {
+        var request = new pb.Request();
+        request.setJob = new pb.RequestSetJob()
+            ..jobId = convert.hex.decode(this.job.jobId)
+            ..tagList = new pb.TagList();
+        for (var tagStr in this.tags.split(new RegExp(' +'))) {
+            request.setJob.tagList.tags.add(tagStr.trim());
+        }
+        var message = await this._server.sendRequest(request);
+        if (!message.response.isSuccess) {
+            window.alert('Could not save tags!');
+        }
     }
 }

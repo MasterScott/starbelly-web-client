@@ -92,7 +92,11 @@ class JobStatusService {
                 }
                 if (jobUpdate.runState == pb.JobRunState.DELETED) {
                     var job = this._jobMap.remove(jobUpdate.jobId);
-                    this._jobNames.remove(jobUpdate.jobId);
+                    // Remove name, but not right away: it may be needed for
+                    // toasts or other reasons.
+                    new Timer(new Duration(seconds: 60), () {
+                        this._jobNames.remove(jobUpdate.jobId);
+                    });
                     if (job != null) {
                         this._jobs.remove(job);
                     }

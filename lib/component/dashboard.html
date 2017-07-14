@@ -23,6 +23,7 @@
       <tr *ngFor="let job of jobStatus.jobs; let index=index">
         <td>
           <a [routerLink]='["/Results", "Detail", {"id":job.jobId}]'>{{job.name}}</a>
+          <ma-tag *ngFor='let tag of job.tags' type='primary' size='small'>{{tag}}</ma-tag>
         </td>
         <td>
           {{job.runStateStr}}

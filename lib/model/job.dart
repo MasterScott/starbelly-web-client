@@ -17,6 +17,7 @@ class Job {
     List<String> seeds;
     Policy policy;
     String name;
+    List<String> tags;
     pb.JobRunState runState;
     DateTime startedAt;
     DateTime completedAt;
@@ -41,6 +42,9 @@ class Job {
         }
         if (pbJob.hasName()) {
             this.name = pbJob.name;
+        }
+        if (pbJob.hasTagList()) {
+            this.tags = new List<String>.from(pbJob.tagList.tags);
         }
         if (pbJob.hasRunState()) {
             this.runState = pbJob.runState;
@@ -75,6 +79,7 @@ class Job {
 
     /// Merge data from another Job into this instance.
     void mergeFrom(Job other) {
+        this.tags = other.tags ?? this.tags;
         this.runState = other.runState ?? this.runState;
         this.startedAt = other.startedAt ?? this.startedAt;
         this.completedAt = other.completedAt ?? this.completedAt;
