@@ -23,10 +23,10 @@ class Policy {
     Policy() {
         this.name = 'New Policy';
         this.createdAt = new DateTime.now();
-        this.updatedAt = new DateTime.now();
+        this.updatedAt = this.createdAt;
         this.limits = new PolicyLimits();
         this.mimeTypeRules = [new PolicyMimeTypeRule()];
-        this.proxyRules = [];
+        this.proxyRules = [new PolicyProxyRule()];
         this.robotsTxt = new PolicyRobotsTxt();
         this.urlRules = [new PolicyUrlRule()];
         this.userAgents = [new PolicyUserAgent()];
@@ -160,9 +160,9 @@ class PolicyMimeTypeRule {
         pbRule.save = this.save;
         if (this.pattern.isNotEmpty) {
             pbRule.pattern = this.pattern;
-        }
-        if (this.match != null) {
-            pbRule.match = this.match;
+            if (this.match != null) {
+                pbRule.match = this.match;
+            }
         }
         return pbRule;
     }
@@ -177,32 +177,40 @@ class PolicyProxyRule {
     /// Create a default object.
     PolicyProxyRule() {
         this.pattern = '';
-        this.match = pb.PatternMatch.MATCHES;
+        // For the last rule, "match" is overloaded to mean "always" and "does
+        // not match" to mean "never".
+        this.match = pb.PatternMatch.DOES_NOT_MATCH;
         this.proxyUrl = '';
     }
 
     /// Create from a protobuf message.
     PolicyProxyRule.fromPb(pb.PolicyProxyRule pbRule) {
-        // Required:
-        this.proxyUrl = pbRule.proxyUrl;
-
-        // Optional:
-        this.pattern = pbRule.hasPattern() ? pbRule.pattern : '';
-        if (pbRule.hasMatch()) {
+        if (pbRule.hasPattern()) {
+            this.pattern = pbRule.pattern;
             this.match = pbRule.match;
+        } else {
+            this.pattern = '';
+            if (pbRule.hasProxyUrl()) {
+                this.match = pb.PatternMatch.MATCHES;
+                this.proxyUrl = pbRule.proxyUrl;
+            } else {
+                this.match = pb.PatternMatch.DOES_NOT_MATCH;
+                this.proxyUrl = '';
+            }
         }
     }
 
     /// Convert to protobuf message.
     pb.PolicyProxyRule toPb() {
         var pbRule = new pb.PolicyProxyRule();
-        if (this.pattern.isNotEmpty) {
+
+        if (this.pattern.isEmpty) {
+            if (this.match == pb.PatternMatch.MATCHES) {
+                pbRule.proxyUrl = this.proxyUrl;
+            }
+        } else {
             pbRule.pattern = this.pattern;
-        }
-        if (this.match != null) {
             pbRule.match = this.match;
-        }
-        if (this.proxyUrl.isNotEmpty) {
             pbRule.proxyUrl = this.proxyUrl;
         }
         return pbRule;
@@ -265,9 +273,9 @@ class PolicyUrlRule {
             ..action = this.action;
         if (this.pattern.isNotEmpty) {
             pbRule.pattern = this.pattern;
-        }
-        if (this.match != null) {
-            pbRule.match = this.match;
+            if (this.match != null) {
+                pbRule.match = this.match;
+            }
         }
         if (amount.isNotEmpty) {
             pbRule.amount = double.parse(this.amount);

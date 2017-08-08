@@ -74,6 +74,6 @@ class CrawlItem {
 
 /// Represents a single HTTP header line.
 class HttpHeader {
-    String name, value;
-    HttpHeader(this.name, this.value);
+    String key, value;
+    HttpHeader(this.key, this.value);
 }

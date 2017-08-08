@@ -1,12 +1,7 @@
 ///
 //  Generated code. Do not modify.
 ///
-// ignore_for_file: non_constant_identifier_names
-// ignore_for_file: library_prefixes
 library starbelly_client;
-
-// ignore: UNUSED_SHOWN_NAME
-import 'dart:core' show int, bool, double, String, List, override;
 
 import 'package:protobuf/protobuf.dart';
 
@@ -50,101 +45,101 @@ class Request extends GeneratedMessage {
   }
   static Request _defaultInstance;
   static void $checkItem(Request v) {
-    if (v is! Request) checkItemFailed(v, 'Request');
+    if (v is !Request) checkItemFailed(v, 'Request');
   }
 
   int get requestId => $_get(0, 1, 0);
-  set requestId(int v) { $_setUnsignedInt32(0, 1, v); }
+  void set requestId(int v) { $_setUnsignedInt32(0, 1, v); }
   bool hasRequestId() => $_has(0, 1);
   void clearRequestId() => clearField(1);
 
   RequestDeleteJob get deleteJob => $_get(1, 2, null);
-  set deleteJob(RequestDeleteJob v) { setField(2, v); }
+  void set deleteJob(RequestDeleteJob v) { setField(2, v); }
   bool hasDeleteJob() => $_has(1, 2);
   void clearDeleteJob() => clearField(2);
 
   RequestDeletePolicy get deletePolicy => $_get(2, 3, null);
-  set deletePolicy(RequestDeletePolicy v) { setField(3, v); }
+  void set deletePolicy(RequestDeletePolicy v) { setField(3, v); }
   bool hasDeletePolicy() => $_has(2, 3);
   void clearDeletePolicy() => clearField(3);
 
   RequestGetJob get getJob => $_get(3, 4, null);
-  set getJob(RequestGetJob v) { setField(4, v); }
+  void set getJob(RequestGetJob v) { setField(4, v); }
   bool hasGetJob() => $_has(3, 4);
   void clearGetJob() => clearField(4);
 
   RequestGetJobItems get getJobItems => $_get(4, 5, null);
-  set getJobItems(RequestGetJobItems v) { setField(5, v); }
+  void set getJobItems(RequestGetJobItems v) { setField(5, v); }
   bool hasGetJobItems() => $_has(4, 5);
   void clearGetJobItems() => clearField(5);
 
   RequestGetPolicy get getPolicy => $_get(5, 6, null);
-  set getPolicy(RequestGetPolicy v) { setField(6, v); }
+  void set getPolicy(RequestGetPolicy v) { setField(6, v); }
   bool hasGetPolicy() => $_has(5, 6);
   void clearGetPolicy() => clearField(6);
 
   RequestGetRateLimits get getRateLimits => $_get(6, 7, null);
-  set getRateLimits(RequestGetRateLimits v) { setField(7, v); }
+  void set getRateLimits(RequestGetRateLimits v) { setField(7, v); }
   bool hasGetRateLimits() => $_has(6, 7);
   void clearGetRateLimits() => clearField(7);
 
   RequestListJobs get listJobs => $_get(7, 8, null);
-  set listJobs(RequestListJobs v) { setField(8, v); }
+  void set listJobs(RequestListJobs v) { setField(8, v); }
   bool hasListJobs() => $_has(7, 8);
   void clearListJobs() => clearField(8);
 
   RequestListPolicies get listPolicies => $_get(8, 9, null);
-  set listPolicies(RequestListPolicies v) { setField(9, v); }
+  void set listPolicies(RequestListPolicies v) { setField(9, v); }
   bool hasListPolicies() => $_has(8, 9);
   void clearListPolicies() => clearField(9);
 
   RequestPerformanceProfile get performanceProfile => $_get(9, 10, null);
-  set performanceProfile(RequestPerformanceProfile v) { setField(10, v); }
+  void set performanceProfile(RequestPerformanceProfile v) { setField(10, v); }
   bool hasPerformanceProfile() => $_has(9, 10);
   void clearPerformanceProfile() => clearField(10);
 
   RequestPing get ping => $_get(10, 11, null);
-  set ping(RequestPing v) { setField(11, v); }
+  void set ping(RequestPing v) { setField(11, v); }
   bool hasPing() => $_has(10, 11);
   void clearPing() => clearField(11);
 
   RequestSetJob get setJob => $_get(11, 12, null);
-  set setJob(RequestSetJob v) { setField(12, v); }
+  void set setJob(RequestSetJob v) { setField(12, v); }
   bool hasSetJob() => $_has(11, 12);
   void clearSetJob() => clearField(12);
 
   RequestSetPolicy get setPolicy => $_get(12, 13, null);
-  set setPolicy(RequestSetPolicy v) { setField(13, v); }
+  void set setPolicy(RequestSetPolicy v) { setField(13, v); }
   bool hasSetPolicy() => $_has(12, 13);
   void clearSetPolicy() => clearField(13);
 
   RequestSetRateLimit get setRateLimit => $_get(13, 14, null);
-  set setRateLimit(RequestSetRateLimit v) { setField(14, v); }
+  void set setRateLimit(RequestSetRateLimit v) { setField(14, v); }
   bool hasSetRateLimit() => $_has(13, 14);
   void clearSetRateLimit() => clearField(14);
 
   RequestSubscribeJobStatus get subscribeJobStatus => $_get(14, 15, null);
-  set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(15, v); }
+  void set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(15, v); }
   bool hasSubscribeJobStatus() => $_has(14, 15);
   void clearSubscribeJobStatus() => clearField(15);
 
   RequestSubscribeJobSync get subscribeJobSync => $_get(15, 16, null);
-  set subscribeJobSync(RequestSubscribeJobSync v) { setField(16, v); }
+  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(16, v); }
   bool hasSubscribeJobSync() => $_has(15, 16);
   void clearSubscribeJobSync() => clearField(16);
 
   RequestSubscribeResourceMonitor get subscribeResourceMonitor => $_get(16, 17, null);
-  set subscribeResourceMonitor(RequestSubscribeResourceMonitor v) { setField(17, v); }
+  void set subscribeResourceMonitor(RequestSubscribeResourceMonitor v) { setField(17, v); }
   bool hasSubscribeResourceMonitor() => $_has(16, 17);
   void clearSubscribeResourceMonitor() => clearField(17);
 
   RequestSubscribeTaskMonitor get subscribeTaskMonitor => $_get(17, 18, null);
-  set subscribeTaskMonitor(RequestSubscribeTaskMonitor v) { setField(18, v); }
+  void set subscribeTaskMonitor(RequestSubscribeTaskMonitor v) { setField(18, v); }
   bool hasSubscribeTaskMonitor() => $_has(17, 18);
   void clearSubscribeTaskMonitor() => clearField(18);
 
   RequestUnsubscribe get unsubscribe => $_get(18, 19, null);
-  set unsubscribe(RequestUnsubscribe v) { setField(19, v); }
+  void set unsubscribe(RequestUnsubscribe v) { setField(19, v); }
   bool hasUnsubscribe() => $_has(18, 19);
   void clearUnsubscribe() => clearField(19);
 }
@@ -169,11 +164,11 @@ class RequestDeleteJob extends GeneratedMessage {
   }
   static RequestDeleteJob _defaultInstance;
   static void $checkItem(RequestDeleteJob v) {
-    if (v is! RequestDeleteJob) checkItemFailed(v, 'RequestDeleteJob');
+    if (v is !RequestDeleteJob) checkItemFailed(v, 'RequestDeleteJob');
   }
 
   List<int> get jobId => $_get(0, 1, null);
-  set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
   bool hasJobId() => $_has(0, 1);
   void clearJobId() => clearField(1);
 }
@@ -198,11 +193,11 @@ class RequestDeletePolicy extends GeneratedMessage {
   }
   static RequestDeletePolicy _defaultInstance;
   static void $checkItem(RequestDeletePolicy v) {
-    if (v is! RequestDeletePolicy) checkItemFailed(v, 'RequestDeletePolicy');
+    if (v is !RequestDeletePolicy) checkItemFailed(v, 'RequestDeletePolicy');
   }
 
   List<int> get policyId => $_get(0, 1, null);
-  set policyId(List<int> v) { $_setBytes(0, 1, v); }
+  void set policyId(List<int> v) { $_setBytes(0, 1, v); }
   bool hasPolicyId() => $_has(0, 1);
   void clearPolicyId() => clearField(1);
 }
@@ -227,11 +222,11 @@ class RequestGetJob extends GeneratedMessage {
   }
   static RequestGetJob _defaultInstance;
   static void $checkItem(RequestGetJob v) {
-    if (v is! RequestGetJob) checkItemFailed(v, 'RequestGetJob');
+    if (v is !RequestGetJob) checkItemFailed(v, 'RequestGetJob');
   }
 
   List<int> get jobId => $_get(0, 1, null);
-  set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
   bool hasJobId() => $_has(0, 1);
   void clearJobId() => clearField(1);
 }
@@ -261,36 +256,36 @@ class RequestGetJobItems extends GeneratedMessage {
   }
   static RequestGetJobItems _defaultInstance;
   static void $checkItem(RequestGetJobItems v) {
-    if (v is! RequestGetJobItems) checkItemFailed(v, 'RequestGetJobItems');
+    if (v is !RequestGetJobItems) checkItemFailed(v, 'RequestGetJobItems');
   }
 
   List<int> get jobId => $_get(0, 1, null);
-  set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
   bool hasJobId() => $_has(0, 1);
   void clearJobId() => clearField(1);
 
   bool get includeSuccess => $_get(1, 2, false);
-  set includeSuccess(bool v) { $_setBool(1, 2, v); }
+  void set includeSuccess(bool v) { $_setBool(1, 2, v); }
   bool hasIncludeSuccess() => $_has(1, 2);
   void clearIncludeSuccess() => clearField(2);
 
   bool get includeError => $_get(2, 3, false);
-  set includeError(bool v) { $_setBool(2, 3, v); }
+  void set includeError(bool v) { $_setBool(2, 3, v); }
   bool hasIncludeError() => $_has(2, 3);
   void clearIncludeError() => clearField(3);
 
   bool get includeException => $_get(3, 4, false);
-  set includeException(bool v) { $_setBool(3, 4, v); }
+  void set includeException(bool v) { $_setBool(3, 4, v); }
   bool hasIncludeException() => $_has(3, 4);
   void clearIncludeException() => clearField(4);
 
   bool get compressionOk => $_get(4, 5, true);
-  set compressionOk(bool v) { $_setBool(4, 5, v); }
+  void set compressionOk(bool v) { $_setBool(4, 5, v); }
   bool hasCompressionOk() => $_has(4, 5);
   void clearCompressionOk() => clearField(5);
 
   Page get page => $_get(5, 6, null);
-  set page(Page v) { setField(6, v); }
+  void set page(Page v) { setField(6, v); }
   bool hasPage() => $_has(5, 6);
   void clearPage() => clearField(6);
 }
@@ -315,11 +310,11 @@ class RequestGetPolicy extends GeneratedMessage {
   }
   static RequestGetPolicy _defaultInstance;
   static void $checkItem(RequestGetPolicy v) {
-    if (v is! RequestGetPolicy) checkItemFailed(v, 'RequestGetPolicy');
+    if (v is !RequestGetPolicy) checkItemFailed(v, 'RequestGetPolicy');
   }
 
   List<int> get policyId => $_get(0, 1, null);
-  set policyId(List<int> v) { $_setBytes(0, 1, v); }
+  void set policyId(List<int> v) { $_setBytes(0, 1, v); }
   bool hasPolicyId() => $_has(0, 1);
   void clearPolicyId() => clearField(1);
 }
@@ -345,11 +340,11 @@ class RequestGetRateLimits extends GeneratedMessage {
   }
   static RequestGetRateLimits _defaultInstance;
   static void $checkItem(RequestGetRateLimits v) {
-    if (v is! RequestGetRateLimits) checkItemFailed(v, 'RequestGetRateLimits');
+    if (v is !RequestGetRateLimits) checkItemFailed(v, 'RequestGetRateLimits');
   }
 
   Page get page => $_get(0, 1, null);
-  set page(Page v) { setField(1, v); }
+  void set page(Page v) { setField(1, v); }
   bool hasPage() => $_has(0, 1);
   void clearPage() => clearField(1);
 }
@@ -377,21 +372,21 @@ class RequestListJobs extends GeneratedMessage {
   }
   static RequestListJobs _defaultInstance;
   static void $checkItem(RequestListJobs v) {
-    if (v is! RequestListJobs) checkItemFailed(v, 'RequestListJobs');
+    if (v is !RequestListJobs) checkItemFailed(v, 'RequestListJobs');
   }
 
   Page get page => $_get(0, 1, null);
-  set page(Page v) { setField(1, v); }
+  void set page(Page v) { setField(1, v); }
   bool hasPage() => $_has(0, 1);
   void clearPage() => clearField(1);
 
   String get startedAfter => $_get(1, 2, '');
-  set startedAfter(String v) { $_setString(1, 2, v); }
+  void set startedAfter(String v) { $_setString(1, 2, v); }
   bool hasStartedAfter() => $_has(1, 2);
   void clearStartedAfter() => clearField(2);
 
   String get tag => $_get(2, 3, '');
-  set tag(String v) { $_setString(2, 3, v); }
+  void set tag(String v) { $_setString(2, 3, v); }
   bool hasTag() => $_has(2, 3);
   void clearTag() => clearField(3);
 }
@@ -417,11 +412,11 @@ class RequestListPolicies extends GeneratedMessage {
   }
   static RequestListPolicies _defaultInstance;
   static void $checkItem(RequestListPolicies v) {
-    if (v is! RequestListPolicies) checkItemFailed(v, 'RequestListPolicies');
+    if (v is !RequestListPolicies) checkItemFailed(v, 'RequestListPolicies');
   }
 
   Page get page => $_get(0, 1, null);
-  set page(Page v) { setField(1, v); }
+  void set page(Page v) { setField(1, v); }
   bool hasPage() => $_has(0, 1);
   void clearPage() => clearField(1);
 }
@@ -449,21 +444,21 @@ class RequestPerformanceProfile extends GeneratedMessage {
   }
   static RequestPerformanceProfile _defaultInstance;
   static void $checkItem(RequestPerformanceProfile v) {
-    if (v is! RequestPerformanceProfile) checkItemFailed(v, 'RequestPerformanceProfile');
+    if (v is !RequestPerformanceProfile) checkItemFailed(v, 'RequestPerformanceProfile');
   }
 
   double get duration => $_get(0, 1, null);
-  set duration(double v) { $_setDouble(0, 1, v); }
+  void set duration(double v) { $_setDouble(0, 1, v); }
   bool hasDuration() => $_has(0, 1);
   void clearDuration() => clearField(1);
 
   String get sortBy => $_get(1, 2, 'time');
-  set sortBy(String v) { $_setString(1, 2, v); }
+  void set sortBy(String v) { $_setString(1, 2, v); }
   bool hasSortBy() => $_has(1, 2);
   void clearSortBy() => clearField(2);
 
   int get topN => $_get(2, 3, 0);
-  set topN(int v) { $_setUnsignedInt32(2, 3, v); }
+  void set topN(int v) { $_setUnsignedInt32(2, 3, v); }
   bool hasTopN() => $_has(2, 3);
   void clearTopN() => clearField(3);
 }
@@ -489,11 +484,11 @@ class RequestPing extends GeneratedMessage {
   }
   static RequestPing _defaultInstance;
   static void $checkItem(RequestPing v) {
-    if (v is! RequestPing) checkItemFailed(v, 'RequestPing');
+    if (v is !RequestPing) checkItemFailed(v, 'RequestPing');
   }
 
   String get pong => $_get(0, 1, '');
-  set pong(String v) { $_setString(0, 1, v); }
+  void set pong(String v) { $_setString(0, 1, v); }
   bool hasPong() => $_has(0, 1);
   void clearPong() => clearField(1);
 }
@@ -524,33 +519,33 @@ class RequestSetJob extends GeneratedMessage {
   }
   static RequestSetJob _defaultInstance;
   static void $checkItem(RequestSetJob v) {
-    if (v is! RequestSetJob) checkItemFailed(v, 'RequestSetJob');
+    if (v is !RequestSetJob) checkItemFailed(v, 'RequestSetJob');
   }
 
   List<int> get jobId => $_get(0, 1, null);
-  set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
   bool hasJobId() => $_has(0, 1);
   void clearJobId() => clearField(1);
 
   JobRunState get runState => $_get(1, 2, null);
-  set runState(JobRunState v) { setField(2, v); }
+  void set runState(JobRunState v) { setField(2, v); }
   bool hasRunState() => $_has(1, 2);
   void clearRunState() => clearField(2);
 
   List<int> get policyId => $_get(2, 3, null);
-  set policyId(List<int> v) { $_setBytes(2, 3, v); }
+  void set policyId(List<int> v) { $_setBytes(2, 3, v); }
   bool hasPolicyId() => $_has(2, 3);
   void clearPolicyId() => clearField(3);
 
   List<String> get seeds => $_get(3, 4, null);
 
   String get name => $_get(4, 5, '');
-  set name(String v) { $_setString(4, 5, v); }
+  void set name(String v) { $_setString(4, 5, v); }
   bool hasName() => $_has(4, 5);
   void clearName() => clearField(5);
 
   TagList get tagList => $_get(5, 6, null);
-  set tagList(TagList v) { setField(6, v); }
+  void set tagList(TagList v) { setField(6, v); }
   bool hasTagList() => $_has(5, 6);
   void clearTagList() => clearField(6);
 }
@@ -575,11 +570,11 @@ class RequestSetRateLimit extends GeneratedMessage {
   }
   static RequestSetRateLimit _defaultInstance;
   static void $checkItem(RequestSetRateLimit v) {
-    if (v is! RequestSetRateLimit) checkItemFailed(v, 'RequestSetRateLimit');
+    if (v is !RequestSetRateLimit) checkItemFailed(v, 'RequestSetRateLimit');
   }
 
   RateLimit get rateLimit => $_get(0, 1, null);
-  set rateLimit(RateLimit v) { setField(1, v); }
+  void set rateLimit(RateLimit v) { setField(1, v); }
   bool hasRateLimit() => $_has(0, 1);
   void clearRateLimit() => clearField(1);
 }
@@ -604,11 +599,11 @@ class RequestSetPolicy extends GeneratedMessage {
   }
   static RequestSetPolicy _defaultInstance;
   static void $checkItem(RequestSetPolicy v) {
-    if (v is! RequestSetPolicy) checkItemFailed(v, 'RequestSetPolicy');
+    if (v is !RequestSetPolicy) checkItemFailed(v, 'RequestSetPolicy');
   }
 
   Policy get policy => $_get(0, 1, null);
-  set policy(Policy v) { setField(1, v); }
+  void set policy(Policy v) { setField(1, v); }
   bool hasPolicy() => $_has(0, 1);
   void clearPolicy() => clearField(1);
 }
@@ -634,11 +629,11 @@ class RequestSubscribeJobStatus extends GeneratedMessage {
   }
   static RequestSubscribeJobStatus _defaultInstance;
   static void $checkItem(RequestSubscribeJobStatus v) {
-    if (v is! RequestSubscribeJobStatus) checkItemFailed(v, 'RequestSubscribeJobStatus');
+    if (v is !RequestSubscribeJobStatus) checkItemFailed(v, 'RequestSubscribeJobStatus');
   }
 
   double get minInterval => $_get(0, 1, null);
-  set minInterval(double v) { $_setDouble(0, 1, v); }
+  void set minInterval(double v) { $_setDouble(0, 1, v); }
   bool hasMinInterval() => $_has(0, 1);
   void clearMinInterval() => clearField(1);
 }
@@ -665,21 +660,21 @@ class RequestSubscribeJobSync extends GeneratedMessage {
   }
   static RequestSubscribeJobSync _defaultInstance;
   static void $checkItem(RequestSubscribeJobSync v) {
-    if (v is! RequestSubscribeJobSync) checkItemFailed(v, 'RequestSubscribeJobSync');
+    if (v is !RequestSubscribeJobSync) checkItemFailed(v, 'RequestSubscribeJobSync');
   }
 
   List<int> get jobId => $_get(0, 1, null);
-  set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
   bool hasJobId() => $_has(0, 1);
   void clearJobId() => clearField(1);
 
   List<int> get syncToken => $_get(1, 2, null);
-  set syncToken(List<int> v) { $_setBytes(1, 2, v); }
+  void set syncToken(List<int> v) { $_setBytes(1, 2, v); }
   bool hasSyncToken() => $_has(1, 2);
   void clearSyncToken() => clearField(2);
 
   bool get compressionOk => $_get(2, 3, true);
-  set compressionOk(bool v) { $_setBool(2, 3, v); }
+  void set compressionOk(bool v) { $_setBool(2, 3, v); }
   bool hasCompressionOk() => $_has(2, 3);
   void clearCompressionOk() => clearField(3);
 }
@@ -705,11 +700,11 @@ class RequestSubscribeResourceMonitor extends GeneratedMessage {
   }
   static RequestSubscribeResourceMonitor _defaultInstance;
   static void $checkItem(RequestSubscribeResourceMonitor v) {
-    if (v is! RequestSubscribeResourceMonitor) checkItemFailed(v, 'RequestSubscribeResourceMonitor');
+    if (v is !RequestSubscribeResourceMonitor) checkItemFailed(v, 'RequestSubscribeResourceMonitor');
   }
 
   int get history => $_get(0, 1, 300);
-  set history(int v) { $_setUnsignedInt32(0, 1, v); }
+  void set history(int v) { $_setUnsignedInt32(0, 1, v); }
   bool hasHistory() => $_has(0, 1);
   void clearHistory() => clearField(1);
 }
@@ -736,16 +731,16 @@ class RequestSubscribeTaskMonitor extends GeneratedMessage {
   }
   static RequestSubscribeTaskMonitor _defaultInstance;
   static void $checkItem(RequestSubscribeTaskMonitor v) {
-    if (v is! RequestSubscribeTaskMonitor) checkItemFailed(v, 'RequestSubscribeTaskMonitor');
+    if (v is !RequestSubscribeTaskMonitor) checkItemFailed(v, 'RequestSubscribeTaskMonitor');
   }
 
   double get period => $_get(0, 1, null);
-  set period(double v) { $_setDouble(0, 1, v); }
+  void set period(double v) { $_setDouble(0, 1, v); }
   bool hasPeriod() => $_has(0, 1);
   void clearPeriod() => clearField(1);
 
   int get topN => $_get(1, 2, 20);
-  set topN(int v) { $_setUnsignedInt32(1, 2, v); }
+  void set topN(int v) { $_setUnsignedInt32(1, 2, v); }
   bool hasTopN() => $_has(1, 2);
   void clearTopN() => clearField(2);
 }
@@ -770,11 +765,11 @@ class RequestUnsubscribe extends GeneratedMessage {
   }
   static RequestUnsubscribe _defaultInstance;
   static void $checkItem(RequestUnsubscribe v) {
-    if (v is! RequestUnsubscribe) checkItemFailed(v, 'RequestUnsubscribe');
+    if (v is !RequestUnsubscribe) checkItemFailed(v, 'RequestUnsubscribe');
   }
 
   int get subscriptionId => $_get(0, 1, 0);
-  set subscriptionId(int v) { $_setUnsignedInt32(0, 1, v); }
+  void set subscriptionId(int v) { $_setUnsignedInt32(0, 1, v); }
   bool hasSubscriptionId() => $_has(0, 1);
   void clearSubscriptionId() => clearField(1);
 }

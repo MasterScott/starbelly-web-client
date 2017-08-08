@@ -168,47 +168,63 @@
         </p>
         <ol>
           <li *ngFor='let proxyRule of policy.proxyRules; let index=index; let first=first; let last=last'>
-            <span *ngIf='first'>If</span>
-            <span *ngIf='!first'>Else if</span>
-            the URL
-            <ma-input-group [in-text]='true'>
-              <select [(ngModel)]='proxyRule.match'>
-                <option [ngValue]='MATCHES'>matches</option>
-                <option [ngValue]='DOES_NOT_MATCH'>does not match</option>
-              </select>
-            </ma-input-group>
-            &nbsp;the regex&nbsp;
-            <ma-input-group [in-text]='true'>
-              <input type='text' [(ngModel)]='proxyRule.pattern' placeholder='regex pattern'>
-            </ma-input-group>
-            <br>then use the proxy
-            <ma-input-group [in-text]='true'>
-              <input type='text' [(ngModel)]='proxyRule.proxyUrl' placeholder='proxy URL'>
-            </ma-input-group>
-            &nbsp;
-            <span class='edit-buttons'>
-              <ma-button [disabled]='first'
-                         size='small'
-                         (click)='moveUp(policy.proxyRules, index)'>
-                <fa name='arrow-circle-up'></fa>
-              </ma-button>
-              <ma-button [disabled]='last'
-                         size='small'
-                         (click)='moveDown(policy.proxyRules, index)'>
-                <fa name='arrow-circle-down'></fa>
-              </ma-button>
-              <ma-button size='small'
-                         type='danger'
-                         (click)='delete(policy.proxyRules, index)'>
-                <fa name='trash'></fa>
-              </ma-button>
+            <span *ngIf='!last'>
+              <span *ngIf='first'>If</span>
+              <span *ngIf='!first'>Else if</span>
+              the URL
+              <ma-input-group [in-text]='true'>
+                <select [(ngModel)]='proxyRule.match'>
+                  <option [ngValue]='MATCHES'>matches</option>
+                  <option [ngValue]='DOES_NOT_MATCH'>does not match</option>
+                </select>
+              </ma-input-group>
+              &nbsp;the regex&nbsp;
+              <ma-input-group [in-text]='true'>
+                <input type='text' [(ngModel)]='proxyRule.pattern' placeholder='regex pattern'>
+              </ma-input-group>
+              <br>then use the proxy
+              <ma-input-group [in-text]='true'>
+                <input type='text' [(ngModel)]='proxyRule.proxyUrl' placeholder='proxy URL'>
+              </ma-input-group>
+              &nbsp;
+              <span class='edit-buttons'>
+                <ma-button [disabled]='first'
+                           size='small'
+                           (click)='moveUp(policy.proxyRules, index)'>
+                  <fa name='arrow-circle-up'></fa>
+                </ma-button>
+                <ma-button [disabled]='index == policy.proxyRules.length - 2'
+                           size='small'
+                           (click)='moveDown(policy.proxyRules, index)'>
+                  <fa name='arrow-circle-down'></fa>
+                </ma-button>
+                <ma-button size='small'
+                           type='danger'
+                           (click)='delete(policy.proxyRules, index)'>
+                  <fa name='trash'></fa>
+                </ma-button>
+              </span>
             </span>
-          </li>
-          <li *ngIf='policy.proxyRules.length == 0'>
-            Never use a proxy.
-          </li>
-          <li *ngIf='policy.proxyRules.length > 0'>
-            Else don't use a proxy.
+            <span *ngIf='last'>
+              <span *ngIf='index > 0'>
+                Else,
+              </span>
+              <ma-input-group [in-text]='true'>
+                <select [(ngModel)]='proxyRule.match'>
+                  <option [ngValue]='MATCHES'>Always</option>
+                  <option [ngValue]='DOES_NOT_MATCH'>Never</option>
+                </select>
+              </ma-input-group>&nbsp;
+              <span *ngIf='proxyRule.match == MATCHES'>
+                use the proxy
+                <ma-input-group [in-text]='true'>
+                  <input type='text' [(ngModel)]='proxyRule.proxyUrl' placeholder='proxy URL'>
+                </ma-input-group>
+              </span>
+              <span *ngIf='proxyRule.match == DOES_NOT_MATCH'>
+                use a proxy.
+              </span>
+            </span>
           </li>
         </ol>
         <p>

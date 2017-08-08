@@ -24,10 +24,11 @@ class PolicyListView implements AfterViewInit {
     int totalRows = 0;
 
     DocumentService _document;
+    Router _router;
     ServerService _server;
 
     /// Constructor
-    PolicyListView(this._document, this._server) {
+    PolicyListView(this._document, this._router, this._server) {
         this._document.title = 'Crawl Policy';
         this._document.breadcrumbs = [
             new Breadcrumb(name: 'Crawl Policy', icon: 'cogs')
@@ -35,7 +36,7 @@ class PolicyListView implements AfterViewInit {
     }
 
     /// Delete the specified policy
-    void deletePolicy(ButtonClick click, Policy policy) async {
+    deletePolicy(ButtonClick click, Policy policy) async {
         click.button.busy = true;
         var request = new pb.Request();
         request.deletePolicy = new pb.RequestDeletePolicy()
@@ -43,6 +44,34 @@ class PolicyListView implements AfterViewInit {
         var message = await this._server.sendRequest(request);
         await this.getPage();
         click.button.busy = false;
+    }
+
+    /// Duplicate the specified policy.
+    duplicatePolicy(ButtonClick click, Policy policyStub) async {
+        click.button.busy = true;
+
+        // Fetch the entire policy.
+        var oldPolicyRequest = new pb.Request();
+        oldPolicyRequest.getPolicy = new pb.RequestGetPolicy()
+            ..policyId = convert.hex.decode(policyStub.policyId);
+        var oldPolicyMessage = await this._server.sendRequest(oldPolicyRequest);
+
+        // Create new policy
+        var newPolicy = new Policy.fromPb(oldPolicyMessage.response.policy);
+        newPolicy.policyId = null;
+        newPolicy.name += ' (Copy)';
+        newPolicy.createdAt = new DateTime.now();
+        newPolicy.updatedAt = newPolicy.createdAt;
+
+        // Save new policy.
+        var newPolicyRequest = new pb.Request();
+        newPolicyRequest.setPolicy = new pb.RequestSetPolicy();
+        newPolicyRequest.setPolicy.policy = newPolicy.toPb();
+        var newPolicyMessage = await this._server.sendRequest(newPolicyRequest);
+        var newPolicyResponse = newPolicyMessage.response;
+        var newPolicyId = convert.hex.encode(
+            newPolicyResponse.newPolicy.policyId);
+        this._router.navigate(['../Detail', {"id": newPolicyId}]);
     }
 
     /// Fetch current page of results.

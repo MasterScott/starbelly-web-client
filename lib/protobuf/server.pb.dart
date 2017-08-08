@@ -1,12 +1,7 @@
 ///
 //  Generated code. Do not modify.
 ///
-// ignore_for_file: non_constant_identifier_names
-// ignore_for_file: library_prefixes
 library starbelly_server;
-
-// ignore: UNUSED_SHOWN_NAME
-import 'dart:core' show int, bool, double, String, List, override;
 
 import 'package:fixnum/fixnum.dart';
 import 'package:protobuf/protobuf.dart';
@@ -40,36 +35,36 @@ class Event extends GeneratedMessage {
   }
   static Event _defaultInstance;
   static void $checkItem(Event v) {
-    if (v is! Event) checkItemFailed(v, 'Event');
+    if (v is !Event) checkItemFailed(v, 'Event');
   }
 
   int get subscriptionId => $_get(0, 1, 0);
-  set subscriptionId(int v) { $_setUnsignedInt32(0, 1, v); }
+  void set subscriptionId(int v) { $_setUnsignedInt32(0, 1, v); }
   bool hasSubscriptionId() => $_has(0, 1);
   void clearSubscriptionId() => clearField(1);
 
   JobList get jobList => $_get(1, 2, null);
-  set jobList(JobList v) { setField(2, v); }
+  void set jobList(JobList v) { setField(2, v); }
   bool hasJobList() => $_has(1, 2);
   void clearJobList() => clearField(2);
 
   ResourceFrame get resourceFrame => $_get(2, 3, null);
-  set resourceFrame(ResourceFrame v) { setField(3, v); }
+  void set resourceFrame(ResourceFrame v) { setField(3, v); }
   bool hasResourceFrame() => $_has(2, 3);
   void clearResourceFrame() => clearField(3);
 
   SubscriptionClosed get subscriptionClosed => $_get(3, 4, null);
-  set subscriptionClosed(SubscriptionClosed v) { setField(4, v); }
+  void set subscriptionClosed(SubscriptionClosed v) { setField(4, v); }
   bool hasSubscriptionClosed() => $_has(3, 4);
   void clearSubscriptionClosed() => clearField(4);
 
   SyncItem get syncItem => $_get(4, 5, null);
-  set syncItem(SyncItem v) { setField(5, v); }
+  void set syncItem(SyncItem v) { setField(5, v); }
   bool hasSyncItem() => $_has(4, 5);
   void clearSyncItem() => clearField(5);
 
   TaskMonitor get taskMonitor => $_get(5, 6, null);
-  set taskMonitor(TaskMonitor v) { setField(6, v); }
+  void set taskMonitor(TaskMonitor v) { setField(6, v); }
   bool hasTaskMonitor() => $_has(5, 6);
   void clearTaskMonitor() => clearField(6);
 }
@@ -101,41 +96,41 @@ class PerformanceProfileFunction extends GeneratedMessage {
   }
   static PerformanceProfileFunction _defaultInstance;
   static void $checkItem(PerformanceProfileFunction v) {
-    if (v is! PerformanceProfileFunction) checkItemFailed(v, 'PerformanceProfileFunction');
+    if (v is !PerformanceProfileFunction) checkItemFailed(v, 'PerformanceProfileFunction');
   }
 
   String get file => $_get(0, 1, '');
-  set file(String v) { $_setString(0, 1, v); }
+  void set file(String v) { $_setString(0, 1, v); }
   bool hasFile() => $_has(0, 1);
   void clearFile() => clearField(1);
 
   int get lineNumber => $_get(1, 2, 0);
-  set lineNumber(int v) { $_setUnsignedInt32(1, 2, v); }
+  void set lineNumber(int v) { $_setUnsignedInt32(1, 2, v); }
   bool hasLineNumber() => $_has(1, 2);
   void clearLineNumber() => clearField(2);
 
   String get function => $_get(2, 3, '');
-  set function(String v) { $_setString(2, 3, v); }
+  void set function(String v) { $_setString(2, 3, v); }
   bool hasFunction() => $_has(2, 3);
   void clearFunction() => clearField(3);
 
   int get calls => $_get(3, 4, 0);
-  set calls(int v) { $_setUnsignedInt32(3, 4, v); }
+  void set calls(int v) { $_setUnsignedInt32(3, 4, v); }
   bool hasCalls() => $_has(3, 4);
   void clearCalls() => clearField(4);
 
   int get nonRecursiveCalls => $_get(4, 5, 0);
-  set nonRecursiveCalls(int v) { $_setUnsignedInt32(4, 5, v); }
+  void set nonRecursiveCalls(int v) { $_setUnsignedInt32(4, 5, v); }
   bool hasNonRecursiveCalls() => $_has(4, 5);
   void clearNonRecursiveCalls() => clearField(5);
 
   double get totalTime => $_get(5, 6, null);
-  set totalTime(double v) { $_setDouble(5, 6, v); }
+  void set totalTime(double v) { $_setDouble(5, 6, v); }
   bool hasTotalTime() => $_has(5, 6);
   void clearTotalTime() => clearField(6);
 
   double get cumulativeTime => $_get(6, 7, null);
-  set cumulativeTime(double v) { $_setDouble(6, 7, v); }
+  void set cumulativeTime(double v) { $_setDouble(6, 7, v); }
   bool hasCumulativeTime() => $_has(6, 7);
   void clearCumulativeTime() => clearField(7);
 }
@@ -168,18 +163,18 @@ class ResourceFrame extends GeneratedMessage {
   }
   static ResourceFrame _defaultInstance;
   static void $checkItem(ResourceFrame v) {
-    if (v is! ResourceFrame) checkItemFailed(v, 'ResourceFrame');
+    if (v is !ResourceFrame) checkItemFailed(v, 'ResourceFrame');
   }
 
   String get timestamp => $_get(0, 1, '');
-  set timestamp(String v) { $_setString(0, 1, v); }
+  void set timestamp(String v) { $_setString(0, 1, v); }
   bool hasTimestamp() => $_has(0, 1);
   void clearTimestamp() => clearField(1);
 
   List<ResourceFrameCpu> get cpus => $_get(1, 2, null);
 
   ResourceFrameMemory get memory => $_get(2, 3, null);
-  set memory(ResourceFrameMemory v) { setField(3, v); }
+  void set memory(ResourceFrameMemory v) { setField(3, v); }
   bool hasMemory() => $_has(2, 3);
   void clearMemory() => clearField(3);
 
@@ -190,12 +185,12 @@ class ResourceFrame extends GeneratedMessage {
   List<ResourceFrameCrawl> get crawls => $_get(5, 6, null);
 
   ResourceFrameRateLimiter get rateLimiter => $_get(6, 7, null);
-  set rateLimiter(ResourceFrameRateLimiter v) { setField(7, v); }
+  void set rateLimiter(ResourceFrameRateLimiter v) { setField(7, v); }
   bool hasRateLimiter() => $_has(6, 7);
   void clearRateLimiter() => clearField(7);
 
   ResourceFrameDownloader get downloader => $_get(7, 8, null);
-  set downloader(ResourceFrameDownloader v) { setField(8, v); }
+  void set downloader(ResourceFrameDownloader v) { setField(8, v); }
   bool hasDownloader() => $_has(7, 8);
   void clearDownloader() => clearField(8);
 }
@@ -221,11 +216,11 @@ class ResourceFrameCpu extends GeneratedMessage {
   }
   static ResourceFrameCpu _defaultInstance;
   static void $checkItem(ResourceFrameCpu v) {
-    if (v is! ResourceFrameCpu) checkItemFailed(v, 'ResourceFrameCpu');
+    if (v is !ResourceFrameCpu) checkItemFailed(v, 'ResourceFrameCpu');
   }
 
   double get usage => $_get(0, 1, null);
-  set usage(double v) { $_setDouble(0, 1, v); }
+  void set usage(double v) { $_setDouble(0, 1, v); }
   bool hasUsage() => $_has(0, 1);
   void clearUsage() => clearField(1);
 }
@@ -254,26 +249,26 @@ class ResourceFrameCrawl extends GeneratedMessage {
   }
   static ResourceFrameCrawl _defaultInstance;
   static void $checkItem(ResourceFrameCrawl v) {
-    if (v is! ResourceFrameCrawl) checkItemFailed(v, 'ResourceFrameCrawl');
+    if (v is !ResourceFrameCrawl) checkItemFailed(v, 'ResourceFrameCrawl');
   }
 
   List<int> get jobId => $_get(0, 1, null);
-  set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
   bool hasJobId() => $_has(0, 1);
   void clearJobId() => clearField(1);
 
   int get frontier => $_get(1, 2, 0);
-  set frontier(int v) { $_setUnsignedInt32(1, 2, v); }
+  void set frontier(int v) { $_setUnsignedInt32(1, 2, v); }
   bool hasFrontier() => $_has(1, 2);
   void clearFrontier() => clearField(2);
 
   int get pending => $_get(2, 3, 0);
-  set pending(int v) { $_setUnsignedInt32(2, 3, v); }
+  void set pending(int v) { $_setUnsignedInt32(2, 3, v); }
   bool hasPending() => $_has(2, 3);
   void clearPending() => clearField(3);
 
   int get extraction => $_get(3, 4, 0);
-  set extraction(int v) { $_setUnsignedInt32(3, 4, v); }
+  void set extraction(int v) { $_setUnsignedInt32(3, 4, v); }
   bool hasExtraction() => $_has(3, 4);
   void clearExtraction() => clearField(4);
 }
@@ -301,21 +296,21 @@ class ResourceFrameDisk extends GeneratedMessage {
   }
   static ResourceFrameDisk _defaultInstance;
   static void $checkItem(ResourceFrameDisk v) {
-    if (v is! ResourceFrameDisk) checkItemFailed(v, 'ResourceFrameDisk');
+    if (v is !ResourceFrameDisk) checkItemFailed(v, 'ResourceFrameDisk');
   }
 
   String get mount => $_get(0, 1, '');
-  set mount(String v) { $_setString(0, 1, v); }
+  void set mount(String v) { $_setString(0, 1, v); }
   bool hasMount() => $_has(0, 1);
   void clearMount() => clearField(1);
 
   Int64 get used => $_get(1, 2, null);
-  set used(Int64 v) { $_setInt64(1, 2, v); }
+  void set used(Int64 v) { $_setInt64(1, 2, v); }
   bool hasUsed() => $_has(1, 2);
   void clearUsed() => clearField(2);
 
   Int64 get total => $_get(2, 3, null);
-  set total(Int64 v) { $_setInt64(2, 3, v); }
+  void set total(Int64 v) { $_setInt64(2, 3, v); }
   bool hasTotal() => $_has(2, 3);
   void clearTotal() => clearField(3);
 }
@@ -341,11 +336,11 @@ class ResourceFrameDownloader extends GeneratedMessage {
   }
   static ResourceFrameDownloader _defaultInstance;
   static void $checkItem(ResourceFrameDownloader v) {
-    if (v is! ResourceFrameDownloader) checkItemFailed(v, 'ResourceFrameDownloader');
+    if (v is !ResourceFrameDownloader) checkItemFailed(v, 'ResourceFrameDownloader');
   }
 
   int get count => $_get(0, 1, 0);
-  set count(int v) { $_setUnsignedInt32(0, 1, v); }
+  void set count(int v) { $_setUnsignedInt32(0, 1, v); }
   bool hasCount() => $_has(0, 1);
   void clearCount() => clearField(1);
 }
@@ -372,16 +367,16 @@ class ResourceFrameMemory extends GeneratedMessage {
   }
   static ResourceFrameMemory _defaultInstance;
   static void $checkItem(ResourceFrameMemory v) {
-    if (v is! ResourceFrameMemory) checkItemFailed(v, 'ResourceFrameMemory');
+    if (v is !ResourceFrameMemory) checkItemFailed(v, 'ResourceFrameMemory');
   }
 
   Int64 get used => $_get(0, 1, null);
-  set used(Int64 v) { $_setInt64(0, 1, v); }
+  void set used(Int64 v) { $_setInt64(0, 1, v); }
   bool hasUsed() => $_has(0, 1);
   void clearUsed() => clearField(1);
 
   Int64 get total => $_get(1, 2, null);
-  set total(Int64 v) { $_setInt64(1, 2, v); }
+  void set total(Int64 v) { $_setInt64(1, 2, v); }
   bool hasTotal() => $_has(1, 2);
   void clearTotal() => clearField(2);
 }
@@ -409,21 +404,21 @@ class ResourceFrameNetwork extends GeneratedMessage {
   }
   static ResourceFrameNetwork _defaultInstance;
   static void $checkItem(ResourceFrameNetwork v) {
-    if (v is! ResourceFrameNetwork) checkItemFailed(v, 'ResourceFrameNetwork');
+    if (v is !ResourceFrameNetwork) checkItemFailed(v, 'ResourceFrameNetwork');
   }
 
   String get name => $_get(0, 1, '');
-  set name(String v) { $_setString(0, 1, v); }
+  void set name(String v) { $_setString(0, 1, v); }
   bool hasName() => $_has(0, 1);
   void clearName() => clearField(1);
 
   Int64 get sent => $_get(1, 2, null);
-  set sent(Int64 v) { $_setInt64(1, 2, v); }
+  void set sent(Int64 v) { $_setInt64(1, 2, v); }
   bool hasSent() => $_has(1, 2);
   void clearSent() => clearField(2);
 
   Int64 get received => $_get(2, 3, null);
-  set received(Int64 v) { $_setInt64(2, 3, v); }
+  void set received(Int64 v) { $_setInt64(2, 3, v); }
   bool hasReceived() => $_has(2, 3);
   void clearReceived() => clearField(3);
 }
@@ -449,11 +444,11 @@ class ResourceFrameRateLimiter extends GeneratedMessage {
   }
   static ResourceFrameRateLimiter _defaultInstance;
   static void $checkItem(ResourceFrameRateLimiter v) {
-    if (v is! ResourceFrameRateLimiter) checkItemFailed(v, 'ResourceFrameRateLimiter');
+    if (v is !ResourceFrameRateLimiter) checkItemFailed(v, 'ResourceFrameRateLimiter');
   }
 
   int get count => $_get(0, 1, 0);
-  set count(int v) { $_setUnsignedInt32(0, 1, v); }
+  void set count(int v) { $_setUnsignedInt32(0, 1, v); }
   bool hasCount() => $_has(0, 1);
   void clearCount() => clearField(1);
 }
@@ -491,76 +486,76 @@ class Response extends GeneratedMessage {
   }
   static Response _defaultInstance;
   static void $checkItem(Response v) {
-    if (v is! Response) checkItemFailed(v, 'Response');
+    if (v is !Response) checkItemFailed(v, 'Response');
   }
 
   int get requestId => $_get(0, 1, 0);
-  set requestId(int v) { $_setUnsignedInt32(0, 1, v); }
+  void set requestId(int v) { $_setUnsignedInt32(0, 1, v); }
   bool hasRequestId() => $_has(0, 1);
   void clearRequestId() => clearField(1);
 
   bool get isSuccess => $_get(1, 2, false);
-  set isSuccess(bool v) { $_setBool(1, 2, v); }
+  void set isSuccess(bool v) { $_setBool(1, 2, v); }
   bool hasIsSuccess() => $_has(1, 2);
   void clearIsSuccess() => clearField(2);
 
   String get errorMessage => $_get(2, 3, '');
-  set errorMessage(String v) { $_setString(2, 3, v); }
+  void set errorMessage(String v) { $_setString(2, 3, v); }
   bool hasErrorMessage() => $_has(2, 3);
   void clearErrorMessage() => clearField(3);
 
   Job get job => $_get(3, 5, null);
-  set job(Job v) { setField(5, v); }
+  void set job(Job v) { setField(5, v); }
   bool hasJob() => $_has(3, 5);
   void clearJob() => clearField(5);
 
   Policy get policy => $_get(4, 6, null);
-  set policy(Policy v) { setField(6, v); }
+  void set policy(Policy v) { setField(6, v); }
   bool hasPolicy() => $_has(4, 6);
   void clearPolicy() => clearField(6);
 
   ResponseListItems get listItems => $_get(5, 7, null);
-  set listItems(ResponseListItems v) { setField(7, v); }
+  void set listItems(ResponseListItems v) { setField(7, v); }
   bool hasListItems() => $_has(5, 7);
   void clearListItems() => clearField(7);
 
   ResponseListJobs get listJobs => $_get(6, 8, null);
-  set listJobs(ResponseListJobs v) { setField(8, v); }
+  void set listJobs(ResponseListJobs v) { setField(8, v); }
   bool hasListJobs() => $_has(6, 8);
   void clearListJobs() => clearField(8);
 
   ResponseListPolicies get listPolicies => $_get(7, 9, null);
-  set listPolicies(ResponseListPolicies v) { setField(9, v); }
+  void set listPolicies(ResponseListPolicies v) { setField(9, v); }
   bool hasListPolicies() => $_has(7, 9);
   void clearListPolicies() => clearField(9);
 
   ResponseListRateLimits get listRateLimits => $_get(8, 10, null);
-  set listRateLimits(ResponseListRateLimits v) { setField(10, v); }
+  void set listRateLimits(ResponseListRateLimits v) { setField(10, v); }
   bool hasListRateLimits() => $_has(8, 10);
   void clearListRateLimits() => clearField(10);
 
   ResponseNewJob get newJob => $_get(9, 11, null);
-  set newJob(ResponseNewJob v) { setField(11, v); }
+  void set newJob(ResponseNewJob v) { setField(11, v); }
   bool hasNewJob() => $_has(9, 11);
   void clearNewJob() => clearField(11);
 
   ResponseNewPolicy get newPolicy => $_get(10, 12, null);
-  set newPolicy(ResponseNewPolicy v) { setField(12, v); }
+  void set newPolicy(ResponseNewPolicy v) { setField(12, v); }
   bool hasNewPolicy() => $_has(10, 12);
   void clearNewPolicy() => clearField(12);
 
   ResponseNewSubscription get newSubscription => $_get(11, 13, null);
-  set newSubscription(ResponseNewSubscription v) { setField(13, v); }
+  void set newSubscription(ResponseNewSubscription v) { setField(13, v); }
   bool hasNewSubscription() => $_has(11, 13);
   void clearNewSubscription() => clearField(13);
 
   ResponsePerformanceProfile get performanceProfile => $_get(12, 14, null);
-  set performanceProfile(ResponsePerformanceProfile v) { setField(14, v); }
+  void set performanceProfile(ResponsePerformanceProfile v) { setField(14, v); }
   bool hasPerformanceProfile() => $_has(12, 14);
   void clearPerformanceProfile() => clearField(14);
 
   ResponsePing get ping => $_get(13, 15, null);
-  set ping(ResponsePing v) { setField(15, v); }
+  void set ping(ResponsePing v) { setField(15, v); }
   bool hasPing() => $_has(13, 15);
   void clearPing() => clearField(15);
 }
@@ -587,13 +582,13 @@ class ResponseListItems extends GeneratedMessage {
   }
   static ResponseListItems _defaultInstance;
   static void $checkItem(ResponseListItems v) {
-    if (v is! ResponseListItems) checkItemFailed(v, 'ResponseListItems');
+    if (v is !ResponseListItems) checkItemFailed(v, 'ResponseListItems');
   }
 
   List<CrawlResponse> get items => $_get(0, 1, null);
 
   int get total => $_get(1, 2, 0);
-  set total(int v) { $_setUnsignedInt32(1, 2, v); }
+  void set total(int v) { $_setUnsignedInt32(1, 2, v); }
   bool hasTotal() => $_has(1, 2);
   void clearTotal() => clearField(2);
 }
@@ -619,13 +614,13 @@ class ResponseListJobs extends GeneratedMessage {
   }
   static ResponseListJobs _defaultInstance;
   static void $checkItem(ResponseListJobs v) {
-    if (v is! ResponseListJobs) checkItemFailed(v, 'ResponseListJobs');
+    if (v is !ResponseListJobs) checkItemFailed(v, 'ResponseListJobs');
   }
 
   List<Job> get jobs => $_get(0, 1, null);
 
   int get total => $_get(1, 2, 0);
-  set total(int v) { $_setUnsignedInt32(1, 2, v); }
+  void set total(int v) { $_setUnsignedInt32(1, 2, v); }
   bool hasTotal() => $_has(1, 2);
   void clearTotal() => clearField(2);
 }
@@ -651,13 +646,13 @@ class ResponseListPolicies extends GeneratedMessage {
   }
   static ResponseListPolicies _defaultInstance;
   static void $checkItem(ResponseListPolicies v) {
-    if (v is! ResponseListPolicies) checkItemFailed(v, 'ResponseListPolicies');
+    if (v is !ResponseListPolicies) checkItemFailed(v, 'ResponseListPolicies');
   }
 
   List<Policy> get policies => $_get(0, 1, null);
 
   int get total => $_get(1, 2, 0);
-  set total(int v) { $_setUnsignedInt32(1, 2, v); }
+  void set total(int v) { $_setUnsignedInt32(1, 2, v); }
   bool hasTotal() => $_has(1, 2);
   void clearTotal() => clearField(2);
 }
@@ -684,13 +679,13 @@ class ResponseListRateLimits extends GeneratedMessage {
   }
   static ResponseListRateLimits _defaultInstance;
   static void $checkItem(ResponseListRateLimits v) {
-    if (v is! ResponseListRateLimits) checkItemFailed(v, 'ResponseListRateLimits');
+    if (v is !ResponseListRateLimits) checkItemFailed(v, 'ResponseListRateLimits');
   }
 
   List<RateLimit> get rateLimits => $_get(0, 1, null);
 
   int get total => $_get(1, 2, 0);
-  set total(int v) { $_setUnsignedInt32(1, 2, v); }
+  void set total(int v) { $_setUnsignedInt32(1, 2, v); }
   bool hasTotal() => $_has(1, 2);
   void clearTotal() => clearField(2);
 }
@@ -715,11 +710,11 @@ class ResponseNewJob extends GeneratedMessage {
   }
   static ResponseNewJob _defaultInstance;
   static void $checkItem(ResponseNewJob v) {
-    if (v is! ResponseNewJob) checkItemFailed(v, 'ResponseNewJob');
+    if (v is !ResponseNewJob) checkItemFailed(v, 'ResponseNewJob');
   }
 
   List<int> get jobId => $_get(0, 1, null);
-  set jobId(List<int> v) { $_setBytes(0, 1, v); }
+  void set jobId(List<int> v) { $_setBytes(0, 1, v); }
   bool hasJobId() => $_has(0, 1);
   void clearJobId() => clearField(1);
 }
@@ -744,11 +739,11 @@ class ResponseNewPolicy extends GeneratedMessage {
   }
   static ResponseNewPolicy _defaultInstance;
   static void $checkItem(ResponseNewPolicy v) {
-    if (v is! ResponseNewPolicy) checkItemFailed(v, 'ResponseNewPolicy');
+    if (v is !ResponseNewPolicy) checkItemFailed(v, 'ResponseNewPolicy');
   }
 
   List<int> get policyId => $_get(0, 1, null);
-  set policyId(List<int> v) { $_setBytes(0, 1, v); }
+  void set policyId(List<int> v) { $_setBytes(0, 1, v); }
   bool hasPolicyId() => $_has(0, 1);
   void clearPolicyId() => clearField(1);
 }
@@ -773,11 +768,11 @@ class ResponseNewSubscription extends GeneratedMessage {
   }
   static ResponseNewSubscription _defaultInstance;
   static void $checkItem(ResponseNewSubscription v) {
-    if (v is! ResponseNewSubscription) checkItemFailed(v, 'ResponseNewSubscription');
+    if (v is !ResponseNewSubscription) checkItemFailed(v, 'ResponseNewSubscription');
   }
 
   int get subscriptionId => $_get(0, 1, 0);
-  set subscriptionId(int v) { $_setUnsignedInt32(0, 1, v); }
+  void set subscriptionId(int v) { $_setUnsignedInt32(0, 1, v); }
   bool hasSubscriptionId() => $_has(0, 1);
   void clearSubscriptionId() => clearField(1);
 }
@@ -805,16 +800,16 @@ class ResponsePerformanceProfile extends GeneratedMessage {
   }
   static ResponsePerformanceProfile _defaultInstance;
   static void $checkItem(ResponsePerformanceProfile v) {
-    if (v is! ResponsePerformanceProfile) checkItemFailed(v, 'ResponsePerformanceProfile');
+    if (v is !ResponsePerformanceProfile) checkItemFailed(v, 'ResponsePerformanceProfile');
   }
 
   int get totalCalls => $_get(0, 1, 0);
-  set totalCalls(int v) { $_setUnsignedInt32(0, 1, v); }
+  void set totalCalls(int v) { $_setUnsignedInt32(0, 1, v); }
   bool hasTotalCalls() => $_has(0, 1);
   void clearTotalCalls() => clearField(1);
 
   double get totalTime => $_get(1, 2, null);
-  set totalTime(double v) { $_setDouble(1, 2, v); }
+  void set totalTime(double v) { $_setDouble(1, 2, v); }
   bool hasTotalTime() => $_has(1, 2);
   void clearTotalTime() => clearField(2);
 
@@ -842,11 +837,11 @@ class ResponsePing extends GeneratedMessage {
   }
   static ResponsePing _defaultInstance;
   static void $checkItem(ResponsePing v) {
-    if (v is! ResponsePing) checkItemFailed(v, 'ResponsePing');
+    if (v is !ResponsePing) checkItemFailed(v, 'ResponsePing');
   }
 
   String get pong => $_get(0, 1, '');
-  set pong(String v) { $_setString(0, 1, v); }
+  void set pong(String v) { $_setString(0, 1, v); }
   bool hasPong() => $_has(0, 1);
   void clearPong() => clearField(1);
 }
@@ -872,16 +867,16 @@ class SyncItem extends GeneratedMessage {
   }
   static SyncItem _defaultInstance;
   static void $checkItem(SyncItem v) {
-    if (v is! SyncItem) checkItemFailed(v, 'SyncItem');
+    if (v is !SyncItem) checkItemFailed(v, 'SyncItem');
   }
 
   CrawlResponse get item => $_get(0, 1, null);
-  set item(CrawlResponse v) { setField(1, v); }
+  void set item(CrawlResponse v) { setField(1, v); }
   bool hasItem() => $_has(0, 1);
   void clearItem() => clearField(1);
 
   List<int> get token => $_get(1, 2, null);
-  set token(List<int> v) { $_setBytes(1, 2, v); }
+  void set token(List<int> v) { $_setBytes(1, 2, v); }
   bool hasToken() => $_has(1, 2);
   void clearToken() => clearField(2);
 }
@@ -907,16 +902,16 @@ class ServerMessage extends GeneratedMessage {
   }
   static ServerMessage _defaultInstance;
   static void $checkItem(ServerMessage v) {
-    if (v is! ServerMessage) checkItemFailed(v, 'ServerMessage');
+    if (v is !ServerMessage) checkItemFailed(v, 'ServerMessage');
   }
 
   Event get event => $_get(0, 1, null);
-  set event(Event v) { setField(1, v); }
+  void set event(Event v) { setField(1, v); }
   bool hasEvent() => $_has(0, 1);
   void clearEvent() => clearField(1);
 
   Response get response => $_get(1, 2, null);
-  set response(Response v) { setField(2, v); }
+  void set response(Response v) { setField(2, v); }
   bool hasResponse() => $_has(1, 2);
   void clearResponse() => clearField(2);
 }
@@ -925,7 +920,7 @@ class _ReadonlyServerMessage extends ServerMessage with ReadonlyMessageMixin {}
 
 class SubscriptionClosed extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('SubscriptionClosed')
-    ..e/*<SubscriptionClosed_Reason>*/(1, 'reason', PbFieldType.QE, SubscriptionClosed_Reason.END, SubscriptionClosed_Reason.valueOf)
+    ..e/*<SubscriptionClosed_Reason>*/(1, 'reason', PbFieldType.QE, SubscriptionClosed_Reason.COMPLETE, SubscriptionClosed_Reason.valueOf)
     ..a/*<String>*/(2, 'message', PbFieldType.OS)
   ;
 
@@ -942,16 +937,16 @@ class SubscriptionClosed extends GeneratedMessage {
   }
   static SubscriptionClosed _defaultInstance;
   static void $checkItem(SubscriptionClosed v) {
-    if (v is! SubscriptionClosed) checkItemFailed(v, 'SubscriptionClosed');
+    if (v is !SubscriptionClosed) checkItemFailed(v, 'SubscriptionClosed');
   }
 
   SubscriptionClosed_Reason get reason => $_get(0, 1, null);
-  set reason(SubscriptionClosed_Reason v) { setField(1, v); }
+  void set reason(SubscriptionClosed_Reason v) { setField(1, v); }
   bool hasReason() => $_has(0, 1);
   void clearReason() => clearField(1);
 
   String get message => $_get(1, 2, '');
-  set message(String v) { $_setString(1, 2, v); }
+  void set message(String v) { $_setString(1, 2, v); }
   bool hasMessage() => $_has(1, 2);
   void clearMessage() => clearField(2);
 }
@@ -978,16 +973,16 @@ class Task extends GeneratedMessage {
   }
   static Task _defaultInstance;
   static void $checkItem(Task v) {
-    if (v is! Task) checkItemFailed(v, 'Task');
+    if (v is !Task) checkItemFailed(v, 'Task');
   }
 
   String get name => $_get(0, 1, '');
-  set name(String v) { $_setString(0, 1, v); }
+  void set name(String v) { $_setString(0, 1, v); }
   bool hasName() => $_has(0, 1);
   void clearName() => clearField(1);
 
   int get count => $_get(1, 2, 0);
-  set count(int v) { $_setUnsignedInt32(1, 2, v); }
+  void set count(int v) { $_setUnsignedInt32(1, 2, v); }
   bool hasCount() => $_has(1, 2);
   void clearCount() => clearField(2);
 }
@@ -1014,11 +1009,11 @@ class TaskMonitor extends GeneratedMessage {
   }
   static TaskMonitor _defaultInstance;
   static void $checkItem(TaskMonitor v) {
-    if (v is! TaskMonitor) checkItemFailed(v, 'TaskMonitor');
+    if (v is !TaskMonitor) checkItemFailed(v, 'TaskMonitor');
   }
 
   int get count => $_get(0, 1, 0);
-  set count(int v) { $_setUnsignedInt32(0, 1, v); }
+  void set count(int v) { $_setUnsignedInt32(0, 1, v); }
   bool hasCount() => $_has(0, 1);
   void clearCount() => clearField(1);
 

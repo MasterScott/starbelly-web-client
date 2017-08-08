@@ -90,7 +90,10 @@ class PolicyDetailView implements AfterViewInit {
 
     /// Add a proxy rule.
     void addProxyRule() {
-        this.policy.proxyRules.add(new PolicyProxyRule());
+        this.policy.proxyRules.insert(
+            this.policy.proxyRules.length - 1,
+            new PolicyProxyRule()
+        );
     }
 
     /// Add a penultimate URL rule.

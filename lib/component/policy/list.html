@@ -45,7 +45,15 @@
         <td>
           <ma-button
             size='small'
+            type='primary'
+            title='Duplicate'
+            (click)='duplicatePolicy($event, policy)'>
+            <fa name='copy'></fa>
+          </ma-button>
+          <ma-button
+            size='small'
             type='danger'
+            title='Delete'
             (click)='deletePolicy($event, policy)'>
             <fa name='trash'></fa>
           </ma-button>
