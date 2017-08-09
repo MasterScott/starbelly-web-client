@@ -21,10 +21,6 @@ import 'package:starbelly/service/server.dart';
         .edit-buttons {
             padding-left: 0.5em;
         }
-        .error {
-            max-width: 50%;
-            text-align: right;
-        }
         .limits-labels {
             text-align: right;
             width: 15em;
@@ -35,6 +31,16 @@ import 'package:starbelly/service/server.dart';
         .metadata-labels {
             text-align: right;
             width: 10em;
+        }
+        .row.buttons {
+            /* Make space for success/error message. Kind of a hack: would be
+             * better to scroll the view port?
+             */
+            min-height: 5em;
+        }
+        .result {
+            position: relative;
+            top: -1em;
         }
         .url-amount {
             max-width: 5em;
@@ -127,7 +133,8 @@ class PolicyDetailView implements AfterViewInit {
     /// Called when Angular initializes the view.
     ngAfterViewInit() async {
         if (this.newPolicy) {
-            this.policy = new Policy();
+
+            this.policy = new Policy.defaultSettings();
             this._document.title = 'New Policy';
             this._document.breadcrumbs.last.name = 'New Policy';
         } else {
@@ -166,7 +173,6 @@ class PolicyDetailView implements AfterViewInit {
             saveError = 'Cannot save: ${exc.message}';
             saveSuccess = false;
         }
-        // print(message.response);
         click.button.busy = false;
     }
 

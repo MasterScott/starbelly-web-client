@@ -21,6 +21,12 @@
           {{job.policy.updatedAt | date:'y-MM-dd H:mm:ss'}}
         </p>
         <p>
+          <strong>Authentication</strong>
+        </p>
+        <ul>
+          <li>{{job.policy.authentication.enabled ? 'Always try to log in' : 'Never try to log in'}}</li>
+        </ul>
+        <p>
           <strong>URL Rules</strong>
         </p>
         <ol>
@@ -61,20 +67,31 @@
         </p>
         <ol>
           <li *ngFor='let proxyRule of job.policy.proxyRules; let index=index; let first=first; let last=last'>
-            <span *ngIf='first'>If</span>
-            <span *ngIf='!first'>Else if</span>
-            the URL
-            {{proxyRule.match == MATCHES ? 'matches' : 'does not match'}}
-            &nbsp;the regex&nbsp;
-            <code>{{proxyRule.pattern}}</code>
-            <br>then use the proxy
-            <code>{{proxyRule.proxyUrl}}</code>
-          </li>
-          <li *ngIf='job.policy.proxyRules.length == 0'>
-            Never use a proxy.
-          </li>
-          <li *ngIf='job.policy.proxyRules.length > 0'>
-            Else don't use a proxy.
+            <span *ngIf='!last'>
+              <span *ngIf='first'>If</span>
+              <span *ngIf='!first'>Else if</span>
+              the URL
+              {{proxyRule.match == MATCHES ? 'matches' : 'does not match'}}
+              &nbsp;the regex&nbsp;
+              <code>{{proxyRule.pattern}}</code>
+              then use the proxy
+              <code>{{proxyRule.proxyUrl}}</code>
+            </span>
+            <span *ngIf='last'>
+              <span *ngIf='index > 0'>
+                Else, {{proxyRule.match == MATCHES ? 'always' : 'never'}}
+              </span>
+              <span *ngIf='index == 0'>
+                {{proxyRule.match == MATCHES ? 'Always' : 'Never'}}
+              </span>
+              <span *ngIf='proxyRule.match == MATCHES'>
+                use the proxy
+                <code>{{proxyRule.proxyUrl}}</code>
+              </span>
+              <span *ngIf='proxyRule.match == DOES_NOT_MATCH'>
+                use a proxy.
+              </span>
+            </span>
           </li>
         </ol>
         <p>

@@ -7,24 +7,35 @@ const Request$json = const {
   '1': 'Request',
   '2': const [
     const {'1': 'request_id', '3': 1, '4': 2, '5': 5},
-    const {'1': 'delete_job', '3': 2, '4': 1, '5': 11, '6': '.starbelly.RequestDeleteJob'},
-    const {'1': 'delete_policy', '3': 3, '4': 1, '5': 11, '6': '.starbelly.RequestDeletePolicy'},
-    const {'1': 'get_job', '3': 4, '4': 1, '5': 11, '6': '.starbelly.RequestGetJob'},
-    const {'1': 'get_job_items', '3': 5, '4': 1, '5': 11, '6': '.starbelly.RequestGetJobItems'},
-    const {'1': 'get_policy', '3': 6, '4': 1, '5': 11, '6': '.starbelly.RequestGetPolicy'},
-    const {'1': 'get_rate_limits', '3': 7, '4': 1, '5': 11, '6': '.starbelly.RequestGetRateLimits'},
-    const {'1': 'list_jobs', '3': 8, '4': 1, '5': 11, '6': '.starbelly.RequestListJobs'},
-    const {'1': 'list_policies', '3': 9, '4': 1, '5': 11, '6': '.starbelly.RequestListPolicies'},
-    const {'1': 'performance_profile', '3': 10, '4': 1, '5': 11, '6': '.starbelly.RequestPerformanceProfile'},
-    const {'1': 'ping', '3': 11, '4': 1, '5': 11, '6': '.starbelly.RequestPing'},
-    const {'1': 'set_job', '3': 12, '4': 1, '5': 11, '6': '.starbelly.RequestSetJob'},
-    const {'1': 'set_policy', '3': 13, '4': 1, '5': 11, '6': '.starbelly.RequestSetPolicy'},
-    const {'1': 'set_rate_limit', '3': 14, '4': 1, '5': 11, '6': '.starbelly.RequestSetRateLimit'},
-    const {'1': 'subscribe_job_status', '3': 15, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobStatus'},
-    const {'1': 'subscribe_job_sync', '3': 16, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobSync'},
-    const {'1': 'subscribe_resource_monitor', '3': 17, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeResourceMonitor'},
-    const {'1': 'subscribe_task_monitor', '3': 18, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeTaskMonitor'},
-    const {'1': 'unsubscribe', '3': 19, '4': 1, '5': 11, '6': '.starbelly.RequestUnsubscribe'},
+    const {'1': 'delete_domain_login', '3': 2, '4': 1, '5': 11, '6': '.starbelly.RequestDeleteDomainLogin'},
+    const {'1': 'delete_job', '3': 3, '4': 1, '5': 11, '6': '.starbelly.RequestDeleteJob'},
+    const {'1': 'delete_policy', '3': 4, '4': 1, '5': 11, '6': '.starbelly.RequestDeletePolicy'},
+    const {'1': 'get_domain_login', '3': 5, '4': 1, '5': 11, '6': '.starbelly.RequestGetDomainLogin'},
+    const {'1': 'get_job', '3': 6, '4': 1, '5': 11, '6': '.starbelly.RequestGetJob'},
+    const {'1': 'get_job_items', '3': 7, '4': 1, '5': 11, '6': '.starbelly.RequestGetJobItems'},
+    const {'1': 'get_policy', '3': 8, '4': 1, '5': 11, '6': '.starbelly.RequestGetPolicy'},
+    const {'1': 'get_rate_limits', '3': 9, '4': 1, '5': 11, '6': '.starbelly.RequestGetRateLimits'},
+    const {'1': 'list_domain_logins', '3': 10, '4': 1, '5': 11, '6': '.starbelly.RequestListDomainLogins'},
+    const {'1': 'list_jobs', '3': 11, '4': 1, '5': 11, '6': '.starbelly.RequestListJobs'},
+    const {'1': 'list_policies', '3': 12, '4': 1, '5': 11, '6': '.starbelly.RequestListPolicies'},
+    const {'1': 'performance_profile', '3': 13, '4': 1, '5': 11, '6': '.starbelly.RequestPerformanceProfile'},
+    const {'1': 'ping', '3': 14, '4': 1, '5': 11, '6': '.starbelly.RequestPing'},
+    const {'1': 'set_domain_login', '3': 15, '4': 1, '5': 11, '6': '.starbelly.RequestSetDomainLogin'},
+    const {'1': 'set_job', '3': 16, '4': 1, '5': 11, '6': '.starbelly.RequestSetJob'},
+    const {'1': 'set_policy', '3': 17, '4': 1, '5': 11, '6': '.starbelly.RequestSetPolicy'},
+    const {'1': 'set_rate_limit', '3': 18, '4': 1, '5': 11, '6': '.starbelly.RequestSetRateLimit'},
+    const {'1': 'subscribe_job_status', '3': 19, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobStatus'},
+    const {'1': 'subscribe_job_sync', '3': 20, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobSync'},
+    const {'1': 'subscribe_resource_monitor', '3': 21, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeResourceMonitor'},
+    const {'1': 'subscribe_task_monitor', '3': 22, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeTaskMonitor'},
+    const {'1': 'unsubscribe', '3': 23, '4': 1, '5': 11, '6': '.starbelly.RequestUnsubscribe'},
+  ],
+};
+
+const RequestDeleteDomainLogin$json = const {
+  '1': 'RequestDeleteDomainLogin',
+  '2': const [
+    const {'1': 'domain', '3': 1, '4': 1, '5': 9},
   ],
 };
 
@@ -39,6 +50,13 @@ const RequestDeletePolicy$json = const {
   '1': 'RequestDeletePolicy',
   '2': const [
     const {'1': 'policy_id', '3': 1, '4': 2, '5': 12},
+  ],
+};
+
+const RequestGetDomainLogin$json = const {
+  '1': 'RequestGetDomainLogin',
+  '2': const [
+    const {'1': 'domain', '3': 1, '4': 2, '5': 9},
   ],
 };
 
@@ -75,6 +93,13 @@ const RequestGetRateLimits$json = const {
   ],
 };
 
+const RequestListDomainLogins$json = const {
+  '1': 'RequestListDomainLogins',
+  '2': const [
+    const {'1': 'page', '3': 1, '4': 1, '5': 11, '6': '.starbelly.Page'},
+  ],
+};
+
 const RequestListJobs$json = const {
   '1': 'RequestListJobs',
   '2': const [
@@ -104,6 +129,13 @@ const RequestPing$json = const {
   '1': 'RequestPing',
   '2': const [
     const {'1': 'pong', '3': 1, '4': 1, '5': 9},
+  ],
+};
+
+const RequestSetDomainLogin$json = const {
+  '1': 'RequestSetDomainLogin',
+  '2': const [
+    const {'1': 'login', '3': 1, '4': 1, '5': 11, '6': '.starbelly.DomainLogin'},
   ],
 };
 

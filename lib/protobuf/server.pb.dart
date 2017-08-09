@@ -460,17 +460,20 @@ class Response extends GeneratedMessage {
     ..a/*<int>*/(1, 'requestId', PbFieldType.Q3)
     ..a/*<bool>*/(2, 'isSuccess', PbFieldType.QB)
     ..a/*<String>*/(3, 'errorMessage', PbFieldType.OS)
-    ..a/*<Job>*/(5, 'job', PbFieldType.OM, Job.getDefault, Job.create)
-    ..a/*<Policy>*/(6, 'policy', PbFieldType.OM, Policy.getDefault, Policy.create)
-    ..a/*<ResponseListItems>*/(7, 'listItems', PbFieldType.OM, ResponseListItems.getDefault, ResponseListItems.create)
-    ..a/*<ResponseListJobs>*/(8, 'listJobs', PbFieldType.OM, ResponseListJobs.getDefault, ResponseListJobs.create)
-    ..a/*<ResponseListPolicies>*/(9, 'listPolicies', PbFieldType.OM, ResponseListPolicies.getDefault, ResponseListPolicies.create)
-    ..a/*<ResponseListRateLimits>*/(10, 'listRateLimits', PbFieldType.OM, ResponseListRateLimits.getDefault, ResponseListRateLimits.create)
-    ..a/*<ResponseNewJob>*/(11, 'newJob', PbFieldType.OM, ResponseNewJob.getDefault, ResponseNewJob.create)
-    ..a/*<ResponseNewPolicy>*/(12, 'newPolicy', PbFieldType.OM, ResponseNewPolicy.getDefault, ResponseNewPolicy.create)
-    ..a/*<ResponseNewSubscription>*/(13, 'newSubscription', PbFieldType.OM, ResponseNewSubscription.getDefault, ResponseNewSubscription.create)
-    ..a/*<ResponsePerformanceProfile>*/(14, 'performanceProfile', PbFieldType.OM, ResponsePerformanceProfile.getDefault, ResponsePerformanceProfile.create)
-    ..a/*<ResponsePing>*/(15, 'ping', PbFieldType.OM, ResponsePing.getDefault, ResponsePing.create)
+    ..a/*<DomainLogin>*/(5, 'domainLogin', PbFieldType.OM, DomainLogin.getDefault, DomainLogin.create)
+    ..a/*<DomainLoginUser>*/(6, 'domainLoginUser', PbFieldType.OM, DomainLoginUser.getDefault, DomainLoginUser.create)
+    ..a/*<Job>*/(7, 'job', PbFieldType.OM, Job.getDefault, Job.create)
+    ..a/*<Policy>*/(8, 'policy', PbFieldType.OM, Policy.getDefault, Policy.create)
+    ..a/*<ResponseListDomainLogins>*/(9, 'listDomainLogins', PbFieldType.OM, ResponseListDomainLogins.getDefault, ResponseListDomainLogins.create)
+    ..a/*<ResponseListItems>*/(10, 'listItems', PbFieldType.OM, ResponseListItems.getDefault, ResponseListItems.create)
+    ..a/*<ResponseListJobs>*/(11, 'listJobs', PbFieldType.OM, ResponseListJobs.getDefault, ResponseListJobs.create)
+    ..a/*<ResponseListPolicies>*/(12, 'listPolicies', PbFieldType.OM, ResponseListPolicies.getDefault, ResponseListPolicies.create)
+    ..a/*<ResponseListRateLimits>*/(13, 'listRateLimits', PbFieldType.OM, ResponseListRateLimits.getDefault, ResponseListRateLimits.create)
+    ..a/*<ResponseNewJob>*/(14, 'newJob', PbFieldType.OM, ResponseNewJob.getDefault, ResponseNewJob.create)
+    ..a/*<ResponseNewPolicy>*/(15, 'newPolicy', PbFieldType.OM, ResponseNewPolicy.getDefault, ResponseNewPolicy.create)
+    ..a/*<ResponseNewSubscription>*/(16, 'newSubscription', PbFieldType.OM, ResponseNewSubscription.getDefault, ResponseNewSubscription.create)
+    ..a/*<ResponsePerformanceProfile>*/(17, 'performanceProfile', PbFieldType.OM, ResponsePerformanceProfile.getDefault, ResponsePerformanceProfile.create)
+    ..a/*<ResponsePing>*/(18, 'ping', PbFieldType.OM, ResponsePing.getDefault, ResponsePing.create)
   ;
 
   Response() : super();
@@ -504,63 +507,111 @@ class Response extends GeneratedMessage {
   bool hasErrorMessage() => $_has(2, 3);
   void clearErrorMessage() => clearField(3);
 
-  Job get job => $_get(3, 5, null);
-  void set job(Job v) { setField(5, v); }
-  bool hasJob() => $_has(3, 5);
-  void clearJob() => clearField(5);
+  DomainLogin get domainLogin => $_get(3, 5, null);
+  void set domainLogin(DomainLogin v) { setField(5, v); }
+  bool hasDomainLogin() => $_has(3, 5);
+  void clearDomainLogin() => clearField(5);
 
-  Policy get policy => $_get(4, 6, null);
-  void set policy(Policy v) { setField(6, v); }
-  bool hasPolicy() => $_has(4, 6);
-  void clearPolicy() => clearField(6);
+  DomainLoginUser get domainLoginUser => $_get(4, 6, null);
+  void set domainLoginUser(DomainLoginUser v) { setField(6, v); }
+  bool hasDomainLoginUser() => $_has(4, 6);
+  void clearDomainLoginUser() => clearField(6);
 
-  ResponseListItems get listItems => $_get(5, 7, null);
-  void set listItems(ResponseListItems v) { setField(7, v); }
-  bool hasListItems() => $_has(5, 7);
-  void clearListItems() => clearField(7);
+  Job get job => $_get(5, 7, null);
+  void set job(Job v) { setField(7, v); }
+  bool hasJob() => $_has(5, 7);
+  void clearJob() => clearField(7);
 
-  ResponseListJobs get listJobs => $_get(6, 8, null);
-  void set listJobs(ResponseListJobs v) { setField(8, v); }
-  bool hasListJobs() => $_has(6, 8);
-  void clearListJobs() => clearField(8);
+  Policy get policy => $_get(6, 8, null);
+  void set policy(Policy v) { setField(8, v); }
+  bool hasPolicy() => $_has(6, 8);
+  void clearPolicy() => clearField(8);
 
-  ResponseListPolicies get listPolicies => $_get(7, 9, null);
-  void set listPolicies(ResponseListPolicies v) { setField(9, v); }
-  bool hasListPolicies() => $_has(7, 9);
-  void clearListPolicies() => clearField(9);
+  ResponseListDomainLogins get listDomainLogins => $_get(7, 9, null);
+  void set listDomainLogins(ResponseListDomainLogins v) { setField(9, v); }
+  bool hasListDomainLogins() => $_has(7, 9);
+  void clearListDomainLogins() => clearField(9);
 
-  ResponseListRateLimits get listRateLimits => $_get(8, 10, null);
-  void set listRateLimits(ResponseListRateLimits v) { setField(10, v); }
-  bool hasListRateLimits() => $_has(8, 10);
-  void clearListRateLimits() => clearField(10);
+  ResponseListItems get listItems => $_get(8, 10, null);
+  void set listItems(ResponseListItems v) { setField(10, v); }
+  bool hasListItems() => $_has(8, 10);
+  void clearListItems() => clearField(10);
 
-  ResponseNewJob get newJob => $_get(9, 11, null);
-  void set newJob(ResponseNewJob v) { setField(11, v); }
-  bool hasNewJob() => $_has(9, 11);
-  void clearNewJob() => clearField(11);
+  ResponseListJobs get listJobs => $_get(9, 11, null);
+  void set listJobs(ResponseListJobs v) { setField(11, v); }
+  bool hasListJobs() => $_has(9, 11);
+  void clearListJobs() => clearField(11);
 
-  ResponseNewPolicy get newPolicy => $_get(10, 12, null);
-  void set newPolicy(ResponseNewPolicy v) { setField(12, v); }
-  bool hasNewPolicy() => $_has(10, 12);
-  void clearNewPolicy() => clearField(12);
+  ResponseListPolicies get listPolicies => $_get(10, 12, null);
+  void set listPolicies(ResponseListPolicies v) { setField(12, v); }
+  bool hasListPolicies() => $_has(10, 12);
+  void clearListPolicies() => clearField(12);
 
-  ResponseNewSubscription get newSubscription => $_get(11, 13, null);
-  void set newSubscription(ResponseNewSubscription v) { setField(13, v); }
-  bool hasNewSubscription() => $_has(11, 13);
-  void clearNewSubscription() => clearField(13);
+  ResponseListRateLimits get listRateLimits => $_get(11, 13, null);
+  void set listRateLimits(ResponseListRateLimits v) { setField(13, v); }
+  bool hasListRateLimits() => $_has(11, 13);
+  void clearListRateLimits() => clearField(13);
 
-  ResponsePerformanceProfile get performanceProfile => $_get(12, 14, null);
-  void set performanceProfile(ResponsePerformanceProfile v) { setField(14, v); }
-  bool hasPerformanceProfile() => $_has(12, 14);
-  void clearPerformanceProfile() => clearField(14);
+  ResponseNewJob get newJob => $_get(12, 14, null);
+  void set newJob(ResponseNewJob v) { setField(14, v); }
+  bool hasNewJob() => $_has(12, 14);
+  void clearNewJob() => clearField(14);
 
-  ResponsePing get ping => $_get(13, 15, null);
-  void set ping(ResponsePing v) { setField(15, v); }
-  bool hasPing() => $_has(13, 15);
-  void clearPing() => clearField(15);
+  ResponseNewPolicy get newPolicy => $_get(13, 15, null);
+  void set newPolicy(ResponseNewPolicy v) { setField(15, v); }
+  bool hasNewPolicy() => $_has(13, 15);
+  void clearNewPolicy() => clearField(15);
+
+  ResponseNewSubscription get newSubscription => $_get(14, 16, null);
+  void set newSubscription(ResponseNewSubscription v) { setField(16, v); }
+  bool hasNewSubscription() => $_has(14, 16);
+  void clearNewSubscription() => clearField(16);
+
+  ResponsePerformanceProfile get performanceProfile => $_get(15, 17, null);
+  void set performanceProfile(ResponsePerformanceProfile v) { setField(17, v); }
+  bool hasPerformanceProfile() => $_has(15, 17);
+  void clearPerformanceProfile() => clearField(17);
+
+  ResponsePing get ping => $_get(16, 18, null);
+  void set ping(ResponsePing v) { setField(18, v); }
+  bool hasPing() => $_has(16, 18);
+  void clearPing() => clearField(18);
 }
 
 class _ReadonlyResponse extends Response with ReadonlyMessageMixin {}
+
+class ResponseListDomainLogins extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResponseListDomainLogins')
+    ..pp/*<DomainLogin>*/(1, 'logins', PbFieldType.PM, DomainLogin.$checkItem, DomainLogin.create)
+    ..a/*<int>*/(2, 'total', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  ResponseListDomainLogins() : super();
+  ResponseListDomainLogins.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResponseListDomainLogins.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResponseListDomainLogins clone() => new ResponseListDomainLogins()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResponseListDomainLogins create() => new ResponseListDomainLogins();
+  static PbList<ResponseListDomainLogins> createRepeated() => new PbList<ResponseListDomainLogins>();
+  static ResponseListDomainLogins getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResponseListDomainLogins();
+    return _defaultInstance;
+  }
+  static ResponseListDomainLogins _defaultInstance;
+  static void $checkItem(ResponseListDomainLogins v) {
+    if (v is !ResponseListDomainLogins) checkItemFailed(v, 'ResponseListDomainLogins');
+  }
+
+  List<DomainLogin> get logins => $_get(0, 1, null);
+
+  int get total => $_get(1, 2, 0);
+  void set total(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasTotal() => $_has(1, 2);
+  void clearTotal() => clearField(2);
+}
+
+class _ReadonlyResponseListDomainLogins extends ResponseListDomainLogins with ReadonlyMessageMixin {}
 
 class ResponseListItems extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('ResponseListItems')

@@ -6,6 +6,7 @@ import 'package:logging/logging.dart';
 import 'package:ng2_fontawesome/ng2_fontawesome.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
+import 'package:starbelly/component/credential/router.dart';
 import 'package:starbelly/component/dashboard.dart';
 import 'package:starbelly/component/policy/router.dart';
 import 'package:starbelly/component/rate_limit.dart';
@@ -45,6 +46,10 @@ import 'package:starbelly/service/server.dart';
         DocumentService, ServerService]
 )
 @RouteConfig(const [
+    const Route(
+        path: '/credential/...',
+        name: 'Credential',
+        component: CredentialRouter),
     const Route(
         path: '/dashboard',
         name: 'Dashboard',

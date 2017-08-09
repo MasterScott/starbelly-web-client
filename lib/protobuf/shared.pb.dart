@@ -9,6 +9,99 @@ import 'shared.pbenum.dart';
 
 export 'shared.pbenum.dart';
 
+class DomainLogin extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('DomainLogin')
+    ..a/*<String>*/(1, 'domain', PbFieldType.OS)
+    ..a/*<String>*/(2, 'loginUrl', PbFieldType.OS)
+    ..a/*<String>*/(3, 'loginTest', PbFieldType.OS)
+    ..a/*<int>*/(4, 'authCount', PbFieldType.O3)
+    ..pp/*<DomainLoginUser>*/(5, 'users', PbFieldType.PM, DomainLoginUser.$checkItem, DomainLoginUser.create)
+    ..hasRequiredFields = false
+  ;
+
+  DomainLogin() : super();
+  DomainLogin.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  DomainLogin.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  DomainLogin clone() => new DomainLogin()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static DomainLogin create() => new DomainLogin();
+  static PbList<DomainLogin> createRepeated() => new PbList<DomainLogin>();
+  static DomainLogin getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyDomainLogin();
+    return _defaultInstance;
+  }
+  static DomainLogin _defaultInstance;
+  static void $checkItem(DomainLogin v) {
+    if (v is !DomainLogin) checkItemFailed(v, 'DomainLogin');
+  }
+
+  String get domain => $_get(0, 1, '');
+  void set domain(String v) { $_setString(0, 1, v); }
+  bool hasDomain() => $_has(0, 1);
+  void clearDomain() => clearField(1);
+
+  String get loginUrl => $_get(1, 2, '');
+  void set loginUrl(String v) { $_setString(1, 2, v); }
+  bool hasLoginUrl() => $_has(1, 2);
+  void clearLoginUrl() => clearField(2);
+
+  String get loginTest => $_get(2, 3, '');
+  void set loginTest(String v) { $_setString(2, 3, v); }
+  bool hasLoginTest() => $_has(2, 3);
+  void clearLoginTest() => clearField(3);
+
+  int get authCount => $_get(3, 4, 0);
+  void set authCount(int v) { $_setUnsignedInt32(3, 4, v); }
+  bool hasAuthCount() => $_has(3, 4);
+  void clearAuthCount() => clearField(4);
+
+  List<DomainLoginUser> get users => $_get(4, 5, null);
+}
+
+class _ReadonlyDomainLogin extends DomainLogin with ReadonlyMessageMixin {}
+
+class DomainLoginUser extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('DomainLoginUser')
+    ..a/*<String>*/(1, 'username', PbFieldType.OS)
+    ..a/*<String>*/(2, 'password', PbFieldType.OS)
+    ..a/*<bool>*/(3, 'working', PbFieldType.OB)
+    ..hasRequiredFields = false
+  ;
+
+  DomainLoginUser() : super();
+  DomainLoginUser.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  DomainLoginUser.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  DomainLoginUser clone() => new DomainLoginUser()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static DomainLoginUser create() => new DomainLoginUser();
+  static PbList<DomainLoginUser> createRepeated() => new PbList<DomainLoginUser>();
+  static DomainLoginUser getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyDomainLoginUser();
+    return _defaultInstance;
+  }
+  static DomainLoginUser _defaultInstance;
+  static void $checkItem(DomainLoginUser v) {
+    if (v is !DomainLoginUser) checkItemFailed(v, 'DomainLoginUser');
+  }
+
+  String get username => $_get(0, 1, '');
+  void set username(String v) { $_setString(0, 1, v); }
+  bool hasUsername() => $_has(0, 1);
+  void clearUsername() => clearField(1);
+
+  String get password => $_get(1, 2, '');
+  void set password(String v) { $_setString(1, 2, v); }
+  bool hasPassword() => $_has(1, 2);
+  void clearPassword() => clearField(2);
+
+  bool get working => $_get(2, 3, false);
+  void set working(bool v) { $_setBool(2, 3, v); }
+  bool hasWorking() => $_has(2, 3);
+  void clearWorking() => clearField(3);
+}
+
+class _ReadonlyDomainLoginUser extends DomainLoginUser with ReadonlyMessageMixin {}
+
 class CrawlResponse extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('CrawlResponse')
     ..a/*<List<int>>*/(1, 'body', PbFieldType.OY)
@@ -349,12 +442,13 @@ class Policy extends GeneratedMessage {
     ..a/*<String>*/(2, 'name', PbFieldType.OS)
     ..a/*<String>*/(3, 'createdAt', PbFieldType.OS)
     ..a/*<String>*/(4, 'updatedAt', PbFieldType.OS)
-    ..a/*<PolicyLimits>*/(5, 'limits', PbFieldType.OM, PolicyLimits.getDefault, PolicyLimits.create)
-    ..pp/*<PolicyProxyRule>*/(6, 'proxyRules', PbFieldType.PM, PolicyProxyRule.$checkItem, PolicyProxyRule.create)
-    ..pp/*<PolicyMimeTypeRule>*/(7, 'mimeTypeRules', PbFieldType.PM, PolicyMimeTypeRule.$checkItem, PolicyMimeTypeRule.create)
-    ..a/*<PolicyRobotsTxt>*/(8, 'robotsTxt', PbFieldType.OM, PolicyRobotsTxt.getDefault, PolicyRobotsTxt.create)
-    ..pp/*<PolicyUrlRule>*/(9, 'urlRules', PbFieldType.PM, PolicyUrlRule.$checkItem, PolicyUrlRule.create)
-    ..pp/*<PolicyUserAgent>*/(10, 'userAgents', PbFieldType.PM, PolicyUserAgent.$checkItem, PolicyUserAgent.create)
+    ..a/*<PolicyAuthentication>*/(6, 'authentication', PbFieldType.OM, PolicyAuthentication.getDefault, PolicyAuthentication.create)
+    ..a/*<PolicyLimits>*/(7, 'limits', PbFieldType.OM, PolicyLimits.getDefault, PolicyLimits.create)
+    ..pp/*<PolicyProxyRule>*/(8, 'proxyRules', PbFieldType.PM, PolicyProxyRule.$checkItem, PolicyProxyRule.create)
+    ..pp/*<PolicyMimeTypeRule>*/(9, 'mimeTypeRules', PbFieldType.PM, PolicyMimeTypeRule.$checkItem, PolicyMimeTypeRule.create)
+    ..a/*<PolicyRobotsTxt>*/(10, 'robotsTxt', PbFieldType.OM, PolicyRobotsTxt.getDefault, PolicyRobotsTxt.create)
+    ..pp/*<PolicyUrlRule>*/(11, 'urlRules', PbFieldType.PM, PolicyUrlRule.$checkItem, PolicyUrlRule.create)
+    ..pp/*<PolicyUserAgent>*/(12, 'userAgents', PbFieldType.PM, PolicyUserAgent.$checkItem, PolicyUserAgent.create)
   ;
 
   Policy() : super();
@@ -393,26 +487,61 @@ class Policy extends GeneratedMessage {
   bool hasUpdatedAt() => $_has(3, 4);
   void clearUpdatedAt() => clearField(4);
 
-  PolicyLimits get limits => $_get(4, 5, null);
-  void set limits(PolicyLimits v) { setField(5, v); }
-  bool hasLimits() => $_has(4, 5);
-  void clearLimits() => clearField(5);
+  PolicyAuthentication get authentication => $_get(4, 6, null);
+  void set authentication(PolicyAuthentication v) { setField(6, v); }
+  bool hasAuthentication() => $_has(4, 6);
+  void clearAuthentication() => clearField(6);
 
-  List<PolicyProxyRule> get proxyRules => $_get(5, 6, null);
+  PolicyLimits get limits => $_get(5, 7, null);
+  void set limits(PolicyLimits v) { setField(7, v); }
+  bool hasLimits() => $_has(5, 7);
+  void clearLimits() => clearField(7);
 
-  List<PolicyMimeTypeRule> get mimeTypeRules => $_get(6, 7, null);
+  List<PolicyProxyRule> get proxyRules => $_get(6, 8, null);
 
-  PolicyRobotsTxt get robotsTxt => $_get(7, 8, null);
-  void set robotsTxt(PolicyRobotsTxt v) { setField(8, v); }
-  bool hasRobotsTxt() => $_has(7, 8);
-  void clearRobotsTxt() => clearField(8);
+  List<PolicyMimeTypeRule> get mimeTypeRules => $_get(7, 9, null);
 
-  List<PolicyUrlRule> get urlRules => $_get(8, 9, null);
+  PolicyRobotsTxt get robotsTxt => $_get(8, 10, null);
+  void set robotsTxt(PolicyRobotsTxt v) { setField(10, v); }
+  bool hasRobotsTxt() => $_has(8, 10);
+  void clearRobotsTxt() => clearField(10);
 
-  List<PolicyUserAgent> get userAgents => $_get(9, 10, null);
+  List<PolicyUrlRule> get urlRules => $_get(9, 11, null);
+
+  List<PolicyUserAgent> get userAgents => $_get(10, 12, null);
 }
 
 class _ReadonlyPolicy extends Policy with ReadonlyMessageMixin {}
+
+class PolicyAuthentication extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('PolicyAuthentication')
+    ..a/*<bool>*/(1, 'enabled', PbFieldType.OB)
+    ..hasRequiredFields = false
+  ;
+
+  PolicyAuthentication() : super();
+  PolicyAuthentication.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  PolicyAuthentication.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  PolicyAuthentication clone() => new PolicyAuthentication()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static PolicyAuthentication create() => new PolicyAuthentication();
+  static PbList<PolicyAuthentication> createRepeated() => new PbList<PolicyAuthentication>();
+  static PolicyAuthentication getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyPolicyAuthentication();
+    return _defaultInstance;
+  }
+  static PolicyAuthentication _defaultInstance;
+  static void $checkItem(PolicyAuthentication v) {
+    if (v is !PolicyAuthentication) checkItemFailed(v, 'PolicyAuthentication');
+  }
+
+  bool get enabled => $_get(0, 1, false);
+  void set enabled(bool v) { $_setBool(0, 1, v); }
+  bool hasEnabled() => $_has(0, 1);
+  void clearEnabled() => clearField(1);
+}
+
+class _ReadonlyPolicyAuthentication extends PolicyAuthentication with ReadonlyMessageMixin {}
 
 class PolicyLimits extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('PolicyLimits')

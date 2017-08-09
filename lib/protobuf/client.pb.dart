@@ -12,24 +12,28 @@ import 'shared.pbenum.dart';
 class Request extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('Request')
     ..a/*<int>*/(1, 'requestId', PbFieldType.Q3)
-    ..a/*<RequestDeleteJob>*/(2, 'deleteJob', PbFieldType.OM, RequestDeleteJob.getDefault, RequestDeleteJob.create)
-    ..a/*<RequestDeletePolicy>*/(3, 'deletePolicy', PbFieldType.OM, RequestDeletePolicy.getDefault, RequestDeletePolicy.create)
-    ..a/*<RequestGetJob>*/(4, 'getJob', PbFieldType.OM, RequestGetJob.getDefault, RequestGetJob.create)
-    ..a/*<RequestGetJobItems>*/(5, 'getJobItems', PbFieldType.OM, RequestGetJobItems.getDefault, RequestGetJobItems.create)
-    ..a/*<RequestGetPolicy>*/(6, 'getPolicy', PbFieldType.OM, RequestGetPolicy.getDefault, RequestGetPolicy.create)
-    ..a/*<RequestGetRateLimits>*/(7, 'getRateLimits', PbFieldType.OM, RequestGetRateLimits.getDefault, RequestGetRateLimits.create)
-    ..a/*<RequestListJobs>*/(8, 'listJobs', PbFieldType.OM, RequestListJobs.getDefault, RequestListJobs.create)
-    ..a/*<RequestListPolicies>*/(9, 'listPolicies', PbFieldType.OM, RequestListPolicies.getDefault, RequestListPolicies.create)
-    ..a/*<RequestPerformanceProfile>*/(10, 'performanceProfile', PbFieldType.OM, RequestPerformanceProfile.getDefault, RequestPerformanceProfile.create)
-    ..a/*<RequestPing>*/(11, 'ping', PbFieldType.OM, RequestPing.getDefault, RequestPing.create)
-    ..a/*<RequestSetJob>*/(12, 'setJob', PbFieldType.OM, RequestSetJob.getDefault, RequestSetJob.create)
-    ..a/*<RequestSetPolicy>*/(13, 'setPolicy', PbFieldType.OM, RequestSetPolicy.getDefault, RequestSetPolicy.create)
-    ..a/*<RequestSetRateLimit>*/(14, 'setRateLimit', PbFieldType.OM, RequestSetRateLimit.getDefault, RequestSetRateLimit.create)
-    ..a/*<RequestSubscribeJobStatus>*/(15, 'subscribeJobStatus', PbFieldType.OM, RequestSubscribeJobStatus.getDefault, RequestSubscribeJobStatus.create)
-    ..a/*<RequestSubscribeJobSync>*/(16, 'subscribeJobSync', PbFieldType.OM, RequestSubscribeJobSync.getDefault, RequestSubscribeJobSync.create)
-    ..a/*<RequestSubscribeResourceMonitor>*/(17, 'subscribeResourceMonitor', PbFieldType.OM, RequestSubscribeResourceMonitor.getDefault, RequestSubscribeResourceMonitor.create)
-    ..a/*<RequestSubscribeTaskMonitor>*/(18, 'subscribeTaskMonitor', PbFieldType.OM, RequestSubscribeTaskMonitor.getDefault, RequestSubscribeTaskMonitor.create)
-    ..a/*<RequestUnsubscribe>*/(19, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
+    ..a/*<RequestDeleteDomainLogin>*/(2, 'deleteDomainLogin', PbFieldType.OM, RequestDeleteDomainLogin.getDefault, RequestDeleteDomainLogin.create)
+    ..a/*<RequestDeleteJob>*/(3, 'deleteJob', PbFieldType.OM, RequestDeleteJob.getDefault, RequestDeleteJob.create)
+    ..a/*<RequestDeletePolicy>*/(4, 'deletePolicy', PbFieldType.OM, RequestDeletePolicy.getDefault, RequestDeletePolicy.create)
+    ..a/*<RequestGetDomainLogin>*/(5, 'getDomainLogin', PbFieldType.OM, RequestGetDomainLogin.getDefault, RequestGetDomainLogin.create)
+    ..a/*<RequestGetJob>*/(6, 'getJob', PbFieldType.OM, RequestGetJob.getDefault, RequestGetJob.create)
+    ..a/*<RequestGetJobItems>*/(7, 'getJobItems', PbFieldType.OM, RequestGetJobItems.getDefault, RequestGetJobItems.create)
+    ..a/*<RequestGetPolicy>*/(8, 'getPolicy', PbFieldType.OM, RequestGetPolicy.getDefault, RequestGetPolicy.create)
+    ..a/*<RequestGetRateLimits>*/(9, 'getRateLimits', PbFieldType.OM, RequestGetRateLimits.getDefault, RequestGetRateLimits.create)
+    ..a/*<RequestListDomainLogins>*/(10, 'listDomainLogins', PbFieldType.OM, RequestListDomainLogins.getDefault, RequestListDomainLogins.create)
+    ..a/*<RequestListJobs>*/(11, 'listJobs', PbFieldType.OM, RequestListJobs.getDefault, RequestListJobs.create)
+    ..a/*<RequestListPolicies>*/(12, 'listPolicies', PbFieldType.OM, RequestListPolicies.getDefault, RequestListPolicies.create)
+    ..a/*<RequestPerformanceProfile>*/(13, 'performanceProfile', PbFieldType.OM, RequestPerformanceProfile.getDefault, RequestPerformanceProfile.create)
+    ..a/*<RequestPing>*/(14, 'ping', PbFieldType.OM, RequestPing.getDefault, RequestPing.create)
+    ..a/*<RequestSetDomainLogin>*/(15, 'setDomainLogin', PbFieldType.OM, RequestSetDomainLogin.getDefault, RequestSetDomainLogin.create)
+    ..a/*<RequestSetJob>*/(16, 'setJob', PbFieldType.OM, RequestSetJob.getDefault, RequestSetJob.create)
+    ..a/*<RequestSetPolicy>*/(17, 'setPolicy', PbFieldType.OM, RequestSetPolicy.getDefault, RequestSetPolicy.create)
+    ..a/*<RequestSetRateLimit>*/(18, 'setRateLimit', PbFieldType.OM, RequestSetRateLimit.getDefault, RequestSetRateLimit.create)
+    ..a/*<RequestSubscribeJobStatus>*/(19, 'subscribeJobStatus', PbFieldType.OM, RequestSubscribeJobStatus.getDefault, RequestSubscribeJobStatus.create)
+    ..a/*<RequestSubscribeJobSync>*/(20, 'subscribeJobSync', PbFieldType.OM, RequestSubscribeJobSync.getDefault, RequestSubscribeJobSync.create)
+    ..a/*<RequestSubscribeResourceMonitor>*/(21, 'subscribeResourceMonitor', PbFieldType.OM, RequestSubscribeResourceMonitor.getDefault, RequestSubscribeResourceMonitor.create)
+    ..a/*<RequestSubscribeTaskMonitor>*/(22, 'subscribeTaskMonitor', PbFieldType.OM, RequestSubscribeTaskMonitor.getDefault, RequestSubscribeTaskMonitor.create)
+    ..a/*<RequestUnsubscribe>*/(23, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
   ;
 
   Request() : super();
@@ -53,98 +57,148 @@ class Request extends GeneratedMessage {
   bool hasRequestId() => $_has(0, 1);
   void clearRequestId() => clearField(1);
 
-  RequestDeleteJob get deleteJob => $_get(1, 2, null);
-  void set deleteJob(RequestDeleteJob v) { setField(2, v); }
-  bool hasDeleteJob() => $_has(1, 2);
-  void clearDeleteJob() => clearField(2);
+  RequestDeleteDomainLogin get deleteDomainLogin => $_get(1, 2, null);
+  void set deleteDomainLogin(RequestDeleteDomainLogin v) { setField(2, v); }
+  bool hasDeleteDomainLogin() => $_has(1, 2);
+  void clearDeleteDomainLogin() => clearField(2);
 
-  RequestDeletePolicy get deletePolicy => $_get(2, 3, null);
-  void set deletePolicy(RequestDeletePolicy v) { setField(3, v); }
-  bool hasDeletePolicy() => $_has(2, 3);
-  void clearDeletePolicy() => clearField(3);
+  RequestDeleteJob get deleteJob => $_get(2, 3, null);
+  void set deleteJob(RequestDeleteJob v) { setField(3, v); }
+  bool hasDeleteJob() => $_has(2, 3);
+  void clearDeleteJob() => clearField(3);
 
-  RequestGetJob get getJob => $_get(3, 4, null);
-  void set getJob(RequestGetJob v) { setField(4, v); }
-  bool hasGetJob() => $_has(3, 4);
-  void clearGetJob() => clearField(4);
+  RequestDeletePolicy get deletePolicy => $_get(3, 4, null);
+  void set deletePolicy(RequestDeletePolicy v) { setField(4, v); }
+  bool hasDeletePolicy() => $_has(3, 4);
+  void clearDeletePolicy() => clearField(4);
 
-  RequestGetJobItems get getJobItems => $_get(4, 5, null);
-  void set getJobItems(RequestGetJobItems v) { setField(5, v); }
-  bool hasGetJobItems() => $_has(4, 5);
-  void clearGetJobItems() => clearField(5);
+  RequestGetDomainLogin get getDomainLogin => $_get(4, 5, null);
+  void set getDomainLogin(RequestGetDomainLogin v) { setField(5, v); }
+  bool hasGetDomainLogin() => $_has(4, 5);
+  void clearGetDomainLogin() => clearField(5);
 
-  RequestGetPolicy get getPolicy => $_get(5, 6, null);
-  void set getPolicy(RequestGetPolicy v) { setField(6, v); }
-  bool hasGetPolicy() => $_has(5, 6);
-  void clearGetPolicy() => clearField(6);
+  RequestGetJob get getJob => $_get(5, 6, null);
+  void set getJob(RequestGetJob v) { setField(6, v); }
+  bool hasGetJob() => $_has(5, 6);
+  void clearGetJob() => clearField(6);
 
-  RequestGetRateLimits get getRateLimits => $_get(6, 7, null);
-  void set getRateLimits(RequestGetRateLimits v) { setField(7, v); }
-  bool hasGetRateLimits() => $_has(6, 7);
-  void clearGetRateLimits() => clearField(7);
+  RequestGetJobItems get getJobItems => $_get(6, 7, null);
+  void set getJobItems(RequestGetJobItems v) { setField(7, v); }
+  bool hasGetJobItems() => $_has(6, 7);
+  void clearGetJobItems() => clearField(7);
 
-  RequestListJobs get listJobs => $_get(7, 8, null);
-  void set listJobs(RequestListJobs v) { setField(8, v); }
-  bool hasListJobs() => $_has(7, 8);
-  void clearListJobs() => clearField(8);
+  RequestGetPolicy get getPolicy => $_get(7, 8, null);
+  void set getPolicy(RequestGetPolicy v) { setField(8, v); }
+  bool hasGetPolicy() => $_has(7, 8);
+  void clearGetPolicy() => clearField(8);
 
-  RequestListPolicies get listPolicies => $_get(8, 9, null);
-  void set listPolicies(RequestListPolicies v) { setField(9, v); }
-  bool hasListPolicies() => $_has(8, 9);
-  void clearListPolicies() => clearField(9);
+  RequestGetRateLimits get getRateLimits => $_get(8, 9, null);
+  void set getRateLimits(RequestGetRateLimits v) { setField(9, v); }
+  bool hasGetRateLimits() => $_has(8, 9);
+  void clearGetRateLimits() => clearField(9);
 
-  RequestPerformanceProfile get performanceProfile => $_get(9, 10, null);
-  void set performanceProfile(RequestPerformanceProfile v) { setField(10, v); }
-  bool hasPerformanceProfile() => $_has(9, 10);
-  void clearPerformanceProfile() => clearField(10);
+  RequestListDomainLogins get listDomainLogins => $_get(9, 10, null);
+  void set listDomainLogins(RequestListDomainLogins v) { setField(10, v); }
+  bool hasListDomainLogins() => $_has(9, 10);
+  void clearListDomainLogins() => clearField(10);
 
-  RequestPing get ping => $_get(10, 11, null);
-  void set ping(RequestPing v) { setField(11, v); }
-  bool hasPing() => $_has(10, 11);
-  void clearPing() => clearField(11);
+  RequestListJobs get listJobs => $_get(10, 11, null);
+  void set listJobs(RequestListJobs v) { setField(11, v); }
+  bool hasListJobs() => $_has(10, 11);
+  void clearListJobs() => clearField(11);
 
-  RequestSetJob get setJob => $_get(11, 12, null);
-  void set setJob(RequestSetJob v) { setField(12, v); }
-  bool hasSetJob() => $_has(11, 12);
-  void clearSetJob() => clearField(12);
+  RequestListPolicies get listPolicies => $_get(11, 12, null);
+  void set listPolicies(RequestListPolicies v) { setField(12, v); }
+  bool hasListPolicies() => $_has(11, 12);
+  void clearListPolicies() => clearField(12);
 
-  RequestSetPolicy get setPolicy => $_get(12, 13, null);
-  void set setPolicy(RequestSetPolicy v) { setField(13, v); }
-  bool hasSetPolicy() => $_has(12, 13);
-  void clearSetPolicy() => clearField(13);
+  RequestPerformanceProfile get performanceProfile => $_get(12, 13, null);
+  void set performanceProfile(RequestPerformanceProfile v) { setField(13, v); }
+  bool hasPerformanceProfile() => $_has(12, 13);
+  void clearPerformanceProfile() => clearField(13);
 
-  RequestSetRateLimit get setRateLimit => $_get(13, 14, null);
-  void set setRateLimit(RequestSetRateLimit v) { setField(14, v); }
-  bool hasSetRateLimit() => $_has(13, 14);
-  void clearSetRateLimit() => clearField(14);
+  RequestPing get ping => $_get(13, 14, null);
+  void set ping(RequestPing v) { setField(14, v); }
+  bool hasPing() => $_has(13, 14);
+  void clearPing() => clearField(14);
 
-  RequestSubscribeJobStatus get subscribeJobStatus => $_get(14, 15, null);
-  void set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(15, v); }
-  bool hasSubscribeJobStatus() => $_has(14, 15);
-  void clearSubscribeJobStatus() => clearField(15);
+  RequestSetDomainLogin get setDomainLogin => $_get(14, 15, null);
+  void set setDomainLogin(RequestSetDomainLogin v) { setField(15, v); }
+  bool hasSetDomainLogin() => $_has(14, 15);
+  void clearSetDomainLogin() => clearField(15);
 
-  RequestSubscribeJobSync get subscribeJobSync => $_get(15, 16, null);
-  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(16, v); }
-  bool hasSubscribeJobSync() => $_has(15, 16);
-  void clearSubscribeJobSync() => clearField(16);
+  RequestSetJob get setJob => $_get(15, 16, null);
+  void set setJob(RequestSetJob v) { setField(16, v); }
+  bool hasSetJob() => $_has(15, 16);
+  void clearSetJob() => clearField(16);
 
-  RequestSubscribeResourceMonitor get subscribeResourceMonitor => $_get(16, 17, null);
-  void set subscribeResourceMonitor(RequestSubscribeResourceMonitor v) { setField(17, v); }
-  bool hasSubscribeResourceMonitor() => $_has(16, 17);
-  void clearSubscribeResourceMonitor() => clearField(17);
+  RequestSetPolicy get setPolicy => $_get(16, 17, null);
+  void set setPolicy(RequestSetPolicy v) { setField(17, v); }
+  bool hasSetPolicy() => $_has(16, 17);
+  void clearSetPolicy() => clearField(17);
 
-  RequestSubscribeTaskMonitor get subscribeTaskMonitor => $_get(17, 18, null);
-  void set subscribeTaskMonitor(RequestSubscribeTaskMonitor v) { setField(18, v); }
-  bool hasSubscribeTaskMonitor() => $_has(17, 18);
-  void clearSubscribeTaskMonitor() => clearField(18);
+  RequestSetRateLimit get setRateLimit => $_get(17, 18, null);
+  void set setRateLimit(RequestSetRateLimit v) { setField(18, v); }
+  bool hasSetRateLimit() => $_has(17, 18);
+  void clearSetRateLimit() => clearField(18);
 
-  RequestUnsubscribe get unsubscribe => $_get(18, 19, null);
-  void set unsubscribe(RequestUnsubscribe v) { setField(19, v); }
-  bool hasUnsubscribe() => $_has(18, 19);
-  void clearUnsubscribe() => clearField(19);
+  RequestSubscribeJobStatus get subscribeJobStatus => $_get(18, 19, null);
+  void set subscribeJobStatus(RequestSubscribeJobStatus v) { setField(19, v); }
+  bool hasSubscribeJobStatus() => $_has(18, 19);
+  void clearSubscribeJobStatus() => clearField(19);
+
+  RequestSubscribeJobSync get subscribeJobSync => $_get(19, 20, null);
+  void set subscribeJobSync(RequestSubscribeJobSync v) { setField(20, v); }
+  bool hasSubscribeJobSync() => $_has(19, 20);
+  void clearSubscribeJobSync() => clearField(20);
+
+  RequestSubscribeResourceMonitor get subscribeResourceMonitor => $_get(20, 21, null);
+  void set subscribeResourceMonitor(RequestSubscribeResourceMonitor v) { setField(21, v); }
+  bool hasSubscribeResourceMonitor() => $_has(20, 21);
+  void clearSubscribeResourceMonitor() => clearField(21);
+
+  RequestSubscribeTaskMonitor get subscribeTaskMonitor => $_get(21, 22, null);
+  void set subscribeTaskMonitor(RequestSubscribeTaskMonitor v) { setField(22, v); }
+  bool hasSubscribeTaskMonitor() => $_has(21, 22);
+  void clearSubscribeTaskMonitor() => clearField(22);
+
+  RequestUnsubscribe get unsubscribe => $_get(22, 23, null);
+  void set unsubscribe(RequestUnsubscribe v) { setField(23, v); }
+  bool hasUnsubscribe() => $_has(22, 23);
+  void clearUnsubscribe() => clearField(23);
 }
 
 class _ReadonlyRequest extends Request with ReadonlyMessageMixin {}
+
+class RequestDeleteDomainLogin extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestDeleteDomainLogin')
+    ..a/*<String>*/(1, 'domain', PbFieldType.OS)
+    ..hasRequiredFields = false
+  ;
+
+  RequestDeleteDomainLogin() : super();
+  RequestDeleteDomainLogin.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestDeleteDomainLogin.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestDeleteDomainLogin clone() => new RequestDeleteDomainLogin()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestDeleteDomainLogin create() => new RequestDeleteDomainLogin();
+  static PbList<RequestDeleteDomainLogin> createRepeated() => new PbList<RequestDeleteDomainLogin>();
+  static RequestDeleteDomainLogin getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestDeleteDomainLogin();
+    return _defaultInstance;
+  }
+  static RequestDeleteDomainLogin _defaultInstance;
+  static void $checkItem(RequestDeleteDomainLogin v) {
+    if (v is !RequestDeleteDomainLogin) checkItemFailed(v, 'RequestDeleteDomainLogin');
+  }
+
+  String get domain => $_get(0, 1, '');
+  void set domain(String v) { $_setString(0, 1, v); }
+  bool hasDomain() => $_has(0, 1);
+  void clearDomain() => clearField(1);
+}
+
+class _ReadonlyRequestDeleteDomainLogin extends RequestDeleteDomainLogin with ReadonlyMessageMixin {}
 
 class RequestDeleteJob extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestDeleteJob')
@@ -203,6 +257,35 @@ class RequestDeletePolicy extends GeneratedMessage {
 }
 
 class _ReadonlyRequestDeletePolicy extends RequestDeletePolicy with ReadonlyMessageMixin {}
+
+class RequestGetDomainLogin extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestGetDomainLogin')
+    ..a/*<String>*/(1, 'domain', PbFieldType.QS)
+  ;
+
+  RequestGetDomainLogin() : super();
+  RequestGetDomainLogin.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestGetDomainLogin.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestGetDomainLogin clone() => new RequestGetDomainLogin()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestGetDomainLogin create() => new RequestGetDomainLogin();
+  static PbList<RequestGetDomainLogin> createRepeated() => new PbList<RequestGetDomainLogin>();
+  static RequestGetDomainLogin getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestGetDomainLogin();
+    return _defaultInstance;
+  }
+  static RequestGetDomainLogin _defaultInstance;
+  static void $checkItem(RequestGetDomainLogin v) {
+    if (v is !RequestGetDomainLogin) checkItemFailed(v, 'RequestGetDomainLogin');
+  }
+
+  String get domain => $_get(0, 1, '');
+  void set domain(String v) { $_setString(0, 1, v); }
+  bool hasDomain() => $_has(0, 1);
+  void clearDomain() => clearField(1);
+}
+
+class _ReadonlyRequestGetDomainLogin extends RequestGetDomainLogin with ReadonlyMessageMixin {}
 
 class RequestGetJob extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestGetJob')
@@ -351,6 +434,36 @@ class RequestGetRateLimits extends GeneratedMessage {
 
 class _ReadonlyRequestGetRateLimits extends RequestGetRateLimits with ReadonlyMessageMixin {}
 
+class RequestListDomainLogins extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestListDomainLogins')
+    ..a/*<Page>*/(1, 'page', PbFieldType.OM, Page.getDefault, Page.create)
+    ..hasRequiredFields = false
+  ;
+
+  RequestListDomainLogins() : super();
+  RequestListDomainLogins.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestListDomainLogins.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestListDomainLogins clone() => new RequestListDomainLogins()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestListDomainLogins create() => new RequestListDomainLogins();
+  static PbList<RequestListDomainLogins> createRepeated() => new PbList<RequestListDomainLogins>();
+  static RequestListDomainLogins getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestListDomainLogins();
+    return _defaultInstance;
+  }
+  static RequestListDomainLogins _defaultInstance;
+  static void $checkItem(RequestListDomainLogins v) {
+    if (v is !RequestListDomainLogins) checkItemFailed(v, 'RequestListDomainLogins');
+  }
+
+  Page get page => $_get(0, 1, null);
+  void set page(Page v) { setField(1, v); }
+  bool hasPage() => $_has(0, 1);
+  void clearPage() => clearField(1);
+}
+
+class _ReadonlyRequestListDomainLogins extends RequestListDomainLogins with ReadonlyMessageMixin {}
+
 class RequestListJobs extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestListJobs')
     ..a/*<Page>*/(1, 'page', PbFieldType.OM, Page.getDefault, Page.create)
@@ -494,6 +607,36 @@ class RequestPing extends GeneratedMessage {
 }
 
 class _ReadonlyRequestPing extends RequestPing with ReadonlyMessageMixin {}
+
+class RequestSetDomainLogin extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestSetDomainLogin')
+    ..a/*<DomainLogin>*/(1, 'login', PbFieldType.OM, DomainLogin.getDefault, DomainLogin.create)
+    ..hasRequiredFields = false
+  ;
+
+  RequestSetDomainLogin() : super();
+  RequestSetDomainLogin.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestSetDomainLogin.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestSetDomainLogin clone() => new RequestSetDomainLogin()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestSetDomainLogin create() => new RequestSetDomainLogin();
+  static PbList<RequestSetDomainLogin> createRepeated() => new PbList<RequestSetDomainLogin>();
+  static RequestSetDomainLogin getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestSetDomainLogin();
+    return _defaultInstance;
+  }
+  static RequestSetDomainLogin _defaultInstance;
+  static void $checkItem(RequestSetDomainLogin v) {
+    if (v is !RequestSetDomainLogin) checkItemFailed(v, 'RequestSetDomainLogin');
+  }
+
+  DomainLogin get login => $_get(0, 1, null);
+  void set login(DomainLogin v) { setField(1, v); }
+  bool hasLogin() => $_has(0, 1);
+  void clearLogin() => clearField(1);
+}
+
+class _ReadonlyRequestSetDomainLogin extends RequestSetDomainLogin with ReadonlyMessageMixin {}
 
 class RequestSetJob extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestSetJob')

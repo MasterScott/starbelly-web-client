@@ -59,7 +59,7 @@ class RateLimitView implements AfterViewInit {
     }
 
     /// Create a new rate limit object.
-    void createRateLimit(String domain, String delayStr) async {
+    createRateLimit(String domain, String delayStr) async {
         var request = new pb.Request();
         request.setRateLimit = new pb.RequestSetRateLimit();
         request.setRateLimit.rateLimit = new pb.RateLimit();
@@ -76,7 +76,7 @@ class RateLimitView implements AfterViewInit {
     }
 
     /// Remove the specified rate limit.
-    void deleteRateLimit(ButtonClick click, RateLimitWrapper wrapper) async {
+    deleteRateLimit(ButtonClick click, RateLimitWrapper wrapper) async {
         click.button.busy = true;
         var request = new pb.Request();
         request.setRateLimit = new pb.RequestSetRateLimit();
@@ -116,7 +116,7 @@ class RateLimitView implements AfterViewInit {
     }
 
     /// Save a rate limit.
-    void saveRateLimit(RateLimitWrapper wrapper, String value) async {
+    saveRateLimit(RateLimitWrapper wrapper, String value) async {
         var delay;
         try {
             delay = double.parse(value);

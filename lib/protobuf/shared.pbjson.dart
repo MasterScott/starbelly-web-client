@@ -23,6 +23,26 @@ const PatternMatch$json = const {
   ],
 };
 
+const DomainLogin$json = const {
+  '1': 'DomainLogin',
+  '2': const [
+    const {'1': 'domain', '3': 1, '4': 1, '5': 9},
+    const {'1': 'login_url', '3': 2, '4': 1, '5': 9},
+    const {'1': 'login_test', '3': 3, '4': 1, '5': 9},
+    const {'1': 'auth_count', '3': 4, '4': 1, '5': 5},
+    const {'1': 'users', '3': 5, '4': 3, '5': 11, '6': '.starbelly.DomainLoginUser'},
+  ],
+};
+
+const DomainLoginUser$json = const {
+  '1': 'DomainLoginUser',
+  '2': const [
+    const {'1': 'username', '3': 1, '4': 1, '5': 9},
+    const {'1': 'password', '3': 2, '4': 1, '5': 9},
+    const {'1': 'working', '3': 3, '4': 1, '5': 8},
+  ],
+};
+
 const CrawlResponse$json = const {
   '1': 'CrawlResponse',
   '2': const [
@@ -102,12 +122,20 @@ const Policy$json = const {
     const {'1': 'name', '3': 2, '4': 1, '5': 9},
     const {'1': 'created_at', '3': 3, '4': 1, '5': 9},
     const {'1': 'updated_at', '3': 4, '4': 1, '5': 9},
-    const {'1': 'limits', '3': 5, '4': 1, '5': 11, '6': '.starbelly.PolicyLimits'},
-    const {'1': 'proxy_rules', '3': 6, '4': 3, '5': 11, '6': '.starbelly.PolicyProxyRule'},
-    const {'1': 'mime_type_rules', '3': 7, '4': 3, '5': 11, '6': '.starbelly.PolicyMimeTypeRule'},
-    const {'1': 'robots_txt', '3': 8, '4': 1, '5': 11, '6': '.starbelly.PolicyRobotsTxt'},
-    const {'1': 'url_rules', '3': 9, '4': 3, '5': 11, '6': '.starbelly.PolicyUrlRule'},
-    const {'1': 'user_agents', '3': 10, '4': 3, '5': 11, '6': '.starbelly.PolicyUserAgent'},
+    const {'1': 'authentication', '3': 6, '4': 1, '5': 11, '6': '.starbelly.PolicyAuthentication'},
+    const {'1': 'limits', '3': 7, '4': 1, '5': 11, '6': '.starbelly.PolicyLimits'},
+    const {'1': 'proxy_rules', '3': 8, '4': 3, '5': 11, '6': '.starbelly.PolicyProxyRule'},
+    const {'1': 'mime_type_rules', '3': 9, '4': 3, '5': 11, '6': '.starbelly.PolicyMimeTypeRule'},
+    const {'1': 'robots_txt', '3': 10, '4': 1, '5': 11, '6': '.starbelly.PolicyRobotsTxt'},
+    const {'1': 'url_rules', '3': 11, '4': 3, '5': 11, '6': '.starbelly.PolicyUrlRule'},
+    const {'1': 'user_agents', '3': 12, '4': 3, '5': 11, '6': '.starbelly.PolicyUserAgent'},
+  ],
+};
+
+const PolicyAuthentication$json = const {
+  '1': 'PolicyAuthentication',
+  '2': const [
+    const {'1': 'enabled', '3': 1, '4': 1, '5': 8},
   ],
 };
 

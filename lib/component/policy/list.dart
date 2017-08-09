@@ -9,7 +9,7 @@ import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
 
-/// View crawl items.
+/// List policies.
 @Component(
     selector: 'policy-list',
     templateUrl: 'list.html',

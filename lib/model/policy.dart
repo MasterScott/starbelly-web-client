@@ -12,6 +12,7 @@ class Policy {
     DateTime createdAt;
     DateTime updatedAt;
 
+    PolicyAuthentication authentication;
     PolicyLimits limits;
     List<PolicyMimeTypeRule> mimeTypeRules;
     List<PolicyProxyRule> proxyRules;
@@ -20,16 +21,17 @@ class Policy {
     List<PolicyUserAgent> userAgents;
 
     /// Create an empty, default policy.
-    Policy() {
+    Policy.defaultSettings() {
         this.name = 'New Policy';
         this.createdAt = new DateTime.now();
         this.updatedAt = this.createdAt;
-        this.limits = new PolicyLimits();
-        this.mimeTypeRules = [new PolicyMimeTypeRule()];
-        this.proxyRules = [new PolicyProxyRule()];
-        this.robotsTxt = new PolicyRobotsTxt();
-        this.urlRules = [new PolicyUrlRule()];
-        this.userAgents = [new PolicyUserAgent()];
+        this.authentication = new PolicyAuthentication.defaultSettings();
+        this.limits = new PolicyLimits.defaultSettings();
+        this.mimeTypeRules = [new PolicyMimeTypeRule.defaultSettings()];
+        this.proxyRules = [new PolicyProxyRule.defaultSettings()];
+        this.robotsTxt = new PolicyRobotsTxt.defaultSettings();
+        this.urlRules = [new PolicyUrlRule.defaultSettings()];
+        this.userAgents = [new PolicyUserAgent.defaultSettings()];
     }
 
     /// Instantiate a policy from a protobuf message.
@@ -41,6 +43,10 @@ class Policy {
         this.updatedAt = DateTime.parse(pbPolicy.updatedAt).toLocal();
 
         // These fields are only present when getting policy details.
+        if (pbPolicy.hasAuthentication()) {
+            this.authentication = new PolicyAuthentication.fromPb(
+                pbPolicy.authentication);
+        }
         if (pbPolicy.hasLimits()) {
             this.limits = new PolicyLimits.fromPb(pbPolicy.limits);
         }
@@ -72,6 +78,7 @@ class Policy {
             pbPolicy.policyId = convert.hex.decode(this.policyId);
         }
         pbPolicy.name = this.name;
+        pbPolicy.authentication = this.authentication.toPb();
         pbPolicy.limits = this.limits.toPb();
         for (var mimeTypeRule in this.mimeTypeRules) {
             pbPolicy.mimeTypeRules.add(mimeTypeRule.toPb());
@@ -90,6 +97,28 @@ class Policy {
     }
 }
 
+/// Policy for authenticated crawling.
+class PolicyAuthentication {
+    bool enabled;
+
+    /// Create a default object.
+    PolicyAuthentication.defaultSettings() {
+        this.enabled = False;
+    }
+
+    /// Create from a protobuf message.
+    PolicyAuthentication.fromPb(pb.PolicyAuthentication pbAuth) {
+        this.enabled = pbAuth.enabled;
+    }
+
+    /// Convert to protobuf message.
+    pb.PolicyAuthentication toPb() {
+        var pbAuth = new pb.PolicyAuthentication();
+        pbAuth.enabled = this.enabled;
+        return pbAuth;
+    }
+}
+
 /// Limits on how long or far a crawl runs.
 class PolicyLimits {
     String maxCost;
@@ -97,7 +126,7 @@ class PolicyLimits {
     String maxItems;
 
     /// Create a default object.
-    PolicyLimits() {
+    PolicyLimits.defaultSettings() {
         this.maxCost = '10';
         this.maxDuration = '';
         this.maxItems = '';
@@ -136,7 +165,7 @@ class PolicyMimeTypeRule {
     bool save;
 
     /// Create a default object.
-    PolicyMimeTypeRule() {
+    PolicyMimeTypeRule.defaultSettings() {
         this.pattern = '';
         this.match = pb.PatternMatch.MATCHES;
         this.save = true;
@@ -175,7 +204,7 @@ class PolicyProxyRule {
     String proxyUrl;
 
     /// Create a default object.
-    PolicyProxyRule() {
+    PolicyProxyRule.defaultSettings() {
         this.pattern = '';
         // For the last rule, "match" is overloaded to mean "always" and "does
         // not match" to mean "never".
@@ -222,7 +251,7 @@ class PolicyRobotsTxt {
     pb.PolicyRobotsTxt_Usage usage;
 
     /// Create a default object.
-    PolicyRobotsTxt() {
+    PolicyRobotsTxt.defaultSettings() {
         this.usage = pb.PolicyRobotsTxt_Usage.OBEY;
     }
 
@@ -247,7 +276,7 @@ class PolicyUrlRule {
     String amount;
 
     /// Create a default object.
-    PolicyUrlRule() {
+    PolicyUrlRule.defaultSettings() {
         this.pattern = '';
         this.match = pb.PatternMatch.MATCHES;
         this.action = pb.PolicyUrlRule_Action.ADD;
@@ -288,15 +317,15 @@ class PolicyUrlRule {
 class PolicyUserAgent {
     String name;
 
-    /// Create a default user agent.
-    PolicyUserAgent() {
-        this.name = 'Starbelly/{VERSION}'
-            ' (+https://gitlab.com/hyperion-gray/starbelly)';
-    }
-
     /// Create a blank user agent.
     PolicyUserAgent.blank() {
         this.name = '';
+    }
+
+    /// Create a default user agent.
+    PolicyUserAgent.defaultSettings() {
+        this.name = 'Starbelly/{VERSION}'
+            ' (+https://gitlab.com/hyperion-gray/starbelly)';
     }
 
     /// Create from a protobuf message.
