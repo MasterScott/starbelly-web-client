@@ -26,7 +26,10 @@ import 'package:starbelly/service/server.dart';
             width: 15em;
         }
         ma-input-group {
-            max-width: 30em;
+            max-width: 75%;
+        }
+        ma-input-group.regex {
+            width: 100%;
         }
         .metadata-labels {
             text-align: right;

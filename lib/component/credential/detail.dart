@@ -15,6 +15,24 @@ import 'package:starbelly/service/server.dart';
 @Component(
     selector: 'credential-detail',
     styles: const ['''
+        table {
+            table-layout: fixed;
+        }
+        th:nth-child(1) {
+            width: 35%;
+        }
+        th:nth-child(2) {
+            width: 40%;
+        }
+        th:nth-child(3) {
+            width: 25%;
+        }
+        td span.masked, td:hover span.unmasked {
+            display: inline;
+        }
+        td span.unmasked, td:hover span.masked {
+            display: none;
+        }
         label {
             width: 8em;
         }

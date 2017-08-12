@@ -113,8 +113,8 @@
                   <option [ngValue]='DOES_NOT_MATCH'>does not match</option>
                 </select>
               </ma-input-group>
-              &nbsp;the regex
-              <ma-input-group [in-text]='true'>
+              <br>the regex
+              <ma-input-group class='regex' [in-text]='true'>
                 <input type='text' [(ngModel)]='urlRule.pattern' placeholder='regex pattern'>
               </ma-input-group>
               <br>then
@@ -224,8 +224,8 @@
                 <option [ngValue]='DOES_NOT_MATCH'>does not match</option>
               </select>
             </ma-input-group>
-            &nbsp;the regex&nbsp;
-            <ma-input-group [in-text]='true'>
+            <br>the regex&nbsp;
+            <ma-input-group class='regex' [in-text]='true'>
               <input type='text' [(ngModel)]='proxyRule.pattern' placeholder='regex pattern'>
             </ma-input-group>
             <br>then use the proxy
@@ -303,8 +303,8 @@
                   <option [ngValue]='DOES_NOT_MATCH'>does not match</option>
                 </select>
               </ma-input-group>
-              &nbsp;the regex
-              <ma-input-group [in-text]='true'>
+              <br>the regex
+              <ma-input-group class='regex' [in-text]='true'>
                 <input type='text' [(ngModel)]='mimeRule.pattern' placeholder='regex pattern'>
               </ma-input-group>
               <br>then
