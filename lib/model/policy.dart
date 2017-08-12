@@ -103,7 +103,7 @@ class PolicyAuthentication {
 
     /// Create a default object.
     PolicyAuthentication.defaultSettings() {
-        this.enabled = False;
+        this.enabled = false;
     }
 
     /// Create from a protobuf message.

@@ -90,7 +90,7 @@ class PolicyDetailView implements AfterViewInit {
     void addMimeRule() {
         this.policy.mimeTypeRules.insert(
             this.policy.mimeTypeRules.length - 1,
-            new PolicyMimeTypeRule()
+            new PolicyMimeTypeRule.defaultSettings()
         );
     }
 
@@ -98,7 +98,7 @@ class PolicyDetailView implements AfterViewInit {
     void addProxyRule() {
         this.policy.proxyRules.insert(
             this.policy.proxyRules.length - 1,
-            new PolicyProxyRule()
+            new PolicyProxyRule.defaultSettings()
         );
     }
 
@@ -106,7 +106,7 @@ class PolicyDetailView implements AfterViewInit {
     void addUrlRule() {
         this.policy.urlRules.insert(
             this.policy.urlRules.length - 1,
-            new PolicyUrlRule()
+            new PolicyUrlRule.defaultSettings()
         );
     }
 
