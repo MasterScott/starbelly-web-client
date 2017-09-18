@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:ng2_fontawesome/ng2_fontawesome.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
+import 'package:starbelly/component/external_link.dart';
 import 'package:starbelly/model/item.dart';
 import 'package:starbelly/model/job.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
@@ -29,7 +30,8 @@ import 'package:starbelly/service/server.dart';
         }
     '''],
     templateUrl: 'exception.html',
-    directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
+    directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES,
+        ExternalLinkComponent]
 )
 class ResultExceptionView implements AfterViewInit {
     int currentPage = 1;

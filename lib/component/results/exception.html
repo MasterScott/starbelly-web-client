@@ -35,8 +35,8 @@
           <tr *ngFor="let item of items">
             <td class='exception'>
               <p>
-                <strong>URL:</strong> <a href='{{item.url}}' target='_blank'>{{item.url}}</a>
-                <fa name='external-link'></fa>
+                <strong>URL:</strong>
+                <external-link [href]='item.url'></external-link>
                 <br><strong>Started At:</strong> {{item.startedAt | date:'y-MM-dd H:mm:ss'}}
                 <br><strong>Duration:</strong> {{item.duration | number:'1.3'}}
               </p>

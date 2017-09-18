@@ -8,6 +8,7 @@ import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
 import 'package:starbelly/component/credential/router.dart';
 import 'package:starbelly/component/dashboard.dart';
+import 'package:starbelly/component/external_link.dart';
 import 'package:starbelly/component/policy/router.dart';
 import 'package:starbelly/component/rate_limit.dart';
 import 'package:starbelly/component/results/router.dart';

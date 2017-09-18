@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:ng2_fontawesome/ng2_fontawesome.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
+import 'package:starbelly/component/external_link.dart';
 import 'package:starbelly/model/item.dart';
 import 'package:starbelly/model/job.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
@@ -19,6 +20,9 @@ import 'package:starbelly/service/server.dart';
 @Component(
     selector: 'results-success',
     styles: const ['''
+        table {
+            table-layout: fixed;
+        }
         td pre {
             overflow-x: auto;
             margin-bottom: 0;
@@ -27,9 +31,24 @@ import 'package:starbelly/service/server.dart';
             /* This makes no sense, but it fixes an x-overflow bug. */
             max-width: 0
         }
+        td:nth-child(1) {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        th:nth-child(2) {
+            width: 5em;
+        }
+        th:nth-child(3) {
+            width: 4em;
+        }
+        th:nth-child(4) {
+            width: 6em;
+        }
     '''],
     templateUrl: 'success.html',
-    directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
+    directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES,
+        ExternalLinkComponent]
 )
 class ResultSuccessView implements AfterViewInit {
     int currentPage = 1;

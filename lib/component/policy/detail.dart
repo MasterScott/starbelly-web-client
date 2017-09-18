@@ -81,7 +81,7 @@ class PolicyDetailView implements AfterViewInit {
         this._server) {
         this._document.title = 'Crawl Policy';
         this._document.breadcrumbs = [
-            new Breadcrumb(name: 'Crawl Policy', icon: 'cogs',
+            new Breadcrumb(name: 'Crawl Policy', icon: 'book',
                 link: ['/Policy', 'List']),
             new Breadcrumb(name: 'Policy'),
         ];
@@ -168,6 +168,7 @@ class PolicyDetailView implements AfterViewInit {
                 var policyId = convert.hex.encode(response.newPolicy.policyId);
                 this._router.navigate(['../Detail', {"id": policyId}]);
             } else {
+                this._document.breadcrumbs.last.name = this.policy.name;
                 new Timer(new Duration(seconds: 3), () {
                     this.saveSuccess = false;
                 });

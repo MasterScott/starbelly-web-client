@@ -21,7 +21,7 @@
             <th>URL</th>
             <th>Status</th>
             <th>Cost</th>
-            <th>Duration (s)</th>
+            <th title='Duration in seconds'>Duration</th>
           </tr>
         </thead>
         <tbody>
@@ -36,18 +36,19 @@
             </td>
           </tr>
           <tr *ngFor="let item of items; let index=index">
-            <td [attr.colspan]='showBody == index ? 999 : 1'
+            <td [attr.colspan]='showBody == index ? 4 : 1'
                 [class.expanded]='showBody == index'>
               <fa name='caret-right'
                   [fw]='true'
                   [class.hidden-xs-up]='showBody == index'
-                  (click)='showBody = index'></fa>
+                  (click)='showBody = index'></fa>&nbsp;
               <fa name='caret-down'
                   [fw]='true'
                   [class.hidden-xs-up]='showBody != index'
-                  (click)='showBody = null'></fa>
-              <a href='{{item.url}}' target='_blank'>{{item.url}}</a>
-              <fa name='external-link'></fa>
+                  (click)='showBody = null'></fa>&nbsp;
+              <external-link [href]='item.url'></external-link>
+              <!-- <a href='{{item.url}}' target='_blank'>{{item.url}}</a> -->
+              <!-- <fa name='external-link'></fa> -->
               <pre *ngIf='showBody == index'><span *ngFor='let header of item.headers'>{{header.key}}: {{header.value}}<br></span>
 {{item.bodyStr}}
               </pre>
