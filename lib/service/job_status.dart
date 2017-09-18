@@ -105,7 +105,7 @@ class JobStatusService {
                     var jobId = jobUpdate.jobId;
                     if (!this._jobMap.containsKey(jobId)) {
                         this._jobMap[jobId] = jobUpdate;
-                        this._jobs.insert(0, jobUpdate);
+                        this.jobs.add(jobUpdate);
                         if (!firstEvent) {
                             this._newJobCount++;
                         }
@@ -120,6 +120,7 @@ class JobStatusService {
                 }
             }
 
+            this._jobs.sort((job1, job2) => job1.name.compareTo(job2.name));
             firstEvent = false;
         });
     }
