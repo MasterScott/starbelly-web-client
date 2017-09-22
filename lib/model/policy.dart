@@ -17,6 +17,7 @@ class Policy {
     List<PolicyMimeTypeRule> mimeTypeRules;
     List<PolicyProxyRule> proxyRules;
     PolicyRobotsTxt robotsTxt;
+    PolicyUrlNormalization urlNormalization;
     List<PolicyUrlRule> urlRules;
     List<PolicyUserAgent> userAgents;
 
@@ -30,6 +31,7 @@ class Policy {
         this.mimeTypeRules = [new PolicyMimeTypeRule.defaultSettings()];
         this.proxyRules = [new PolicyProxyRule.defaultSettings()];
         this.robotsTxt = new PolicyRobotsTxt.defaultSettings();
+        this.urlNormalization = new PolicyUrlNormalization.defaultSettings();
         this.urlRules = [new PolicyUrlRule.defaultSettings()];
         this.userAgents = [new PolicyUserAgent.defaultSettings()];
     }
@@ -61,6 +63,10 @@ class Policy {
         if (pbPolicy.hasRobotsTxt()) {
             this.robotsTxt = new PolicyRobotsTxt.fromPb(pbPolicy.robotsTxt);
         }
+        if (pbPolicy.hasUrlNormalization()) {
+            this.urlNormalization = new PolicyUrlNormalization.fromPb(
+                    pbPolicy.urlNormalization);
+        }
         this.urlRules = new List<PolicyUrlRule>.generate(
             pbPolicy.urlRules.length,
             (i) => new PolicyUrlRule.fromPb(pbPolicy.urlRules[i])
@@ -87,6 +93,7 @@ class Policy {
             pbPolicy.proxyRules.add(proxyRule.toPb());
         }
         pbPolicy.robotsTxt = this.robotsTxt.toPb();
+        pbPolicy.urlNormalization = this.urlNormalization.toPb();
         for (var urlRule in this.urlRules) {
             pbPolicy.urlRules.add(urlRule.toPb());
         }
@@ -265,6 +272,51 @@ class PolicyRobotsTxt {
         var pbRobots = new pb.PolicyRobotsTxt()
             ..usage = this.usage;
         return pbRobots;
+    }
+}
+
+/// To use a List<String> element as an ngModel, it helps to wrap the string in
+/// a class.
+class StripParameter {
+    String name;
+    StripParameter(this.name);
+    StripParameter.blank() {
+        this.name = '';
+    }
+    String toString() {
+        return this.name;
+    }
+}
+
+/// Specifies if and how to normalize URLs.
+class PolicyUrlNormalization {
+    bool enabled;
+    List<StripParameter> stripParameters;
+
+    /// Create a default object.
+    PolicyUrlNormalization.defaultSettings() {
+        this.enabled = true;
+        this.stripParameters = ['JSESSIONID', 'PHPSESSID', 'sid'];
+    }
+
+    /// Create from a protobuf message.
+    PolicyUrlNormalization.fromPb(pb.PolicyUrlNormalization
+        pbUrlNormalization) {
+        this.enabled = pbUrlNormalization.enabled;
+        this.stripParameters = new List.generate(
+            pbUrlNormalization.stripParameters.length,
+            (i) => new StripParameter(pbUrlNormalization.stripParameters[i])
+        );
+    }
+
+    /// Convert to protobuf message.
+    pb.PolicyUrlNormalization toPb() {
+        var pbUrlNormalization = new pb.PolicyUrlNormalization()
+            ..enabled = this.enabled;
+        for (var stripParameter in this.stripParameters) {
+            pbUrlNormalization.stripParameters.add(stripParameter.name);
+        }
+        return pbUrlNormalization;
     }
 }
 

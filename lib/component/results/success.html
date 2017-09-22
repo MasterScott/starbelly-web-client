@@ -47,8 +47,6 @@
                   [class.hidden-xs-up]='showBody != index'
                   (click)='showBody = null'></fa>&nbsp;
               <external-link [href]='item.url'></external-link>
-              <!-- <a href='{{item.url}}' target='_blank'>{{item.url}}</a> -->
-              <!-- <fa name='external-link'></fa> -->
               <pre *ngIf='showBody == index'><span *ngFor='let header of item.headers'>{{header.key}}: {{header.value}}<br></span>
 {{item.bodyStr}}
               </pre>

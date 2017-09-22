@@ -98,6 +98,7 @@ class ResultErrorView implements AfterViewInit {
 
     /// Fetch current page.
     getPage() async {
+        this.showBody = null;
         var request = new pb.Request();
         request.getJobItems = new pb.RequestGetJobItems()
             ..jobId = convert.hex.decode(this.jobId)

@@ -105,6 +105,12 @@ class PolicyDetailView implements AfterViewInit {
         );
     }
 
+    /// Add a strip parameter to URL normalization.
+    void addStripParameter() {
+        this.policy.urlNormalization.stripParameters.add(
+            new StripParameter.blank());
+    }
+
     /// Add a penultimate URL rule.
     void addUrlRule() {
         this.policy.urlRules.insert(
@@ -185,7 +191,15 @@ class PolicyDetailView implements AfterViewInit {
         this.policy.robotsTxt.usage = usage;
     }
 
-    /// Sort user agents by name (ascending).
+    /// Sort URL normalization stripParameters by name (ascending,
+    /// case-insensitive).
+    void sortParameters() {
+        this.policy.urlNormalization.stripParameters.sort(
+            (a,b) => a.name.toUpperCase().compareTo(b.name.toUpperCase())
+        );
+    }
+
+    /// Sort user agents by name (ascending, case-insensitive).
     void sortUserAgents() {
         this.policy.userAgents.sort(
             (a,b) => a.name.toUpperCase().compareTo(b.name.toUpperCase())

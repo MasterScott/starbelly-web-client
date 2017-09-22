@@ -98,8 +98,7 @@
         <tbody>
           <tr *ngFor="let seed of job.seeds">
             <td>
-              <a href='{{seed}}' target='_blank'>{{seed}}</a>
-              <fa name='external-link'></fa>
+              <external-link [href]='seed'></external-link>
             </td>
           </tr>
         </tbody>

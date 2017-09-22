@@ -91,6 +91,69 @@
 <div class='row' *ngIf='policy != null'>
   <div class='col-lg'>
     <ma-card>
+      <h4>URL Normalization</h4>
+      <p class='lead'>
+        The crawler can normalize and deduplicate similar URLs.
+      </p>
+      <p>
+        Crawl items are deduplicated based on URL. Normalization
+        treats semantically similar URLs as duplicates.
+      </p>
+      <ma-radio-group>
+        <label>
+          Normalization:
+        </label>
+        <label title='Enable URL normalization'>
+          <input type='radio'
+                 [checked]='policy.urlNormalization.enabled'
+                 (change)='policy.urlNormalization.enabled=true'>
+          Enabled
+        </label>
+        <label title='Disable URL normalization'>
+          <input type='radio'
+                 [checked]='!policy.urlNormalization.enabled'
+                 (change)='policy.urlNormalization.enabled=false'>
+          Disabled
+        </label>
+      </ma-radio-group>
+      <p *ngIf='policy.urlNormalization.enabled'>
+        Common query parameters that lack semantic meaning, such as session IDs,
+        can be stripped out during normalization.
+      </p>
+      <ol *ngIf='policy.urlNormalization.enabled'>
+        <li *ngFor='let stripParameter of policy.urlNormalization.stripParameters; let index=index'>
+          <ma-input-group [in-text]='true'>
+            <input type='text'
+                   [(ngModel)]='stripParameter.name'
+                   placeholder='Query parameter'>
+          </ma-input-group>
+          <span class='edit-buttons'>
+            <ma-button size='small'
+                       type='danger'
+                       (click)='delete(policy.urlNormalization.stripParameters, index)'>
+              <fa name='trash'></fa>
+            </ma-button>
+          </span>
+        </li>
+      </ol>
+      <p *ngIf='policy.urlNormalization.enabled'>
+        <ma-button type='success' (click)='addStripParameter()'>
+          <fa name='plus-circle'></fa>
+          Add A Parameter
+        </ma-button>
+        <ma-button *ngIf='policy.urlNormalization.stripParameters.length > 1'
+                   type='link'
+                   (click)='sortParameters()'>
+          <fa name='sort-alpha-asc'></fa>
+          Sort Parameters
+        </ma-button>
+      </p>
+    </ma-card>
+  </div>
+</div>
+<div class='row' *ngIf='policy != null'>
+  <div class='col-lg'>
+    <ma-card>
       <h4>URL Rules</h4>
       <p class='lead'>
         Adjust the fetch priority and crawl depth based on URL patterns.

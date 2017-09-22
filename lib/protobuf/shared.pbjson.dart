@@ -127,6 +127,7 @@ const Policy$json = const {
     const {'1': 'proxy_rules', '3': 8, '4': 3, '5': 11, '6': '.starbelly.PolicyProxyRule'},
     const {'1': 'mime_type_rules', '3': 9, '4': 3, '5': 11, '6': '.starbelly.PolicyMimeTypeRule'},
     const {'1': 'robots_txt', '3': 10, '4': 1, '5': 11, '6': '.starbelly.PolicyRobotsTxt'},
+    const {'1': 'url_normalization', '3': 13, '4': 1, '5': 11, '6': '.starbelly.PolicyUrlNormalization'},
     const {'1': 'url_rules', '3': 11, '4': 3, '5': 11, '6': '.starbelly.PolicyUrlRule'},
     const {'1': 'user_agents', '3': 12, '4': 3, '5': 11, '6': '.starbelly.PolicyUserAgent'},
   ],
@@ -180,6 +181,14 @@ const PolicyRobotsTxt_Usage$json = const {
     const {'1': 'OBEY', '2': 1},
     const {'1': 'INVERT', '2': 2},
     const {'1': 'IGNORE', '2': 3},
+  ],
+};
+
+const PolicyUrlNormalization$json = const {
+  '1': 'PolicyUrlNormalization',
+  '2': const [
+    const {'1': 'enabled', '3': 1, '4': 1, '5': 8},
+    const {'1': 'strip_parameters', '3': 2, '4': 3, '5': 9},
   ],
 };
 

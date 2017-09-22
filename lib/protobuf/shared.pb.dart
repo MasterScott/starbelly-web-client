@@ -449,6 +449,7 @@ class Policy extends GeneratedMessage {
     ..a/*<PolicyRobotsTxt>*/(10, 'robotsTxt', PbFieldType.OM, PolicyRobotsTxt.getDefault, PolicyRobotsTxt.create)
     ..pp/*<PolicyUrlRule>*/(11, 'urlRules', PbFieldType.PM, PolicyUrlRule.$checkItem, PolicyUrlRule.create)
     ..pp/*<PolicyUserAgent>*/(12, 'userAgents', PbFieldType.PM, PolicyUserAgent.$checkItem, PolicyUserAgent.create)
+    ..a/*<PolicyUrlNormalization>*/(13, 'urlNormalization', PbFieldType.OM, PolicyUrlNormalization.getDefault, PolicyUrlNormalization.create)
   ;
 
   Policy() : super();
@@ -509,6 +510,11 @@ class Policy extends GeneratedMessage {
   List<PolicyUrlRule> get urlRules => $_get(9, 11, null);
 
   List<PolicyUserAgent> get userAgents => $_get(10, 12, null);
+
+  PolicyUrlNormalization get urlNormalization => $_get(11, 13, null);
+  void set urlNormalization(PolicyUrlNormalization v) { setField(13, v); }
+  bool hasUrlNormalization() => $_has(11, 13);
+  void clearUrlNormalization() => clearField(13);
 }
 
 class _ReadonlyPolicy extends Policy with ReadonlyMessageMixin {}
@@ -697,6 +703,39 @@ class PolicyRobotsTxt extends GeneratedMessage {
 }
 
 class _ReadonlyPolicyRobotsTxt extends PolicyRobotsTxt with ReadonlyMessageMixin {}
+
+class PolicyUrlNormalization extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('PolicyUrlNormalization')
+    ..a/*<bool>*/(1, 'enabled', PbFieldType.OB)
+    ..p/*<String>*/(2, 'stripParameters', PbFieldType.PS)
+    ..hasRequiredFields = false
+  ;
+
+  PolicyUrlNormalization() : super();
+  PolicyUrlNormalization.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  PolicyUrlNormalization.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  PolicyUrlNormalization clone() => new PolicyUrlNormalization()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static PolicyUrlNormalization create() => new PolicyUrlNormalization();
+  static PbList<PolicyUrlNormalization> createRepeated() => new PbList<PolicyUrlNormalization>();
+  static PolicyUrlNormalization getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyPolicyUrlNormalization();
+    return _defaultInstance;
+  }
+  static PolicyUrlNormalization _defaultInstance;
+  static void $checkItem(PolicyUrlNormalization v) {
+    if (v is !PolicyUrlNormalization) checkItemFailed(v, 'PolicyUrlNormalization');
+  }
+
+  bool get enabled => $_get(0, 1, false);
+  void set enabled(bool v) { $_setBool(0, 1, v); }
+  bool hasEnabled() => $_has(0, 1);
+  void clearEnabled() => clearField(1);
+
+  List<String> get stripParameters => $_get(1, 2, null);
+}
+
+class _ReadonlyPolicyUrlNormalization extends PolicyUrlNormalization with ReadonlyMessageMixin {}
 
 class PolicyUrlRule extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('PolicyUrlRule')

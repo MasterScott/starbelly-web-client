@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:ng2_fontawesome/ng2_fontawesome.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
+import 'package:starbelly/component/external_link.dart';
 import 'package:starbelly/model/job.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/job_status.dart';
@@ -18,7 +19,8 @@ import 'package:starbelly/service/server.dart';
 @Component(
     selector: 'results-detail',
     templateUrl: 'detail.html',
-    directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
+    directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES,
+        ExternalLinkComponent]
 )
 class ResultDetailView implements AfterViewInit, OnDestroy {
     Job job;

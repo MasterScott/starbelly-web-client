@@ -27,6 +27,21 @@
           <li>{{job.policy.authentication.enabled ? 'Always try to log in' : 'Never try to log in'}}</li>
         </ul>
         <p>
+          <strong>Robots.txt</strong>
+        </p>
+        <ul>
+          <li>{{job.policy.robotsTxt.usage}}</li>
+        </ul>
+        <div *ngIf='job.policy.urlNormalization != null'>
+          <p>
+            <strong>URL Normalization</strong>
+          </p>
+          <ul>
+            <li>{{job.policy.urlNormalization.enabled ? 'Enabled' : 'Disabled'}}</li>
+            <li>Strip parameters: {{job.policy.urlNormalization.stripParameters.join(', ')}}</li>
+          </ul>
+        </div>
+        <p>
           <strong>URL Rules</strong>
         </p>
         <ol>
@@ -48,12 +63,6 @@
             {{urlRule.amount}}.
           </li>
         </ol>
-        <p>
-          <strong>Robots.txt</strong>
-        </p>
-        <ul>
-          <li>{{job.policy.robotsTxt.usage}}</li>
-        </ul>
         <p>
           <strong>User Agents</strong>
         </p>
