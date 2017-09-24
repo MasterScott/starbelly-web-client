@@ -41,9 +41,12 @@ import 'package:starbelly/service/server.dart';
     directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
 )
 class CredentialDetailView implements AfterViewInit {
+    String addError;
     String domain;
     DomainLogin domainLogin;
-    String error;
+    bool dirty = false;
+    String saveError = '';
+    bool saveSuccess;
     bool showAddUser = false;
 
     DocumentService _document;
@@ -62,31 +65,27 @@ class CredentialDetailView implements AfterViewInit {
 
     }
 
-    /// Add a user
+    /// Add a user.
     addUser(MaClick click, Element usernameEl, Element passwordEl) async {
-        click.button.busy = true;
         var username = usernameEl.value;
         var password = passwordEl.value;
         if (username.isEmpty || password.isEmpty) {
-            this.error = 'Username and password are required.';
+            this.addError = 'Username and password are required.';
         } else {
+            this.addError = null;
+            this.dirty = true;
             var user = new DomainLoginUser(username, password);
             this.domainLogin.users.add(user);
-            await this._save();
-            this.error = null;
             usernameEl.value = '';
             passwordEl.value = '';
             this.showAddUser = false;
         }
-        click.button.busy = false;
     }
 
     /// Delete a user.
     deleteUser(MaClick click, int index) async {
-        click.button.busy = true;
+        this.dirty = true;
         this.domainLogin.users.removeAt(index);
-        await this._save();
-        click.button.busy = false;
     }
 
     /// Called when Angular initializes the view.
@@ -99,10 +98,27 @@ class CredentialDetailView implements AfterViewInit {
     }
 
     /// Save credential.
-    _save() async {
+    save(MaClick click) async {
+        click.button.busy = true;
         var request = new pb.Request();
         request.setDomainLogin = new pb.RequestSetDomainLogin()
             ..login = this.domainLogin.toPb();
-        await this._server.sendRequest(request);
+        var message = await this._server.sendRequest(request);
+        this.saveError = '';
+        click.button.busy = false;
+        if (message.response.isSuccess) {
+            this.saveSuccess = true;
+            new Timer(new Duration(seconds: 3), () {
+                this.saveSuccess = false;
+            });
+        } else {
+            this.saveError = message.response.errorMessage;
+        }
+    }
+
+    /// Set the login URL.
+    setLoginUrl(String loginUrl) {
+        this.dirty = true;
+        this.domainLogin.loginUrl = loginUrl;
     }
 }
