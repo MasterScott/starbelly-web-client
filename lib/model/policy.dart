@@ -296,7 +296,11 @@ class PolicyUrlNormalization {
     /// Create a default object.
     PolicyUrlNormalization.defaultSettings() {
         this.enabled = true;
-        this.stripParameters = ['JSESSIONID', 'PHPSESSID', 'sid'];
+        this.stripParameters = [
+            new StripParameter('JSESSIONID'),
+            new StripParameter('PHPSESSID'),
+            new StripParameter('sid'),
+        ];
     }
 
     /// Create from a protobuf message.
