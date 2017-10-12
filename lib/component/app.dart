@@ -12,6 +12,7 @@ import 'package:starbelly/component/external_link.dart';
 import 'package:starbelly/component/policy/router.dart';
 import 'package:starbelly/component/rate_limit.dart';
 import 'package:starbelly/component/results/router.dart';
+import 'package:starbelly/component/schedule/router.dart';
 import 'package:starbelly/component/start.dart';
 import 'package:starbelly/component/system/profile.dart';
 import 'package:starbelly/component/system/resources.dart';
@@ -68,6 +69,10 @@ import 'package:starbelly/service/server.dart';
         path: '/results/...',
         name: 'Results',
         component: ResultRouter),
+    const Route(
+        path: '/schedule/...',
+        name: 'Schedule',
+        component: ScheduleRouter),
     const Route(
         path: '/start',
         name: 'StartCrawl',

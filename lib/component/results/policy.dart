@@ -42,7 +42,7 @@ class ResultPolicyView implements AfterViewInit {
         var jobId = this._routeParams.get('id');
         this._document.title = 'Policy';
         this._document.breadcrumbs = [
-            new Breadcrumb(name: 'Crawl Results', icon: 'sitemap',
+            new Breadcrumb(name: 'Results', icon: 'sitemap',
                 link: ['/Results', 'List']),
             new Breadcrumb(name: 'Crawl',
                 link: ['/Results', 'Detail', {'id': jobId}]),

@@ -9,19 +9,23 @@ const Request$json = const {
     const {'1': 'request_id', '3': 1, '4': 2, '5': 5},
     const {'1': 'delete_domain_login', '3': 2, '4': 1, '5': 11, '6': '.starbelly.RequestDeleteDomainLogin'},
     const {'1': 'delete_job', '3': 3, '4': 1, '5': 11, '6': '.starbelly.RequestDeleteJob'},
+    const {'1': 'delete_job_schedule', '3': 24, '4': 1, '5': 11, '6': '.starbelly.RequestDeleteJobSchedule'},
     const {'1': 'delete_policy', '3': 4, '4': 1, '5': 11, '6': '.starbelly.RequestDeletePolicy'},
     const {'1': 'get_domain_login', '3': 5, '4': 1, '5': 11, '6': '.starbelly.RequestGetDomainLogin'},
     const {'1': 'get_job', '3': 6, '4': 1, '5': 11, '6': '.starbelly.RequestGetJob'},
+    const {'1': 'get_job_schedule', '3': 25, '4': 1, '5': 11, '6': '.starbelly.RequestGetJobSchedule'},
     const {'1': 'get_job_items', '3': 7, '4': 1, '5': 11, '6': '.starbelly.RequestGetJobItems'},
     const {'1': 'get_policy', '3': 8, '4': 1, '5': 11, '6': '.starbelly.RequestGetPolicy'},
     const {'1': 'get_rate_limits', '3': 9, '4': 1, '5': 11, '6': '.starbelly.RequestGetRateLimits'},
     const {'1': 'list_domain_logins', '3': 10, '4': 1, '5': 11, '6': '.starbelly.RequestListDomainLogins'},
     const {'1': 'list_jobs', '3': 11, '4': 1, '5': 11, '6': '.starbelly.RequestListJobs'},
+    const {'1': 'list_job_schedules', '3': 26, '4': 1, '5': 11, '6': '.starbelly.RequestListJobSchedules'},
     const {'1': 'list_policies', '3': 12, '4': 1, '5': 11, '6': '.starbelly.RequestListPolicies'},
     const {'1': 'performance_profile', '3': 13, '4': 1, '5': 11, '6': '.starbelly.RequestPerformanceProfile'},
     const {'1': 'ping', '3': 14, '4': 1, '5': 11, '6': '.starbelly.RequestPing'},
     const {'1': 'set_domain_login', '3': 15, '4': 1, '5': 11, '6': '.starbelly.RequestSetDomainLogin'},
     const {'1': 'set_job', '3': 16, '4': 1, '5': 11, '6': '.starbelly.RequestSetJob'},
+    const {'1': 'set_job_schedule', '3': 27, '4': 1, '5': 11, '6': '.starbelly.RequestSetJobSchedule'},
     const {'1': 'set_policy', '3': 17, '4': 1, '5': 11, '6': '.starbelly.RequestSetPolicy'},
     const {'1': 'set_rate_limit', '3': 18, '4': 1, '5': 11, '6': '.starbelly.RequestSetRateLimit'},
     const {'1': 'subscribe_job_status', '3': 19, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeJobStatus'},
@@ -46,6 +50,13 @@ const RequestDeleteJob$json = const {
   ],
 };
 
+const RequestDeleteJobSchedule$json = const {
+  '1': 'RequestDeleteJobSchedule',
+  '2': const [
+    const {'1': 'schedule_id', '3': 1, '4': 2, '5': 12},
+  ],
+};
+
 const RequestDeletePolicy$json = const {
   '1': 'RequestDeletePolicy',
   '2': const [
@@ -64,6 +75,13 @@ const RequestGetJob$json = const {
   '1': 'RequestGetJob',
   '2': const [
     const {'1': 'job_id', '3': 1, '4': 2, '5': 12},
+  ],
+};
+
+const RequestGetJobSchedule$json = const {
+  '1': 'RequestGetJobSchedule',
+  '2': const [
+    const {'1': 'schedule_id', '3': 1, '4': 2, '5': 12},
   ],
 };
 
@@ -106,6 +124,14 @@ const RequestListJobs$json = const {
     const {'1': 'page', '3': 1, '4': 1, '5': 11, '6': '.starbelly.Page'},
     const {'1': 'started_after', '3': 2, '4': 1, '5': 9},
     const {'1': 'tag', '3': 3, '4': 1, '5': 9},
+    const {'1': 'schedule_id', '3': 4, '4': 1, '5': 12},
+  ],
+};
+
+const RequestListJobSchedules$json = const {
+  '1': 'RequestListJobSchedules',
+  '2': const [
+    const {'1': 'page', '3': 1, '4': 1, '5': 11, '6': '.starbelly.Page'},
   ],
 };
 
@@ -148,6 +174,13 @@ const RequestSetJob$json = const {
     const {'1': 'seeds', '3': 4, '4': 3, '5': 9},
     const {'1': 'name', '3': 5, '4': 1, '5': 9},
     const {'1': 'tag_list', '3': 6, '4': 1, '5': 11, '6': '.starbelly.TagList'},
+  ],
+};
+
+const RequestSetJobSchedule$json = const {
+  '1': 'RequestSetJobSchedule',
+  '2': const [
+    const {'1': 'job_schedule', '3': 1, '4': 1, '5': 11, '6': '.starbelly.JobSchedule'},
   ],
 };
 

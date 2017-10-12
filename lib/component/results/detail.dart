@@ -45,9 +45,9 @@ class ResultDetailView implements AfterViewInit, OnDestroy {
     /// Constructor
     ResultDetailView(this._document, this._jobStatus, this._routeParams,
                       this._server) {
-        this._document.title = 'Crawl';
+        this._document.title = 'Results';
         this._document.breadcrumbs = [
-            new Breadcrumb(name: 'Crawl Results', icon: 'sitemap',
+            new Breadcrumb(name: 'Results', icon: 'sitemap',
                 link: ['/Results', 'List']),
             new Breadcrumb(name: 'Crawl'),
         ];

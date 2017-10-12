@@ -79,9 +79,9 @@ class PolicyDetailView implements AfterViewInit {
     /// Constructor
     PolicyDetailView(this._document, this._router, this._routeParams,
         this._server) {
-        this._document.title = 'Crawl Policy';
+        this._document.title = 'Policy';
         this._document.breadcrumbs = [
-            new Breadcrumb(name: 'Crawl Policy', icon: 'book',
+            new Breadcrumb(name: 'Policy', icon: 'book',
                 link: ['/Policy', 'List']),
             new Breadcrumb(name: 'Policy'),
         ];

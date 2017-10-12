@@ -31,6 +31,50 @@ class JobRunState extends ProtobufEnum {
   const JobRunState._(int v, String n) : super(v, n);
 }
 
+class JobScheduleTimeUnit extends ProtobufEnum {
+  static const JobScheduleTimeUnit MINUTES = const JobScheduleTimeUnit._(1, 'MINUTES');
+  static const JobScheduleTimeUnit HOURS = const JobScheduleTimeUnit._(2, 'HOURS');
+  static const JobScheduleTimeUnit DAYS = const JobScheduleTimeUnit._(3, 'DAYS');
+  static const JobScheduleTimeUnit WEEKS = const JobScheduleTimeUnit._(4, 'WEEKS');
+  static const JobScheduleTimeUnit MONTHS = const JobScheduleTimeUnit._(5, 'MONTHS');
+  static const JobScheduleTimeUnit YEARS = const JobScheduleTimeUnit._(6, 'YEARS');
+
+  static const List<JobScheduleTimeUnit> values = const <JobScheduleTimeUnit> [
+    MINUTES,
+    HOURS,
+    DAYS,
+    WEEKS,
+    MONTHS,
+    YEARS,
+  ];
+
+  static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
+  static JobScheduleTimeUnit valueOf(int value) => _byValue[value] as JobScheduleTimeUnit;
+  static void $checkItem(JobScheduleTimeUnit v) {
+    if (v is !JobScheduleTimeUnit) checkItemFailed(v, 'JobScheduleTimeUnit');
+  }
+
+  const JobScheduleTimeUnit._(int v, String n) : super(v, n);
+}
+
+class JobScheduleTiming extends ProtobufEnum {
+  static const JobScheduleTiming AFTER_PREVIOUS_JOB_FINISHED = const JobScheduleTiming._(1, 'AFTER_PREVIOUS_JOB_FINISHED');
+  static const JobScheduleTiming REGULAR_INTERVAL = const JobScheduleTiming._(2, 'REGULAR_INTERVAL');
+
+  static const List<JobScheduleTiming> values = const <JobScheduleTiming> [
+    AFTER_PREVIOUS_JOB_FINISHED,
+    REGULAR_INTERVAL,
+  ];
+
+  static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
+  static JobScheduleTiming valueOf(int value) => _byValue[value] as JobScheduleTiming;
+  static void $checkItem(JobScheduleTiming v) {
+    if (v is !JobScheduleTiming) checkItemFailed(v, 'JobScheduleTiming');
+  }
+
+  const JobScheduleTiming._(int v, String n) : super(v, n);
+}
+
 class PatternMatch extends ProtobufEnum {
   static const PatternMatch MATCHES = const PatternMatch._(1, 'MATCHES');
   static const PatternMatch DOES_NOT_MATCH = const PatternMatch._(2, 'DOES_NOT_MATCH');

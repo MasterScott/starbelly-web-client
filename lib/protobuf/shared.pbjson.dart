@@ -15,6 +15,26 @@ const JobRunState$json = const {
   ],
 };
 
+const JobScheduleTimeUnit$json = const {
+  '1': 'JobScheduleTimeUnit',
+  '2': const [
+    const {'1': 'MINUTES', '2': 1},
+    const {'1': 'HOURS', '2': 2},
+    const {'1': 'DAYS', '2': 3},
+    const {'1': 'WEEKS', '2': 4},
+    const {'1': 'MONTHS', '2': 5},
+    const {'1': 'YEARS', '2': 6},
+  ],
+};
+
+const JobScheduleTiming$json = const {
+  '1': 'JobScheduleTiming',
+  '2': const [
+    const {'1': 'AFTER_PREVIOUS_JOB_FINISHED', '2': 1},
+    const {'1': 'REGULAR_INTERVAL', '2': 2},
+  ],
+};
+
 const PatternMatch$json = const {
   '1': 'PatternMatch',
   '2': const [
@@ -104,6 +124,33 @@ const JobList$json = const {
   '1': 'JobList',
   '2': const [
     const {'1': 'jobs', '3': 1, '4': 3, '5': 11, '6': '.starbelly.Job'},
+  ],
+};
+
+const JobSchedule$json = const {
+  '1': 'JobSchedule',
+  '2': const [
+    const {'1': 'schedule_id', '3': 1, '4': 2, '5': 12},
+    const {'1': 'created_at', '3': 2, '4': 1, '5': 9},
+    const {'1': 'updated_at', '3': 3, '4': 1, '5': 9},
+    const {'1': 'enabled', '3': 4, '4': 1, '5': 8},
+    const {'1': 'time_unit', '3': 5, '4': 1, '5': 14, '6': '.starbelly.JobScheduleTimeUnit'},
+    const {'1': 'num_units', '3': 6, '4': 1, '5': 5},
+    const {'1': 'timing', '3': 7, '4': 1, '5': 14, '6': '.starbelly.JobScheduleTiming'},
+    const {'1': 'schedule_name', '3': 8, '4': 1, '5': 9},
+    const {'1': 'job_name', '3': 9, '4': 1, '5': 9},
+    const {'1': 'seeds', '3': 10, '4': 3, '5': 9},
+    const {'1': 'policy_id', '3': 11, '4': 1, '5': 12},
+    const {'1': 'tag_list', '3': 12, '4': 1, '5': 11, '6': '.starbelly.TagList'},
+    const {'1': 'latest_job_id', '3': 13, '4': 1, '5': 12},
+    const {'1': 'job_count', '3': 14, '4': 1, '5': 5},
+  ],
+};
+
+const JobScheduleList$json = const {
+  '1': 'JobScheduleList',
+  '2': const [
+    const {'1': 'job_schedules', '3': 1, '4': 3, '5': 11, '6': '.starbelly.JobSchedule'},
   ],
 };
 

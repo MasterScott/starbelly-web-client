@@ -207,7 +207,7 @@ class ServerService {
 
 /// A ServerException is thrown if a server-side error occurs while processing
 /// a request.
-class ServerException {
+class ServerException implements Exception {
     String message;
     ServerException(this.message);
     String toString() {

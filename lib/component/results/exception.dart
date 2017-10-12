@@ -55,7 +55,7 @@ class ResultExceptionView implements AfterViewInit {
         this.jobId = this._routeParams.get('id');
         this._document.title = 'Exceptions';
         this._document.breadcrumbs = [
-            new Breadcrumb(name: 'Crawl Results', icon: 'sitemap',
+            new Breadcrumb(name: 'Results', icon: 'sitemap',
                 link: ['/Results', 'List']),
             new Breadcrumb(name: 'Crawl',
                 link: ['/Results', 'Detail', {'id': this.jobId}]),

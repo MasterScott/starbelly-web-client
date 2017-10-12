@@ -4,65 +4,50 @@ import 'package:convert/convert.dart' as convert;
 import 'package:ng2_fontawesome/ng2_fontawesome.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
-import 'package:starbelly/model/job.dart';
+import 'package:starbelly/model/schedule.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
 
-/// View crawl items.
+/// View job schedules.
 @Component(
-    selector: 'results-list',
+    selector: 'schedule-list',
     templateUrl: 'list.html',
     directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
 )
-class ResultListView implements AfterViewInit, OnDestroy {
+class ScheduleListView implements AfterViewInit {
     int currentPage = 1;
     int endRow = 0;
-    List<Job> jobs;
-    JobStatusService jobStatus;
+    List<JobSchedule> schedules;
     int rowsPerPage = 10;
     int startRow = 0;
     int totalRows = 0;
 
     DocumentService _document;
-    Map<String,JobStatus> _jobsById;
     ServerService _server;
-    StreamSubscription<Job> _subscription;
-
-    var CANCELLED = pb.JobRunState.CANCELLED;
-    var COMPLETED = pb.JobRunState.COMPLETED;
 
     /// Constructor
-    ResultListView(this._document, this.jobStatus, this._server) {
-        this._document.title = 'Results';
+    ScheduleListView(this._document, this._server) {
+        this._document.title = 'Schedule';
         this._document.breadcrumbs = [
-            new Breadcrumb(name: 'Results', icon: 'sitemap')
+            new Breadcrumb(name: 'Schedule', icon: 'calendar')
         ];
-
-        // If a job on the current page is updated, then merge it into the
-        // current page.
-        this._jobsById = {};
-        this._subscription = this.jobStatus.events.listen((Job update) {
-            var jobId = update.jobId;
-            if (this._jobsById.containsKey(jobId)) {
-                this._jobsById[jobId].mergeFrom(update);
-            }
-        });
     }
 
-    /// Delete a job.
-    void deleteJob(MaClick click, Job job) async {
+    /// Delete a job schedule.
+    void deleteSchedule(MaClick click, Schedule schedule) async {
         click.button.busy = true;
         var request = new pb.Request()
-            ..deleteJob = new pb.RequestDeleteJob();
-        request.deleteJob.jobId = convert.hex.decode(job.jobId);
+            ..deleteJobSchedule = new pb.RequestDeleteJobSchedule();
+        request.deleteJobSchedule.scheduleId = convert.hex.decode(
+            schedule.scheduleId);
         try {
             var message = await this._server.sendRequest(request);
             var response = message.response;
             await this.getPage();
         } on ServerException catch (exc) {
-            window.alert('Could not delete job: ${response.errorMessage}');
+            window.alert('Could not delete schedule: ${response.errorMessage}');
         }
         click.button.busy = false;
     }
@@ -70,31 +55,23 @@ class ResultListView implements AfterViewInit, OnDestroy {
     /// Fetch current page of results.
     void getPage() async {
         var request = new pb.Request()
-            ..listJobs = new pb.RequestListJobs();
-        request.listJobs.page = new pb.Page()
+            ..listJobSchedules = new pb.RequestListJobSchedules();
+        request.listJobSchedules.page = new pb.Page()
             ..limit = this.rowsPerPage
             ..offset = (this.currentPage - 1) * this.rowsPerPage;
         var message = await this._server.sendRequest(request);
-        this.totalRows = message.response.listJobs.total;
-        this.jobs = [];
-        this._jobsById = {};
-        for (var pbJob in message.response.listJobs.jobs) {
-            var job = new Job.fromPb2(pbJob);
-            this.jobs.add(job);
-            this._jobsById[job.jobId] = job;
+        this.totalRows = message.response.listJobSchedules.total;
+        this.schedules = [];
+        for (var pbSchedule in message.response.listJobSchedules.jobSchedules) {
+            this.schedules.add(new JobSchedule.fromPb(pbSchedule));
         }
         this.startRow = (this.currentPage - 1) * this.rowsPerPage + 1;
-        this.endRow = this.startRow + this.jobs.length - 1;
+        this.endRow = this.startRow + this.schedules.length - 1;
     }
 
     /// Called when Angular initializes the view.
     void ngAfterViewInit() {
         this.getPage();
-    }
-
-    /// Called when Angular destroys the view.
-    void ngOnDestroy() {
-        this._subscription.cancel();
     }
 
     /// Called by the pager to select a new page.

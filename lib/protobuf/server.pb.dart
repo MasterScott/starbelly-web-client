@@ -20,6 +20,7 @@ class Event extends GeneratedMessage {
     ..a/*<SubscriptionClosed>*/(4, 'subscriptionClosed', PbFieldType.OM, SubscriptionClosed.getDefault, SubscriptionClosed.create)
     ..a/*<SyncItem>*/(5, 'syncItem', PbFieldType.OM, SyncItem.getDefault, SyncItem.create)
     ..a/*<TaskMonitor>*/(6, 'taskMonitor', PbFieldType.OM, TaskMonitor.getDefault, TaskMonitor.create)
+    ..a/*<JobScheduleList>*/(7, 'jobScheduleList', PbFieldType.OM, JobScheduleList.getDefault, JobScheduleList.create)
   ;
 
   Event() : super();
@@ -67,6 +68,11 @@ class Event extends GeneratedMessage {
   void set taskMonitor(TaskMonitor v) { setField(6, v); }
   bool hasTaskMonitor() => $_has(5, 6);
   void clearTaskMonitor() => clearField(6);
+
+  JobScheduleList get jobScheduleList => $_get(6, 7, null);
+  void set jobScheduleList(JobScheduleList v) { setField(7, v); }
+  bool hasJobScheduleList() => $_has(6, 7);
+  void clearJobScheduleList() => clearField(7);
 }
 
 class _ReadonlyEvent extends Event with ReadonlyMessageMixin {}
@@ -474,6 +480,9 @@ class Response extends GeneratedMessage {
     ..a/*<ResponseNewSubscription>*/(16, 'newSubscription', PbFieldType.OM, ResponseNewSubscription.getDefault, ResponseNewSubscription.create)
     ..a/*<ResponsePerformanceProfile>*/(17, 'performanceProfile', PbFieldType.OM, ResponsePerformanceProfile.getDefault, ResponsePerformanceProfile.create)
     ..a/*<ResponsePing>*/(18, 'ping', PbFieldType.OM, ResponsePing.getDefault, ResponsePing.create)
+    ..a/*<JobSchedule>*/(19, 'jobSchedule', PbFieldType.OM, JobSchedule.getDefault, JobSchedule.create)
+    ..a/*<ResponseListJobSchedules>*/(20, 'listJobSchedules', PbFieldType.OM, ResponseListJobSchedules.getDefault, ResponseListJobSchedules.create)
+    ..a/*<ResponseNewJobSchedule>*/(21, 'newJobSchedule', PbFieldType.OM, ResponseNewJobSchedule.getDefault, ResponseNewJobSchedule.create)
   ;
 
   Response() : super();
@@ -576,6 +585,21 @@ class Response extends GeneratedMessage {
   void set ping(ResponsePing v) { setField(18, v); }
   bool hasPing() => $_has(16, 18);
   void clearPing() => clearField(18);
+
+  JobSchedule get jobSchedule => $_get(17, 19, null);
+  void set jobSchedule(JobSchedule v) { setField(19, v); }
+  bool hasJobSchedule() => $_has(17, 19);
+  void clearJobSchedule() => clearField(19);
+
+  ResponseListJobSchedules get listJobSchedules => $_get(18, 20, null);
+  void set listJobSchedules(ResponseListJobSchedules v) { setField(20, v); }
+  bool hasListJobSchedules() => $_has(18, 20);
+  void clearListJobSchedules() => clearField(20);
+
+  ResponseNewJobSchedule get newJobSchedule => $_get(19, 21, null);
+  void set newJobSchedule(ResponseNewJobSchedule v) { setField(21, v); }
+  bool hasNewJobSchedule() => $_has(19, 21);
+  void clearNewJobSchedule() => clearField(21);
 }
 
 class _ReadonlyResponse extends Response with ReadonlyMessageMixin {}
@@ -678,6 +702,38 @@ class ResponseListJobs extends GeneratedMessage {
 
 class _ReadonlyResponseListJobs extends ResponseListJobs with ReadonlyMessageMixin {}
 
+class ResponseListJobSchedules extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResponseListJobSchedules')
+    ..pp/*<JobSchedule>*/(1, 'jobSchedules', PbFieldType.PM, JobSchedule.$checkItem, JobSchedule.create)
+    ..a/*<int>*/(2, 'total', PbFieldType.O3)
+  ;
+
+  ResponseListJobSchedules() : super();
+  ResponseListJobSchedules.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResponseListJobSchedules.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResponseListJobSchedules clone() => new ResponseListJobSchedules()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResponseListJobSchedules create() => new ResponseListJobSchedules();
+  static PbList<ResponseListJobSchedules> createRepeated() => new PbList<ResponseListJobSchedules>();
+  static ResponseListJobSchedules getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResponseListJobSchedules();
+    return _defaultInstance;
+  }
+  static ResponseListJobSchedules _defaultInstance;
+  static void $checkItem(ResponseListJobSchedules v) {
+    if (v is !ResponseListJobSchedules) checkItemFailed(v, 'ResponseListJobSchedules');
+  }
+
+  List<JobSchedule> get jobSchedules => $_get(0, 1, null);
+
+  int get total => $_get(1, 2, 0);
+  void set total(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasTotal() => $_has(1, 2);
+  void clearTotal() => clearField(2);
+}
+
+class _ReadonlyResponseListJobSchedules extends ResponseListJobSchedules with ReadonlyMessageMixin {}
+
 class ResponseListPolicies extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('ResponseListPolicies')
     ..pp/*<Policy>*/(1, 'policies', PbFieldType.PM, Policy.$checkItem, Policy.create)
@@ -771,6 +827,35 @@ class ResponseNewJob extends GeneratedMessage {
 }
 
 class _ReadonlyResponseNewJob extends ResponseNewJob with ReadonlyMessageMixin {}
+
+class ResponseNewJobSchedule extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResponseNewJobSchedule')
+    ..a/*<List<int>>*/(1, 'scheduleId', PbFieldType.QY)
+  ;
+
+  ResponseNewJobSchedule() : super();
+  ResponseNewJobSchedule.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResponseNewJobSchedule.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResponseNewJobSchedule clone() => new ResponseNewJobSchedule()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResponseNewJobSchedule create() => new ResponseNewJobSchedule();
+  static PbList<ResponseNewJobSchedule> createRepeated() => new PbList<ResponseNewJobSchedule>();
+  static ResponseNewJobSchedule getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResponseNewJobSchedule();
+    return _defaultInstance;
+  }
+  static ResponseNewJobSchedule _defaultInstance;
+  static void $checkItem(ResponseNewJobSchedule v) {
+    if (v is !ResponseNewJobSchedule) checkItemFailed(v, 'ResponseNewJobSchedule');
+  }
+
+  List<int> get scheduleId => $_get(0, 1, null);
+  void set scheduleId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasScheduleId() => $_has(0, 1);
+  void clearScheduleId() => clearField(1);
+}
+
+class _ReadonlyResponseNewJobSchedule extends ResponseNewJobSchedule with ReadonlyMessageMixin {}
 
 class ResponseNewPolicy extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('ResponseNewPolicy')

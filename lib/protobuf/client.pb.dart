@@ -34,6 +34,10 @@ class Request extends GeneratedMessage {
     ..a/*<RequestSubscribeResourceMonitor>*/(21, 'subscribeResourceMonitor', PbFieldType.OM, RequestSubscribeResourceMonitor.getDefault, RequestSubscribeResourceMonitor.create)
     ..a/*<RequestSubscribeTaskMonitor>*/(22, 'subscribeTaskMonitor', PbFieldType.OM, RequestSubscribeTaskMonitor.getDefault, RequestSubscribeTaskMonitor.create)
     ..a/*<RequestUnsubscribe>*/(23, 'unsubscribe', PbFieldType.OM, RequestUnsubscribe.getDefault, RequestUnsubscribe.create)
+    ..a/*<RequestDeleteJobSchedule>*/(24, 'deleteJobSchedule', PbFieldType.OM, RequestDeleteJobSchedule.getDefault, RequestDeleteJobSchedule.create)
+    ..a/*<RequestGetJobSchedule>*/(25, 'getJobSchedule', PbFieldType.OM, RequestGetJobSchedule.getDefault, RequestGetJobSchedule.create)
+    ..a/*<RequestListJobSchedules>*/(26, 'listJobSchedules', PbFieldType.OM, RequestListJobSchedules.getDefault, RequestListJobSchedules.create)
+    ..a/*<RequestSetJobSchedule>*/(27, 'setJobSchedule', PbFieldType.OM, RequestSetJobSchedule.getDefault, RequestSetJobSchedule.create)
   ;
 
   Request() : super();
@@ -166,6 +170,26 @@ class Request extends GeneratedMessage {
   void set unsubscribe(RequestUnsubscribe v) { setField(23, v); }
   bool hasUnsubscribe() => $_has(22, 23);
   void clearUnsubscribe() => clearField(23);
+
+  RequestDeleteJobSchedule get deleteJobSchedule => $_get(23, 24, null);
+  void set deleteJobSchedule(RequestDeleteJobSchedule v) { setField(24, v); }
+  bool hasDeleteJobSchedule() => $_has(23, 24);
+  void clearDeleteJobSchedule() => clearField(24);
+
+  RequestGetJobSchedule get getJobSchedule => $_get(24, 25, null);
+  void set getJobSchedule(RequestGetJobSchedule v) { setField(25, v); }
+  bool hasGetJobSchedule() => $_has(24, 25);
+  void clearGetJobSchedule() => clearField(25);
+
+  RequestListJobSchedules get listJobSchedules => $_get(25, 26, null);
+  void set listJobSchedules(RequestListJobSchedules v) { setField(26, v); }
+  bool hasListJobSchedules() => $_has(25, 26);
+  void clearListJobSchedules() => clearField(26);
+
+  RequestSetJobSchedule get setJobSchedule => $_get(26, 27, null);
+  void set setJobSchedule(RequestSetJobSchedule v) { setField(27, v); }
+  bool hasSetJobSchedule() => $_has(26, 27);
+  void clearSetJobSchedule() => clearField(27);
 }
 
 class _ReadonlyRequest extends Request with ReadonlyMessageMixin {}
@@ -228,6 +252,35 @@ class RequestDeleteJob extends GeneratedMessage {
 }
 
 class _ReadonlyRequestDeleteJob extends RequestDeleteJob with ReadonlyMessageMixin {}
+
+class RequestDeleteJobSchedule extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestDeleteJobSchedule')
+    ..a/*<List<int>>*/(1, 'scheduleId', PbFieldType.QY)
+  ;
+
+  RequestDeleteJobSchedule() : super();
+  RequestDeleteJobSchedule.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestDeleteJobSchedule.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestDeleteJobSchedule clone() => new RequestDeleteJobSchedule()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestDeleteJobSchedule create() => new RequestDeleteJobSchedule();
+  static PbList<RequestDeleteJobSchedule> createRepeated() => new PbList<RequestDeleteJobSchedule>();
+  static RequestDeleteJobSchedule getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestDeleteJobSchedule();
+    return _defaultInstance;
+  }
+  static RequestDeleteJobSchedule _defaultInstance;
+  static void $checkItem(RequestDeleteJobSchedule v) {
+    if (v is !RequestDeleteJobSchedule) checkItemFailed(v, 'RequestDeleteJobSchedule');
+  }
+
+  List<int> get scheduleId => $_get(0, 1, null);
+  void set scheduleId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasScheduleId() => $_has(0, 1);
+  void clearScheduleId() => clearField(1);
+}
+
+class _ReadonlyRequestDeleteJobSchedule extends RequestDeleteJobSchedule with ReadonlyMessageMixin {}
 
 class RequestDeletePolicy extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestDeletePolicy')
@@ -315,6 +368,35 @@ class RequestGetJob extends GeneratedMessage {
 }
 
 class _ReadonlyRequestGetJob extends RequestGetJob with ReadonlyMessageMixin {}
+
+class RequestGetJobSchedule extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestGetJobSchedule')
+    ..a/*<List<int>>*/(1, 'scheduleId', PbFieldType.QY)
+  ;
+
+  RequestGetJobSchedule() : super();
+  RequestGetJobSchedule.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestGetJobSchedule.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestGetJobSchedule clone() => new RequestGetJobSchedule()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestGetJobSchedule create() => new RequestGetJobSchedule();
+  static PbList<RequestGetJobSchedule> createRepeated() => new PbList<RequestGetJobSchedule>();
+  static RequestGetJobSchedule getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestGetJobSchedule();
+    return _defaultInstance;
+  }
+  static RequestGetJobSchedule _defaultInstance;
+  static void $checkItem(RequestGetJobSchedule v) {
+    if (v is !RequestGetJobSchedule) checkItemFailed(v, 'RequestGetJobSchedule');
+  }
+
+  List<int> get scheduleId => $_get(0, 1, null);
+  void set scheduleId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasScheduleId() => $_has(0, 1);
+  void clearScheduleId() => clearField(1);
+}
+
+class _ReadonlyRequestGetJobSchedule extends RequestGetJobSchedule with ReadonlyMessageMixin {}
 
 class RequestGetJobItems extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestGetJobItems')
@@ -469,6 +551,7 @@ class RequestListJobs extends GeneratedMessage {
     ..a/*<Page>*/(1, 'page', PbFieldType.OM, Page.getDefault, Page.create)
     ..a/*<String>*/(2, 'startedAfter', PbFieldType.OS)
     ..a/*<String>*/(3, 'tag', PbFieldType.OS)
+    ..a/*<List<int>>*/(4, 'scheduleId', PbFieldType.OY)
     ..hasRequiredFields = false
   ;
 
@@ -502,9 +585,44 @@ class RequestListJobs extends GeneratedMessage {
   void set tag(String v) { $_setString(2, 3, v); }
   bool hasTag() => $_has(2, 3);
   void clearTag() => clearField(3);
+
+  List<int> get scheduleId => $_get(3, 4, null);
+  void set scheduleId(List<int> v) { $_setBytes(3, 4, v); }
+  bool hasScheduleId() => $_has(3, 4);
+  void clearScheduleId() => clearField(4);
 }
 
 class _ReadonlyRequestListJobs extends RequestListJobs with ReadonlyMessageMixin {}
+
+class RequestListJobSchedules extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestListJobSchedules')
+    ..a/*<Page>*/(1, 'page', PbFieldType.OM, Page.getDefault, Page.create)
+    ..hasRequiredFields = false
+  ;
+
+  RequestListJobSchedules() : super();
+  RequestListJobSchedules.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestListJobSchedules.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestListJobSchedules clone() => new RequestListJobSchedules()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestListJobSchedules create() => new RequestListJobSchedules();
+  static PbList<RequestListJobSchedules> createRepeated() => new PbList<RequestListJobSchedules>();
+  static RequestListJobSchedules getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestListJobSchedules();
+    return _defaultInstance;
+  }
+  static RequestListJobSchedules _defaultInstance;
+  static void $checkItem(RequestListJobSchedules v) {
+    if (v is !RequestListJobSchedules) checkItemFailed(v, 'RequestListJobSchedules');
+  }
+
+  Page get page => $_get(0, 1, null);
+  void set page(Page v) { setField(1, v); }
+  bool hasPage() => $_has(0, 1);
+  void clearPage() => clearField(1);
+}
+
+class _ReadonlyRequestListJobSchedules extends RequestListJobSchedules with ReadonlyMessageMixin {}
 
 class RequestListPolicies extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestListPolicies')
@@ -694,6 +812,35 @@ class RequestSetJob extends GeneratedMessage {
 }
 
 class _ReadonlyRequestSetJob extends RequestSetJob with ReadonlyMessageMixin {}
+
+class RequestSetJobSchedule extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestSetJobSchedule')
+    ..a/*<JobSchedule>*/(1, 'jobSchedule', PbFieldType.OM, JobSchedule.getDefault, JobSchedule.create)
+  ;
+
+  RequestSetJobSchedule() : super();
+  RequestSetJobSchedule.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestSetJobSchedule.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestSetJobSchedule clone() => new RequestSetJobSchedule()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestSetJobSchedule create() => new RequestSetJobSchedule();
+  static PbList<RequestSetJobSchedule> createRepeated() => new PbList<RequestSetJobSchedule>();
+  static RequestSetJobSchedule getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestSetJobSchedule();
+    return _defaultInstance;
+  }
+  static RequestSetJobSchedule _defaultInstance;
+  static void $checkItem(RequestSetJobSchedule v) {
+    if (v is !RequestSetJobSchedule) checkItemFailed(v, 'RequestSetJobSchedule');
+  }
+
+  JobSchedule get jobSchedule => $_get(0, 1, null);
+  void set jobSchedule(JobSchedule v) { setField(1, v); }
+  bool hasJobSchedule() => $_has(0, 1);
+  void clearJobSchedule() => clearField(1);
+}
+
+class _ReadonlyRequestSetJobSchedule extends RequestSetJobSchedule with ReadonlyMessageMixin {}
 
 class RequestSetRateLimit extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestSetRateLimit')
