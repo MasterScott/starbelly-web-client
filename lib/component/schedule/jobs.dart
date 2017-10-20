@@ -41,7 +41,6 @@ class ScheduleListJobsView implements AfterViewInit {
     getPage() async {
         var request = new pb.Request()
             ..listJobs = new pb.RequestListJobs();
-        print(this.scheduleId);
         request.listJobs.scheduleId = convert.hex.decode(this.scheduleId);
         request.listJobs.page = new pb.Page()
             ..limit = this.rowsPerPage

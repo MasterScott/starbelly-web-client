@@ -18,7 +18,7 @@ class JobSchedule {
     List<String> seeds;
     String policyId;
     List<String> tags;
-    String latestJobId;
+    String latestJobId = '';
     int jobCount;
 
     String get tagString => this.tags.join(' ');
@@ -26,6 +26,7 @@ class JobSchedule {
 
     /// Create an empty, default policy.
     JobSchedule.defaultSettings() {
+        this.scheduleName = 'New Schedule';
         this.createdAt = new DateTime.now();
         this.updatedAt = this.createdAt;
         this.enabled = true;
@@ -46,6 +47,7 @@ class JobSchedule {
         this.timing = pbSchedule.timing;
         this.scheduleName = pbSchedule.scheduleName;
         this.jobName = pbSchedule.jobName;
+        this.jobCount = pbSchedule.jobCount;
         this.seeds = new List<String>.from(pbSchedule.seeds);
         this.policyId = convert.hex.encode(pbSchedule.policyId);
         this.tags = new List<String>.from(pbSchedule.tagList.tags);

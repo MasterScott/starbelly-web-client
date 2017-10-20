@@ -3,7 +3,7 @@
     <ma-card>
       <h2>Schedule: {{schedule == null ? 'Loading…' : schedule.scheduleName}}</h2>
       <p class='lead'>
-        Schedule crawls to run at certain times.
+        Schedule crawls to run automatically.
       </p>
       <div *ngIf='schedule != null'>
         <ma-input-group [inline]='true'>
@@ -38,22 +38,28 @@
           <dd>{{schedule.updatedAt | date:"y-MM-dd H:mm:ss"}}</dd>
         </dl>
         <ma-input-group [inline]='true'>
-          <label class='input-label'>Job Name</label>
+          <label class='input-label'>Seed URL</label>
           <input type='text'
-                 [(ngModel)]='schedule.jobName'
-                 placeholder='Job Name'>
+                 [(ngModel)]='seedUrl'
+                 placeholder='Seed URL'>
         </ma-input-group>
-        <p class='legend'>
-          Each crawl job is given a name when it is created. The name may
-          include macros like <code>{COUNT}</code>, <code>{TIME}</code>, and
-          <code>{DATE}</code>.
-        </p>
         <ma-input-group [inline]='true'>
           <label class='input-label'>Policy</label>
           <select [(ngModel)]='schedule.policyId'>
             <option *ngFor='let policy of policies' [ngValue]='policy.policyId'>{{policy.name}}</option>
           </select>
         </ma-input-group>
+        <ma-input-group [inline]='true'>
+          <label class='input-label'>Job Name</label>
+          <input type='text'
+                 [(ngModel)]='schedule.jobName'
+                 placeholder='(Optional) Name for each crawl'>
+        </ma-input-group>
+        <p class='legend'>
+          Each crawl job is given a name when it is created. The name may
+          include macros like <code>{COUNT}</code>, <code>{TIME}</code>, and
+          <code>{DATE}</code>.
+        </p>
         <ma-input-group [inline]='true'>
           <label class='input-label'>Tags</label>
           <input type='text'
@@ -68,10 +74,10 @@
           </select>
         </ma-input-group>
         <ma-input-group [inline]='true'>
-          <label class='input-label'>Interval</label>
+          <label class='input-label'># Units</label>
           <input type='text'
                  [(ngModel)]='schedule.numUnits'
-                 placeholder='Job Name'>
+                 placeholder='Number of time units'>
         </ma-input-group>
         <ma-input-group [inline]='true'>
           <label class='input-label'>Time Unit</label>

@@ -66,6 +66,7 @@ class ScheduleDetailView implements AfterViewInit {
     JobSchedule schedule;
     String saveError = '';
     bool saveSuccess = false;
+    String seedUrl = '';
 
     DocumentService _document;
     Router _router;
@@ -99,6 +100,11 @@ class ScheduleDetailView implements AfterViewInit {
     /// If a new schedule is created, then redirect to that new schedule.
     save(ButtonClick click) async {
         click.button.busy = true;
+        if (this.schedule.seeds.length == 0) {
+            this.schedule.seeds.add(this.seedUrl);
+        } else {
+            this.schedule.seeds[0] = this.seedUrl;
+        }
         var request = new pb.Request()
             ..setJobSchedule = new pb.RequestSetJobSchedule();
         try {
@@ -148,13 +154,15 @@ class ScheduleDetailView implements AfterViewInit {
         if (scheduleId != null) {
             var schedule = await this._fetchSchedule(scheduleId);
             this.schedule = schedule;
+            this.seedUrl = schedule.seeds.length > 0 ? schedule.seeds[0] : '';
             this._document.title = 'Schedule: ${this.schedule.scheduleName}';
             this._document.breadcrumbs.last.name = this.schedule.scheduleName;
-            this.policies = await this._fetchPolicies();
             if (schedule.latestJobId.isNotEmpty) {
                 this.latestJob = await this._fetchJob(schedule.latestJobId);
             }
         }
+
+        this.policies = await this._fetchPolicies();
     }
 
     /// Fetch the latest job for this schedule.
