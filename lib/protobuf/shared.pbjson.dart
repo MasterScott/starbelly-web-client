@@ -3,6 +3,15 @@
 ///
 library starbelly_shared_pbjson;
 
+const CaptchaSolverAntigateCharacters$json = const {
+  '1': 'CaptchaSolverAntigateCharacters',
+  '2': const [
+    const {'1': 'ALPHANUMERIC', '2': 1},
+    const {'1': 'NUMBERS_ONLY', '2': 2},
+    const {'1': 'ALPHA_ONLY', '2': 3},
+  ],
+};
+
 const JobRunState$json = const {
   '1': 'JobRunState',
   '2': const [
@@ -40,6 +49,31 @@ const PatternMatch$json = const {
   '2': const [
     const {'1': 'MATCHES', '2': 1},
     const {'1': 'DOES_NOT_MATCH', '2': 2},
+  ],
+};
+
+const CaptchaSolver$json = const {
+  '1': 'CaptchaSolver',
+  '2': const [
+    const {'1': 'solver_id', '3': 1, '4': 1, '5': 12},
+    const {'1': 'name', '3': 2, '4': 1, '5': 9},
+    const {'1': 'created_at', '3': 3, '4': 1, '5': 9},
+    const {'1': 'updated_at', '3': 4, '4': 1, '5': 9},
+    const {'1': 'antigate', '3': 5, '4': 1, '5': 11, '6': '.starbelly.CaptchaSolverAntigate'},
+  ],
+};
+
+const CaptchaSolverAntigate$json = const {
+  '1': 'CaptchaSolverAntigate',
+  '2': const [
+    const {'1': 'service_url', '3': 1, '4': 1, '5': 9},
+    const {'1': 'api_key', '3': 2, '4': 1, '5': 9},
+    const {'1': 'require_phrase', '3': 3, '4': 1, '5': 8},
+    const {'1': 'case_sensitive', '3': 4, '4': 1, '5': 8},
+    const {'1': 'characters', '3': 5, '4': 1, '5': 14, '6': '.starbelly.CaptchaSolverAntigateCharacters'},
+    const {'1': 'require_math', '3': 6, '4': 1, '5': 8},
+    const {'1': 'min_length', '3': 7, '4': 1, '5': 5},
+    const {'1': 'max_length', '3': 8, '4': 1, '5': 5},
   ],
 };
 

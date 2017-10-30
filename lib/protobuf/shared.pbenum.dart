@@ -5,6 +5,26 @@ library starbelly_shared_pbenum;
 
 import 'package:protobuf/protobuf.dart';
 
+class CaptchaSolverAntigateCharacters extends ProtobufEnum {
+  static const CaptchaSolverAntigateCharacters ALPHANUMERIC = const CaptchaSolverAntigateCharacters._(1, 'ALPHANUMERIC');
+  static const CaptchaSolverAntigateCharacters NUMBERS_ONLY = const CaptchaSolverAntigateCharacters._(2, 'NUMBERS_ONLY');
+  static const CaptchaSolverAntigateCharacters ALPHA_ONLY = const CaptchaSolverAntigateCharacters._(3, 'ALPHA_ONLY');
+
+  static const List<CaptchaSolverAntigateCharacters> values = const <CaptchaSolverAntigateCharacters> [
+    ALPHANUMERIC,
+    NUMBERS_ONLY,
+    ALPHA_ONLY,
+  ];
+
+  static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
+  static CaptchaSolverAntigateCharacters valueOf(int value) => _byValue[value] as CaptchaSolverAntigateCharacters;
+  static void $checkItem(CaptchaSolverAntigateCharacters v) {
+    if (v is !CaptchaSolverAntigateCharacters) checkItemFailed(v, 'CaptchaSolverAntigateCharacters');
+  }
+
+  const CaptchaSolverAntigateCharacters._(int v, String n) : super(v, n);
+}
+
 class JobRunState extends ProtobufEnum {
   static const JobRunState CANCELLED = const JobRunState._(1, 'CANCELLED');
   static const JobRunState COMPLETED = const JobRunState._(2, 'COMPLETED');

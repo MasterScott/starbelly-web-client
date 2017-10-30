@@ -9,6 +9,132 @@ import 'shared.pbenum.dart';
 
 export 'shared.pbenum.dart';
 
+class CaptchaSolver extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('CaptchaSolver')
+    ..a/*<List<int>>*/(1, 'solverId', PbFieldType.OY)
+    ..a/*<String>*/(2, 'name', PbFieldType.OS)
+    ..a/*<String>*/(3, 'createdAt', PbFieldType.OS)
+    ..a/*<String>*/(4, 'updatedAt', PbFieldType.OS)
+    ..a/*<CaptchaSolverAntigate>*/(5, 'antigate', PbFieldType.OM, CaptchaSolverAntigate.getDefault, CaptchaSolverAntigate.create)
+    ..hasRequiredFields = false
+  ;
+
+  CaptchaSolver() : super();
+  CaptchaSolver.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  CaptchaSolver.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  CaptchaSolver clone() => new CaptchaSolver()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static CaptchaSolver create() => new CaptchaSolver();
+  static PbList<CaptchaSolver> createRepeated() => new PbList<CaptchaSolver>();
+  static CaptchaSolver getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyCaptchaSolver();
+    return _defaultInstance;
+  }
+  static CaptchaSolver _defaultInstance;
+  static void $checkItem(CaptchaSolver v) {
+    if (v is !CaptchaSolver) checkItemFailed(v, 'CaptchaSolver');
+  }
+
+  List<int> get solverId => $_get(0, 1, null);
+  void set solverId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasSolverId() => $_has(0, 1);
+  void clearSolverId() => clearField(1);
+
+  String get name => $_get(1, 2, '');
+  void set name(String v) { $_setString(1, 2, v); }
+  bool hasName() => $_has(1, 2);
+  void clearName() => clearField(2);
+
+  String get createdAt => $_get(2, 3, '');
+  void set createdAt(String v) { $_setString(2, 3, v); }
+  bool hasCreatedAt() => $_has(2, 3);
+  void clearCreatedAt() => clearField(3);
+
+  String get updatedAt => $_get(3, 4, '');
+  void set updatedAt(String v) { $_setString(3, 4, v); }
+  bool hasUpdatedAt() => $_has(3, 4);
+  void clearUpdatedAt() => clearField(4);
+
+  CaptchaSolverAntigate get antigate => $_get(4, 5, null);
+  void set antigate(CaptchaSolverAntigate v) { setField(5, v); }
+  bool hasAntigate() => $_has(4, 5);
+  void clearAntigate() => clearField(5);
+}
+
+class _ReadonlyCaptchaSolver extends CaptchaSolver with ReadonlyMessageMixin {}
+
+class CaptchaSolverAntigate extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('CaptchaSolverAntigate')
+    ..a/*<String>*/(1, 'serviceUrl', PbFieldType.OS)
+    ..a/*<String>*/(2, 'apiKey', PbFieldType.OS)
+    ..a/*<bool>*/(3, 'requirePhrase', PbFieldType.OB)
+    ..a/*<bool>*/(4, 'caseSensitive', PbFieldType.OB)
+    ..e/*<CaptchaSolverAntigateCharacters>*/(5, 'characters', PbFieldType.OE, CaptchaSolverAntigateCharacters.ALPHANUMERIC, CaptchaSolverAntigateCharacters.valueOf)
+    ..a/*<bool>*/(6, 'requireMath', PbFieldType.OB)
+    ..a/*<int>*/(7, 'minLength', PbFieldType.O3)
+    ..a/*<int>*/(8, 'maxLength', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  CaptchaSolverAntigate() : super();
+  CaptchaSolverAntigate.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  CaptchaSolverAntigate.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  CaptchaSolverAntigate clone() => new CaptchaSolverAntigate()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static CaptchaSolverAntigate create() => new CaptchaSolverAntigate();
+  static PbList<CaptchaSolverAntigate> createRepeated() => new PbList<CaptchaSolverAntigate>();
+  static CaptchaSolverAntigate getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyCaptchaSolverAntigate();
+    return _defaultInstance;
+  }
+  static CaptchaSolverAntigate _defaultInstance;
+  static void $checkItem(CaptchaSolverAntigate v) {
+    if (v is !CaptchaSolverAntigate) checkItemFailed(v, 'CaptchaSolverAntigate');
+  }
+
+  String get serviceUrl => $_get(0, 1, '');
+  void set serviceUrl(String v) { $_setString(0, 1, v); }
+  bool hasServiceUrl() => $_has(0, 1);
+  void clearServiceUrl() => clearField(1);
+
+  String get apiKey => $_get(1, 2, '');
+  void set apiKey(String v) { $_setString(1, 2, v); }
+  bool hasApiKey() => $_has(1, 2);
+  void clearApiKey() => clearField(2);
+
+  bool get requirePhrase => $_get(2, 3, false);
+  void set requirePhrase(bool v) { $_setBool(2, 3, v); }
+  bool hasRequirePhrase() => $_has(2, 3);
+  void clearRequirePhrase() => clearField(3);
+
+  bool get caseSensitive => $_get(3, 4, false);
+  void set caseSensitive(bool v) { $_setBool(3, 4, v); }
+  bool hasCaseSensitive() => $_has(3, 4);
+  void clearCaseSensitive() => clearField(4);
+
+  CaptchaSolverAntigateCharacters get characters => $_get(4, 5, null);
+  void set characters(CaptchaSolverAntigateCharacters v) { setField(5, v); }
+  bool hasCharacters() => $_has(4, 5);
+  void clearCharacters() => clearField(5);
+
+  bool get requireMath => $_get(5, 6, false);
+  void set requireMath(bool v) { $_setBool(5, 6, v); }
+  bool hasRequireMath() => $_has(5, 6);
+  void clearRequireMath() => clearField(6);
+
+  int get minLength => $_get(6, 7, 0);
+  void set minLength(int v) { $_setUnsignedInt32(6, 7, v); }
+  bool hasMinLength() => $_has(6, 7);
+  void clearMinLength() => clearField(7);
+
+  int get maxLength => $_get(7, 8, 0);
+  void set maxLength(int v) { $_setUnsignedInt32(7, 8, v); }
+  bool hasMaxLength() => $_has(7, 8);
+  void clearMaxLength() => clearField(8);
+}
+
+class _ReadonlyCaptchaSolverAntigate extends CaptchaSolverAntigate with ReadonlyMessageMixin {}
+
 class DomainLogin extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('DomainLogin')
     ..a/*<String>*/(1, 'domain', PbFieldType.OS)

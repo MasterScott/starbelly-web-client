@@ -7,22 +7,26 @@ const Request$json = const {
   '1': 'Request',
   '2': const [
     const {'1': 'request_id', '3': 1, '4': 2, '5': 5},
+    const {'1': 'delete_captcha_solver', '3': 31, '4': 1, '5': 11, '6': '.starbelly.RequestDeleteCaptchaSolver'},
     const {'1': 'delete_domain_login', '3': 2, '4': 1, '5': 11, '6': '.starbelly.RequestDeleteDomainLogin'},
     const {'1': 'delete_job', '3': 3, '4': 1, '5': 11, '6': '.starbelly.RequestDeleteJob'},
     const {'1': 'delete_job_schedule', '3': 24, '4': 1, '5': 11, '6': '.starbelly.RequestDeleteJobSchedule'},
     const {'1': 'delete_policy', '3': 4, '4': 1, '5': 11, '6': '.starbelly.RequestDeletePolicy'},
     const {'1': 'get_domain_login', '3': 5, '4': 1, '5': 11, '6': '.starbelly.RequestGetDomainLogin'},
+    const {'1': 'get_captcha_solver', '3': 28, '4': 1, '5': 11, '6': '.starbelly.RequestGetCaptchaSolver'},
     const {'1': 'get_job', '3': 6, '4': 1, '5': 11, '6': '.starbelly.RequestGetJob'},
     const {'1': 'get_job_schedule', '3': 25, '4': 1, '5': 11, '6': '.starbelly.RequestGetJobSchedule'},
     const {'1': 'get_job_items', '3': 7, '4': 1, '5': 11, '6': '.starbelly.RequestGetJobItems'},
     const {'1': 'get_policy', '3': 8, '4': 1, '5': 11, '6': '.starbelly.RequestGetPolicy'},
     const {'1': 'get_rate_limits', '3': 9, '4': 1, '5': 11, '6': '.starbelly.RequestGetRateLimits'},
+    const {'1': 'list_captcha_solvers', '3': 29, '4': 1, '5': 11, '6': '.starbelly.RequestListCaptchaSolvers'},
     const {'1': 'list_domain_logins', '3': 10, '4': 1, '5': 11, '6': '.starbelly.RequestListDomainLogins'},
     const {'1': 'list_jobs', '3': 11, '4': 1, '5': 11, '6': '.starbelly.RequestListJobs'},
     const {'1': 'list_job_schedules', '3': 26, '4': 1, '5': 11, '6': '.starbelly.RequestListJobSchedules'},
     const {'1': 'list_policies', '3': 12, '4': 1, '5': 11, '6': '.starbelly.RequestListPolicies'},
     const {'1': 'performance_profile', '3': 13, '4': 1, '5': 11, '6': '.starbelly.RequestPerformanceProfile'},
     const {'1': 'ping', '3': 14, '4': 1, '5': 11, '6': '.starbelly.RequestPing'},
+    const {'1': 'set_captcha_solver', '3': 30, '4': 1, '5': 11, '6': '.starbelly.RequestSetCaptchaSolver'},
     const {'1': 'set_domain_login', '3': 15, '4': 1, '5': 11, '6': '.starbelly.RequestSetDomainLogin'},
     const {'1': 'set_job', '3': 16, '4': 1, '5': 11, '6': '.starbelly.RequestSetJob'},
     const {'1': 'set_job_schedule', '3': 27, '4': 1, '5': 11, '6': '.starbelly.RequestSetJobSchedule'},
@@ -33,6 +37,13 @@ const Request$json = const {
     const {'1': 'subscribe_resource_monitor', '3': 21, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeResourceMonitor'},
     const {'1': 'subscribe_task_monitor', '3': 22, '4': 1, '5': 11, '6': '.starbelly.RequestSubscribeTaskMonitor'},
     const {'1': 'unsubscribe', '3': 23, '4': 1, '5': 11, '6': '.starbelly.RequestUnsubscribe'},
+  ],
+};
+
+const RequestDeleteCaptchaSolver$json = const {
+  '1': 'RequestDeleteCaptchaSolver',
+  '2': const [
+    const {'1': 'solver_id', '3': 1, '4': 1, '5': 12},
   ],
 };
 
@@ -61,6 +72,13 @@ const RequestDeletePolicy$json = const {
   '1': 'RequestDeletePolicy',
   '2': const [
     const {'1': 'policy_id', '3': 1, '4': 2, '5': 12},
+  ],
+};
+
+const RequestGetCaptchaSolver$json = const {
+  '1': 'RequestGetCaptchaSolver',
+  '2': const [
+    const {'1': 'solver_id', '3': 1, '4': 2, '5': 12},
   ],
 };
 
@@ -111,6 +129,13 @@ const RequestGetRateLimits$json = const {
   ],
 };
 
+const RequestListCaptchaSolvers$json = const {
+  '1': 'RequestListCaptchaSolvers',
+  '2': const [
+    const {'1': 'page', '3': 1, '4': 1, '5': 11, '6': '.starbelly.Page'},
+  ],
+};
+
 const RequestListDomainLogins$json = const {
   '1': 'RequestListDomainLogins',
   '2': const [
@@ -155,6 +180,13 @@ const RequestPing$json = const {
   '1': 'RequestPing',
   '2': const [
     const {'1': 'pong', '3': 1, '4': 1, '5': 9},
+  ],
+};
+
+const RequestSetCaptchaSolver$json = const {
+  '1': 'RequestSetCaptchaSolver',
+  '2': const [
+    const {'1': 'solver', '3': 1, '4': 1, '5': 11, '6': '.starbelly.CaptchaSolver'},
   ],
 };
 

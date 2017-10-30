@@ -54,15 +54,23 @@
     <ma-side-nav-item [route]='["/Policy", "List"]'>
       <fa name='book' [fw]='true' size='lg'></fa> Policy
     </ma-side-nav-item>
-    <ma-side-nav-item [route]='["/Credential", "List"]'>
-      <fa name='key' [fw]='true' size='lg'></fa> Credentials
-    </ma-side-nav-item>
-    <ma-side-nav-item [route]='["/RateLimits"]'>
-      <fa name='clock-o' [fw]='true' size='lg'></fa> Rate Limits
-    </ma-side-nav-item>
     <ma-side-nav-menu>
       <ma-side-nav-menu-header>
-        <fa name='gears' [fw]='true' size='lg'></fa> System
+        <fa name='gears' [fw]='true' size='lg'></fa> Configuration
+      </ma-side-nav-menu-header>
+      <ma-side-nav-item [route]='["/Captcha", "List"]'>
+        <fa name='eye' [fw]='true' size='lg'></fa> CAPTCHA Solvers
+      </ma-side-nav-item>
+      <ma-side-nav-item [route]='["/Credential", "List"]'>
+        <fa name='key' [fw]='true' size='lg'></fa> Credentials
+      </ma-side-nav-item>
+      <ma-side-nav-item [route]='["/RateLimits"]'>
+        <fa name='clock-o' [fw]='true' size='lg'></fa> Rate Limits
+      </ma-side-nav-item>
+    </ma-side-nav-menu>
+    <ma-side-nav-menu>
+      <ma-side-nav-menu-header>
+        <fa name='desktop' [fw]='true' size='lg'></fa> System
       </ma-side-nav-menu-header>
       <ma-side-nav-item [route]='["Profile"]'>
         <fa name='microchip' [fw]='true' size='lg'></fa> CPU Profile

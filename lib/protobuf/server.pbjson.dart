@@ -106,23 +106,34 @@ const Response$json = const {
     const {'1': 'request_id', '3': 1, '4': 2, '5': 5},
     const {'1': 'is_success', '3': 2, '4': 2, '5': 8},
     const {'1': 'error_message', '3': 3, '4': 1, '5': 9},
+    const {'1': 'solver', '3': 22, '4': 1, '5': 11, '6': '.starbelly.CaptchaSolver'},
     const {'1': 'domain_login', '3': 5, '4': 1, '5': 11, '6': '.starbelly.DomainLogin'},
     const {'1': 'domain_login_user', '3': 6, '4': 1, '5': 11, '6': '.starbelly.DomainLoginUser'},
     const {'1': 'job', '3': 7, '4': 1, '5': 11, '6': '.starbelly.Job'},
     const {'1': 'job_schedule', '3': 19, '4': 1, '5': 11, '6': '.starbelly.JobSchedule'},
     const {'1': 'policy', '3': 8, '4': 1, '5': 11, '6': '.starbelly.Policy'},
+    const {'1': 'list_captcha_solvers', '3': 23, '4': 1, '5': 11, '6': '.starbelly.ResponseListCaptchaSolvers'},
     const {'1': 'list_domain_logins', '3': 9, '4': 1, '5': 11, '6': '.starbelly.ResponseListDomainLogins'},
     const {'1': 'list_items', '3': 10, '4': 1, '5': 11, '6': '.starbelly.ResponseListItems'},
     const {'1': 'list_jobs', '3': 11, '4': 1, '5': 11, '6': '.starbelly.ResponseListJobs'},
     const {'1': 'list_job_schedules', '3': 20, '4': 1, '5': 11, '6': '.starbelly.ResponseListJobSchedules'},
     const {'1': 'list_policies', '3': 12, '4': 1, '5': 11, '6': '.starbelly.ResponseListPolicies'},
     const {'1': 'list_rate_limits', '3': 13, '4': 1, '5': 11, '6': '.starbelly.ResponseListRateLimits'},
+    const {'1': 'new_solver', '3': 24, '4': 1, '5': 11, '6': '.starbelly.ResponseNewCaptchaSolver'},
     const {'1': 'new_job', '3': 14, '4': 1, '5': 11, '6': '.starbelly.ResponseNewJob'},
     const {'1': 'new_job_schedule', '3': 21, '4': 1, '5': 11, '6': '.starbelly.ResponseNewJobSchedule'},
     const {'1': 'new_policy', '3': 15, '4': 1, '5': 11, '6': '.starbelly.ResponseNewPolicy'},
     const {'1': 'new_subscription', '3': 16, '4': 1, '5': 11, '6': '.starbelly.ResponseNewSubscription'},
     const {'1': 'performance_profile', '3': 17, '4': 1, '5': 11, '6': '.starbelly.ResponsePerformanceProfile'},
     const {'1': 'ping', '3': 18, '4': 1, '5': 11, '6': '.starbelly.ResponsePing'},
+  ],
+};
+
+const ResponseListCaptchaSolvers$json = const {
+  '1': 'ResponseListCaptchaSolvers',
+  '2': const [
+    const {'1': 'solvers', '3': 1, '4': 3, '5': 11, '6': '.starbelly.CaptchaSolver'},
+    const {'1': 'total', '3': 2, '4': 1, '5': 5},
   ],
 };
 
@@ -171,6 +182,13 @@ const ResponseListRateLimits$json = const {
   '2': const [
     const {'1': 'rate_limits', '3': 1, '4': 3, '5': 11, '6': '.starbelly.RateLimit'},
     const {'1': 'total', '3': 2, '4': 1, '5': 5},
+  ],
+};
+
+const ResponseNewCaptchaSolver$json = const {
+  '1': 'ResponseNewCaptchaSolver',
+  '2': const [
+    const {'1': 'solver_id', '3': 1, '4': 2, '5': 12},
   ],
 };
 

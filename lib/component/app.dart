@@ -6,6 +6,7 @@ import 'package:logging/logging.dart';
 import 'package:ng2_fontawesome/ng2_fontawesome.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
+import 'package:starbelly/component/captcha/router.dart';
 import 'package:starbelly/component/credential/router.dart';
 import 'package:starbelly/component/dashboard.dart';
 import 'package:starbelly/component/external_link.dart';
@@ -48,6 +49,10 @@ import 'package:starbelly/service/server.dart';
         DocumentService, ServerService]
 )
 @RouteConfig(const [
+    const Route(
+        path: '/captcha/...',
+        name: 'Captcha',
+        component: CaptchaRouter),
     const Route(
         path: '/credential/...',
         name: 'Credential',

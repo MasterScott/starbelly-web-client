@@ -38,6 +38,10 @@ class Request extends GeneratedMessage {
     ..a/*<RequestGetJobSchedule>*/(25, 'getJobSchedule', PbFieldType.OM, RequestGetJobSchedule.getDefault, RequestGetJobSchedule.create)
     ..a/*<RequestListJobSchedules>*/(26, 'listJobSchedules', PbFieldType.OM, RequestListJobSchedules.getDefault, RequestListJobSchedules.create)
     ..a/*<RequestSetJobSchedule>*/(27, 'setJobSchedule', PbFieldType.OM, RequestSetJobSchedule.getDefault, RequestSetJobSchedule.create)
+    ..a/*<RequestGetCaptchaSolver>*/(28, 'getCaptchaSolver', PbFieldType.OM, RequestGetCaptchaSolver.getDefault, RequestGetCaptchaSolver.create)
+    ..a/*<RequestListCaptchaSolvers>*/(29, 'listCaptchaSolvers', PbFieldType.OM, RequestListCaptchaSolvers.getDefault, RequestListCaptchaSolvers.create)
+    ..a/*<RequestSetCaptchaSolver>*/(30, 'setCaptchaSolver', PbFieldType.OM, RequestSetCaptchaSolver.getDefault, RequestSetCaptchaSolver.create)
+    ..a/*<RequestDeleteCaptchaSolver>*/(31, 'deleteCaptchaSolver', PbFieldType.OM, RequestDeleteCaptchaSolver.getDefault, RequestDeleteCaptchaSolver.create)
   ;
 
   Request() : super();
@@ -190,9 +194,59 @@ class Request extends GeneratedMessage {
   void set setJobSchedule(RequestSetJobSchedule v) { setField(27, v); }
   bool hasSetJobSchedule() => $_has(26, 27);
   void clearSetJobSchedule() => clearField(27);
+
+  RequestGetCaptchaSolver get getCaptchaSolver => $_get(27, 28, null);
+  void set getCaptchaSolver(RequestGetCaptchaSolver v) { setField(28, v); }
+  bool hasGetCaptchaSolver() => $_has(27, 28);
+  void clearGetCaptchaSolver() => clearField(28);
+
+  RequestListCaptchaSolvers get listCaptchaSolvers => $_get(28, 29, null);
+  void set listCaptchaSolvers(RequestListCaptchaSolvers v) { setField(29, v); }
+  bool hasListCaptchaSolvers() => $_has(28, 29);
+  void clearListCaptchaSolvers() => clearField(29);
+
+  RequestSetCaptchaSolver get setCaptchaSolver => $_get(29, 30, null);
+  void set setCaptchaSolver(RequestSetCaptchaSolver v) { setField(30, v); }
+  bool hasSetCaptchaSolver() => $_has(29, 30);
+  void clearSetCaptchaSolver() => clearField(30);
+
+  RequestDeleteCaptchaSolver get deleteCaptchaSolver => $_get(30, 31, null);
+  void set deleteCaptchaSolver(RequestDeleteCaptchaSolver v) { setField(31, v); }
+  bool hasDeleteCaptchaSolver() => $_has(30, 31);
+  void clearDeleteCaptchaSolver() => clearField(31);
 }
 
 class _ReadonlyRequest extends Request with ReadonlyMessageMixin {}
+
+class RequestDeleteCaptchaSolver extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestDeleteCaptchaSolver')
+    ..a/*<List<int>>*/(1, 'solverId', PbFieldType.OY)
+    ..hasRequiredFields = false
+  ;
+
+  RequestDeleteCaptchaSolver() : super();
+  RequestDeleteCaptchaSolver.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestDeleteCaptchaSolver.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestDeleteCaptchaSolver clone() => new RequestDeleteCaptchaSolver()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestDeleteCaptchaSolver create() => new RequestDeleteCaptchaSolver();
+  static PbList<RequestDeleteCaptchaSolver> createRepeated() => new PbList<RequestDeleteCaptchaSolver>();
+  static RequestDeleteCaptchaSolver getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestDeleteCaptchaSolver();
+    return _defaultInstance;
+  }
+  static RequestDeleteCaptchaSolver _defaultInstance;
+  static void $checkItem(RequestDeleteCaptchaSolver v) {
+    if (v is !RequestDeleteCaptchaSolver) checkItemFailed(v, 'RequestDeleteCaptchaSolver');
+  }
+
+  List<int> get solverId => $_get(0, 1, null);
+  void set solverId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasSolverId() => $_has(0, 1);
+  void clearSolverId() => clearField(1);
+}
+
+class _ReadonlyRequestDeleteCaptchaSolver extends RequestDeleteCaptchaSolver with ReadonlyMessageMixin {}
 
 class RequestDeleteDomainLogin extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestDeleteDomainLogin')
@@ -310,6 +364,35 @@ class RequestDeletePolicy extends GeneratedMessage {
 }
 
 class _ReadonlyRequestDeletePolicy extends RequestDeletePolicy with ReadonlyMessageMixin {}
+
+class RequestGetCaptchaSolver extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestGetCaptchaSolver')
+    ..a/*<List<int>>*/(1, 'solverId', PbFieldType.QY)
+  ;
+
+  RequestGetCaptchaSolver() : super();
+  RequestGetCaptchaSolver.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestGetCaptchaSolver.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestGetCaptchaSolver clone() => new RequestGetCaptchaSolver()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestGetCaptchaSolver create() => new RequestGetCaptchaSolver();
+  static PbList<RequestGetCaptchaSolver> createRepeated() => new PbList<RequestGetCaptchaSolver>();
+  static RequestGetCaptchaSolver getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestGetCaptchaSolver();
+    return _defaultInstance;
+  }
+  static RequestGetCaptchaSolver _defaultInstance;
+  static void $checkItem(RequestGetCaptchaSolver v) {
+    if (v is !RequestGetCaptchaSolver) checkItemFailed(v, 'RequestGetCaptchaSolver');
+  }
+
+  List<int> get solverId => $_get(0, 1, null);
+  void set solverId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasSolverId() => $_has(0, 1);
+  void clearSolverId() => clearField(1);
+}
+
+class _ReadonlyRequestGetCaptchaSolver extends RequestGetCaptchaSolver with ReadonlyMessageMixin {}
 
 class RequestGetDomainLogin extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestGetDomainLogin')
@@ -515,6 +598,36 @@ class RequestGetRateLimits extends GeneratedMessage {
 }
 
 class _ReadonlyRequestGetRateLimits extends RequestGetRateLimits with ReadonlyMessageMixin {}
+
+class RequestListCaptchaSolvers extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestListCaptchaSolvers')
+    ..a/*<Page>*/(1, 'page', PbFieldType.OM, Page.getDefault, Page.create)
+    ..hasRequiredFields = false
+  ;
+
+  RequestListCaptchaSolvers() : super();
+  RequestListCaptchaSolvers.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestListCaptchaSolvers.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestListCaptchaSolvers clone() => new RequestListCaptchaSolvers()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestListCaptchaSolvers create() => new RequestListCaptchaSolvers();
+  static PbList<RequestListCaptchaSolvers> createRepeated() => new PbList<RequestListCaptchaSolvers>();
+  static RequestListCaptchaSolvers getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestListCaptchaSolvers();
+    return _defaultInstance;
+  }
+  static RequestListCaptchaSolvers _defaultInstance;
+  static void $checkItem(RequestListCaptchaSolvers v) {
+    if (v is !RequestListCaptchaSolvers) checkItemFailed(v, 'RequestListCaptchaSolvers');
+  }
+
+  Page get page => $_get(0, 1, null);
+  void set page(Page v) { setField(1, v); }
+  bool hasPage() => $_has(0, 1);
+  void clearPage() => clearField(1);
+}
+
+class _ReadonlyRequestListCaptchaSolvers extends RequestListCaptchaSolvers with ReadonlyMessageMixin {}
 
 class RequestListDomainLogins extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestListDomainLogins')
@@ -725,6 +838,36 @@ class RequestPing extends GeneratedMessage {
 }
 
 class _ReadonlyRequestPing extends RequestPing with ReadonlyMessageMixin {}
+
+class RequestSetCaptchaSolver extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('RequestSetCaptchaSolver')
+    ..a/*<CaptchaSolver>*/(1, 'solver', PbFieldType.OM, CaptchaSolver.getDefault, CaptchaSolver.create)
+    ..hasRequiredFields = false
+  ;
+
+  RequestSetCaptchaSolver() : super();
+  RequestSetCaptchaSolver.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestSetCaptchaSolver.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestSetCaptchaSolver clone() => new RequestSetCaptchaSolver()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static RequestSetCaptchaSolver create() => new RequestSetCaptchaSolver();
+  static PbList<RequestSetCaptchaSolver> createRepeated() => new PbList<RequestSetCaptchaSolver>();
+  static RequestSetCaptchaSolver getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyRequestSetCaptchaSolver();
+    return _defaultInstance;
+  }
+  static RequestSetCaptchaSolver _defaultInstance;
+  static void $checkItem(RequestSetCaptchaSolver v) {
+    if (v is !RequestSetCaptchaSolver) checkItemFailed(v, 'RequestSetCaptchaSolver');
+  }
+
+  CaptchaSolver get solver => $_get(0, 1, null);
+  void set solver(CaptchaSolver v) { setField(1, v); }
+  bool hasSolver() => $_has(0, 1);
+  void clearSolver() => clearField(1);
+}
+
+class _ReadonlyRequestSetCaptchaSolver extends RequestSetCaptchaSolver with ReadonlyMessageMixin {}
 
 class RequestSetDomainLogin extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('RequestSetDomainLogin')

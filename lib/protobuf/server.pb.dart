@@ -483,6 +483,9 @@ class Response extends GeneratedMessage {
     ..a/*<JobSchedule>*/(19, 'jobSchedule', PbFieldType.OM, JobSchedule.getDefault, JobSchedule.create)
     ..a/*<ResponseListJobSchedules>*/(20, 'listJobSchedules', PbFieldType.OM, ResponseListJobSchedules.getDefault, ResponseListJobSchedules.create)
     ..a/*<ResponseNewJobSchedule>*/(21, 'newJobSchedule', PbFieldType.OM, ResponseNewJobSchedule.getDefault, ResponseNewJobSchedule.create)
+    ..a/*<CaptchaSolver>*/(22, 'solver', PbFieldType.OM, CaptchaSolver.getDefault, CaptchaSolver.create)
+    ..a/*<ResponseListCaptchaSolvers>*/(23, 'listCaptchaSolvers', PbFieldType.OM, ResponseListCaptchaSolvers.getDefault, ResponseListCaptchaSolvers.create)
+    ..a/*<ResponseNewCaptchaSolver>*/(24, 'newSolver', PbFieldType.OM, ResponseNewCaptchaSolver.getDefault, ResponseNewCaptchaSolver.create)
   ;
 
   Response() : super();
@@ -600,9 +603,57 @@ class Response extends GeneratedMessage {
   void set newJobSchedule(ResponseNewJobSchedule v) { setField(21, v); }
   bool hasNewJobSchedule() => $_has(19, 21);
   void clearNewJobSchedule() => clearField(21);
+
+  CaptchaSolver get solver => $_get(20, 22, null);
+  void set solver(CaptchaSolver v) { setField(22, v); }
+  bool hasSolver() => $_has(20, 22);
+  void clearSolver() => clearField(22);
+
+  ResponseListCaptchaSolvers get listCaptchaSolvers => $_get(21, 23, null);
+  void set listCaptchaSolvers(ResponseListCaptchaSolvers v) { setField(23, v); }
+  bool hasListCaptchaSolvers() => $_has(21, 23);
+  void clearListCaptchaSolvers() => clearField(23);
+
+  ResponseNewCaptchaSolver get newSolver => $_get(22, 24, null);
+  void set newSolver(ResponseNewCaptchaSolver v) { setField(24, v); }
+  bool hasNewSolver() => $_has(22, 24);
+  void clearNewSolver() => clearField(24);
 }
 
 class _ReadonlyResponse extends Response with ReadonlyMessageMixin {}
+
+class ResponseListCaptchaSolvers extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResponseListCaptchaSolvers')
+    ..pp/*<CaptchaSolver>*/(1, 'solvers', PbFieldType.PM, CaptchaSolver.$checkItem, CaptchaSolver.create)
+    ..a/*<int>*/(2, 'total', PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  ResponseListCaptchaSolvers() : super();
+  ResponseListCaptchaSolvers.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResponseListCaptchaSolvers.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResponseListCaptchaSolvers clone() => new ResponseListCaptchaSolvers()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResponseListCaptchaSolvers create() => new ResponseListCaptchaSolvers();
+  static PbList<ResponseListCaptchaSolvers> createRepeated() => new PbList<ResponseListCaptchaSolvers>();
+  static ResponseListCaptchaSolvers getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResponseListCaptchaSolvers();
+    return _defaultInstance;
+  }
+  static ResponseListCaptchaSolvers _defaultInstance;
+  static void $checkItem(ResponseListCaptchaSolvers v) {
+    if (v is !ResponseListCaptchaSolvers) checkItemFailed(v, 'ResponseListCaptchaSolvers');
+  }
+
+  List<CaptchaSolver> get solvers => $_get(0, 1, null);
+
+  int get total => $_get(1, 2, 0);
+  void set total(int v) { $_setUnsignedInt32(1, 2, v); }
+  bool hasTotal() => $_has(1, 2);
+  void clearTotal() => clearField(2);
+}
+
+class _ReadonlyResponseListCaptchaSolvers extends ResponseListCaptchaSolvers with ReadonlyMessageMixin {}
 
 class ResponseListDomainLogins extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('ResponseListDomainLogins')
@@ -798,6 +849,35 @@ class ResponseListRateLimits extends GeneratedMessage {
 }
 
 class _ReadonlyResponseListRateLimits extends ResponseListRateLimits with ReadonlyMessageMixin {}
+
+class ResponseNewCaptchaSolver extends GeneratedMessage {
+  static final BuilderInfo _i = new BuilderInfo('ResponseNewCaptchaSolver')
+    ..a/*<List<int>>*/(1, 'solverId', PbFieldType.QY)
+  ;
+
+  ResponseNewCaptchaSolver() : super();
+  ResponseNewCaptchaSolver.fromBuffer(List<int> i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResponseNewCaptchaSolver.fromJson(String i, [ExtensionRegistry r = ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResponseNewCaptchaSolver clone() => new ResponseNewCaptchaSolver()..mergeFromMessage(this);
+  BuilderInfo get info_ => _i;
+  static ResponseNewCaptchaSolver create() => new ResponseNewCaptchaSolver();
+  static PbList<ResponseNewCaptchaSolver> createRepeated() => new PbList<ResponseNewCaptchaSolver>();
+  static ResponseNewCaptchaSolver getDefault() {
+    if (_defaultInstance == null) _defaultInstance = new _ReadonlyResponseNewCaptchaSolver();
+    return _defaultInstance;
+  }
+  static ResponseNewCaptchaSolver _defaultInstance;
+  static void $checkItem(ResponseNewCaptchaSolver v) {
+    if (v is !ResponseNewCaptchaSolver) checkItemFailed(v, 'ResponseNewCaptchaSolver');
+  }
+
+  List<int> get solverId => $_get(0, 1, null);
+  void set solverId(List<int> v) { $_setBytes(0, 1, v); }
+  bool hasSolverId() => $_has(0, 1);
+  void clearSolverId() => clearField(1);
+}
+
+class _ReadonlyResponseNewCaptchaSolver extends ResponseNewCaptchaSolver with ReadonlyMessageMixin {}
 
 class ResponseNewJob extends GeneratedMessage {
   static final BuilderInfo _i = new BuilderInfo('ResponseNewJob')
