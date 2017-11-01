@@ -77,7 +77,10 @@ class StartCrawlView implements AfterViewInit {
             ..seeds.add(this.seedUrl)
             ..tagList = new pb.TagList();
         for (var tagStr in this.tags.split(new RegExp('\s+'))) {
-            request.setJob.tagList.tags.add(tagStr.trim());
+            var tagTrim = tagStr.trim();
+            if (tagTrim.isNotEmpty) {
+                request.setJob.tagList.tags.add(tagTrim);
+            }
         }
         var response = await this._server.sendRequest(request);
         this._initForm();
