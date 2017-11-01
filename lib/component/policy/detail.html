@@ -52,6 +52,13 @@
           Never
         </label>
       </ma-radio-group>
+      <ma-input-group>
+        <label>CAPTCHA Solver</label>
+        <select [(ngModel)]='policy.captchaSolverId'>
+          <option value=''>None</option>
+          <option *ngFor='let solver of captchaSolvers' [value]='solver.solverId'>{{solver.name}}</option>
+        </select>
+      </ma-input-group>
     </ma-card>
   </div>
   <div class='col-lg'>

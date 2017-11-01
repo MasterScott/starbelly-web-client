@@ -9,6 +9,7 @@ import 'package:ng2_fontawesome/ng2_fontawesome.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 import 'package:ng2_modular_admin/validators.dart' as MaValidators;
 
+import 'package:starbelly/model/captcha.dart';
 import 'package:starbelly/model/policy.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/document.dart';
@@ -56,6 +57,7 @@ import 'package:starbelly/service/server.dart';
     directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
 )
 class PolicyDetailView implements AfterViewInit {
+    List<CaptchaSolver> captchaSolvers;
     bool newPolicy;
     Policy policy;
     String saveError = '';
@@ -86,6 +88,7 @@ class PolicyDetailView implements AfterViewInit {
             new Breadcrumb(name: 'Policy'),
         ];
 
+        this.captchaSolvers = [];
         this.newPolicy = (this._routeParams.get('id') == null);
     }
 
@@ -142,7 +145,6 @@ class PolicyDetailView implements AfterViewInit {
     /// Called when Angular initializes the view.
     ngAfterViewInit() async {
         if (this.newPolicy) {
-
             this.policy = new Policy.defaultSettings();
             this._document.title = 'New Policy';
             this._document.breadcrumbs.last.name = 'New Policy';
@@ -155,6 +157,7 @@ class PolicyDetailView implements AfterViewInit {
             this._document.title = 'Policy: ${this.policy.name}';
             this._document.breadcrumbs.last.name = this.policy.name;
         }
+        await this._fetchCaptchaSolvers();
     }
 
     /// Save the current policy.
@@ -203,6 +206,20 @@ class PolicyDetailView implements AfterViewInit {
     void sortUserAgents() {
         this.policy.userAgents.sort(
             (a,b) => a.name.toUpperCase().compareTo(b.name.toUpperCase())
+        );
+    }
+
+    /// Fetch a list of CAPTCHA solvers.
+    _fetchCaptchaSolvers() async {
+        var request = new pb.Request();
+        request.listCaptchaSolvers = new pb.RequestListCaptchaSolvers();
+        request.listCaptchaSolvers.page = new pb.Page()
+            ..limit = 100;
+        var message = await this._server.sendRequest(request);
+        var solvers = message.response.listCaptchaSolvers.solvers;
+        this.captchaSolvers = new List<CaptchaSolver>.generate(
+            solvers.length,
+            (i) => new CaptchaSolver.fromPb(solvers[i])
         );
     }
 }

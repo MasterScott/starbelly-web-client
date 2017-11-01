@@ -13,6 +13,7 @@ class Policy {
     DateTime updatedAt;
 
     PolicyAuthentication authentication;
+    String captchaSolverId = '';
     PolicyLimits limits;
     List<PolicyMimeTypeRule> mimeTypeRules;
     List<PolicyProxyRule> proxyRules;
@@ -48,6 +49,9 @@ class Policy {
         if (pbPolicy.hasAuthentication()) {
             this.authentication = new PolicyAuthentication.fromPb(
                 pbPolicy.authentication);
+        }
+        if (pbPolicy.hasCaptchaSolverId()) {
+            this.captchaSolverId = convert.hex.encode(pbPolicy.captchaSolverId);
         }
         if (pbPolicy.hasLimits()) {
             this.limits = new PolicyLimits.fromPb(pbPolicy.limits);
@@ -86,6 +90,9 @@ class Policy {
         pbPolicy.name = this.name;
         pbPolicy.authentication = this.authentication.toPb();
         pbPolicy.limits = this.limits.toPb();
+        if (this.captchaSolverId.isNotEmpty) {
+            pbPolicy.captchaSolverId = convert.hex.decode(this.captchaSolverId);
+        }
         for (var mimeTypeRule in this.mimeTypeRules) {
             pbPolicy.mimeTypeRules.add(mimeTypeRule.toPb());
         }

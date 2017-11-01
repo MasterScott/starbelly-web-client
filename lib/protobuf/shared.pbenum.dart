@@ -1,8 +1,12 @@
 ///
 //  Generated code. Do not modify.
 ///
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: library_prefixes
 library starbelly_shared_pbenum;
 
+// ignore: UNUSED_SHOWN_NAME
+import 'dart:core' show int, dynamic, String, List, Map;
 import 'package:protobuf/protobuf.dart';
 
 class CaptchaSolverAntigateCharacters extends ProtobufEnum {
@@ -19,7 +23,7 @@ class CaptchaSolverAntigateCharacters extends ProtobufEnum {
   static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
   static CaptchaSolverAntigateCharacters valueOf(int value) => _byValue[value] as CaptchaSolverAntigateCharacters;
   static void $checkItem(CaptchaSolverAntigateCharacters v) {
-    if (v is !CaptchaSolverAntigateCharacters) checkItemFailed(v, 'CaptchaSolverAntigateCharacters');
+    if (v is! CaptchaSolverAntigateCharacters) checkItemFailed(v, 'CaptchaSolverAntigateCharacters');
   }
 
   const CaptchaSolverAntigateCharacters._(int v, String n) : super(v, n);
@@ -45,7 +49,7 @@ class JobRunState extends ProtobufEnum {
   static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
   static JobRunState valueOf(int value) => _byValue[value] as JobRunState;
   static void $checkItem(JobRunState v) {
-    if (v is !JobRunState) checkItemFailed(v, 'JobRunState');
+    if (v is! JobRunState) checkItemFailed(v, 'JobRunState');
   }
 
   const JobRunState._(int v, String n) : super(v, n);
@@ -71,7 +75,7 @@ class JobScheduleTimeUnit extends ProtobufEnum {
   static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
   static JobScheduleTimeUnit valueOf(int value) => _byValue[value] as JobScheduleTimeUnit;
   static void $checkItem(JobScheduleTimeUnit v) {
-    if (v is !JobScheduleTimeUnit) checkItemFailed(v, 'JobScheduleTimeUnit');
+    if (v is! JobScheduleTimeUnit) checkItemFailed(v, 'JobScheduleTimeUnit');
   }
 
   const JobScheduleTimeUnit._(int v, String n) : super(v, n);
@@ -89,7 +93,7 @@ class JobScheduleTiming extends ProtobufEnum {
   static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
   static JobScheduleTiming valueOf(int value) => _byValue[value] as JobScheduleTiming;
   static void $checkItem(JobScheduleTiming v) {
-    if (v is !JobScheduleTiming) checkItemFailed(v, 'JobScheduleTiming');
+    if (v is! JobScheduleTiming) checkItemFailed(v, 'JobScheduleTiming');
   }
 
   const JobScheduleTiming._(int v, String n) : super(v, n);
@@ -107,7 +111,7 @@ class PatternMatch extends ProtobufEnum {
   static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
   static PatternMatch valueOf(int value) => _byValue[value] as PatternMatch;
   static void $checkItem(PatternMatch v) {
-    if (v is !PatternMatch) checkItemFailed(v, 'PatternMatch');
+    if (v is! PatternMatch) checkItemFailed(v, 'PatternMatch');
   }
 
   const PatternMatch._(int v, String n) : super(v, n);
@@ -127,7 +131,7 @@ class PolicyRobotsTxt_Usage extends ProtobufEnum {
   static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
   static PolicyRobotsTxt_Usage valueOf(int value) => _byValue[value] as PolicyRobotsTxt_Usage;
   static void $checkItem(PolicyRobotsTxt_Usage v) {
-    if (v is !PolicyRobotsTxt_Usage) checkItemFailed(v, 'PolicyRobotsTxt_Usage');
+    if (v is! PolicyRobotsTxt_Usage) checkItemFailed(v, 'PolicyRobotsTxt_Usage');
   }
 
   const PolicyRobotsTxt_Usage._(int v, String n) : super(v, n);
@@ -145,7 +149,7 @@ class PolicyUrlRule_Action extends ProtobufEnum {
   static final Map<int, dynamic> _byValue = ProtobufEnum.initByValue(values);
   static PolicyUrlRule_Action valueOf(int value) => _byValue[value] as PolicyUrlRule_Action;
   static void $checkItem(PolicyUrlRule_Action v) {
-    if (v is !PolicyUrlRule_Action) checkItemFailed(v, 'PolicyUrlRule_Action');
+    if (v is! PolicyUrlRule_Action) checkItemFailed(v, 'PolicyUrlRule_Action');
   }
 
   const PolicyUrlRule_Action._(int v, String n) : super(v, n);
