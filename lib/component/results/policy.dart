@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:ng2_fontawesome/ng2_fontawesome.dart';
 import 'package:ng2_modular_admin/ng2_modular_admin.dart';
 
+import 'package:starbelly/model/captcha.dart';
 import 'package:starbelly/model/job.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/job_status.dart';
@@ -21,6 +22,7 @@ import 'package:starbelly/service/server.dart';
     directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
 )
 class ResultPolicyView implements AfterViewInit {
+    CaptchaSolver captchaSolver;
     Job job;
 
     var ACTION_ADD = pb.PolicyUrlRule_Action.ADD;
@@ -61,5 +63,14 @@ class ResultPolicyView implements AfterViewInit {
         this._document.title = "${this.job.name} Policy";
         var jobCrumb = this._document.breadcrumbs.length - 2;
         this._document.breadcrumbs[jobCrumb].name = this.job.name;
+
+        // Get CAPTCHA solver.
+        if (this.job.policy.captchaSolverId.isNotEmpty) {
+            request = new pb.Request();
+            request.getCaptchaSolver = new pb.RequestGetCaptchaSolver()
+                ..solverId = convert.hex.decode(this.job.policy.captchaSolverId);
+            var message = await this._server.sendRequest(request);
+            this.captchaSolver = new CaptchaSolver.fromPb(message.response.solver);
+        }
     }
 }

@@ -25,6 +25,16 @@
         </p>
         <ul>
           <li>{{job.policy.authentication.enabled ? 'Always try to log in' : 'Never try to log in'}}</li>
+          <li>
+            CAPTCHA Solver:
+            <span *ngIf='job.policy.captchaSolverId.isEmpty'>None</span>
+            <span *ngIf='job.policy.captchaSolverId.isNotEmpty && captchaSolver == null'>
+              <a [routerLink]='["/Captcha", "Detail", {"id":job.policy.captchaSolverId}]'>{{job.policy.captchaSolverId}}</a>
+            </span>
+            <span *ngIf='captchaSolver != null'>
+              <a [routerLink]='["/Captcha", "Detail", {"id":job.policy.captchaSolverId}]'>{{captchaSolver.name}}</a>
+            </span>
+          </li>
         </ul>
         <p>
           <strong>Robots.txt</strong>
