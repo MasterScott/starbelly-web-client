@@ -27,7 +27,7 @@ class ResourcesView implements AfterViewInit, OnDestroy {
     ResourcesView(this._document, this._jobStatus, this._server) {
         this._document.title = 'Resources';
         this._document.breadcrumbs = [
-            new Breadcrumb(name: 'System', icon: 'cogs'),
+            new Breadcrumb(name: 'System', icon: 'desktop'),
             new Breadcrumb(name: 'Resource Monitor', icon: 'bar-chart'),
         ];
     }

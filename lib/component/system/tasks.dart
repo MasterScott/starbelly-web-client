@@ -23,7 +23,7 @@ class TasksView implements AfterViewInit, OnDestroy {
     TasksView(this._document, this._server) {
         this._document.title = 'Task Monitor';
         this._document.breadcrumbs = [
-            new Breadcrumb(name: 'System', icon: 'cogs'),
+            new Breadcrumb(name: 'System', icon: 'desktop'),
             new Breadcrumb(name: 'Tasks', icon: 'tasks'),
         ];
     }

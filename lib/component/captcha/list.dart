@@ -31,6 +31,7 @@ class CaptchaListView implements AfterViewInit {
     CaptchaListView(this._document, this._router, this._server) {
         this._document.title = 'CAPTCHA Solvers';
         this._document.breadcrumbs = [
+            new Breadcrumb(name: 'Configuration', icon: 'cogs'),
             new Breadcrumb(name: 'CAPTCHA Solvers', icon: 'eye')
         ];
     }

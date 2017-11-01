@@ -39,6 +39,7 @@ class CredentialListView implements AfterViewInit {
     CredentialListView(this._document, this._router, this._server) {
         this._document.title = 'Credentials';
         this._document.breadcrumbs = [
+            new Breadcrumb(name: 'Configuration', icon: 'cogs'),
             new Breadcrumb(name: 'Credentials', icon: 'key')
         ];
 

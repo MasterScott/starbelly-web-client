@@ -31,7 +31,7 @@ class PolicyListView implements AfterViewInit {
     PolicyListView(this._document, this._router, this._server) {
         this._document.title = 'Policy';
         this._document.breadcrumbs = [
-            new Breadcrumb(name: 'Policy', icon: 'cogs')
+            new Breadcrumb(name: 'Policy', icon: 'book')
         ];
     }
 

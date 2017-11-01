@@ -39,7 +39,7 @@ class ProfileView {
     ProfileView(this._document, this._server) {
         this._document.title = 'Task Monitor';
         this._document.breadcrumbs = [
-            new Breadcrumb(name: 'System', icon: 'cogs'),
+            new Breadcrumb(name: 'System', icon: 'desktop'),
             new Breadcrumb(name: 'CPU Profile', icon: 'microchip'),
         ];
         this.durationControl = new Control('', Validators.compose([

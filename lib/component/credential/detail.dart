@@ -58,6 +58,7 @@ class CredentialDetailView implements AfterViewInit {
         this.domain = this._routeParams.get('domain');
         this._document.title = domain;
         this._document.breadcrumbs = [
+            new Breadcrumb(name: 'Configuration', icon: 'cogs'),
             new Breadcrumb(name: 'Credentials', icon: 'key',
                 link: ['/Credential', 'List']),
             new Breadcrumb(name: domain),

@@ -71,6 +71,7 @@ class CaptchaDetailView implements AfterViewInit {
         this._server) {
         this._document.title = 'CAPTCHA Solver';
         this._document.breadcrumbs = [
+            new Breadcrumb(name: 'Configuration', icon: 'cogs'),
             new Breadcrumb(name: 'CAPTCHA Solvers', icon: 'eye',
                 link: ['/Captcha', 'List']),
             new Breadcrumb(name: 'CAPTCHA Solver'),
