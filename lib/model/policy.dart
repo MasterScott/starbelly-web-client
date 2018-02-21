@@ -388,7 +388,7 @@ class PolicyUserAgent {
     /// Create a default user agent.
     PolicyUserAgent.defaultSettings() {
         this.name = 'Starbelly/{VERSION}'
-            ' (+https://gitlab.com/hyperion-gray/starbelly)';
+            ' (+https://github.com/hyperiongray/starbelly)';
     }
 
     /// Create from a protobuf message.
