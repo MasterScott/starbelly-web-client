@@ -1,5 +1,5 @@
-import 'package:angular2/core.dart';
-import 'package:ng2_fontawesome/ng2_fontawesome.dart';
+import 'package:angular/core.dart';
+import 'package:ng_fontawesome/ng_fontawesome.dart';
 
 /// Display an external URL.
 ///

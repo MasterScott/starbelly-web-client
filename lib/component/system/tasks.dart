@@ -1,5 +1,7 @@
-import 'package:angular2/core.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
+import 'dart:async';
+
+import 'package:angular/core.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/task.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
@@ -41,7 +43,7 @@ class TasksView implements AfterViewInit, OnDestroy {
     }
 
     /// Subscribe to task monitor events.
-    void subscribe() async {
+    subscribe() async {
         var request = new pb.Request();
         request.subscribeTaskMonitor = new pb.RequestSubscribeTaskMonitor()
             ..period = 1.0

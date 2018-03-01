@@ -1,11 +1,8 @@
-import 'dart:html';
-
-import 'package:angular2/core.dart';
-import 'package:angular2/common.dart';
-import 'package:convert/convert.dart' as convert;
-import 'package:ng2_fontawesome/ng2_fontawesome.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
-import 'package:ng2_modular_admin/validators.dart' as MaValidators;
+import 'package:angular/angular.dart';
+import 'package:angular_forms/angular_forms.dart';
+import 'package:ng_fontawesome/ng_fontawesome.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
+import 'package:ng_modular_admin/validators.dart' as MaValidators;
 
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/document.dart';
@@ -66,7 +63,7 @@ class RateLimitView implements AfterViewInit {
         request.setRateLimit.rateLimit.domain = domain;
         request.setRateLimit.rateLimit.delay = double.parse(delayStr);
         try {
-            var message = await this._server.sendRequest(request);
+            await this._server.sendRequest(request);
             newModalError = null;
             showNewModal = false;
             await this.getPage();
@@ -83,7 +80,7 @@ class RateLimitView implements AfterViewInit {
         request.setRateLimit.rateLimit = new pb.RateLimit();
         request.setRateLimit.rateLimit.domain = wrapper.rateLimit.domain;
         try {
-            var message = await this._server.sendRequest(request);
+            await this._server.sendRequest(request);
             wrapper.error = null;
             await this.getPage();
         } on ServerException catch (exc) {
@@ -123,7 +120,7 @@ class RateLimitView implements AfterViewInit {
             if (delay < 0) {
                 throw new Exception();
             }
-        } catch (exc, stack) {
+        } catch (exc) {
             wrapper.error = 'Enter a valid delay ≥0.';
             return;
         }
@@ -136,7 +133,7 @@ class RateLimitView implements AfterViewInit {
         }
         request.setRateLimit.rateLimit.delay = delay;
         try {
-            var message = await this._server.sendRequest(request);
+            await this._server.sendRequest(request);
             wrapper.error = null;
             await this.getPage();
         } on ServerException catch  (exc) {

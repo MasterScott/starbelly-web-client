@@ -1,13 +1,12 @@
-import 'package:angular2/core.dart';
-import 'package:angular2/router.dart';
+import 'package:angular/core.dart';
+import 'package:angular_router/angular_router.dart';
 import 'package:convert/convert.dart' as convert;
-import 'package:ng2_fontawesome/ng2_fontawesome.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
+import 'package:ng_fontawesome/ng_fontawesome.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/job.dart';
 import 'package:starbelly/model/schedule.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
-import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
 

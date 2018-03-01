@@ -1,9 +1,8 @@
-import 'package:angular2/common.dart';
-import 'package:angular2/core.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
-import 'package:ng2_fontawesome/ng2_fontawesome.dart';
+import 'package:angular/angular.dart';
+import 'package:angular_forms/angular_forms.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
+import 'package:ng_fontawesome/ng_fontawesome.dart';
 
-import 'package:starbelly/model/task.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
@@ -53,7 +52,7 @@ class ProfileView {
     }
 
     /// Run a CPU profile.
-    void runProfile(ButtonClick click) async {
+    runProfile(ButtonClick click) async {
         click.button.busy = true;
         var request = new pb.Request();
         request.performanceProfile = new pb.RequestPerformanceProfile()

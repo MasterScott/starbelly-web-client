@@ -1,9 +1,9 @@
-import 'package:angular2/common.dart';
-import 'package:angular2/core.dart';
-import 'package:angular2/router.dart';
-import 'package:ng2_fontawesome/ng2_fontawesome.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
-import 'package:ng2_modular_admin/validators.dart' as MaValidators;
+import 'package:angular/angular.dart';
+import 'package:angular_forms/angular_forms.dart';
+import 'package:angular_router/angular_router.dart';
+import 'package:ng_fontawesome/ng_fontawesome.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
+import 'package:ng_modular_admin/validators.dart' as MaValidators;
 
 import 'package:starbelly/model/domain_login.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
@@ -30,7 +30,6 @@ class CredentialListView implements AfterViewInit {
     int startRow = 0;
     int totalRows = 0;
 
-    bool _autoDomain = true;
     DocumentService _document;
     Router _router;
     ServerService _server;
@@ -66,7 +65,7 @@ class CredentialListView implements AfterViewInit {
             ..domain = domain
             ..loginUrl = loginUrl;
         try {
-            var message = await this._server.sendRequest(request);
+            await this._server.sendRequest(request);
             newModalError = null;
             showNewModal = false;
             this._router.navigate(['../Detail', {"domain": domain}]);
@@ -81,13 +80,13 @@ class CredentialListView implements AfterViewInit {
         var request = new pb.Request();
         request.deleteDomainLogin = new pb.RequestDeleteDomainLogin()
             ..domain = domainLogin.domain;
-        var message = await this._server.sendRequest(request);
+        await this._server.sendRequest(request);
         await this.getPage();
         click.button.busy = false;
     }
 
     /// Fetch current page of results.
-    void getPage() async {
+    getPage() async {
         var request = new pb.Request()
             ..listDomainLogins = new pb.RequestListDomainLogins();
         request.listDomainLogins.page = new pb.Page()

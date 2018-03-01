@@ -1,8 +1,3 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
-import 'package:convert/convert.dart' as convert;
-
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 
 /// Metadata for authentication.

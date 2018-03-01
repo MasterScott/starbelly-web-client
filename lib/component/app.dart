@@ -1,15 +1,14 @@
 import 'dart:html';
 
-import 'package:angular2/core.dart';
-import 'package:angular2/router.dart';
+import 'package:angular/core.dart';
+import 'package:angular_router/angular_router.dart';
 import 'package:logging/logging.dart';
-import 'package:ng2_fontawesome/ng2_fontawesome.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
+import 'package:ng_fontawesome/ng_fontawesome.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/component/captcha/router.dart';
 import 'package:starbelly/component/credential/router.dart';
 import 'package:starbelly/component/dashboard.dart';
-import 'package:starbelly/component/external_link.dart';
 import 'package:starbelly/component/policy/router.dart';
 import 'package:starbelly/component/rate_limit.dart';
 import 'package:starbelly/component/results/router.dart';

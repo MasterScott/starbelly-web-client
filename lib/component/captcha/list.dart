@@ -1,8 +1,8 @@
-import 'package:angular2/core.dart';
-import 'package:angular2/router.dart';
+import 'package:angular/core.dart';
+import 'package:angular_router/angular_router.dart';
 import 'package:convert/convert.dart' as convert;
-import 'package:ng2_fontawesome/ng2_fontawesome.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
+import 'package:ng_fontawesome/ng_fontawesome.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/captcha.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
@@ -42,7 +42,7 @@ class CaptchaListView implements AfterViewInit {
         var request = new pb.Request();
         request.deleteCaptchaSolver = new pb.RequestDeleteCaptchaSolver()
             ..solverId = convert.hex.decode(solver.solverId);
-        var message = await this._server.sendRequest(request);
+        await this._server.sendRequest(request);
         await this.getPage();
         click.button.busy = false;
     }
@@ -52,7 +52,6 @@ class CaptchaListView implements AfterViewInit {
         click.button.busy = true;
 
         // Create new policy
-        var newSolver = new CaptchaSolver.copy(solver);
         var request = new pb.Request();
         request.setCaptchaSolver = new pb.RequestSetCaptchaSolver()
             ..solver = new CaptchaSolver.copy(solver).toPb();
@@ -63,7 +62,7 @@ class CaptchaListView implements AfterViewInit {
     }
 
     /// Fetch current page of results.
-    void getPage() async {
+    getPage() async {
         var request = new pb.Request()
             ..listCaptchaSolvers = new pb.RequestListCaptchaSolvers();
         request.listCaptchaSolvers.page = new pb.Page()

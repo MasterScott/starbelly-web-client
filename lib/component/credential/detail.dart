@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:html';
 
-import 'package:angular2/core.dart';
-import 'package:angular2/router.dart';
-import 'package:ng2_fontawesome/ng2_fontawesome.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
+import 'package:angular/core.dart';
+import 'package:angular_router/angular_router.dart';
+import 'package:ng_fontawesome/ng_fontawesome.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/domain_login.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
@@ -67,9 +67,11 @@ class CredentialDetailView implements AfterViewInit {
     }
 
     /// Add a user.
-    addUser(MaClick click, Element usernameEl, Element passwordEl) async {
-        var username = usernameEl.value;
-        var password = passwordEl.value;
+    addUser(ButtonClick click, Element usernameEl, Element passwordEl) async {
+        var userEl = usernameEl as InputElement;
+        var passEl = passwordEl as InputElement;
+        var username = userEl.value;
+        var password = passEl.value;
         if (username.isEmpty || password.isEmpty) {
             this.addError = 'Username and password are required.';
         } else {
@@ -77,14 +79,14 @@ class CredentialDetailView implements AfterViewInit {
             this.dirty = true;
             var user = new DomainLoginUser(username, password);
             this.domainLogin.users.add(user);
-            usernameEl.value = '';
-            passwordEl.value = '';
+            userEl.value = '';
+            passEl.value = '';
             this.showAddUser = false;
         }
     }
 
     /// Delete a user.
-    deleteUser(MaClick click, int index) async {
+    deleteUser(ButtonClick click, int index) async {
         this.dirty = true;
         this.domainLogin.users.removeAt(index);
     }
@@ -99,7 +101,7 @@ class CredentialDetailView implements AfterViewInit {
     }
 
     /// Save credential.
-    save(MaClick click) async {
+    save(ButtonClick click) async {
         click.button.busy = true;
         var request = new pb.Request();
         request.setDomainLogin = new pb.RequestSetDomainLogin()

@@ -1,10 +1,9 @@
 import 'dart:async';
-import 'dart:html';
 
-import 'package:angular2/core.dart';
+import 'package:angular/core.dart';
 import 'package:convert/convert.dart' as convert;
 import 'package:logging/logging.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/job.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
@@ -126,7 +125,7 @@ class JobStatusService {
     }
 
     /// Evaluate a job update and display a toast, if appropriate.
-    void _toastJobUpdate(Job update) async {
+    _toastJobUpdate(Job update) async {
         var name = update.name;
         var toast = this._toast.add;
 

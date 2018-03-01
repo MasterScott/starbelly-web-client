@@ -1,4 +1,4 @@
-import 'package:angular2/common.dart';
+import 'package:angular_forms/angular_forms.dart';
 
 /// Validate a field contains an integer, with optional min and max.
 ValidatorFn integer({int min, int max}) {
@@ -14,8 +14,8 @@ ValidatorFn integer({int min, int max}) {
         error = 'Must be an integer between $min and $max inclusive.';
     }
 
-    return (Control c) {
-        Map<String,bool> errors = {};
+    return (AbstractControl c) {
+        Map<String,dynamic> errors = {};
         String s = c.value.trim();
 
         try {
@@ -23,11 +23,11 @@ ValidatorFn integer({int min, int max}) {
                 int i = int.parse(s, radix: 10);
 
                 if ((min != null && i < min) || (max != null && i > max)) {
-                    errors[error] = true;
+                    errors[error] = '';
                 }
             }
         } catch (e) {
-            errors[error] = true;
+            errors[error] = '';
         }
 
         return errors;
@@ -49,8 +49,8 @@ ValidatorFn number({num min, num max}) {
         error = 'Must be a number between $min and $max inclusive.';
     }
 
-    return (Control c) {
-        Map<String,bool> errors = {};
+    return (AbstractControl c) {
+        Map<String,dynamic> errors = {};
         String s = c.value.trim();
 
         try {
@@ -58,11 +58,11 @@ ValidatorFn number({num min, num max}) {
                 num n = double.parse(s);
 
                 if ((min != null && n < min) || (max != null && n > max)) {
-                    errors[error] = true;
+                    errors[error] = '';
                 }
             }
         } catch (e) {
-            errors[error] = true;
+            errors[error] = '';
         }
 
         return errors;
@@ -71,12 +71,12 @@ ValidatorFn number({num min, num max}) {
 
 /// Validate that a field is not empty.
 ValidatorFn required() {
-    return (Control c) {
+    return (AbstractControl c) {
         String s = c.value.trim();
-        Map<String,bool> errors = {};
+        Map<String,dynamic> errors = {};
 
         if (s.isEmpty) {
-            errors['This field is required.'] = true;
+            errors['This field is required.'] = '';
         }
 
         return errors;
@@ -87,17 +87,17 @@ ValidatorFn required() {
 ValidatorFn url() {
     const String error = 'This field must contain a valid HTTP[S] URL.';
 
-    return (Control c) {
+    return (AbstractControl c) {
         String url = c.value.trim();
-        Map<String,bool> errors = {};
+        Map<String,dynamic> errors = {};
 
         try {
             var uri = Uri.parse(url);
             if (uri.host.isEmpty || (!uri.scheme.startsWith('http'))) {
-                errors[error] = true;
+                errors[error] = '';
             }
         } catch (e) {
-            errors[error] = true;
+            errors[error] = '';
         }
 
         return errors;

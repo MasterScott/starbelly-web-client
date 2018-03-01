@@ -1,5 +1,5 @@
-import 'package:angular2/core.dart';
-import 'package:angular2/router.dart';
+import 'package:angular/core.dart';
+import 'package:angular_router/angular_router.dart';
 
 import 'package:starbelly/component/credential/detail.dart';
 import 'package:starbelly/component/credential/list.dart';

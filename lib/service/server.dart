@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:html';
 import 'dart:typed_data';
 
-import 'package:angular2/core.dart';
+import 'package:angular/core.dart';
 import 'package:logging/logging.dart';
 
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
@@ -174,7 +174,7 @@ class ServerService {
     }
 
     /// Create a new subscription stream.
-    Stream<ServerEvent> _newSubscription(int subscriptionId) {
+    Stream<pb.Event> _newSubscription(int subscriptionId) {
         var controller = new StreamController<pb.Event>();
         this._subscriptions[subscriptionId] = controller;
 
@@ -183,7 +183,7 @@ class ServerService {
                 var request = new pb.Request();
                 request.unsubscribe = new pb.RequestUnsubscribe();
                 request.unsubscribe.subscriptionId = subscriptionId;
-                var response = await this.sendRequest(request);
+                await this.sendRequest(request);
             }
             this._subscriptions.remove(subscriptionId);
         };
@@ -200,7 +200,7 @@ class ServerService {
         this._pingTimer = new Timer(new Duration(seconds: 30), () async {
             var request = new pb.Request();
             request.ping = new pb.RequestPing();
-            var response = await this.sendRequest(request);
+            await this.sendRequest(request);
         });
     }
 }

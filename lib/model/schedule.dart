@@ -30,7 +30,7 @@ class JobSchedule {
         this.createdAt = new DateTime.now();
         this.updatedAt = this.createdAt;
         this.enabled = true;
-        this.timing = 'REGULAR_INTERVAL';
+        this.timing = pb.JobScheduleTiming.REGULAR_INTERVAL;
         this.seeds = [];
         this.tags = [];
         this.jobCount = 0;
@@ -60,7 +60,7 @@ class JobSchedule {
     }
 
     /// Convert to protobuf object.
-    pb.Policy toPb() {
+    pb.JobSchedule toPb() {
         var pbSchedule = new pb.JobSchedule();
         if (this.scheduleId != null) {
             pbSchedule.scheduleId = convert.hex.decode(this.scheduleId);

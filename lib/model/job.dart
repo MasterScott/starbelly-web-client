@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:convert/convert.dart' as convert;
 
 import 'package:starbelly/model/policy.dart';

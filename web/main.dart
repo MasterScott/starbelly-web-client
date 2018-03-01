@@ -1,4 +1,4 @@
-import 'package:angular2/platform/browser.dart' show bootstrap;
+import 'package:angular/angular.dart';
 
 import 'package:starbelly/component/app.dart' show AppComponent;
 

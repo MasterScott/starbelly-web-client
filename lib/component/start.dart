@@ -1,10 +1,7 @@
-import 'dart:async';
-import 'dart:html';
-
-import 'package:angular2/common.dart';
-import 'package:angular2/core.dart';
+import 'package:angular/angular.dart';
+import 'package:angular_forms/angular_forms.dart';
 import 'package:convert/convert.dart' as convert;
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/policy.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
@@ -35,7 +32,6 @@ class StartCrawlView implements AfterViewInit {
     String tags = '';
     Control tagsControl;
 
-    bool _autoName = true;
     List<int> policyIds;
     ServerService _server;
     DocumentService _document;
@@ -59,7 +55,7 @@ class StartCrawlView implements AfterViewInit {
         var message = await this._server.sendRequest(request);
         var policies = message.response.listPolicies.policies;
         if (policies.length > 0) {
-            this.policies = new List<PolicyOptionView>.generate(
+            this.policies = new List<Policy>.generate(
                 policies.length,
                 (i) => new Policy.fromPb(policies[i])
             );
@@ -82,7 +78,7 @@ class StartCrawlView implements AfterViewInit {
                 request.setJob.tagList.tags.add(tagTrim);
             }
         }
-        var response = await this._server.sendRequest(request);
+        await this._server.sendRequest(request);
         this._initForm();
     }
 

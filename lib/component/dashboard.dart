@@ -1,11 +1,10 @@
-import 'dart:async';
-
-import 'package:angular2/core.dart';
-import 'package:angular2/router.dart';
+import 'package:angular/core.dart';
+import 'package:angular_router/angular_router.dart';
 import 'package:convert/convert.dart' as convert;
-import 'package:ng2_fontawesome/ng2_fontawesome.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
+import 'package:ng_fontawesome/ng_fontawesome.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
 
+import 'package:starbelly/model/job.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/job_status.dart';
@@ -26,7 +25,6 @@ class DashboardView implements OnInit {
     JobStatusService jobStatus;
 
     ServerService _server;
-    StreamSubscription _subscription;
     DocumentService _document;
 
     var PAUSED = pb.JobRunState.PAUSED;
@@ -48,15 +46,14 @@ class DashboardView implements OnInit {
     }
 
     /// Set a job's run state.
-    setJobRunState(MaClick click, JobStatus job,
-                   pb.JobRunState runState) async {
+    setJobRunState(ButtonClick click, Job job, pb.JobRunState runState) async {
         click.button.busy = true;
         this.busyJobs.add(job.jobId);
         var request = new pb.Request();
         request.setJob = new pb.RequestSetJob()
             ..jobId = job.jobIdBytes
             ..runState = runState;
-        var response = await this._server.sendRequest(request);
+        await this._server.sendRequest(request);
         this.busyJobs.remove(job.jobId);
         click.button.busy = false;
     }

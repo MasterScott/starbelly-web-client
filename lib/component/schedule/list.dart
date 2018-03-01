@@ -1,12 +1,13 @@
-import 'package:angular2/core.dart';
-import 'package:angular2/router.dart';
+import 'dart:html';
+
+import 'package:angular/core.dart';
+import 'package:angular_router/angular_router.dart';
 import 'package:convert/convert.dart' as convert;
-import 'package:ng2_fontawesome/ng2_fontawesome.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
+import 'package:ng_fontawesome/ng_fontawesome.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/schedule.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
-import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
 
@@ -36,24 +37,23 @@ class ScheduleListView implements AfterViewInit {
     }
 
     /// Delete a job schedule.
-    void deleteSchedule(MaClick click, Schedule schedule) async {
+    deleteSchedule(ButtonClick click, JobSchedule schedule) async {
         click.button.busy = true;
         var request = new pb.Request()
             ..deleteJobSchedule = new pb.RequestDeleteJobSchedule();
         request.deleteJobSchedule.scheduleId = convert.hex.decode(
             schedule.scheduleId);
         try {
-            var message = await this._server.sendRequest(request);
-            var response = message.response;
+            await this._server.sendRequest(request);
             await this.getPage();
         } on ServerException catch (exc) {
-            window.alert('Could not delete schedule: ${response.errorMessage}');
+            window.alert('Could not delete schedule: ${exc}');
         }
         click.button.busy = false;
     }
 
     /// Fetch current page of results.
-    void getPage() async {
+    getPage() async {
         var request = new pb.Request()
             ..listJobSchedules = new pb.RequestListJobSchedules();
         request.listJobSchedules.page = new pb.Page()

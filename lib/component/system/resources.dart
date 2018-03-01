@@ -1,7 +1,9 @@
-import 'package:angular2/core.dart';
+import 'dart:async';
+
+import 'package:angular/core.dart';
 import 'package:convert/convert.dart' as convert;
 import 'package:fixnum/fixnum.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/document.dart';
@@ -34,7 +36,7 @@ class ResourcesView implements AfterViewInit, OnDestroy {
 
     /// Compute sum of CPU usages.
     num cpuUsage() {
-        var sum = 0;
+        num sum = 0;
 
         for (var cpu in this.frame.cpus) {
             sum += cpu.usage;
@@ -44,7 +46,7 @@ class ResourcesView implements AfterViewInit, OnDestroy {
     }
 
     /// Compute percentage of memory usage.
-    num memoryUsage() {
+    Int64 memoryUsage() {
         return new Int64(100) * this.frame.memory.used ~/ this.frame.memory.total;
     }
 
@@ -61,7 +63,7 @@ class ResourcesView implements AfterViewInit, OnDestroy {
     }
 
     /// Subscribe to resource monitor events.
-    void subscribe() async {
+    subscribe() async {
         var request = new pb.Request();
         request.subscribeResourceMonitor =
             new pb.RequestSubscribeResourceMonitor()

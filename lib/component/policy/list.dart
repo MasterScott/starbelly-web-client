@@ -1,8 +1,8 @@
-import 'package:angular2/core.dart';
-import 'package:angular2/router.dart';
+import 'package:angular/core.dart';
+import 'package:angular_router/angular_router.dart';
 import 'package:convert/convert.dart' as convert;
-import 'package:ng2_fontawesome/ng2_fontawesome.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
+import 'package:ng_fontawesome/ng_fontawesome.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/policy.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
@@ -41,7 +41,7 @@ class PolicyListView implements AfterViewInit {
         var request = new pb.Request();
         request.deletePolicy = new pb.RequestDeletePolicy()
             ..policyId = convert.hex.decode(policy.policyId);
-        var message = await this._server.sendRequest(request);
+        await this._server.sendRequest(request);
         await this.getPage();
         click.button.busy = false;
     }
@@ -75,7 +75,7 @@ class PolicyListView implements AfterViewInit {
     }
 
     /// Fetch current page of results.
-    void getPage() async {
+    getPage() async {
         var request = new pb.Request()
             ..listPolicies = new pb.RequestListPolicies();
         request.listPolicies.page = new pb.Page()

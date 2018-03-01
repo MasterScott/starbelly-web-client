@@ -1,13 +1,10 @@
 import 'dart:async';
-import 'dart:html';
 
-import 'package:angular2/common.dart';
-import 'package:angular2/core.dart';
-import 'package:angular2/router.dart';
+import 'package:angular/core.dart';
+import 'package:angular_router/angular_router.dart';
 import 'package:convert/convert.dart' as convert;
-import 'package:ng2_fontawesome/ng2_fontawesome.dart';
-import 'package:ng2_modular_admin/ng2_modular_admin.dart';
-import 'package:ng2_modular_admin/validators.dart' as MaValidators;
+import 'package:ng_fontawesome/ng_fontawesome.dart';
+import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/job.dart';
 import 'package:starbelly/model/policy.dart';
@@ -126,7 +123,7 @@ class ScheduleDetailView implements AfterViewInit {
                 });
             }
         } on Exception catch (exc) {
-            saveError = 'Cannot save: ${exc.message}';
+            saveError = 'Cannot save: ${exc}';
             saveSuccess = false;
         }
         click.button.busy = false;

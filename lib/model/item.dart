@@ -31,7 +31,7 @@ class CrawlItem {
     String url;
 
     /// Instantiate CrawlItem from a protobuf.
-    CrawlItem.fromPb2(pb.CrawlItem pbItem) {
+    CrawlItem.fromPb2(pb.CrawlResponse pbItem) {
         // These fields should always be present.
         this.completedAt = DateTime.parse(pbItem.completedAt).toLocal();
         this.contentType = pbItem.contentType;
@@ -60,7 +60,7 @@ class CrawlItem {
             // fixed in a future version.
             try {
                 this.bodyStr = UTF8.decode(this.body);
-            } catch (exc, trace) {
+            } catch (exc) {
                 this.bodyStr = 'Error: unable to decode response body.';
             }
         }

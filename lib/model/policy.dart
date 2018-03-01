@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:convert/convert.dart' as convert;
 
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
@@ -270,7 +267,7 @@ class PolicyRobotsTxt {
     }
 
     /// Create from a protobuf message.
-    PolicyRobotsTxt.fromPb(pb.PolicyMimeTypeRule pbRobots) {
+    PolicyRobotsTxt.fromPb(pb.PolicyRobotsTxt pbRobots) {
         this.usage = pbRobots.usage;
     }
 
