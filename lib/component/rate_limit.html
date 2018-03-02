@@ -78,7 +78,7 @@
     <p class='lead'>
       Set the delay in seconds between requests to a given domain.
     </p>
-    <p *ngIf='newModalError' class='text-danger'>
+    <p *ngIf='newModalError != null' class='text-danger'>
       {{newModalError}}
     </p>
     <form (ngSubmit)='createRateLimit(domain.value, delay.value)'

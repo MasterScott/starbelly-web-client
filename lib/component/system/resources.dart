@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:angular/core.dart';
+import 'package:angular/angular.dart';
 import 'package:convert/convert.dart' as convert;
 import 'package:fixnum/fixnum.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
@@ -14,7 +14,8 @@ import 'package:starbelly/service/server.dart';
 @Component(
     selector: 'resources',
     templateUrl: 'resources.html',
-    directives: const [MA_DIRECTIVES]
+    directives: const [CORE_DIRECTIVES, MA_DIRECTIVES],
+    pipes: const [COMMON_PIPES]
 )
 class ResourcesView implements AfterViewInit, OnDestroy {
     pb.ResourceFrame frame;

@@ -1,6 +1,6 @@
 import 'dart:html';
 
-import 'package:angular/core.dart';
+import 'package:angular/angular.dart';
 
 /// A service for manipulating global (i.e. document level) state.
 @Injectable()

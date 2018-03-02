@@ -20,7 +20,9 @@ import 'package:starbelly/validate.dart' as validate;
             min-width: 10em;
         }
     '''],
-    directives: const [FA_DIRECTIVES, MA_DIRECTIVES]
+    directives: const [CORE_DIRECTIVES, FaIcon, formDirectives,
+        MA_DIRECTIVES],
+    pipes: const [COMMON_PIPES]
 )
 class ProfileView {
     ControlGroup form;

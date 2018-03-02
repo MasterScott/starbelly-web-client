@@ -15,7 +15,8 @@ import 'package:starbelly/validate.dart' as validate;
 @Component(
     selector: 'credential-list',
     templateUrl: 'list.html',
-    directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
+    directives: const [CORE_DIRECTIVES, FaIcon, formDirectives,
+        MA_DIRECTIVES, RouterLink]
 )
 class CredentialListView implements AfterViewInit {
     int currentPage = 1;

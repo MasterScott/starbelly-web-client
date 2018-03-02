@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:angular/core.dart';
+import 'package:angular/angular.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/task.dart';
@@ -12,7 +12,7 @@ import 'package:starbelly/service/server.dart';
 @Component(
     selector: 'tasks',
     templateUrl: 'tasks.html',
-    directives: const [MA_DIRECTIVES]
+    directives: const [CORE_DIRECTIVES, MA_DIRECTIVES]
 )
 class TasksView implements AfterViewInit, OnDestroy {
     TaskMonitor taskMonitor;

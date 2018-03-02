@@ -18,7 +18,7 @@ import 'package:starbelly/validate.dart' as validate;
             max-width: 30em;
         }
     '''],
-    directives: const [MA_DIRECTIVES]
+    directives: const [CORE_DIRECTIVES, formDirectives, MA_DIRECTIVES]
 )
 class StartCrawlView implements AfterViewInit {
     ControlGroup form;

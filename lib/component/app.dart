@@ -1,6 +1,6 @@
 import 'dart:html';
 
-import 'package:angular/core.dart';
+import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:logging/logging.dart';
 import 'package:ng_fontawesome/ng_fontawesome.dart';
@@ -43,7 +43,7 @@ import 'package:starbelly/service/server.dart';
             margin-right: 0.5em;
         }
     '''],
-    directives: const [MA_DIRECTIVES, ROUTER_DIRECTIVES, FaIcon],
+    directives: const [CORE_DIRECTIVES, MA_DIRECTIVES, FaIcon, RouterLink],
     providers: const [MA_PROVIDERS, ROUTER_PROVIDERS, JobStatusService,
         DocumentService, ServerService]
 )

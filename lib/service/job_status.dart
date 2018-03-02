@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:angular/core.dart';
+import 'package:angular/angular.dart';
 import 'package:convert/convert.dart' as convert;
 import 'package:logging/logging.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';

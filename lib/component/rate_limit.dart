@@ -17,7 +17,7 @@ import 'package:starbelly/service/server.dart';
         }
     '''],
     templateUrl: 'rate_limit.html',
-    directives: const [FA_DIRECTIVES, MA_DIRECTIVES]
+    directives: const [CORE_DIRECTIVES, FaIcon, formDirectives, MA_DIRECTIVES]
 )
 class RateLimitView implements AfterViewInit {
     String FOO;

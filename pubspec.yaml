@@ -26,7 +26,8 @@ dev_dependencies:
   dart_to_js_script_rewriter: ^1.0.1
 
 transformers:
-- angular
+- angular:
+    entry_points: web/main.dart
 - dart_to_js_script_rewriter
 
 web:

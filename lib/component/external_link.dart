@@ -1,4 +1,4 @@
-import 'package:angular/core.dart';
+import 'package:angular/angular.dart';
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 
 /// Display an external URL.
@@ -13,7 +13,7 @@ import 'package:ng_fontawesome/ng_fontawesome.dart';
             display: inline;
         }
     '''],
-    directives: const [FA_DIRECTIVES]
+    directives: const [CORE_DIRECTIVES, FaIcon]
 )
 class ExternalLinkComponent implements OnChanges {
     @Input()

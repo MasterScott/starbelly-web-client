@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:angular/core.dart';
+import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:convert/convert.dart' as convert;
 import 'package:ng_fontawesome/ng_fontawesome.dart';
@@ -28,8 +28,9 @@ import 'package:starbelly/service/server.dart';
         }
     '''],
     templateUrl: 'exception.html',
-    directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES,
-        ExternalLinkComponent]
+    directives: const [CORE_DIRECTIVES, FaIcon, MA_DIRECTIVES,
+        RouterLink, ExternalLinkComponent],
+    pipes: const [COMMON_PIPES]
 )
 class ResultExceptionView implements AfterViewInit {
     int currentPage = 1;

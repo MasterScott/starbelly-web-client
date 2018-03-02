@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:html';
 
-import 'package:angular/core.dart';
+import 'package:angular/angular.dart';
+import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
@@ -38,7 +39,8 @@ import 'package:starbelly/service/server.dart';
         }
     '''],
     templateUrl: 'detail.html',
-    directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
+    directives: const [CORE_DIRECTIVES, FaIcon, formDirectives, MA_DIRECTIVES,
+        RouterLink]
 )
 class CredentialDetailView implements AfterViewInit {
     String addError;

@@ -1,4 +1,4 @@
-import 'package:angular/core.dart';
+import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 import 'package:convert/convert.dart' as convert;
 import 'package:ng_fontawesome/ng_fontawesome.dart';
@@ -14,7 +14,8 @@ import 'package:starbelly/service/server.dart';
 @Component(
     selector: 'dashboard',
     templateUrl: 'dashboard.html',
-    directives: const [FA_DIRECTIVES, MA_DIRECTIVES, ROUTER_DIRECTIVES]
+    directives: const [CORE_DIRECTIVES, FaIcon, MA_DIRECTIVES,
+        RouterLink]
 )
 class DashboardView implements OnInit {
     Set<String> busyJobs;

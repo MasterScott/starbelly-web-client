@@ -1,4 +1,4 @@
-import 'package:angular/core.dart';
+import 'package:angular/angular.dart';
 import 'package:angular_router/angular_router.dart';
 
 import 'package:starbelly/component/results/detail.dart';
@@ -12,7 +12,7 @@ import 'package:starbelly/component/results/success.dart';
 @Component(
     selector: 'result-router',
     template: '<router-outlet></router-outlet>',
-    directives: const [ROUTER_DIRECTIVES]
+    directives: const [RouterLink]
 )
 @RouteConfig(const [
     const Route(
