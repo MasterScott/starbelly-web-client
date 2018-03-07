@@ -9,7 +9,6 @@ import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/domain_login.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
-import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
 
 /// View details about a credential.

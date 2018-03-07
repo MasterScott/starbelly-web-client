@@ -12,7 +12,7 @@ import 'package:starbelly/component/results/success.dart';
 @Component(
     selector: 'result-router',
     template: '<router-outlet></router-outlet>',
-    directives: const [RouterLink]
+    directives: const [RouterOutlet]
 )
 @RouteConfig(const [
     const Route(

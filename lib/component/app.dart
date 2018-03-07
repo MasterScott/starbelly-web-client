@@ -17,7 +17,6 @@ import 'package:starbelly/component/start.dart';
 import 'package:starbelly/component/system/profile.dart';
 import 'package:starbelly/component/system/resources.dart';
 import 'package:starbelly/component/system/tasks.dart';
-import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/server.dart';
 
@@ -43,7 +42,8 @@ import 'package:starbelly/service/server.dart';
             margin-right: 0.5em;
         }
     '''],
-    directives: const [CORE_DIRECTIVES, MA_DIRECTIVES, FaIcon, RouterLink],
+    directives: const [CORE_DIRECTIVES, MA_DIRECTIVES, FaIcon,
+        ROUTER_DIRECTIVES],
     providers: const [MA_PROVIDERS, ROUTER_PROVIDERS, JobStatusService,
         DocumentService, ServerService]
 )

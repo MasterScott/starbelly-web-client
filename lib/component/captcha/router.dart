@@ -8,7 +8,7 @@ import 'package:starbelly/component/captcha/list.dart';
 @Component(
     selector: 'captcha-router',
     template: '<router-outlet></router-outlet>',
-    directives: const [RouterLink]
+    directives: const [RouterOutlet]
 )
 @RouteConfig(const [
     const Route(

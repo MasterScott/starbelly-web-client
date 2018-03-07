@@ -8,7 +8,7 @@ import 'package:starbelly/component/policy/list.dart';
 @Component(
     selector: 'policy-router',
     template: '<router-outlet></router-outlet>',
-    directives: const [RouterLink]
+    directives: const [RouterOutlet]
 )
 @RouteConfig(const [
     const Route(

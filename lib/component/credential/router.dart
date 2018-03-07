@@ -8,7 +8,7 @@ import 'package:starbelly/component/credential/list.dart';
 @Component(
     selector: 'credential-router',
     template: '<router-outlet></router-outlet>',
-    directives: const [RouterLink]
+    directives: const [RouterOutlet]
 )
 @RouteConfig(const [
     const Route(

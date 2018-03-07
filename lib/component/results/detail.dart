@@ -12,7 +12,6 @@ import 'package:starbelly/component/external_link.dart';
 import 'package:starbelly/model/job.dart';
 import 'package:starbelly/protobuf/protobuf.dart' as pb;
 import 'package:starbelly/service/job_status.dart';
-import 'package:starbelly/service/document.dart';
 import 'package:starbelly/service/server.dart';
 
 /// View details about a crawl.
@@ -68,7 +67,7 @@ class ResultDetailView implements AfterViewInit, OnDestroy {
         request.getJob.jobId = convert.hex.decode(jobId);
         var message = await this._server.sendRequest(request);
         this.job = new Job.fromPb2(message.response.job);
-        this.tags = this.job.tags.join(' ');
+        this.tags = this.job.tags?.join(' ');
         this._document.title = this.job.name;
         this._document.breadcrumbs.last.name = this.job.name;
     }

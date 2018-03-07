@@ -9,7 +9,7 @@ import 'package:starbelly/component/schedule/list.dart';
 @Component(
     selector: 'schedule-router',
     template: '<router-outlet></router-outlet>',
-    directives: const [RouterLink]
+    directives: const [RouterOutlet]
 )
 @RouteConfig(const [
     const Route(
