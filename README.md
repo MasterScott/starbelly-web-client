@@ -6,4 +6,4 @@ is a single-page application (SPA) written in Dart + Angular2.
 
 ---
 
-[![define hyperion gray](https://hyperiongray.s3.amazonaws.com/define-hg.svg)](https://hyperiongray.com/?pk_campaign=github&pk_kwd=starbelly-web-client "Hyperion Gray")
+[![define hyperion gray](https://hyperiongray.s3.amazonaws.com/define-hg.svg)](https://www.hyperiongray.com/?pk_campaign=github&pk_kwd=starbelly-web-client "Hyperion Gray")
