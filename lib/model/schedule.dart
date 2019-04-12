@@ -2,42 +2,41 @@ import 'dart:core';
 
 import 'package:convert/convert.dart' as convert;
 
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 
 /// A crawl policy.
-class JobSchedule {
+class Schedule {
     String scheduleId;
     DateTime createdAt;
     DateTime updatedAt;
     bool enabled;
-    pb.JobScheduleTimeUnit timeUnit;
+    pb.ScheduleTimeUnit timeUnit;
     String numUnits;
-    pb.JobScheduleTiming timing;
+    pb.ScheduleTiming timing;
     String scheduleName = '';
     String jobName = '';
     List<String> seeds;
     String policyId;
     List<String> tags;
-    String latestJobId = '';
     int jobCount;
 
     String get tagString => this.tags.join(' ');
     void set tagString(String tags) => this.tags = tags.split(' ');
 
     /// Create an empty, default policy.
-    JobSchedule.defaultSettings() {
+    Schedule.defaultSettings() {
         this.scheduleName = 'New Schedule';
         this.createdAt = new DateTime.now();
         this.updatedAt = this.createdAt;
         this.enabled = true;
-        this.timing = pb.JobScheduleTiming.REGULAR_INTERVAL;
+        this.timing = pb.ScheduleTiming.REGULAR_INTERVAL;
         this.seeds = [];
         this.tags = [];
         this.jobCount = 0;
     }
 
     /// Instantiate a schedule from a protobuf message.
-    JobSchedule.fromPb(pb.JobSchedule pbSchedule) {
+    Schedule.fromPb(pb.Schedule pbSchedule) {
         this.scheduleId = convert.hex.encode(pbSchedule.scheduleId);
         this.createdAt = DateTime.parse(pbSchedule.createdAt).toLocal();
         this.updatedAt = DateTime.parse(pbSchedule.updatedAt).toLocal();
@@ -50,18 +49,13 @@ class JobSchedule {
         this.jobCount = pbSchedule.jobCount;
         this.seeds = new List<String>.from(pbSchedule.seeds);
         this.policyId = convert.hex.encode(pbSchedule.policyId);
-        this.tags = new List<String>.from(pbSchedule.tagList.tags);
-        if (pbSchedule.hasLatestJobId()) {
-            this.latestJobId = convert.hex.encode(pbSchedule.latestJobId);
-        } else {
-            this.latestJobId = '';
-        }
+        this.tags = new List<String>.from(pbSchedule.tags);
         this.jobCount = pbSchedule.jobCount;
     }
 
     /// Convert to protobuf object.
-    pb.JobSchedule toPb() {
-        var pbSchedule = new pb.JobSchedule();
+    pb.Schedule toPb() {
+        var pbSchedule = new pb.Schedule();
         if (this.scheduleId != null) {
             pbSchedule.scheduleId = convert.hex.decode(this.scheduleId);
         }
@@ -73,8 +67,7 @@ class JobSchedule {
         pbSchedule.jobName = this.jobName;
         pbSchedule.seeds.addAll(this.seeds);
         pbSchedule.policyId = convert.hex.decode(this.policyId);
-        pbSchedule.tagList = new pb.TagList()
-            ..tags.addAll(this.tags);
+        pbSchedule.tags.addAll(this.tags);
         return pbSchedule;
     }
 }

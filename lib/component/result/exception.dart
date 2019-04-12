@@ -7,101 +7,55 @@ import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/component/external_link.dart';
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/item.dart';
 import 'package:starbelly/model/job.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/server.dart';
 
-/// View crawl items that returned an HTTP error.
+/// View crawl items that raised an exception.
 @Component(
-    selector: 'results-error',
+    selector: 'results-exception',
     styles: const ['''
-        table {
-            table-layout: fixed;
-        }
-        td pre {
-            overflow-x: auto;
-            margin-bottom: 0;
-        }
-        td.expanded {
+        td.exception {
             /* This makes no sense, but it fixes an x-overflow bug. */
             max-width: 0
         }
-        td:nth-child(1) {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        th:nth-child(2) {
-            width: 5em;
-        }
-        th:nth-child(3) {
-            width: 4em;
-        }
-        th:nth-child(4) {
-            width: 6em;
+        td.exception pre {
+            x-overflow: auto;
+            margin-bottom: 0;
         }
     '''],
-    templateUrl: 'error.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, MA_DIRECTIVES,
+    templateUrl: 'exception.html',
+    directives: const [coreDirectives, FaIcon, modularAdminDirectives,
         RouterLink, ExternalLinkComponent],
-    pipes: const [COMMON_PIPES]
+    pipes: const [commonPipes]
 )
-class ResultErrorView implements AfterViewInit {
+class ResultExceptionView implements OnActivate {
     int currentPage = 1;
     int endRow = 0;
     List<CrawlItem> items;
     String jobId;
     String jobName;
     int rowsPerPage = 10;
-    int showBody;
     int startRow = 0;
     int totalRows = 0;
 
     DocumentService _document;
     JobStatusService _jobStatus;
-    RouteParams _routeParams;
     ServerService _server;
     StreamSubscription<Job> _subscription;
 
     /// Constructor
-    ResultErrorView(this._document, this._jobStatus, this._routeParams,
-        this._server) {
-        this.jobId = this._routeParams.get('id');
-        this._document.title = 'Errors';
-        this._document.breadcrumbs = [
-            new Breadcrumb(name: 'Results', icon: 'sitemap',
-                link: ['/Results', 'List']),
-            new Breadcrumb(name: 'Crawl',
-                link: ['/Results', 'Detail', {'id': this.jobId}]),
-            new Breadcrumb(name: 'Errors')
-        ];
-
-        this._jobStatus.getName(this.jobId).then((jobName) {
-            this.jobName = jobName;
-            this._document.breadcrumbs[1].name = jobName;
-        });
-
-        this._subscription = this._jobStatus.events.listen((Job update) {
-            if (this.jobId == update.jobId &&
-                (update.httpErrorCount ?? 0) > this.totalRows) {
-                this.totalRows = update.httpErrorCount;
-                if (items != null && items.length != this.rowsPerPage) {
-                    this.getPage();
-                }
-            }
-        });
-    }
+    ResultExceptionView(this._document, this._jobStatus, this._server);
 
     /// Fetch current page.
     getPage() async {
-        this.showBody = null;
         var request = new pb.Request();
         request.getJobItems = new pb.RequestGetJobItems()
             ..jobId = convert.hex.decode(this.jobId)
-            ..compressionOk = false
-            ..includeError = true;
+            ..includeException = true;
         request.getJobItems.page = new pb.Page()
             ..limit = this.rowsPerPage
             ..offset = (this.currentPage - 1) * this.rowsPerPage;
@@ -117,7 +71,31 @@ class ResultErrorView implements AfterViewInit {
     }
 
     /// Called when Angular initializes the view.
-    ngAfterViewInit() async {
+    onActivate(_, RouterState current) async {
+        this.jobId = current.parameters['id'];
+        this._document.title = 'Exceptions';
+        this._document.breadcrumbs = [
+            new Breadcrumb(name: 'Results', icon: 'sitemap',
+                link: Routes.resultList.toUrl()),
+            new Breadcrumb(name: 'Crawl',
+                link: Routes.resultDetail.toUrl({'id': this.jobId})),
+            new Breadcrumb(name: 'Exceptions')
+        ];
+
+        this._jobStatus.getName(this.jobId).then((jobName) {
+            this.jobName = jobName;
+            this._document.breadcrumbs[1].name = jobName;
+        });
+
+        this._subscription = this._jobStatus.events.listen((Job update) {
+            if (this.jobId == update.jobId &&
+                (update.exceptionCount ?? 0) > this.totalRows) {
+                this.totalRows = update.exceptionCount;
+                if (items != null && items.length != this.rowsPerPage) {
+                    this.getPage();
+                }
+            }
+        });
         this.getPage();
     }
 

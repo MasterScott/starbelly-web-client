@@ -5,8 +5,9 @@ import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 import 'package:ng_modular_admin/validators.dart' as MaValidators;
 
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/domain_login.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 import 'package:starbelly/validate.dart' as validate;
 
@@ -14,8 +15,9 @@ import 'package:starbelly/validate.dart' as validate;
 @Component(
     selector: 'credential-list',
     templateUrl: 'list.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, formDirectives,
-        MA_DIRECTIVES, RouterLink]
+    directives: const [coreDirectives, FaIcon, formDirectives,
+        modularAdminDirectives, RouterLink],
+    exports: [Routes]
 )
 class CredentialListView implements AfterViewInit {
     int currentPage = 1;
@@ -68,21 +70,22 @@ class CredentialListView implements AfterViewInit {
             await this._server.sendRequest(request);
             newModalError = null;
             showNewModal = false;
-            this._router.navigate(['../Detail', {"domain": domain}]);
+            this._router.navigate(Routes.credentialDetail.toUrl(
+                {"domain": domain}));
         } on ServerException catch (exc) {
             newModalError = exc.message;
         }
     }
 
     /// Delete the specified domain login.
-    deleteDomainLogin(ButtonClick click, pb.DomainLogin domainLogin) async {
-        click.button.busy = true;
+    deleteDomainLogin(Button button, DomainLogin domainLogin) async {
+        button.busy = true;
         var request = new pb.Request();
         request.deleteDomainLogin = new pb.RequestDeleteDomainLogin()
             ..domain = domainLogin.domain;
         await this._server.sendRequest(request);
         await this.getPage();
-        click.button.busy = false;
+        button.busy = false;
     }
 
     /// Fetch current page of results.

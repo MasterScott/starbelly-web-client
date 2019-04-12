@@ -13,7 +13,7 @@ import 'package:ng_fontawesome/ng_fontawesome.dart';
             display: inline;
         }
     '''],
-    directives: const [CORE_DIRECTIVES, FaIcon]
+    directives: const [coreDirectives, FaIcon]
 )
 class ExternalLinkComponent implements OnChanges {
     @Input()

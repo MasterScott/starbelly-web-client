@@ -51,12 +51,11 @@
                          size='small'
                          [disabled]='wrapper.isEditing'
                          (click)='wrapper.isEditing=true'>
-                <fa name='pencil'></fa>
+                <fa name='edit'></fa>
               </ma-button>
-              <ma-button *ngIf='wrapper.canDelete'
-                         size='small'
-                         type='danger'
-                         (click)='deleteRateLimit($event, wrapper)'>
+              <ma-button #deleteButton *ngIf='wrapper.canDelete'
+                         size='small' type='danger'
+                         (click)='deleteRateLimit(deleteButton, wrapper)'>
                 <fa name='trash'></fa>
               </ma-button>
             </td>

@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:convert/convert.dart' as convert;
 
 import 'package:starbelly/model/policy.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 
 var RUN_STATE_LABELS = {
     pb.JobRunState.CANCELLED: 'Cancelled',
@@ -45,9 +45,7 @@ class Job {
         if (pbJob.hasName()) {
             this.name = pbJob.name;
         }
-        if (pbJob.hasTagList()) {
-            this.tags = new List<String>.from(pbJob.tagList.tags);
-        }
+        this.tags = new List<String>.from(pbJob.tags);
         if (pbJob.hasRunState()) {
             this.runState = pbJob.runState;
         }
@@ -71,9 +69,10 @@ class Job {
         }
         this._httpStatusCounts = {};
         this.httpStatusCounts = [];
-        for (var sc in pbJob.httpStatusCounts) {
-            var statusCount = new HttpStatusCount(sc.key, sc.value);
-            this._httpStatusCounts[sc.key] = statusCount;
+        for (var key in pbJob.httpStatusCounts.keys) {
+            var value = pbJob.httpStatusCounts[key];
+            var statusCount = new HttpStatusCount(key, value);
+            this._httpStatusCounts[key] = statusCount;
             this.httpStatusCounts.add(statusCount);
         }
         this.httpStatusCounts.sort();

@@ -6,7 +6,7 @@ import 'package:logging/logging.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/job.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// A service for tracking crawl state, statistics, etc.

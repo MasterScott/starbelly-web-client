@@ -4,17 +4,19 @@ import 'package:convert/convert.dart' as convert;
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/policy.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// List policies.
 @Component(
     selector: 'policy-list',
     templateUrl: 'list.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, MA_DIRECTIVES,
+    directives: const [coreDirectives, FaIcon, modularAdminDirectives,
         RouterLink],
-    pipes: const [COMMON_PIPES]
+    exports: [Routes],
+    pipes: const [commonPipes]
 )
 class PolicyListView implements AfterViewInit {
     int currentPage = 1;
@@ -37,19 +39,19 @@ class PolicyListView implements AfterViewInit {
     }
 
     /// Delete the specified policy
-    deletePolicy(ButtonClick click, Policy policy) async {
-        click.button.busy = true;
+    deletePolicy(Button button, Policy policy) async {
+        button.busy = true;
         var request = new pb.Request();
         request.deletePolicy = new pb.RequestDeletePolicy()
             ..policyId = convert.hex.decode(policy.policyId);
         await this._server.sendRequest(request);
         await this.getPage();
-        click.button.busy = false;
+        button.busy = false;
     }
 
     /// Duplicate the specified policy.
-    duplicatePolicy(ButtonClick click, Policy policyStub) async {
-        click.button.busy = true;
+    duplicatePolicy(Button button, Policy policyStub) async {
+        button.busy = true;
 
         // Fetch the entire policy.
         var oldPolicyRequest = new pb.Request();
@@ -72,7 +74,8 @@ class PolicyListView implements AfterViewInit {
         var newPolicyResponse = newPolicyMessage.response;
         var newPolicyId = convert.hex.encode(
             newPolicyResponse.newPolicy.policyId);
-        this._router.navigate(['../Detail', {"id": newPolicyId}]);
+        this._router.navigate(Routes.policyDetail.toUrl({"id": newPolicyId}));
+        button.busy = false;
     }
 
     /// Fetch current page of results.
@@ -91,6 +94,10 @@ class PolicyListView implements AfterViewInit {
         );
         this.startRow = (this.currentPage - 1) * this.rowsPerPage + 1;
         this.endRow = this.startRow + this.policies.length - 1;
+    }
+
+    String policyDetailUrl(Policy policy) {
+        return Routes.policyDetail.toUrl({'id': policy.policyId});
     }
 
     /// Called when Angular initializes the view.

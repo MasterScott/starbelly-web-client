@@ -7,7 +7,7 @@
           Status: <strong>{{job.runStateStr}}</strong>
         </p>
         <p>
-          Using <a [routerLink]='["/Results", "Policy", {"id":job.jobId}]'>{{job.policy.name}}</a> policy.
+          Using <a [routerLink]='Routes.resultPolicy.toUrl({"id":job.jobId})'>{{job.policy.name}}</a> policy.
           Started at {{job.startedAt | date:'medium'}} and
           <span *ngIf='job.completedAt == null'>is not complete.</span>
           <span *ngIf='job.completedAt != null'>completed at {{job.completedAt | date:'medium'}}.</span>
@@ -40,21 +40,21 @@
           <tr>
             <td>Success</td>
             <td>
-              <a [routerLink]='["/Results", "Success", {"id":job.jobId}]'
+              <a [routerLink]='Routes.resultSuccess.toUrl({"id":job.jobId})'
                 >{{job.httpSuccessCount}}</a>
             </td>
           </tr>
           <tr>
             <td>Error</td>
             <td>
-              <a [routerLink]='["/Results", "Error", {"id":job.jobId}]'
+              <a [routerLink]='Routes.resultError.toUrl({"id":job.jobId})'
                 >{{job.httpErrorCount}}</a>
             </td>
           </tr>
           <tr>
             <td>Exception</td>
             <td>
-              <a [routerLink]='["/Results", "Exception", {"id":job.jobId}]'
+              <a [routerLink]='Routes.resultException.toUrl({"id":job.jobId})'
                 >{{job.exceptionCount}}</a>
             </td>
           </tr>

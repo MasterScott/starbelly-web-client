@@ -20,9 +20,9 @@
           There are no active or recent crawls.
         </td>
       </tr>
-      <tr *ngFor="let job of jobStatus.jobs; let index=index">
+      <tr *ngFor="let job of jobStatus.jobs">
         <td>
-          <a [routerLink]='["/Results", "Detail", {"id":job.jobId}]'>{{job.name}}</a>
+          <a [routerLink]='Routes.dashboard.toUrl()'>{{job.name}}</a>
           <ma-tag *ngFor='let tag of job.tags' type='primary' size='small'>{{tag}}</ma-tag>
         </td>
         <td>
@@ -32,22 +32,22 @@
         <td>{{job.httpErrorCount}}</td>
         <td>{{job.exceptionCount}}</td>
         <td>
-          <ma-button size='small'
+          <ma-button #runButton size='small'
                      [disabled]='busyJobs.contains(job.jobId)'
                      *ngIf='job.runState == PAUSED'
-                     (click)='setJobRunState($event, job, RUNNING)'>
+                     (click)='setJobRunState(runButton, job, RUNNING)'>
             <fa name='play'></fa>
           </ma-button>
-          <ma-button size='small'
+          <ma-button #pauseButton size='small'
                      [disabled]='busyJobs.contains(job.jobId)'
                      *ngIf='job.runState == RUNNING'
-                     (click)='setJobRunState($event, job, PAUSED)'>
+                     (click)='setJobRunState(pauseButton, job, PAUSED)'>
             <fa name='pause'></fa>
           </ma-button>
-          <ma-button size='small'
+          <ma-button #cancelButton size='small'
                      [disabled]='busyJobs.contains(job.jobId)'
                      *ngIf='job.runState == RUNNING || job.runState == PAUSED'
-                     (click)='setJobRunState($event, job, CANCELLED)'>
+                     (click)='setJobRunState(cancelButton, job, CANCELLED)'>
             <fa name='ban'></fa>
           </ma-button>
         </td>

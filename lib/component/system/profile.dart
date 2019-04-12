@@ -3,7 +3,7 @@ import 'package:angular_forms/angular_forms.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 import 'package:starbelly/validate.dart' as validate;
 
@@ -19,9 +19,9 @@ import 'package:starbelly/validate.dart' as validate;
             min-width: 10em;
         }
     '''],
-    directives: const [CORE_DIRECTIVES, FaIcon, formDirectives,
-        MA_DIRECTIVES],
-    pipes: const [COMMON_PIPES]
+    directives: const [coreDirectives, FaIcon, formDirectives,
+        modularAdminDirectives],
+    pipes: const [commonPipes]
 )
 class ProfileView {
     ControlGroup form;
@@ -53,8 +53,8 @@ class ProfileView {
     }
 
     /// Run a CPU profile.
-    runProfile(ButtonClick click) async {
-        click.button.busy = true;
+    runProfile(Button button) async {
+        button.busy = true;
         var request = new pb.Request();
         request.performanceProfile = new pb.RequestPerformanceProfile()
             ..duration = double.parse(this.duration)
@@ -62,6 +62,6 @@ class ProfileView {
             ..topN = int.parse(this.top, radix: 10);
         var response = await this._server.sendRequest(request);
         this.profile = response.response.performanceProfile;
-        click.button.busy = false;
+        button.busy = false;
     }
 }

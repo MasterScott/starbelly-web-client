@@ -4,14 +4,14 @@ import 'package:angular/angular.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/task.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// View crawl items.
 @Component(
     selector: 'tasks',
     templateUrl: 'tasks.html',
-    directives: const [CORE_DIRECTIVES, MA_DIRECTIVES]
+    directives: const [coreDirectives, modularAdminDirectives]
 )
 class TasksView implements AfterViewInit, OnDestroy {
     TaskMonitor taskMonitor;
@@ -48,8 +48,9 @@ class TasksView implements AfterViewInit, OnDestroy {
             ..period = 1.0
             ..topN = 25;
         var response = await this._server.sendRequest(request);
-        this._subscription = response.subscription.listen((event) {
-            this.taskMonitor = new TaskMonitor.fromPb(event.taskMonitor);
-        });
+        // TODO switch to task tree
+        // this._subscription = response.subscription.listen((event) {
+        //     this.taskMonitor = new TaskMonitor.fromPb(event.taskMonitor);
+        // });
     }
 }

@@ -7,9 +7,10 @@ import 'package:convert/convert.dart' as convert;
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/captcha.dart';
 import 'package:starbelly/model/policy.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// View details about a crawl.
@@ -51,11 +52,12 @@ import 'package:starbelly/service/server.dart';
         }
     '''],
     templateUrl: 'detail.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, formDirectives,
-        MA_DIRECTIVES, RouterLink],
-    pipes: const [COMMON_PIPES]
+    directives: const [coreDirectives, FaIcon, formDirectives,
+        modularAdminDirectives, RouterLink],
+    exports: [Routes],
+    pipes: const [commonPipes]
 )
-class PolicyDetailView implements AfterViewInit {
+class PolicyDetailView implements OnActivate {
     List<CaptchaSolver> captchaSolvers;
     bool newPolicy;
     Policy policy;
@@ -74,22 +76,10 @@ class PolicyDetailView implements AfterViewInit {
 
     DocumentService _document;
     Router _router;
-    RouteParams _routeParams;
     ServerService _server;
 
     /// Constructor
-    PolicyDetailView(this._document, this._router, this._routeParams,
-        this._server) {
-        this._document.title = 'Policy';
-        this._document.breadcrumbs = [
-            new Breadcrumb(name: 'Policy', icon: 'book',
-                link: ['/Policy', 'List']),
-            new Breadcrumb(name: 'Policy'),
-        ];
-
-        this.captchaSolvers = [];
-        this.newPolicy = (this._routeParams.get('id') == null);
-    }
+    PolicyDetailView(this._document, this._router, this._server);
 
     /// Add a penultimate MIME rule.
     void addMimeRule() {
@@ -141,8 +131,19 @@ class PolicyDetailView implements AfterViewInit {
         list.insert(index - 1, list.removeAt(index));
     }
 
-    /// Called when Angular initializes the view.
-    ngAfterViewInit() async {
+    /// Called when Angular navigates to the rout.
+    onActivate(_, RouterState current) async {
+        this._document.title = 'Policy';
+        this._document.breadcrumbs = [
+            new Breadcrumb(name: 'Policy', icon: 'book',
+                link: Routes.policyList.toUrl()),
+            new Breadcrumb(name: 'Policy'),
+        ];
+
+        this.captchaSolvers = [];
+        var policyId = current.parameters['id'];
+        this.newPolicy = policyId == null;
+
         if (this.newPolicy) {
             this.policy = new Policy.defaultSettings();
             this._document.title = 'New Policy';
@@ -150,7 +151,7 @@ class PolicyDetailView implements AfterViewInit {
         } else {
             var request = new pb.Request();
             request.getPolicy = new pb.RequestGetPolicy()
-                ..policyId = convert.hex.decode(this._routeParams.get('id'));
+                ..policyId = convert.hex.decode(policyId);
             var message = await this._server.sendRequest(request);
             this.policy = new Policy.fromPb(message.response.policy);
             this._document.title = 'Policy: ${this.policy.name}';
@@ -162,8 +163,8 @@ class PolicyDetailView implements AfterViewInit {
     /// Save the current policy.
     ///
     /// If a new policy is created, then redirect to that new policy.
-    save(ButtonClick click) async {
-        click.button.busy = true;
+    save(Button button) async {
+        button.busy = true;
         var request = new pb.Request();
         request.setPolicy = new pb.RequestSetPolicy();
         request.setPolicy.policy = this.policy.toPb();
@@ -174,7 +175,8 @@ class PolicyDetailView implements AfterViewInit {
             saveSuccess = true;
             if (response.hasNewPolicy()) {
                 var policyId = convert.hex.encode(response.newPolicy.policyId);
-                this._router.navigate(['../Detail', {"id": policyId}]);
+                this._router.navigate(Routes.policyDetail.toUrl(
+                    {"id": policyId}));
             } else {
                 this._document.breadcrumbs.last.name = this.policy.name;
                 new Timer(new Duration(seconds: 3), () {
@@ -185,7 +187,7 @@ class PolicyDetailView implements AfterViewInit {
             saveError = 'Cannot save: ${exc.message}';
             saveSuccess = false;
         }
-        click.button.busy = false;
+        button.busy = false;
     }
 
     /// Set the usage field of the robots.txt policy.

@@ -7,8 +7,9 @@ import 'package:convert/convert.dart' as convert;
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/captcha.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// View details about a CAPTCHA solver.
@@ -46,11 +47,12 @@ import 'package:starbelly/service/server.dart';
         }
     '''],
     templateUrl: 'detail.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, formDirectives,
-        MA_DIRECTIVES, RouterLink],
-    pipes: const [COMMON_PIPES]
+    directives: const [coreDirectives, FaIcon, formDirectives,
+        modularAdminDirectives, RouterLink],
+    exports: [Routes],
+    pipes: const [commonPipes]
 )
-class CaptchaDetailView implements AfterViewInit {
+class CaptchaDetailView implements OnActivate {
     bool newSolver;
     CaptchaSolver solver;
     String saveError = '';
@@ -62,25 +64,22 @@ class CaptchaDetailView implements AfterViewInit {
 
     DocumentService _document;
     Router _router;
-    RouteParams _routeParams;
     ServerService _server;
 
     /// Constructor
-    CaptchaDetailView(this._document, this._router, this._routeParams,
-        this._server) {
+    CaptchaDetailView(this._document, this._router, this._server);
+
+    /// Called when Angular initializes the view.
+    onActivate(_, RouterState current) async {
         this._document.title = 'CAPTCHA Solver';
         this._document.breadcrumbs = [
             new Breadcrumb(name: 'Configuration', icon: 'cogs'),
             new Breadcrumb(name: 'CAPTCHA Solvers', icon: 'eye',
-                link: ['/Captcha', 'List']),
+                link: Routes.captchaList.toUrl()),
             new Breadcrumb(name: 'CAPTCHA Solver'),
         ];
-
-        this.newSolver = (this._routeParams.get('id') == null);
-    }
-
-    /// Called when Angular initializes the view.
-    ngAfterViewInit() async {
+        var captchaId = current.parameters['id'];
+        this.newSolver = captchaId == null;
         if (this.newSolver) {
             this.solver = new CaptchaSolver('New Solver');
             this._document.title = 'New Solver';
@@ -88,7 +87,7 @@ class CaptchaDetailView implements AfterViewInit {
         } else {
             var request = new pb.Request();
             request.getCaptchaSolver = new pb.RequestGetCaptchaSolver()
-                ..solverId = convert.hex.decode(this._routeParams.get('id'));
+                ..solverId = convert.hex.decode(captchaId);
             var message = await this._server.sendRequest(request);
             this.solver = new CaptchaSolver.fromPb(message.response.solver);
             this._document.title = 'CAPTCHA Solver: ${this.solver.name}';
@@ -99,8 +98,8 @@ class CaptchaDetailView implements AfterViewInit {
     /// Save the current CAPTCHA solver.
     ///
     /// If a new solver is created, then redirect to that new solver.
-    save(ButtonClick click) async {
-        click.button.busy = true;
+    save(Button button) async {
+        button.busy = true;
         var request = new pb.Request()
             ..setCaptchaSolver = new pb.RequestSetCaptchaSolver();
         request.setCaptchaSolver.solver = this.solver.toPb();
@@ -112,7 +111,7 @@ class CaptchaDetailView implements AfterViewInit {
             saveSuccess = true;
             if (response.hasNewSolver()) {
                 var solverId = convert.hex.encode(response.newSolver.solverId);
-                this._router.navigate(['../Detail', {"id": solverId}]);
+                this._router.navigate(Routes.captchaDetail.toUrl({"id": solverId}));
             } else {
                 this._document.breadcrumbs.last.name = this.solver.name;
                 new Timer(new Duration(seconds: 3), () {
@@ -123,6 +122,6 @@ class CaptchaDetailView implements AfterViewInit {
             saveError = 'Cannot save: ${exc.message}';
             saveSuccess = false;
         }
-        click.button.busy = false;
+        button.busy = false;
     }
 }

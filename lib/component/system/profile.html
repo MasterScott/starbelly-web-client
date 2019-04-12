@@ -33,8 +33,8 @@
           </select>
         </ma-input-group>
         <div class='clearfix'>
-          <ma-button class='float-xs-right'
-                     (click)='runProfile($event)'
+          <ma-button #runButton class='float-xs-right'
+                     (click)='runProfile(runButton)'
                      [disabled]='!form.valid'>
             <fa name='arrow-circle-right'></fa>
             Run Profile
@@ -48,7 +48,7 @@
         <ma-button type='warning'
                    size='small'
                    (click)='profile = null'>
-          <fa name='eraser'></fa> Clear results <fa name='trash'></fa>
+          <fa name='eraser'></fa> Clear results
         </ma-button>
       </p>
       <table *ngIf='profile != null' class='striped'>

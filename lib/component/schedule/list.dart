@@ -6,22 +6,24 @@ import 'package:convert/convert.dart' as convert;
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/schedule.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// View job schedules.
 @Component(
     selector: 'schedule-list',
     templateUrl: 'list.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, MA_DIRECTIVES,
+    directives: const [coreDirectives, FaIcon, modularAdminDirectives,
         RouterLink],
-    pipes: const [COMMON_PIPES]
+    pipes: const [commonPipes],
+    exports: [Routes]
 )
 class ScheduleListView implements AfterViewInit {
     int currentPage = 1;
     int endRow = 0;
-    List<JobSchedule> schedules;
+    List<Schedule> schedules;
     int rowsPerPage = 10;
     int startRow = 0;
     int totalRows = 0;
@@ -38,11 +40,11 @@ class ScheduleListView implements AfterViewInit {
     }
 
     /// Delete a job schedule.
-    deleteSchedule(ButtonClick click, JobSchedule schedule) async {
-        click.button.busy = true;
+    deleteSchedule(Button button, Schedule schedule) async {
+        button.busy = true;
         var request = new pb.Request()
-            ..deleteJobSchedule = new pb.RequestDeleteJobSchedule();
-        request.deleteJobSchedule.scheduleId = convert.hex.decode(
+            ..deleteSchedule = new pb.RequestDeleteSchedule();
+        request.deleteSchedule.scheduleId = convert.hex.decode(
             schedule.scheduleId);
         try {
             await this._server.sendRequest(request);
@@ -50,21 +52,21 @@ class ScheduleListView implements AfterViewInit {
         } on ServerException catch (exc) {
             window.alert('Could not delete schedule: ${exc}');
         }
-        click.button.busy = false;
+        button.busy = false;
     }
 
     /// Fetch current page of results.
     getPage() async {
         var request = new pb.Request()
-            ..listJobSchedules = new pb.RequestListJobSchedules();
-        request.listJobSchedules.page = new pb.Page()
+            ..listSchedules = new pb.RequestListSchedules();
+        request.listSchedules.page = new pb.Page()
             ..limit = this.rowsPerPage
             ..offset = (this.currentPage - 1) * this.rowsPerPage;
         var message = await this._server.sendRequest(request);
-        this.totalRows = message.response.listJobSchedules.total;
+        this.totalRows = message.response.listSchedules.total;
         this.schedules = [];
-        for (var pbSchedule in message.response.listJobSchedules.jobSchedules) {
-            this.schedules.add(new JobSchedule.fromPb(pbSchedule));
+        for (var pbSchedule in message.response.listSchedules.schedules) {
+            this.schedules.add(new Schedule.fromPb(pbSchedule));
         }
         this.startRow = (this.currentPage - 1) * this.rowsPerPage + 1;
         this.endRow = this.startRow + this.schedules.length - 1;

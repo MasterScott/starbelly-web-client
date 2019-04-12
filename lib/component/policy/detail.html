@@ -450,13 +450,11 @@
 <div class='row buttons' *ngIf='policy != null'>
   <div class='col-lg'>
     <p>
-      <ma-button type='primary'
-                 (click)='save($event)'>
+      <ma-button #saveButton type='primary' (click)='save(saveButton)'>
         <fa name='save'></fa>
         Save
       </ma-button>
-      <ma-button type='link'
-                 [routerLink]='["../List"]'>
+      <ma-button type='link' [routerLink]='Routes.policyList.toUrl()'>
         Cancel
       </ma-button>
     </p>

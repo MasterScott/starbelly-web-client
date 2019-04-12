@@ -32,12 +32,12 @@
       <tr *ngIf="jobs != null && jobs.length==0">
         <td class='empty-table' colspan="999">
           There are no crawls.
-          Do you want to <a [routerLink]='["/StartCrawl"]'>start a crawl?</a>
+          Do you want to <a [routerLink]='Routes.start.toUrl()'>start a crawl?</a>
         </td>
       </tr>
       <tr *ngFor="let job of jobs">
         <td>
-          <a [routerLink]='["../Detail", {"id":job.jobId}]'>{{job.name}}</a>
+          <a [routerLink]='Routes.resultDetail.toUrl({"id":job.jobId})'>{{job.name}}</a>
           <ma-tag *ngFor='let tag of job.tags' type='primary' size='small'>{{tag}}</ma-tag>
         </td>
         <td>{{job.runStateStr}}</td>
@@ -45,11 +45,9 @@
         <td>{{job.completedAt | date:'y-MM-dd H:mm:ss'}}</td>
         <td>{{job.itemCount}}</td>
         <td>
-          <ma-button
-            size='small'
-            type='danger'
+          <ma-button #deleteButton size='small' type='danger'
             *ngIf='job.runState == CANCELLED || job.runState == COMPLETED'
-            (click)='deleteJob($event, job)'>
+            (click)='deleteJob(deleteButton, job)'>
             <fa name='trash'></fa>
           </ma-button>
         </td>

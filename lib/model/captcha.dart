@@ -1,6 +1,6 @@
 import 'package:convert/convert.dart' as convert;
 
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 
 /// A CAPTCHA solving service.
 ///

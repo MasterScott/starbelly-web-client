@@ -6,17 +6,7 @@ import 'package:logging/logging.dart';
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
-import 'package:starbelly/component/captcha/router.dart';
-import 'package:starbelly/component/credential/router.dart';
-import 'package:starbelly/component/dashboard.dart';
-import 'package:starbelly/component/policy/router.dart';
-import 'package:starbelly/component/rate_limit.dart';
-import 'package:starbelly/component/results/router.dart';
-import 'package:starbelly/component/schedule/router.dart';
-import 'package:starbelly/component/start.dart';
-import 'package:starbelly/component/system/profile.dart';
-import 'package:starbelly/component/system/resources.dart';
-import 'package:starbelly/component/system/tasks.dart';
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/server.dart';
 
@@ -42,58 +32,12 @@ import 'package:starbelly/service/server.dart';
             margin-right: 0.5em;
         }
     '''],
-    directives: const [CORE_DIRECTIVES, MA_DIRECTIVES, FaIcon,
-        ROUTER_DIRECTIVES],
-    providers: const [MA_PROVIDERS, ROUTER_PROVIDERS, JobStatusService,
-        DocumentService, ServerService]
+    directives: const [coreDirectives, fontAwesomeDirectives,
+        modularAdminDirectives, routerDirectives],
+    providers: const [modularAdminProviders, JobStatusService,
+        DocumentService, ServerService],
+    exports: [Routes]
 )
-@RouteConfig(const [
-    const Route(
-        path: '/captcha/...',
-        name: 'Captcha',
-        component: CaptchaRouter),
-    const Route(
-        path: '/credential/...',
-        name: 'Credential',
-        component: CredentialRouter),
-    const Route(
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: DashboardView,
-        useAsDefault: true),
-    const Route(
-        path: '/policy/...',
-        name: 'Policy',
-        component: PolicyRouter),
-    const Route(
-        path: '/rate-limit',
-        name: 'RateLimits',
-        component: RateLimitView),
-    const Route(
-        path: '/results/...',
-        name: 'Results',
-        component: ResultRouter),
-    const Route(
-        path: '/schedule/...',
-        name: 'Schedule',
-        component: ScheduleRouter),
-    const Route(
-        path: '/start',
-        name: 'StartCrawl',
-        component: StartCrawlView),
-    const Route(
-        path: '/system/profile',
-        name: 'Profile',
-        component: ProfileView),
-    const Route(
-        path: '/system/resources',
-        name: 'Resources',
-        component: ResourcesView),
-    const Route(
-        path: '/system/tasks',
-        name: 'Tasks',
-        component: TasksView),
-])
 class AppComponent {
     /// Service for getting status of jobs.
     DocumentService document;
@@ -120,9 +64,9 @@ class AppComponent {
             if (r.object != null) {
                 msg += ' (Object: ${r.object.toString()})';
             }
-            print(msg);
+            window.console.log(msg);
         });
 
-        this.server.stayConnected();
+        // this.server.stayConnected();
     }
 }

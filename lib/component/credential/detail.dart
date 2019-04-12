@@ -7,8 +7,9 @@ import 'package:angular_router/angular_router.dart';
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/domain_login.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// View details about a credential.
@@ -38,10 +39,10 @@ import 'package:starbelly/service/server.dart';
         }
     '''],
     templateUrl: 'detail.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, formDirectives, MA_DIRECTIVES,
-        RouterLink]
+    directives: const [coreDirectives, FaIcon, formDirectives,
+        modularAdminDirectives],
 )
-class CredentialDetailView implements AfterViewInit {
+class CredentialDetailView implements OnActivate {
     String addError;
     String domain;
     DomainLogin domainLogin;
@@ -51,24 +52,13 @@ class CredentialDetailView implements AfterViewInit {
     bool showAddUser = false;
 
     DocumentService _document;
-    RouteParams _routeParams;
     ServerService _server;
 
     /// Constructor
-    CredentialDetailView(this._document, this._routeParams, this._server) {
-        this.domain = this._routeParams.get('domain');
-        this._document.title = domain;
-        this._document.breadcrumbs = [
-            new Breadcrumb(name: 'Configuration', icon: 'cogs'),
-            new Breadcrumb(name: 'Credentials', icon: 'key',
-                link: ['/Credential', 'List']),
-            new Breadcrumb(name: domain),
-        ];
-
-    }
+    CredentialDetailView(this._document, this._server);
 
     /// Add a user.
-    addUser(ButtonClick click, Element usernameEl, Element passwordEl) async {
+    addUser(Element usernameEl, Element passwordEl) async {
         var userEl = usernameEl as InputElement;
         var passEl = passwordEl as InputElement;
         var username = userEl.value;
@@ -87,13 +77,22 @@ class CredentialDetailView implements AfterViewInit {
     }
 
     /// Delete a user.
-    deleteUser(ButtonClick click, int index) async {
+    deleteUser(int index) async {
         this.dirty = true;
         this.domainLogin.users.removeAt(index);
     }
 
-    /// Called when Angular initializes the view.
-    ngAfterViewInit() async {
+    /// Called when Angular enters this route.
+    onActivate(_, RouterState current) async {
+        this.domain = current.parameters['domain'];
+        this._document.title = domain;
+        this._document.breadcrumbs = [
+            new Breadcrumb(name: 'Configuration', icon: 'cogs'),
+            new Breadcrumb(name: 'Credentials', icon: 'key',
+                link: Routes.credentialList.toUrl()),
+            new Breadcrumb(name: domain),
+        ];
+
         var request = new pb.Request();
         request.getDomainLogin = new pb.RequestGetDomainLogin()
             ..domain = this.domain;
@@ -102,14 +101,14 @@ class CredentialDetailView implements AfterViewInit {
     }
 
     /// Save credential.
-    save(ButtonClick click) async {
-        click.button.busy = true;
+    save(Button button) async {
+        button.busy = true;
         var request = new pb.Request();
         request.setDomainLogin = new pb.RequestSetDomainLogin()
             ..login = this.domainLogin.toPb();
         var message = await this._server.sendRequest(request);
         this.saveError = '';
-        click.button.busy = false;
+        button.busy = false;
         if (message.response.isSuccess) {
             this.saveSuccess = true;
             new Timer(new Duration(seconds: 3), () {

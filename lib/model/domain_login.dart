@@ -1,11 +1,10 @@
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 
 /// Metadata for authentication.
 class DomainLogin {
     String domain;
     String loginUrl;
     String loginTest;
-    int authCount;
     List<DomainLoginUser> users;
 
     /// Instantiate a domain login from a protobuf message.
@@ -14,7 +13,6 @@ class DomainLogin {
         this.domain = pbLogin.domain;
         this.loginUrl = pbLogin.loginUrl;
         this.loginTest = pbLogin.loginTest;
-        this.authCount = pbLogin.authCount;
         this.users = new List<DomainLoginUser>.generate(
             pbLogin.users.length,
             (i) => new DomainLoginUser.fromPb(pbLogin.users[i])

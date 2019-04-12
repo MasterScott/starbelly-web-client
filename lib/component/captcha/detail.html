@@ -91,13 +91,13 @@
 <div class='row buttons' *ngIf='solver != null'>
   <div class='col-lg'>
     <p>
-      <ma-button type='primary'
-                 (click)='save($event)'>
+      <ma-button #saveButton type='primary'
+                 (click)='save(saveButton)'>
         <fa name='save'></fa>
         Save
       </ma-button>
       <ma-button type='link'
-                 [routerLink]='["../List"]'>
+                 [routerLink]='Routes.captchaList.toUrl()'>
         Cancel
       </ma-button>
     </p>

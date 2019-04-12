@@ -9,8 +9,9 @@ import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/component/external_link.dart';
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/job.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/server.dart';
 
@@ -18,11 +19,12 @@ import 'package:starbelly/service/server.dart';
 @Component(
     selector: 'results-detail',
     templateUrl: 'detail.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, formDirectives,
-        MA_DIRECTIVES, RouterLink, ExternalLinkComponent],
-    pipes: const [COMMON_PIPES]
+    directives: const [coreDirectives, FaIcon, formDirectives,
+        modularAdminDirectives, RouterLink, ExternalLinkComponent],
+    exports: [Routes],
+    pipes: const [commonPipes]
 )
-class ResultDetailView implements AfterViewInit, OnDestroy {
+class ResultDetailView implements OnActivate, OnDestroy {
     Job job;
     String tags;
 
@@ -38,17 +40,18 @@ class ResultDetailView implements AfterViewInit, OnDestroy {
 
     DocumentService _document;
     JobStatusService _jobStatus;
-    RouteParams _routeParams;
     ServerService _server;
     StreamSubscription<Job> _subscription;
 
     /// Constructor
-    ResultDetailView(this._document, this._jobStatus, this._routeParams,
-                      this._server) {
+    ResultDetailView(this._document, this._jobStatus, this._server);
+
+    /// Called when Angular enters the route.
+    onActivate(_, RouterState current) async {
         this._document.title = 'Results';
         this._document.breadcrumbs = [
             new Breadcrumb(name: 'Results', icon: 'sitemap',
-                link: ['/Results', 'List']),
+                link: Routes.resultList.toUrl()),
             new Breadcrumb(name: 'Crawl'),
         ];
 
@@ -57,13 +60,9 @@ class ResultDetailView implements AfterViewInit, OnDestroy {
                 this.job.mergeFrom(update);
             }
         });
-    }
-
-    /// Called when Angular initializes the view.
-    ngAfterViewInit() async {
         var request = new pb.Request();
         request.getJob = new pb.RequestGetJob();
-        var jobId = this._routeParams.get('id');
+        var jobId = current.parameters['id'];
         request.getJob.jobId = convert.hex.decode(jobId);
         var message = await this._server.sendRequest(request);
         this.job = new Job.fromPb2(message.response.job);
@@ -80,10 +79,9 @@ class ResultDetailView implements AfterViewInit, OnDestroy {
     saveTags() async {
         var request = new pb.Request();
         request.setJob = new pb.RequestSetJob()
-            ..jobId = convert.hex.decode(this.job.jobId)
-            ..tagList = new pb.TagList();
+            ..jobId = convert.hex.decode(this.job.jobId);
         for (var tagStr in this.tags.split(new RegExp(' +'))) {
-            request.setJob.tagList.tags.add(tagStr.trim());
+            request.setJob.tags.add(tagStr.trim());
         }
         var message = await this._server.sendRequest(request);
         if (!message.response.isSuccess) {

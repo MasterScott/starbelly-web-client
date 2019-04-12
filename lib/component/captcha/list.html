@@ -33,28 +33,24 @@
       <tr *ngIf="solvers != null && solvers.length==0">
         <td class='empty-table' colspan="999">
           There are no CAPTCHA solvers.
-          Do you want to <a [routerLink]='["../Create"]'>create one?</a>
+          Do you want to <a [routerLink]='Routes.captchaCreate.toUrl()'>create one?</a>
         </td>
       </tr>
       <tr *ngFor="let solver of solvers">
         <td>
-          <a [routerLink]='["../Detail", {"id":solver.solverId}]'>{{solver.name}}</a>
+          <a [routerLink]='Routes.captchaDetail.toUrl({"id":solver.solverId})'>
+            {{solver.name}}
+          </a>
         </td>
         <td>{{solver.updatedAt | date:'y-MM-dd H:mm:ss'}}</td>
         <td>{{solver.serviceUrl}}</td>
         <td>
-          <ma-button
-            size='small'
-            type='primary'
-            title='Duplicate'
-            (click)='duplicateSolver($event, solver)'>
+          <ma-button #duplicateButton size='small' type='primary' title='Duplicate'
+            (click)='duplicateSolver(duplicateButton, solver)'>
             <fa name='copy'></fa>
           </ma-button>
-          <ma-button
-            size='small'
-            type='danger'
-            title='Delete'
-            (click)='deleteSolver($event, solver)'>
+          <ma-button #deleteButton size='small' type='danger' title='Delete'
+            (click)='deleteSolver(deleteButton, solver)'>
             <fa name='trash'></fa>
           </ma-button>
         </td>
@@ -62,7 +58,7 @@
     </tbody>
   </table>
   <p>
-    <ma-button type='primary' [routerLink]='["../Create"]'>
+    <ma-button type='primary' [routerLink]='Routes.captchaCreate.toUrl()'>
       <fa name='plus-circle'></fa>
       New CAPTCHA Solver
     </ma-button>

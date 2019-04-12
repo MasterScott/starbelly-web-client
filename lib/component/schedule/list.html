@@ -30,22 +30,21 @@
       <tr *ngIf="schedules != null && schedules.length==0">
         <td class='empty-table' colspan="999">
           There are no crawl schedules.
-          Do you want to <a [routerLink]='["../Create"]'>schedule a crawl?</a>
+          Do you want to <a [routerLink]='Routes.scheduleCreate.toUrl()'>schedule a crawl?</a>
         </td>
       </tr>
       <tr *ngFor="let schedule of schedules">
         <td>
-          <a [routerLink]='["../Detail", {"id":schedule.scheduleId}]'>{{schedule.scheduleName}}</a>
+          <a [routerLink]='Routes.scheduleDetail.toUrl({"id":schedule.scheduleId})'>
+            {{schedule.scheduleName}}
+          </a>
           <ma-tag *ngFor='let tag of schedule.tags' type='primary' size='small'>{{tag}}</ma-tag>
         </td>
         <td>{{schedule.jobCount}}</td>
         <td>{{schedule.updatedAt | date:'y-MM-dd H:mm:ss'}}</td>
         <td>
-          <ma-button
-            size='small'
-            type='danger'
-            title='Delete Schedule'
-            (click)='deleteSchedule($event, schedule)'>
+          <ma-button #deleteButton size='small' type='danger' title='Delete Schedule'
+                     (click)='deleteSchedule(deleteButton, schedule)'>
             <fa name='trash'></fa>
           </ma-button>
         </td>
@@ -53,7 +52,7 @@
     </tbody>
   </table>
   <p>
-    <ma-button type='primary' [routerLink]='["../Create"]'>
+    <ma-button type='primary' [routerLink]='Routes.scheduleCreate.toUrl()'>
       <fa name='plus-circle'></fa>
       New Schedule
     </ma-button>

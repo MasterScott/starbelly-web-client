@@ -3,7 +3,7 @@ import 'dart:typed_data';
 
 import 'package:convert/convert.dart' as convert;
 
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 
 var RUN_STATE_LABELS = {
     pb.JobRunState.CANCELLED: 'Cancelled',
@@ -23,7 +23,7 @@ class CrawlItem {
     num duration;
     String exception;
     List<HttpHeader> headers;
-    bool isBodyCompressed;
+    bool isCompressed;
     bool isSuccess;
     String jobId;
     DateTime startedAt;
@@ -37,7 +37,7 @@ class CrawlItem {
         this.contentType = pbItem.contentType;
         this.cost = pbItem.cost;
         this.duration = pbItem.duration;
-        this.isBodyCompressed = pbItem.isBodyCompressed;
+        this.isCompressed = pbItem.isCompressed;
         this.isSuccess = pbItem.isSuccess;
         this.jobId = convert.hex.encode(pbItem.jobId);
         this.startedAt = DateTime.parse(pbItem.startedAt).toLocal();
@@ -59,7 +59,7 @@ class CrawlItem {
             // This doesn't handle non-UTF8 bodies, which should be
             // fixed in a future version.
             try {
-                this.bodyStr = UTF8.decode(this.body);
+                this.bodyStr = utf8.decode(this.body);
             } catch (exc) {
                 this.bodyStr = 'Error: unable to decode response body.';
             }

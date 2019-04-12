@@ -5,7 +5,7 @@ import 'dart:typed_data';
 import 'package:angular/angular.dart';
 import 'package:logging/logging.dart';
 
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 
 /// This class handles interaction with the server, abstracting out details like
 /// command IDs and pairing responses to requests.
@@ -17,7 +17,6 @@ class ServerService {
 
     int _nextCommandId;
     Map<int,Completer> _pendingRequests;
-    Timer _pingTimer;
     Future<WebSocket> _socketFuture;
     Map<int,StreamController> _subscriptions;
     StreamController<bool> _connectedController;
@@ -104,7 +103,6 @@ class ServerService {
 
             socket.onOpen.listen((event) {
                 log.info('Socket connected.');
-                this._resetPingTimer();
                 completer.complete(socket);
                 this._connectedController.add(true);
                 this.isConnected = true;
@@ -121,7 +119,6 @@ class ServerService {
     void _handleServerMessage(MessageEvent event) {
         var buffer = (event.data as ByteBuffer).asUint8List();
         var message = new pb.ServerMessage.fromBuffer(buffer);
-        this._resetPingTimer();
 
         if (message.hasResponse()) {
             this._handleServerResponse(message.response);
@@ -141,6 +138,7 @@ class ServerService {
     /// This places event data into the stream controller associated with this
     /// subscription.
     void _handleServerEvent(pb.Event event) {
+        window.console.log(event.toString()); //TODO remove
         var controller = this._subscriptions[event.subscriptionId];
         // A race could lead to receiving an event after closing a
         // subscription.
@@ -189,19 +187,6 @@ class ServerService {
         };
 
         return controller.stream;
-    }
-
-    /// Reset the ping timer.
-    void _resetPingTimer() {
-        if (this._pingTimer != null) {
-            this._pingTimer.cancel();
-        }
-
-        this._pingTimer = new Timer(new Duration(seconds: 30), () async {
-            var request = new pb.Request();
-            request.ping = new pb.RequestPing();
-            await this.sendRequest(request);
-        });
     }
 }
 

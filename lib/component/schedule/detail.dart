@@ -7,10 +7,11 @@ import 'package:convert/convert.dart' as convert;
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/job.dart';
 import 'package:starbelly/model/policy.dart';
 import 'package:starbelly/model/schedule.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// View details about a job schedule.
@@ -55,67 +56,60 @@ import 'package:starbelly/service/server.dart';
         }
     '''],
     templateUrl: 'detail.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, formDirectives,
-        MA_DIRECTIVES, RouterLink],
-    pipes: const [COMMON_PIPES]
+    directives: const [coreDirectives, FaIcon, formDirectives,
+        modularAdminDirectives, RouterLink],
+    exports: [Routes],
+    pipes: const [commonPipes]
 )
-class ScheduleDetailView implements AfterViewInit {
-    Job latestJob;
+class ScheduleDetailView implements OnActivate {
     List<Policy> policies;
-    JobSchedule schedule;
+    Schedule schedule;
     String saveError = '';
     bool saveSuccess = false;
     String seedUrl = '';
 
     DocumentService _document;
     Router _router;
-    RouteParams _routeParams;
     ServerService _server;
 
-    var REGULAR_INTERVAL = pb.JobScheduleTiming.REGULAR_INTERVAL;
+    var REGULAR_INTERVAL = pb.ScheduleTiming.REGULAR_INTERVAL;
     var AFTER_PREVIOUS_JOB_FINISHED =
-        pb.JobScheduleTiming.AFTER_PREVIOUS_JOB_FINISHED;
+        pb.ScheduleTiming.AFTER_PREVIOUS_JOB_FINISHED;
 
-    var MINUTES = pb.JobScheduleTimeUnit.MINUTES;
-    var HOURS = pb.JobScheduleTimeUnit.HOURS;
-    var DAYS = pb.JobScheduleTimeUnit.DAYS;
-    var WEEKS = pb.JobScheduleTimeUnit.WEEKS;
-    var MONTHS = pb.JobScheduleTimeUnit.MONTHS;
-    var YEARS = pb.JobScheduleTimeUnit.YEARS;
+    var MINUTES = pb.ScheduleTimeUnit.MINUTES;
+    var HOURS = pb.ScheduleTimeUnit.HOURS;
+    var DAYS = pb.ScheduleTimeUnit.DAYS;
+    var WEEKS = pb.ScheduleTimeUnit.WEEKS;
+    var MONTHS = pb.ScheduleTimeUnit.MONTHS;
+    var YEARS = pb.ScheduleTimeUnit.YEARS;
 
     /// Constructor
-    ScheduleDetailView(this._document, this._router, this._routeParams,
-        this._server) {
+    ScheduleDetailView(this._document, this._router, this._server) {
         this.policies = [];
-    }
-
-    /// Called when Angular initializes the view.
-    ngAfterViewInit() async {
-        this._asyncAfterViewInit();
     }
 
     /// Save the current schedule.
     ///
     /// If a new schedule is created, then redirect to that new schedule.
-    save(ButtonClick click) async {
-        click.button.busy = true;
+    save(Button button) async {
+        button.busy = true;
         if (this.schedule.seeds.length == 0) {
             this.schedule.seeds.add(this.seedUrl);
         } else {
             this.schedule.seeds[0] = this.seedUrl;
         }
         var request = new pb.Request()
-            ..setJobSchedule = new pb.RequestSetJobSchedule();
+            ..setSchedule = new pb.RequestSetSchedule();
         try {
-            request.setJobSchedule.jobSchedule = this.schedule.toPb();
+            request.setSchedule.schedule = this.schedule.toPb();
             var message = await this._server.sendRequest(request);
             var response = message.response;
             saveError = '';
             saveSuccess = true;
-            if (response.hasNewJobSchedule()) {
+            if (response.hasNewSchedule()) {
                 var scheduleId = convert.hex.encode(
-                    response.newJobSchedule.scheduleId);
-                this._router.navigate(['../Detail', {"id": scheduleId}]);
+                    response.newSchedule.scheduleId);
+                this._router.navigate(Routes.scheduleDetail.toUrl({'id': scheduleId}));
             } else {
                 this.schedule.updatedAt = new DateTime.now();
                 this._document.breadcrumbs.last.name =
@@ -128,16 +122,16 @@ class ScheduleDetailView implements AfterViewInit {
             saveError = 'Cannot save: ${exc}';
             saveSuccess = false;
         }
-        click.button.busy = false;
+        button.busy = false;
     }
 
     /// Implement ngAfterViewInit() as an async method.
-    _asyncAfterViewInit() async {
-        var scheduleId = this._routeParams.get('id');
+    onActivate(_, RouterState current) async {
+        var scheduleId = current.parameters['id'];
         var scheduleName;
 
         if (scheduleId == null) {
-            this.schedule = new JobSchedule.defaultSettings();
+            this.schedule = new Schedule.defaultSettings();
             scheduleName = this.schedule.scheduleName;
         } else {
             scheduleName = scheduleId.substring(0, 8);
@@ -146,7 +140,7 @@ class ScheduleDetailView implements AfterViewInit {
         this._document.title = scheduleName;
         this._document.breadcrumbs = [
             new Breadcrumb(name: 'Schedule', icon: 'calendar',
-                link: ['/Schedule', 'List']),
+                link: Routes.scheduleList.toUrl()),
             new Breadcrumb(name: scheduleName),
         ];
 
@@ -156,9 +150,6 @@ class ScheduleDetailView implements AfterViewInit {
             this.seedUrl = schedule.seeds.length > 0 ? schedule.seeds[0] : '';
             this._document.title = 'Schedule: ${this.schedule.scheduleName}';
             this._document.breadcrumbs.last.name = this.schedule.scheduleName;
-            if (schedule.latestJobId.isNotEmpty) {
-                this.latestJob = await this._fetchJob(schedule.latestJobId);
-            }
         }
 
         this.policies = await this._fetchPolicies();
@@ -190,12 +181,12 @@ class ScheduleDetailView implements AfterViewInit {
     }
 
     /// Fetch the job schedule object.
-    Future<JobSchedule> _fetchSchedule(String scheduleId) async {
+    Future<Schedule> _fetchSchedule(String scheduleId) async {
         var request = new pb.Request();
-        request.getJobSchedule = new pb.RequestGetJobSchedule()
+        request.getSchedule = new pb.RequestGetSchedule()
             ..scheduleId = convert.hex.decode(scheduleId);
         var message = await this._server.sendRequest(request);
-        var schedule = new JobSchedule.fromPb(message.response.jobSchedule);
+        var schedule = new Schedule.fromPb(message.response.schedule);
         return schedule;
     }
 }

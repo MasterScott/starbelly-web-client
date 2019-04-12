@@ -61,34 +61,32 @@
             </tr>
           </tbody>
         </table>
-        <p class='lead'>Crawls</p>
+        <p class='lead'>Jobs</p>
         <table class='striped'>
           <thead>
             <tr>
               <th>Name</th>
-              <th>Frontier</th>
-              <th>Pending</th>
-              <th>Extraction</th>
+              <th>Current Downloads</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngIf='frame.crawls.length == 0'>
+            <tr *ngIf='frame.jobs.length == 0'>
               <td class='empty-table' colspan="999">
-                There are no crawls running.
+                There are no jobs running.
               </td>
             </tr>
-            <tr *ngFor='let crawl of frame.crawls'>
-              <td>{{jobNames[crawl.jobId]}}</td>
-              <td>{{crawl.frontier}}</td>
-              <td>{{crawl.pending}}</td>
-              <td>{{crawl.extraction}}</td>
+            <tr *ngFor='let job of frame.jobs'>
+              <td>{{jobNames[job.jobId]}}</td>
+              <td>{{job.currentDownloads}}</td>
             </tr>
           </tbody>
         </table>
         <p class='lead'>Rate Limiter</p>
-        <p>{{frame.rateLimiter.count | number}}</p>
-        <p class='lead'>Downloader</p>
-        <p>{{frame.downloader.count | number}}</p>
+        <p>{{frame.rateLimiter | number}}</p>
+        <p class='lead'>Current Downloads</p>
+        <p>{{frame.currentDownloads | number}}</p>
+        <p class='lead'>Maximum Downloads</p>
+        <p>{{frame.maximumDownloads | number}}</p>
       </div>
     </ma-card>
   </div>

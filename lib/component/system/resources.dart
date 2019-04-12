@@ -5,7 +5,7 @@ import 'package:convert/convert.dart' as convert;
 import 'package:fixnum/fixnum.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/server.dart';
 
@@ -13,8 +13,8 @@ import 'package:starbelly/service/server.dart';
 @Component(
     selector: 'resources',
     templateUrl: 'resources.html',
-    directives: const [CORE_DIRECTIVES, MA_DIRECTIVES],
-    pipes: const [COMMON_PIPES]
+    directives: const [coreDirectives, modularAdminDirectives],
+    pipes: const [commonPipes]
 )
 class ResourcesView implements AfterViewInit, OnDestroy {
     pb.ResourceFrame frame;
@@ -30,7 +30,7 @@ class ResourcesView implements AfterViewInit, OnDestroy {
         this._document.title = 'Resources';
         this._document.breadcrumbs = [
             new Breadcrumb(name: 'System', icon: 'desktop'),
-            new Breadcrumb(name: 'Resource Monitor', icon: 'bar-chart'),
+            new Breadcrumb(name: 'Resource Monitor', icon: 'chart-bar'),
         ];
     }
 
@@ -72,11 +72,11 @@ class ResourcesView implements AfterViewInit, OnDestroy {
         this._subscription = response.subscription.listen((event) {
             this.frame = event.resourceFrame;
             this.jobNames = {};
-            for (var crawl in this.frame.crawls) {
-                var jobId = convert.hex.encode(crawl.jobId);
-                this.jobNames[crawl.jobId] = jobId.substring(0, 8);
+            for (var job in this.frame.jobs) {
+                var jobId = convert.hex.encode(job.jobId);
+                this.jobNames[job.jobId] = jobId.substring(0, 8);
                 this._jobStatus.getName(jobId).then((name) {
-                    this.jobNames[crawl.jobId] = name;
+                    this.jobNames[job.jobId] = name;
                 });
             }
         });

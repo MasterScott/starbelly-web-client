@@ -7,15 +7,16 @@ import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/component/external_link.dart';
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/item.dart';
 import 'package:starbelly/model/job.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/server.dart';
 
-/// View successful crawl items.
+/// View crawl items that returned an HTTP error.
 @Component(
-    selector: 'results-success',
+    selector: 'results-error',
     styles: const ['''
         table {
             table-layout: fixed;
@@ -43,12 +44,12 @@ import 'package:starbelly/service/server.dart';
             width: 6em;
         }
     '''],
-    templateUrl: 'success.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, MA_DIRECTIVES,
+    templateUrl: 'error.html',
+    directives: const [coreDirectives, FaIcon, modularAdminDirectives,
         RouterLink, ExternalLinkComponent],
-    pipes: const [COMMON_PIPES]
+    pipes: const [commonPipes]
 )
-class ResultSuccessView implements AfterViewInit {
+class ResultErrorView implements OnActivate {
     int currentPage = 1;
     int endRow = 0;
     List<CrawlItem> items;
@@ -61,38 +62,11 @@ class ResultSuccessView implements AfterViewInit {
 
     DocumentService _document;
     JobStatusService _jobStatus;
-    RouteParams _routeParams;
     ServerService _server;
     StreamSubscription<Job> _subscription;
 
     /// Constructor
-    ResultSuccessView(this._document, this._jobStatus, this._routeParams,
-        this._server) {
-        this.jobId = this._routeParams.get('id');
-        this._document.title = 'Successes';
-        this._document.breadcrumbs = [
-            new Breadcrumb(name: 'Results', icon: 'sitemap',
-                link: ['/Results', 'List']),
-            new Breadcrumb(name: 'Crawl',
-                link: ['/Results', 'Detail', {'id': this.jobId}]),
-            new Breadcrumb(name: 'Successes')
-        ];
-
-        this._jobStatus.getName(this.jobId).then((jobName) {
-            this.jobName = jobName;
-            this._document.breadcrumbs[1].name = jobName;
-        });
-
-        this._subscription = this._jobStatus.events.listen((Job update) {
-            if (this.jobId == update.jobId &&
-                (update.itemCount ?? 0) > this.totalRows) {
-                this.totalRows = update.itemCount;
-                if (items != null && items.length != this.rowsPerPage) {
-                    this.getPage();
-                }
-            }
-        });
-    }
+    ResultErrorView(this._document, this._jobStatus, this._server);
 
     /// Fetch current page.
     getPage() async {
@@ -101,7 +75,7 @@ class ResultSuccessView implements AfterViewInit {
         request.getJobItems = new pb.RequestGetJobItems()
             ..jobId = convert.hex.decode(this.jobId)
             ..compressionOk = false
-            ..includeSuccess = true;
+            ..includeError = true;
         request.getJobItems.page = new pb.Page()
             ..limit = this.rowsPerPage
             ..offset = (this.currentPage - 1) * this.rowsPerPage;
@@ -117,7 +91,31 @@ class ResultSuccessView implements AfterViewInit {
     }
 
     /// Called when Angular initializes the view.
-    ngAfterViewInit() async {
+    onActivate(_, RouterState current) async {
+        this.jobId = current.parameters['id'];
+        this._document.title = 'Errors';
+        this._document.breadcrumbs = [
+            new Breadcrumb(name: 'Results', icon: 'sitemap',
+                link: Routes.resultList.toUrl()),
+            new Breadcrumb(name: 'Crawl',
+                link: Routes.resultDetail.toUrl({'id': this.jobId})),
+            new Breadcrumb(name: 'Errors')
+        ];
+
+        this._jobStatus.getName(this.jobId).then((jobName) {
+            this.jobName = jobName;
+            this._document.breadcrumbs[1].name = jobName;
+        });
+
+        this._subscription = this._jobStatus.events.listen((Job update) {
+            if (this.jobId == update.jobId &&
+                (update.httpErrorCount ?? 0) > this.totalRows) {
+                this.totalRows = update.httpErrorCount;
+                if (items != null && items.length != this.rowsPerPage) {
+                    this.getPage();
+                }
+            }
+        });
         this.getPage();
     }
 

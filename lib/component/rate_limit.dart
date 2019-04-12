@@ -4,7 +4,7 @@ import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 import 'package:ng_modular_admin/validators.dart' as MaValidators;
 
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// Set & display rate limits.
@@ -16,7 +16,7 @@ import 'package:starbelly/service/server.dart';
         }
     '''],
     templateUrl: 'rate_limit.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, formDirectives, MA_DIRECTIVES]
+    directives: const [coreDirectives, FaIcon, formDirectives, modularAdminDirectives]
 )
 class RateLimitView implements AfterViewInit {
     String FOO;
@@ -40,7 +40,7 @@ class RateLimitView implements AfterViewInit {
     RateLimitView(this._document, this._server) {
         this._document.title = 'Rate Limits';
         this._document.breadcrumbs = [
-            new Breadcrumb(name: 'Rate Limits', icon: 'clock-o')
+            new Breadcrumb(name: 'Rate Limits', icon: 'stopwatch')
         ];
 
         this.newDelayControl = new Control('', Validators.compose([
@@ -58,9 +58,8 @@ class RateLimitView implements AfterViewInit {
     createRateLimit(String domain, String delayStr) async {
         var request = new pb.Request();
         request.setRateLimit = new pb.RequestSetRateLimit();
-        request.setRateLimit.rateLimit = new pb.RateLimit();
-        request.setRateLimit.rateLimit.domain = domain;
-        request.setRateLimit.rateLimit.delay = double.parse(delayStr);
+        request.setRateLimit.domain = domain;
+        request.setRateLimit.delay = double.parse(delayStr);
         try {
             await this._server.sendRequest(request);
             newModalError = null;
@@ -72,12 +71,11 @@ class RateLimitView implements AfterViewInit {
     }
 
     /// Remove the specified rate limit.
-    deleteRateLimit(ButtonClick click, RateLimitWrapper wrapper) async {
-        click.button.busy = true;
+    deleteRateLimit(Button button, RateLimitWrapper wrapper) async {
+        button.busy = true;
         var request = new pb.Request();
         request.setRateLimit = new pb.RequestSetRateLimit();
-        request.setRateLimit.rateLimit = new pb.RateLimit();
-        request.setRateLimit.rateLimit.domain = wrapper.rateLimit.domain;
+        request.setRateLimit.domain = wrapper.rateLimit.domain;
         try {
             await this._server.sendRequest(request);
             wrapper.error = null;
@@ -85,14 +83,14 @@ class RateLimitView implements AfterViewInit {
         } on ServerException catch (exc) {
             wrapper.error = exc.message;
         }
-        click.button.busy = false;
+        button.busy = false;
     }
 
     /// Fetch current page.
     getPage() async {
         var request = new pb.Request();
-        request.getRateLimits = new pb.RequestGetRateLimits();
-        request.getRateLimits.page = new pb.Page()
+        request.listRateLimits = new pb.RequestListRateLimits();
+        request.listRateLimits.page = new pb.Page()
             ..limit = this.rowsPerPage
             ..offset = (this.currentPage - 1) * this.rowsPerPage;
         var message = await this._server.sendRequest(request);
@@ -126,11 +124,10 @@ class RateLimitView implements AfterViewInit {
         wrapper.isEditing = false;
         var request = new pb.Request();
         request.setRateLimit = new pb.RequestSetRateLimit();
-        request.setRateLimit.rateLimit = new pb.RateLimit();
         if (wrapper.rateLimit.hasDomain()) {
-            request.setRateLimit.rateLimit.domain = wrapper.rateLimit.domain;
+            request.setRateLimit.domain = wrapper.rateLimit.domain;
         }
-        request.setRateLimit.rateLimit.delay = delay;
+        request.setRateLimit.delay = delay;
         try {
             await this._server.sendRequest(request);
             wrapper.error = null;

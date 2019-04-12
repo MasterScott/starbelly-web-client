@@ -90,7 +90,7 @@
             <option [ngValue]='YEARS'>years</option>
           </select>
         </ma-input-group>
-        <dl>
+<!--         <dl>
           <dt>Latest Job</dt>
           <dd>
             <span *ngIf='schedule.latestJobId.isEmpty'>N/A</span>
@@ -109,7 +109,7 @@
               size='small'
               [routerLink]='["../Jobs", {"id":schedule.scheduleId}]'>View all jobs…</ma-button>
           </dd>
-        </dl>
+        </dl> -->
       </div>
     </ma-card>
   </div>
@@ -117,15 +117,14 @@
 <div class='row buttons' *ngIf='schedule != null'>
   <div class='col-lg'>
     <p>
-      <ma-button type='primary'
-                 (click)='save($event)'>
+      <ma-button #saveButton type='primary' (click)='save(saveButton)'>
         <fa name='save'></fa>
         Save
       </ma-button>
-      <ma-button type='link'
+<!--       <ma-button type='link'
                  [routerLink]='["../List"]'>
         Cancel
-      </ma-button>
+      </ma-button> -->
     </p>
     <p *ngIf='saveError.isNotEmpty' class='text-danger result'>
       {{saveError}}

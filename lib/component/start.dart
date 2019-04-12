@@ -4,7 +4,7 @@ import 'package:convert/convert.dart' as convert;
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/policy.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 import 'package:starbelly/validate.dart' as validate;
 
@@ -17,7 +17,7 @@ import 'package:starbelly/validate.dart' as validate;
             max-width: 30em;
         }
     '''],
-    directives: const [CORE_DIRECTIVES, formDirectives, MA_DIRECTIVES]
+    directives: const [coreDirectives, formDirectives, modularAdminDirectives]
 )
 class StartCrawlView implements AfterViewInit {
     ControlGroup form;
@@ -69,12 +69,11 @@ class StartCrawlView implements AfterViewInit {
             ..name = this.name
             ..runState = pb.JobRunState.RUNNING
             ..policyId = convert.hex.decode(this.selectedPolicy.policyId)
-            ..seeds.add(this.seedUrl)
-            ..tagList = new pb.TagList();
+            ..seeds.add(this.seedUrl);
         for (var tagStr in this.tags.split(new RegExp('\s+'))) {
             var tagTrim = tagStr.trim();
             if (tagTrim.isNotEmpty) {
-                request.setJob.tagList.tags.add(tagTrim);
+                request.setJob.tags.add(tagTrim);
             }
         }
         await this._server.sendRequest(request);

@@ -4,20 +4,22 @@ import 'package:convert/convert.dart' as convert;
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/captcha.dart';
 import 'package:starbelly/model/job.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// View details about a policy.
 @Component(
     selector: 'results-policy',
     templateUrl: 'policy.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, MA_DIRECTIVES,
+    directives: const [coreDirectives, FaIcon, modularAdminDirectives,
         RouterLink],
-    pipes: const [COMMON_PIPES]
+    exports: [Routes],
+    pipes: const [commonPipes]
 )
-class ResultPolicyView implements AfterViewInit {
+class ResultPolicyView implements OnActivate {
     CaptchaSolver captchaSolver;
     Job job;
 
@@ -32,27 +34,24 @@ class ResultPolicyView implements AfterViewInit {
     var IGNORE = pb.PolicyRobotsTxt_Usage.IGNORE;
 
     DocumentService _document;
-    RouteParams _routeParams;
     ServerService _server;
 
     /// Constructor
-    ResultPolicyView(this._document, this._routeParams, this._server) {
-        var jobId = this._routeParams.get('id');
+    ResultPolicyView(this._document, this._server);
+
+    /// Called when Angular initializes the view.
+    onActivate(_, RouterState current) async {
+        var jobId = current.parameters['id'];
         this._document.title = 'Policy';
         this._document.breadcrumbs = [
             new Breadcrumb(name: 'Results', icon: 'sitemap',
-                link: ['/Results', 'List']),
+                link: Routes.resultList.toUrl()),
             new Breadcrumb(name: 'Crawl',
-                link: ['/Results', 'Detail', {'id': jobId}]),
+                link: Routes.resultDetail.toUrl({'id': jobId})),
             new Breadcrumb(name: 'Policy'),
         ];
-    }
-
-    /// Called when Angular initializes the view.
-    ngAfterViewInit() async {
         var request = new pb.Request();
         request.getJob = new pb.RequestGetJob();
-        var jobId = this._routeParams.get('id');
         request.getJob.jobId = convert.hex.decode(jobId);
         var message = await this._server.sendRequest(request);
         this.job = new Job.fromPb2(message.response.job);

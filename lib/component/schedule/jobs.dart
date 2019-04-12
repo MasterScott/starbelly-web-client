@@ -4,20 +4,22 @@ import 'package:convert/convert.dart' as convert;
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/job.dart';
 import 'package:starbelly/model/schedule.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
 /// View job schedules.
 @Component(
     selector: 'schedule-list-jobs',
     templateUrl: 'jobs.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, MA_DIRECTIVES,
+    directives: const [coreDirectives, FaIcon, modularAdminDirectives,
         RouterLink],
-    pipes: const [COMMON_PIPES]
+    exports: [Routes],
+    pipes: const [commonPipes]
 )
-class ScheduleListJobsView implements AfterViewInit {
+class ScheduleListJobsView implements OnActivate {
     int currentPage = 1;
     int endRow = 0;
     List<Job> jobs;
@@ -28,14 +30,10 @@ class ScheduleListJobsView implements AfterViewInit {
     int totalRows = 0;
 
     DocumentService _document;
-    RouteParams _routeParams;
     ServerService _server;
 
     /// Constructor
-    ScheduleListJobsView(this._document, this._routeParams, this._server) {
-        this.scheduleId = this._routeParams.get('id');
-        this.scheduleName = this.scheduleId.substring(0, 8);
-    }
+    ScheduleListJobsView(this._document, this._server);
 
     /// Fetch current page of results.
     getPage() async {
@@ -58,24 +56,24 @@ class ScheduleListJobsView implements AfterViewInit {
     /// Fetch job schedule.
     getSchedule() async {
         var request = new pb.Request();
-        request.getJobSchedule = new pb.RequestGetJobSchedule()
+        request.getSchedule = new pb.RequestGetSchedule()
             ..scheduleId = convert.hex.decode(this.scheduleId);
         var message = await this._server.sendRequest(request);
-        var schedule = new JobSchedule.fromPb(message.response.jobSchedule);
+        var schedule = new Schedule.fromPb(message.response.schedule);
         return schedule;
     }
 
-    /// Called when Angular initializes the view.
-    void ngAfterViewInit() {
+    onActivate(_, RouterState current) {
         this._document.title = 'Schedule: Jobs';
         this._document.breadcrumbs = [
             new Breadcrumb(name: 'Schedule', icon: 'calendar',
-                link: ['/Schedule', 'List']),
+                link: Routes.scheduleList.toUrl()),
             new Breadcrumb(name: this.scheduleId.substring(0, 8),
-                link: ['/Schedule', 'Detail', {'id': scheduleId}]),
+                link: Routes.scheduleDetail.toUrl({'id': scheduleId})),
             new Breadcrumb(name: 'Jobs'),
         ];
-
+        this.scheduleId = current.parameters['id'];
+        this.scheduleName = this.scheduleId.substring(0, 8);
         this.getSchedule().then((schedule) {
             this.scheduleName = schedule.scheduleName;
             this._document.breadcrumbs[1].name = this.scheduleName;

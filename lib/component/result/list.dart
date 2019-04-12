@@ -7,8 +7,9 @@ import 'package:convert/convert.dart' as convert;
 import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
+import 'package:starbelly/component/routes.dart';
 import 'package:starbelly/model/job.dart';
-import 'package:starbelly/protobuf/protobuf.dart' as pb;
+import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/job_status.dart';
 import 'package:starbelly/service/server.dart';
 
@@ -16,9 +17,10 @@ import 'package:starbelly/service/server.dart';
 @Component(
     selector: 'results-list',
     templateUrl: 'list.html',
-    directives: const [CORE_DIRECTIVES, FaIcon, MA_DIRECTIVES,
+    directives: const [coreDirectives, FaIcon, modularAdminDirectives,
         RouterLink],
-    pipes: const [COMMON_PIPES]
+    exports: [Routes],
+    pipes: const [commonPipes]
 )
 class ResultListView implements AfterViewInit, OnDestroy {
     int currentPage = 1;
@@ -56,8 +58,8 @@ class ResultListView implements AfterViewInit, OnDestroy {
     }
 
     /// Delete a job.
-    deleteJob(ButtonClick click, Job job) async {
-        click.button.busy = true;
+    deleteJob(Button button, Job job) async {
+        button.busy = true;
         var request = new pb.Request()
             ..deleteJob = new pb.RequestDeleteJob();
         request.deleteJob.jobId = convert.hex.decode(job.jobId);
@@ -67,7 +69,7 @@ class ResultListView implements AfterViewInit, OnDestroy {
         } on ServerException catch (exc) {
             window.alert('Could not delete job: ${exc}');
         }
-        click.button.busy = false;
+        button.busy = false;
     }
 
     /// Fetch current page of results.
