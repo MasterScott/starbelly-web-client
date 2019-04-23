@@ -1,6 +1,7 @@
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:convert/convert.dart' as convert;
+import 'package:ng_fontawesome/ng_fontawesome.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
 
 import 'package:starbelly/model/policy.dart';
@@ -17,7 +18,8 @@ import 'package:starbelly/validate.dart' as validate;
             max-width: 30em;
         }
     '''],
-    directives: const [coreDirectives, formDirectives, modularAdminDirectives]
+    directives: const [coreDirectives, FaIcon, formDirectives,
+        modularAdminDirectives]
 )
 class StartCrawlView implements AfterViewInit {
     ControlGroup form;
@@ -70,14 +72,14 @@ class StartCrawlView implements AfterViewInit {
             ..runState = pb.JobRunState.RUNNING
             ..policyId = convert.hex.decode(this.selectedPolicy.policyId)
             ..seeds.add(this.seedUrl);
-        for (var tagStr in this.tags.split(new RegExp('\s+'))) {
+        for (var tagStr in this.tags.split(new RegExp(r'\s+'))) {
             var tagTrim = tagStr.trim();
             if (tagTrim.isNotEmpty) {
                 request.setJob.tags.add(tagTrim);
             }
         }
         await this._server.sendRequest(request);
-        this._initForm();
+        // this._initForm();
     }
 
     /// Initialize form controls.

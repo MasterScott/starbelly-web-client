@@ -67,6 +67,6 @@ class AppComponent {
             window.console.log(msg);
         });
 
-        // this.server.stayConnected();
+        this.server.stayConnected();
     }
 }

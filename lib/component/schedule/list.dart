@@ -55,6 +55,11 @@ class ScheduleListView implements AfterViewInit {
         button.busy = false;
     }
 
+    /// Generate a URL to a schedule detail.
+    String detailUrl(String scheduleId) {
+        return Routes.scheduleDetail.toUrl({"id": scheduleId});
+    }
+
     /// Fetch current page of results.
     getPage() async {
         var request = new pb.Request()

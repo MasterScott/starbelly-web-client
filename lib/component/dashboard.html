@@ -6,7 +6,7 @@
   <table class='striped'>
     <thead>
       <tr>
-        <th>Name <fa name='angle-up'></fa></th>
+        <th>Name<fa class='pl-1' name='angle-up'></fa></th>
         <th>Status</th>
         <th>Items</th>
         <th>Errors</th>
@@ -22,7 +22,9 @@
       </tr>
       <tr *ngFor="let job of jobStatus.jobs">
         <td>
-          <a [routerLink]='Routes.dashboard.toUrl()'>{{job.name}}</a>
+          <a [routerLink]='jobLink(job)'>
+            {{job.name}}
+          </a>
           <ma-tag *ngFor='let tag of job.tags' type='primary' size='small'>{{tag}}</ma-tag>
         </td>
         <td>
@@ -39,12 +41,14 @@
             <fa name='play'></fa>
           </ma-button>
           <ma-button #pauseButton size='small'
+                     class='ml-1'
                      [disabled]='busyJobs.contains(job.jobId)'
                      *ngIf='job.runState == RUNNING'
                      (click)='setJobRunState(pauseButton, job, PAUSED)'>
             <fa name='pause'></fa>
           </ma-button>
           <ma-button #cancelButton size='small'
+                     class='ml-1'
                      [disabled]='busyJobs.contains(job.jobId)'
                      *ngIf='job.runState == RUNNING || job.runState == PAUSED'
                      (click)='setJobRunState(cancelButton, job, CANCELLED)'>

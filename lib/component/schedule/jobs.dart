@@ -64,16 +64,17 @@ class ScheduleListJobsView implements OnActivate {
     }
 
     onActivate(_, RouterState current) {
+        var scheduleId = current.parameters['id'];
         this._document.title = 'Schedule: Jobs';
         this._document.breadcrumbs = [
             new Breadcrumb(name: 'Schedule', icon: 'calendar',
                 link: Routes.scheduleList.toUrl()),
-            new Breadcrumb(name: this.scheduleId.substring(0, 8),
+            new Breadcrumb(name: scheduleId.substring(0, 8),
                 link: Routes.scheduleDetail.toUrl({'id': scheduleId})),
             new Breadcrumb(name: 'Jobs'),
         ];
-        this.scheduleId = current.parameters['id'];
-        this.scheduleName = this.scheduleId.substring(0, 8);
+        this.scheduleId = scheduleId;
+        this.scheduleName = scheduleId.substring(0, 8);
         this.getSchedule().then((schedule) {
             this.scheduleName = schedule.scheduleName;
             this._document.breadcrumbs[1].name = this.scheduleName;

@@ -35,7 +35,7 @@
       </tr>
       <tr *ngFor="let schedule of schedules">
         <td>
-          <a [routerLink]='Routes.scheduleDetail.toUrl({"id":schedule.scheduleId})'>
+          <a [routerLink]='detailUrl(schedule.scheduleId)'>
             {{schedule.scheduleName}}
           </a>
           <ma-tag *ngFor='let tag of schedule.tags' type='primary' size='small'>{{tag}}</ma-tag>
@@ -54,7 +54,7 @@
   <p>
     <ma-button type='primary' [routerLink]='Routes.scheduleCreate.toUrl()'>
       <fa name='plus-circle'></fa>
-      New Schedule
+      <span>New Schedule</span>
     </ma-button>
   </p>
 </ma-card>

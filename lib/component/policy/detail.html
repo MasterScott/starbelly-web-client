@@ -146,13 +146,13 @@
       <p *ngIf='policy.urlNormalization.enabled'>
         <ma-button type='success' (click)='addStripParameter()'>
           <fa name='plus-circle'></fa>
-          Add A Parameter
+          <span>Add A Parameter</span>
         </ma-button>
         <ma-button *ngIf='policy.urlNormalization.stripParameters.length > 1'
                    type='link'
                    (click)='sortParameters()'>
           <fa name='sort-alpha-asc'></fa>
-          Sort Parameters
+          <span>Sort Parameters</span>
         </ma-button>
       </p>
     </ma-card>
@@ -226,7 +226,7 @@
       <p>
         <ma-button type='success' (click)='addUrlRule()'>
           <fa name='plus-circle'></fa>
-          Add A Rule
+          <span>Add A Rule</span>
         </ma-button>
       </p>
     </ma-card>
@@ -263,13 +263,13 @@
       <p>
         <ma-button type='success' (click)='addUserAgent()'>
           <fa name='plus-circle'></fa>
-          Add A User Agent
+          <span>Add A User Agent</span>
         </ma-button>
         <ma-button *ngIf='policy.userAgents.length > 1'
                    type='link'
                    (click)='sortUserAgents()'>
           <fa name='sort-alpha-asc'></fa>
-          Sort User Agents
+          <span>Sort User Agents</span>
         </ma-button>
       </p>
     </ma-card>
@@ -346,7 +346,7 @@
       <p>
         <ma-button type='success' (click)='addProxyRule()'>
           <fa name='plus-circle'></fa>
-          Add A Proxy Rule
+          <span>Add A Proxy Rule</span>
         </ma-button>
       </p>
     </ma-card>
@@ -413,7 +413,7 @@
       <p>
         <ma-button type='success' (click)='addMimeRule()'>
           <fa name='plus-circle'></fa>
-          Add A Rule
+          <span>Add A Rule</span>
         </ma-button>
       </p>
     </ma-card>
@@ -452,7 +452,7 @@
     <p>
       <ma-button #saveButton type='primary' (click)='save(saveButton)'>
         <fa name='save'></fa>
-        Save
+        <span>Save</span>
       </ma-button>
       <ma-button type='link' [routerLink]='Routes.policyList.toUrl()'>
         Cancel

@@ -138,7 +138,6 @@ class ServerService {
     /// This places event data into the stream controller associated with this
     /// subscription.
     void _handleServerEvent(pb.Event event) {
-        window.console.log(event.toString()); //TODO remove
         var controller = this._subscriptions[event.subscriptionId];
         // A race could lead to receiving an event after closing a
         // subscription.

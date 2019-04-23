@@ -334,6 +334,7 @@ const Request$json = const {
     const {'1': 'delete_schedule', '3': 24, '4': 1, '5': 11, '6': '.RequestDeleteSchedule', '9': 0, '10': 'deleteSchedule'},
     const {'1': 'get_schedule', '3': 25, '4': 1, '5': 11, '6': '.RequestGetSchedule', '9': 0, '10': 'getSchedule'},
     const {'1': 'list_schedules', '3': 26, '4': 1, '5': 11, '6': '.RequestListSchedules', '9': 0, '10': 'listSchedules'},
+    const {'1': 'list_schedule_jobs', '3': 32, '4': 1, '5': 11, '6': '.RequestListScheduleJobs', '9': 0, '10': 'listScheduleJobs'},
     const {'1': 'set_schedule', '3': 27, '4': 1, '5': 11, '6': '.RequestSetSchedule', '9': 0, '10': 'setSchedule'},
     const {'1': 'delete_policy', '3': 4, '4': 1, '5': 11, '6': '.RequestDeletePolicy', '9': 0, '10': 'deletePolicy'},
     const {'1': 'get_policy', '3': 8, '4': 1, '5': 11, '6': '.RequestGetPolicy', '9': 0, '10': 'getPolicy'},
@@ -376,6 +377,7 @@ const Response$json = const {
     const {'1': 'schedule', '3': 19, '4': 1, '5': 11, '6': '.Schedule', '9': 0, '10': 'schedule'},
     const {'1': 'new_schedule', '3': 21, '4': 1, '5': 11, '6': '.ResponseNewSchedule', '9': 0, '10': 'newSchedule'},
     const {'1': 'list_schedules', '3': 20, '4': 1, '5': 11, '6': '.ResponseListSchedules', '9': 0, '10': 'listSchedules'},
+    const {'1': 'list_schedule_jobs', '3': 25, '4': 1, '5': 11, '6': '.ResponseListScheduleJobs', '9': 0, '10': 'listScheduleJobs'},
     const {'1': 'policy', '3': 8, '4': 1, '5': 11, '6': '.Policy', '9': 0, '10': 'policy'},
     const {'1': 'new_policy', '3': 15, '4': 1, '5': 11, '6': '.ResponseNewPolicy', '9': 0, '10': 'newPolicy'},
     const {'1': 'list_policies', '3': 12, '4': 1, '5': 11, '6': '.ResponseListPolicies', '9': 0, '10': 'listPolicies'},
@@ -563,6 +565,22 @@ const ResponseListSchedules$json = const {
   '1': 'ResponseListSchedules',
   '2': const [
     const {'1': 'schedules', '3': 1, '4': 3, '5': 11, '6': '.Schedule', '10': 'schedules'},
+    const {'1': 'total', '3': 2, '4': 1, '5': 5, '10': 'total'},
+  ],
+};
+
+const RequestListScheduleJobs$json = const {
+  '1': 'RequestListScheduleJobs',
+  '2': const [
+    const {'1': 'schedule_id', '3': 1, '4': 2, '5': 12, '10': 'scheduleId'},
+    const {'1': 'page', '3': 2, '4': 1, '5': 11, '6': '.Page', '10': 'page'},
+  ],
+};
+
+const ResponseListScheduleJobs$json = const {
+  '1': 'ResponseListScheduleJobs',
+  '2': const [
+    const {'1': 'jobs', '3': 1, '4': 3, '5': 11, '6': '.Job', '10': 'jobs'},
     const {'1': 'total', '3': 2, '4': 1, '5': 5, '10': 'total'},
   ],
 };

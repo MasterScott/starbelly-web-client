@@ -65,7 +65,7 @@
       <p>
         <ma-button type='success' (click)='showNewModal=true'>
           <fa name='plus-circle'></fa>
-          Add rate limit…
+          <span>Add rate limit…</span>
         </ma-button>
       </p>
     </ma-card>
@@ -107,7 +107,8 @@
                    class='float-xs-right'
                    [submit]='true'
                    [disabled]='!newRateLimitForm.valid'>
-          <fa name='save'></fa> Save
+          <fa name='save'></fa>
+          <span>Save</span>
         </ma-button>
       </p>
     </form>

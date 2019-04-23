@@ -15,8 +15,7 @@ import 'package:starbelly/service/server.dart';
     selector: 'dashboard',
     templateUrl: 'dashboard.html',
     directives: const [coreDirectives, FaIcon, modularAdminDirectives,
-        RouterLink],
-    exports: [Routes]
+        RouterLink]
 )
 class DashboardView implements OnInit {
     Set<String> busyJobs;
@@ -45,6 +44,10 @@ class DashboardView implements OnInit {
     /// When this component is created, reset the new job count.
     void ngOnInit() {
         this.jobStatus.resetNewJobCount();
+    }
+
+    String jobLink(Job job) {
+        return Routes.resultDetail.toUrl({"id": job.jobId});
     }
 
     /// Set a job's run state.

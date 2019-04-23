@@ -1033,6 +1033,7 @@ enum Request_Command {
   listCaptchaSolvers, 
   setCaptchaSolver, 
   deleteCaptchaSolver, 
+  listScheduleJobs, 
   notSet
 }
 
@@ -1067,6 +1068,7 @@ class Request extends $pb.GeneratedMessage {
     29 : Request_Command.listCaptchaSolvers,
     30 : Request_Command.setCaptchaSolver,
     31 : Request_Command.deleteCaptchaSolver,
+    32 : Request_Command.listScheduleJobs,
     0 : Request_Command.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Request')
@@ -1100,7 +1102,8 @@ class Request extends $pb.GeneratedMessage {
     ..a<RequestListCaptchaSolvers>(29, 'listCaptchaSolvers', $pb.PbFieldType.OM, RequestListCaptchaSolvers.getDefault, RequestListCaptchaSolvers.create)
     ..a<RequestSetCaptchaSolver>(30, 'setCaptchaSolver', $pb.PbFieldType.OM, RequestSetCaptchaSolver.getDefault, RequestSetCaptchaSolver.create)
     ..a<RequestDeleteCaptchaSolver>(31, 'deleteCaptchaSolver', $pb.PbFieldType.OM, RequestDeleteCaptchaSolver.getDefault, RequestDeleteCaptchaSolver.create)
-    ..oo(0, [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31])
+    ..a<RequestListScheduleJobs>(32, 'listScheduleJobs', $pb.PbFieldType.OM, RequestListScheduleJobs.getDefault, RequestListScheduleJobs.create)
+    ..oo(0, [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32])
   ;
 
   Request() : super();
@@ -1267,6 +1270,11 @@ class Request extends $pb.GeneratedMessage {
   set deleteCaptchaSolver(RequestDeleteCaptchaSolver v) { setField(31, v); }
   $core.bool hasDeleteCaptchaSolver() => $_has(29);
   void clearDeleteCaptchaSolver() => clearField(31);
+
+  RequestListScheduleJobs get listScheduleJobs => $_getN(30);
+  set listScheduleJobs(RequestListScheduleJobs v) { setField(32, v); }
+  $core.bool hasListScheduleJobs() => $_has(30);
+  void clearListScheduleJobs() => clearField(32);
 }
 
 enum Response_Body {
@@ -1289,6 +1297,7 @@ enum Response_Body {
   solver, 
   listCaptchaSolvers, 
   newSolver, 
+  listScheduleJobs, 
   notSet
 }
 
@@ -1313,6 +1322,7 @@ class Response extends $pb.GeneratedMessage {
     22 : Response_Body.solver,
     23 : Response_Body.listCaptchaSolvers,
     24 : Response_Body.newSolver,
+    25 : Response_Body.listScheduleJobs,
     0 : Response_Body.notSet
   };
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('Response')
@@ -1338,7 +1348,8 @@ class Response extends $pb.GeneratedMessage {
     ..a<CaptchaSolver>(22, 'solver', $pb.PbFieldType.OM, CaptchaSolver.getDefault, CaptchaSolver.create)
     ..a<ResponseListCaptchaSolvers>(23, 'listCaptchaSolvers', $pb.PbFieldType.OM, ResponseListCaptchaSolvers.getDefault, ResponseListCaptchaSolvers.create)
     ..a<ResponseNewCaptchaSolver>(24, 'newSolver', $pb.PbFieldType.OM, ResponseNewCaptchaSolver.getDefault, ResponseNewCaptchaSolver.create)
-    ..oo(0, [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24])
+    ..a<ResponseListScheduleJobs>(25, 'listScheduleJobs', $pb.PbFieldType.OM, ResponseListScheduleJobs.getDefault, ResponseListScheduleJobs.create)
+    ..oo(0, [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 19, 20, 21, 22, 23, 24, 25])
   ;
 
   Response() : super();
@@ -1465,6 +1476,11 @@ class Response extends $pb.GeneratedMessage {
   set newSolver(ResponseNewCaptchaSolver v) { setField(24, v); }
   $core.bool hasNewSolver() => $_has(21);
   void clearNewSolver() => clearField(24);
+
+  ResponseListScheduleJobs get listScheduleJobs => $_getN(22);
+  set listScheduleJobs(ResponseListScheduleJobs v) { setField(25, v); }
+  $core.bool hasListScheduleJobs() => $_has(22);
+  void clearListScheduleJobs() => clearField(25);
 }
 
 class RequestDeleteCaptchaSolver extends $pb.GeneratedMessage {
@@ -2089,6 +2105,61 @@ class ResponseListSchedules extends $pb.GeneratedMessage {
   static ResponseListSchedules _defaultInstance;
 
   $core.List<Schedule> get schedules => $_getList(0);
+
+  $core.int get total => $_get(1, 0);
+  set total($core.int v) { $_setSignedInt32(1, v); }
+  $core.bool hasTotal() => $_has(1);
+  void clearTotal() => clearField(2);
+}
+
+class RequestListScheduleJobs extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('RequestListScheduleJobs')
+    ..a<$core.List<$core.int>>(1, 'scheduleId', $pb.PbFieldType.QY)
+    ..a<Page>(2, 'page', $pb.PbFieldType.OM, Page.getDefault, Page.create)
+  ;
+
+  RequestListScheduleJobs() : super();
+  RequestListScheduleJobs.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  RequestListScheduleJobs.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  RequestListScheduleJobs clone() => RequestListScheduleJobs()..mergeFromMessage(this);
+  RequestListScheduleJobs copyWith(void Function(RequestListScheduleJobs) updates) => super.copyWith((message) => updates(message as RequestListScheduleJobs));
+  $pb.BuilderInfo get info_ => _i;
+  static RequestListScheduleJobs create() => RequestListScheduleJobs();
+  RequestListScheduleJobs createEmptyInstance() => create();
+  static $pb.PbList<RequestListScheduleJobs> createRepeated() => $pb.PbList<RequestListScheduleJobs>();
+  static RequestListScheduleJobs getDefault() => _defaultInstance ??= create()..freeze();
+  static RequestListScheduleJobs _defaultInstance;
+
+  $core.List<$core.int> get scheduleId => $_getN(0);
+  set scheduleId($core.List<$core.int> v) { $_setBytes(0, v); }
+  $core.bool hasScheduleId() => $_has(0);
+  void clearScheduleId() => clearField(1);
+
+  Page get page => $_getN(1);
+  set page(Page v) { setField(2, v); }
+  $core.bool hasPage() => $_has(1);
+  void clearPage() => clearField(2);
+}
+
+class ResponseListScheduleJobs extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('ResponseListScheduleJobs')
+    ..pc<Job>(1, 'jobs', $pb.PbFieldType.PM,Job.create)
+    ..a<$core.int>(2, 'total', $pb.PbFieldType.O3)
+  ;
+
+  ResponseListScheduleJobs() : super();
+  ResponseListScheduleJobs.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromBuffer(i, r);
+  ResponseListScheduleJobs.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) : super.fromJson(i, r);
+  ResponseListScheduleJobs clone() => ResponseListScheduleJobs()..mergeFromMessage(this);
+  ResponseListScheduleJobs copyWith(void Function(ResponseListScheduleJobs) updates) => super.copyWith((message) => updates(message as ResponseListScheduleJobs));
+  $pb.BuilderInfo get info_ => _i;
+  static ResponseListScheduleJobs create() => ResponseListScheduleJobs();
+  ResponseListScheduleJobs createEmptyInstance() => create();
+  static $pb.PbList<ResponseListScheduleJobs> createRepeated() => $pb.PbList<ResponseListScheduleJobs>();
+  static ResponseListScheduleJobs getDefault() => _defaultInstance ??= create()..freeze();
+  static ResponseListScheduleJobs _defaultInstance;
+
+  $core.List<Job> get jobs => $_getList(0);
 
   $core.int get total => $_get(1, 0);
   set total($core.int v) { $_setSignedInt32(1, v); }

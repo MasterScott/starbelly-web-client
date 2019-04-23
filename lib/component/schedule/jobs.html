@@ -6,7 +6,7 @@
   <p *ngIf='totalRows != 0'>
     Showing {{startRow}}-{{endRow}} of {{totalRows}} jobs.
   </p>
-  <div *ngIf='totalRows > 10' class='text-xs-center'>
+  <div *ngIf='totalRows > rowsPerPage' class='text-xs-center'>
     <ma-pager [currentPage]='currentPage'
               [totalItems]='totalRows'
               [itemsPerPage]='rowsPerPage'
@@ -16,9 +16,9 @@
   <table class='striped'>
     <thead>
       <tr>
-        <th>Name <fa name='angle-down'></fa></th>
+        <th>Name</th>
         <th>Status</th>
-        <th>Started</th>
+        <th>Started<fa class='pl-1' name='angle-down'></fa></th>
         <th>Ended</th>
       </tr>
     </thead>

@@ -49,9 +49,6 @@ import 'package:starbelly/service/server.dart';
             font-size: 10pt;
         }
         .row.buttons {
-            /* Make space for success/error message. Kind of a hack: would be
-             * better to scroll the view port?
-             */
             min-height: 5em;
         }
     '''],
@@ -63,10 +60,13 @@ import 'package:starbelly/service/server.dart';
 )
 class ScheduleDetailView implements OnActivate {
     List<Policy> policies;
+    String scheduleId;
     Schedule schedule;
     String saveError = '';
     bool saveSuccess = false;
+    bool created = false;
     String seedUrl = '';
+    Job latestJob = null;
 
     DocumentService _document;
     Router _router;
@@ -86,6 +86,11 @@ class ScheduleDetailView implements OnActivate {
     /// Constructor
     ScheduleDetailView(this._document, this._router, this._server) {
         this.policies = [];
+    }
+
+    /// Create a URL for listing this job's schedules.
+    String listScheduleJobsUrl() {
+        return Routes.scheduleJobs.toUrl({'id': this.scheduleId});
     }
 
     /// Save the current schedule.
@@ -109,7 +114,9 @@ class ScheduleDetailView implements OnActivate {
             if (response.hasNewSchedule()) {
                 var scheduleId = convert.hex.encode(
                     response.newSchedule.scheduleId);
-                this._router.navigate(Routes.scheduleDetail.toUrl({'id': scheduleId}));
+                this._router.navigate(Routes.scheduleDetail.toUrl(
+                    {'id': scheduleId}), NavigationParams(queryParameters:
+                    {'created': 'true'}));
             } else {
                 this.schedule.updatedAt = new DateTime.now();
                 this._document.breadcrumbs.last.name =
@@ -127,14 +134,15 @@ class ScheduleDetailView implements OnActivate {
 
     /// Implement ngAfterViewInit() as an async method.
     onActivate(_, RouterState current) async {
-        var scheduleId = current.parameters['id'];
+        this.created = current.queryParameters.containsKey('created');
+        this.scheduleId = current.parameters['id'];
         var scheduleName;
 
-        if (scheduleId == null) {
+        if (this.scheduleId == null) {
             this.schedule = new Schedule.defaultSettings();
             scheduleName = this.schedule.scheduleName;
         } else {
-            scheduleName = scheduleId.substring(0, 8);
+            scheduleName = this.scheduleId.substring(0, 8);
         }
 
         this._document.title = scheduleName;
@@ -144,8 +152,8 @@ class ScheduleDetailView implements OnActivate {
             new Breadcrumb(name: scheduleName),
         ];
 
-        if (scheduleId != null) {
-            var schedule = await this._fetchSchedule(scheduleId);
+        if (this.scheduleId != null) {
+            var schedule = await this._fetchSchedule(this.scheduleId);
             this.schedule = schedule;
             this.seedUrl = schedule.seeds.length > 0 ? schedule.seeds[0] : '';
             this._document.title = 'Schedule: ${this.schedule.scheduleName}';
@@ -153,15 +161,21 @@ class ScheduleDetailView implements OnActivate {
         }
 
         this.policies = await this._fetchPolicies();
+        this.latestJob = await this._fetchJob();
     }
 
     /// Fetch the latest job for this schedule.
-    Future<Job> _fetchJob(String jobId) async {
+    Future<Job> _fetchJob() async {
         var request = new pb.Request();
-        request.getJob = new pb.RequestGetJob()
-            ..jobId = convert.hex.decode(jobId);
+        request.listScheduleJobs = new pb.RequestListScheduleJobs()
+            ..scheduleId = convert.hex.decode(this.scheduleId);
         var message = await this._server.sendRequest(request);
-        return new Job.fromPb2(message.response.job);
+        var jobList = message.response.listScheduleJobs.jobs;
+        var latestJob = null;
+        if (jobList.length > 0) {
+            latestJob = Job.fromPb2(jobList[0]);
+        }
+        return latestJob;
     }
 
     /// Fetch a list of policies.

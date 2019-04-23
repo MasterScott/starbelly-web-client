@@ -1,6 +1,10 @@
 <div class='row'>
   <div class='col-lg'>
     <ma-card>
+      <div class='alert alert-success' *ngIf='created'>
+        <strong>A new schedule has been created.</strong>
+        <span *ngIf='schedule.enabled'>The first job will start in 60 seconds.</span>
+      </div>
       <h2>Schedule: {{schedule == null ? 'Loading…' : schedule.scheduleName}}</h2>
       <p class='lead'>
         Schedule crawls to run automatically.
@@ -90,26 +94,18 @@
             <option [ngValue]='YEARS'>years</option>
           </select>
         </ma-input-group>
-<!--         <dl>
+        <dl>
           <dt>Latest Job</dt>
           <dd>
-            <span *ngIf='schedule.latestJobId.isEmpty'>N/A</span>
-            <span *ngIf='schedule.latestJobId.isNotEmpty'>
-              <span *ngIf='latestJob == null'>
-                <a [routerLink]='["../List"]'>{{schedule.latestJobId.substring(0,8)}}</a>
-              </span>
-              <span *ngIf='latestJob != null'>
-                <a [routerLink]='["/Results", "Detail", {"id":latestJob.jobId}]'>{{latestJob.name}}</a>
-                ({{latestJob.runStateStr}})
-              </span>
+            <span *ngIf='latestJob == null'>N/A</span>
+            <span *ngIf='latestJob != null'>
+              {{latestJob.name}},
+              {{latestJob.runStateStr}},
+              {{latestJob.itemCount | number}} items
+            <a [routerLink]='listScheduleJobsUrl()'>View more…</a>
             </span>
-            <br>
-            <ma-button *ngIf='schedule.scheduleId != null'
-              type='info'
-              size='small'
-              [routerLink]='["../Jobs", {"id":schedule.scheduleId}]'>View all jobs…</ma-button>
           </dd>
-        </dl> -->
+        </dl>
       </div>
     </ma-card>
   </div>
@@ -117,20 +113,20 @@
 <div class='row buttons' *ngIf='schedule != null'>
   <div class='col-lg'>
     <p>
-      <ma-button #saveButton type='primary' (click)='save(saveButton)'>
+      <ma-button #saveButton class='float-sm-right' type='primary'
+        (click)='save(saveButton)'>
         <fa name='save'></fa>
-        Save
+        <span>Save</span>
       </ma-button>
-<!--       <ma-button type='link'
-                 [routerLink]='["../List"]'>
+      <ma-button type='link' [routerLink]='Routes.scheduleList.toUrl()'>
         Cancel
-      </ma-button> -->
+      </ma-button>
     </p>
     <p *ngIf='saveError.isNotEmpty' class='text-danger result'>
       {{saveError}}
     </p>
     <p *ngIf='saveSuccess' class='text-success result'>
-      Policy saved.
+      Schedule saved.
     </p>
   </div>
 </div>

@@ -134,7 +134,10 @@ class JobStatusService {
         }
 
         if (update.runState == pb.JobRunState.RUNNING) {
-            toast('primary', 'Crawl started.', name, icon: 'play-circle');
+            if (!this._jobMap.containsKey(update.jobId) ||
+                    this._jobMap[update.jobId].runState != pb.JobRunState.RUNNING) {
+                toast('primary', 'Crawl started.', name, icon: 'play-circle');
+            }
         } else if (update.runState == pb.JobRunState.PAUSED) {
             toast('primary', 'Crawl paused.', name, icon: 'pause-circle');
         } else if (update.runState == pb.JobRunState.CANCELLED) {
