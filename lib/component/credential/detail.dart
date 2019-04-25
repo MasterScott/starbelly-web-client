@@ -46,7 +46,6 @@ class CredentialDetailView implements OnActivate {
     String addError;
     String domain;
     DomainLogin domainLogin;
-    bool dirty = false;
     String saveError = '';
     bool saveSuccess;
     bool showAddUser = false;
@@ -67,7 +66,6 @@ class CredentialDetailView implements OnActivate {
             this.addError = 'Username and password are required.';
         } else {
             this.addError = null;
-            this.dirty = true;
             var user = new DomainLoginUser(username, password);
             this.domainLogin.users.add(user);
             userEl.value = '';
@@ -78,7 +76,6 @@ class CredentialDetailView implements OnActivate {
 
     /// Delete a user.
     deleteUser(int index) async {
-        this.dirty = true;
         this.domainLogin.users.removeAt(index);
     }
 
@@ -121,7 +118,6 @@ class CredentialDetailView implements OnActivate {
 
     /// Set the login URL.
     setLoginUrl(String loginUrl) {
-        this.dirty = true;
         this.domainLogin.loginUrl = loginUrl;
     }
 }

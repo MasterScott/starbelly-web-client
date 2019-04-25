@@ -24,7 +24,7 @@
         </table>
         <p class='lead'>Memory Usage</p>
         <p>
-          {{frame.memory.used}} / {{frame.memory.total}}
+          {{frame.memory.used | dataSize}} / {{frame.memory.total | dataSize}}
           ({{memoryUsage()}}%)
         </p>
         <p class='lead'>Disks</p>
@@ -39,8 +39,8 @@
           <tbody>
             <tr *ngFor='let disk of frame.disks'>
               <td>{{disk.mount}}</td>
-              <td>{{disk.used}}</td>
-              <td>{{disk.total}}</td>
+              <td>{{disk.used | dataSize}}</td>
+              <td>{{disk.total | dataSize}}</td>
             </tr>
           </tbody>
         </table>
@@ -56,8 +56,8 @@
           <tbody>
             <tr *ngFor='let network of frame.networks'>
               <td>{{network.name}}</td>
-              <td>{{network.sent}}</td>
-              <td>{{network.received}}</td>
+              <td>{{network.sent | dataSize}}</td>
+              <td>{{network.received | dataSize}}</td>
             </tr>
           </tbody>
         </table>

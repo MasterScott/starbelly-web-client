@@ -30,10 +30,6 @@
                  [(ngModel)]='solver.serviceUrl'
                  placeholder='Service URL'>
         </ma-input-group>
-        <p class='legend'>
-          Any CAPTCHA service which supports the Antigate-style API may be used
-          here.
-        </p>
         <ma-input-group [inline]='true'>
           <label class='form-labels'>API Key</label>
           <input type='text'
@@ -63,9 +59,9 @@
             Characters
           </label>
           <select [(ngModel)]='solver.characters'>
-            <option [value]='ALPHANUMERIC'>Alphanumeric</option>
-            <option [value]='ALPHA_ONLY'>Only Alphabet</option>
-            <option [value]='NUMBERS_ONLY'>Only Numbers</option>
+            <option [value]='ALPHANUMERIC.name'>Alphanumeric</option>
+            <option [value]='ALPHA_ONLY.name'>Only Alphabet</option>
+            <option [value]='NUMBERS_ONLY.name'>Only Numbers</option>
           </select>
         </ma-input-group>
         <ma-input-group [inline]='true'>
@@ -91,14 +87,14 @@
 <div class='row buttons' *ngIf='solver != null'>
   <div class='col-lg'>
     <p>
-      <ma-button #saveButton type='primary'
+      <ma-button #saveButton class='float-sm-right' type='primary'
                  (click)='save(saveButton)'>
         <fa name='save'></fa>
-        Save
+        <span>Save</span>
       </ma-button>
       <ma-button type='link'
                  [routerLink]='Routes.captchaList.toUrl()'>
-        Cancel
+        <span>Cancel</span>
       </ma-button>
     </p>
     <p *ngIf='saveError.isNotEmpty' class='text-danger result'>

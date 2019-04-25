@@ -63,6 +63,12 @@ class ScheduleListJobsView implements OnActivate {
         return schedule;
     }
 
+    /// Get URL for job detail.
+    String jobDetailUrl(Job job) {
+        return Routes.resultDetail.toUrl({'id': job.jobId});
+    }
+
+    /// Handles route activation.
     onActivate(_, RouterState current) {
         var scheduleId = current.parameters['id'];
         this._document.title = 'Schedule: Jobs';

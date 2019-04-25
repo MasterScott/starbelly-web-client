@@ -41,7 +41,7 @@ class Routes {
         routePath: RoutePath(path: 'credential/new'),
         component: credential_detail_template.CredentialDetailViewNgFactory);
     static final credentialDetail = RouteDefinition(
-        routePath: RoutePath(path: 'credential/:id'),
+        routePath: RoutePath(path: 'credential/:domain'),
         component: credential_detail_template.CredentialDetailViewNgFactory);
     static final credentialList = RouteDefinition(
         routePath: RoutePath(path: 'credential'),
@@ -65,7 +65,7 @@ class Routes {
         component: rate_limit_template.RateLimitViewNgFactory);
 
     static final resultDetail = RouteDefinition(
-        routePath: RoutePath(path: 'result/:id/detail'),
+        routePath: RoutePath(path: 'result/:id'),
         component: result_detail_template.ResultDetailViewNgFactory);
     static final resultError = RouteDefinition(
         routePath: RoutePath(path: 'result/:id/error'),

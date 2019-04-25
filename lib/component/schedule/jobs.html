@@ -35,8 +35,7 @@
       </tr>
       <tr *ngFor="let job of jobs">
         <td>
-          <!-- <a [routerLink]='["/Results", "Detail", {"id":job.jobId}]'>{{job.name}}</a> -->
-          <a [routerLink]='Routes.dashboard.toUrl()'>{{job.name}}</a>
+          <a [routerLink]='jobDetailUrl(job)'>{{job.name}}</a>
         </td>
         <td>{{job.runStateStr}}</td>
         <td>{{job.startedAt | date:'y-MM-dd H:mm:ss'}}</td>

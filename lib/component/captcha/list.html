@@ -38,7 +38,7 @@
       </tr>
       <tr *ngFor="let solver of solvers">
         <td>
-          <a [routerLink]='Routes.captchaDetail.toUrl({"id":solver.solverId})'>
+          <a [routerLink]='solverUrl(solver)'>
             {{solver.name}}
           </a>
         </td>
@@ -49,8 +49,8 @@
             (click)='duplicateSolver(duplicateButton, solver)'>
             <fa name='copy'></fa>
           </ma-button>
-          <ma-button #deleteButton size='small' type='danger' title='Delete'
-            (click)='deleteSolver(deleteButton, solver)'>
+          <ma-button #deleteButton class='ml-1' size='small' type='danger'
+            title='Delete' (click)='deleteSolver(deleteButton, solver)'>
             <fa name='trash'></fa>
           </ma-button>
         </td>

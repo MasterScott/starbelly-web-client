@@ -30,15 +30,7 @@ import 'package:starbelly/service/server.dart';
             display: inherit;
             margin-left: -0.9em;
         }
-        p.legend {
-            margin-left: 10.4em;
-            margin-top: -0.8em;
-            font-size: 10pt;
-        }
         .row.buttons {
-            /* Make space for success/error message. Kind of a hack: would be
-             * better to scroll the view port?
-             */
             min-height: 5em;
         }
         .result {

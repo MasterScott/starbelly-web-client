@@ -88,6 +88,11 @@ class CredentialListView implements AfterViewInit {
         button.busy = false;
     }
 
+    /// Return URL to detail page.
+    String detailUrl(DomainLogin domainLogin) {
+        return Routes.credentialDetail.toUrl({"domain": domainLogin.domain});
+    }
+
     /// Fetch current page of results.
     getPage() async {
         var request = new pb.Request()

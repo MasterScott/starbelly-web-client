@@ -92,4 +92,9 @@ class CaptchaListView implements AfterViewInit {
         this.currentPage = page.pageNumber;
         this.getPage();
     }
+
+    /// Return URL to a solver detail page.
+    String solverUrl(CaptchaSolver solver) {
+        return Routes.captchaDetail.toUrl({"id":solver.solverId});
+    }
 }
