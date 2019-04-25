@@ -1,24 +1,71 @@
 import 'dart:async';
 
 import 'package:angular/angular.dart';
+import 'package:angular_router/angular_router.dart';
 import 'package:ng_modular_admin/ng_modular_admin.dart';
+import 'package:ng_fontawesome/ng_fontawesome.dart';
 
-import 'package:starbelly/model/task.dart';
 import 'package:starbelly/protobuf/starbelly.pb.dart' as pb;
 import 'package:starbelly/service/server.dart';
 
-/// View crawl items.
+class TaskTree {
+    String name;
+    List<TaskTree> subtasks;
+    int count;
+
+    TaskTree.fromPb(pb.TaskTree taskTree) {
+        this.name = taskTree.name;
+        this.subtasks = new List<TaskTree>.generate(
+            taskTree.subtasks.length,
+            (i) => TaskTree.fromPb(taskTree.subtasks[i])
+        );
+        this.count = 1;
+        for (var subtask in this.subtasks) {
+            this.count += subtask.count;
+        }
+    }
+}
+
+@Component(
+    selector: 'task-tree',
+    template: '''<ul>
+        <li>{{task.name}}</li>
+        <ul *ngIf='task.subtasks.length > 0'>
+            <task-tree *ngFor='let subtask of task.subtasks' [task]='subtask'>
+            </task-tree>
+        </ul>
+    </ul>''',
+    styles: const ['''
+        ul {
+            list-style-type: square;
+            list-style-position: inside;
+            padding-left: 1em;
+        }
+    '''],
+    directives: const [coreDirectives, TaskTreeComponent]
+)
+class TaskTreeComponent {
+    @Input()
+    TaskTree task;
+}
+
+/// View Trio tasks.
 @Component(
     selector: 'tasks',
     templateUrl: 'tasks.html',
-    directives: const [coreDirectives, modularAdminDirectives]
+    directives: const [coreDirectives, fontAwesomeDirectives,
+        modularAdminDirectives, TaskTreeComponent],
+    pipes: const [commonPipes]
 )
-class TasksView implements AfterViewInit, OnDestroy {
-    TaskMonitor taskMonitor;
+class TasksView implements OnActivate, OnDeactivate {
+    TaskTree rootTask;
+    num period = 5.0;
+    bool paused = false;
 
     DocumentService _document;
     ServerService _server;
     StreamSubscription<pb.Event> _subscription;
+    TaskTree _newRootTask;
 
     /// Constructor
     TasksView(this._document, this._server) {
@@ -30,27 +77,37 @@ class TasksView implements AfterViewInit, OnDestroy {
     }
 
     /// Called when Angular initializes the view.
-    void ngAfterViewInit() {
+    void onActivate(_, RouterState current) {
         this.subscribe();
     }
 
     /// Called when Angular destroys the view.
-    void ngOnDestroy() {
+    void onDeactivate(_, RouterState current) {
         if (this._subscription != null) {
             this._subscription.cancel();
         }
+    }
+
+    void pause() {
+        this.paused = !this.paused;
+    }
+
+    void resume() {
+        this.paused = !this.paused;
+        this.rootTask = this._newRootTask;
     }
 
     /// Subscribe to task monitor events.
     subscribe() async {
         var request = new pb.Request();
         request.subscribeTaskMonitor = new pb.RequestSubscribeTaskMonitor()
-            ..period = 1.0
-            ..topN = 25;
+            ..period = this.period;
         var response = await this._server.sendRequest(request);
-        // TODO switch to task tree
-        // this._subscription = response.subscription.listen((event) {
-        //     this.taskMonitor = new TaskMonitor.fromPb(event.taskMonitor);
-        // });
+        this._subscription = response.subscription.listen((event) {
+            this._newRootTask = TaskTree.fromPb(event.taskTree);
+            if (!this.paused) {
+                this.rootTask = this._newRootTask;
+            }
+        });
     }
 }

@@ -3,29 +3,25 @@
     <ma-card>
       <h2>
         Task Monitor
-        <small *ngIf='taskMonitor != null'>{{taskMonitor.count}} Tasks</small>
+        <small *ngIf='rootTask != null'>{{rootTask.count | number}} Tasks</small>
       </h2>
-      <table class='striped'>
-        <thead>
-          <tr>
-            <th>Count</th>
-            <th>Task Name</th>
-          </tr>
-        </thead>
-        <tbody *ngIf="taskMonitor == null">
-          <tr>
-            <td class='empty-table' colspan="999">
-              Loading…
-            </td>
-          </tr>
-        </tbody>
-        <tbody *ngIf='taskMonitor != null'>
-          <tr *ngFor='let task of taskMonitor.tasks'>
-            <td>{{task.count}}</td>
-            <td>{{task.name}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div *ngIf='rootTask != null'>
+        <p *ngIf='!paused'>
+          <ma-button class='mr-1' type='warning' size='small' (click)='pause()'>
+            <fa name='pause'></fa>
+            <span>Pause updates</span>
+          </ma-button>
+          Updating every {{period | number}} seconds.
+        </p>
+        <p *ngIf='paused'>
+          <ma-button class='mr-1' type='success' size='small' (click)='resume()'>
+            <fa name='play'></fa>
+            <span>Resume updates</span>
+          </ma-button>
+          Updates are paused.
+        </p>
+        <task-tree [task]='rootTask'></task-tree>
+      </div>
     </ma-card>
   </div>
 </div>
